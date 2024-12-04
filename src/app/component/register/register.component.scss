@@ -1,0 +1,113 @@
+.container{
+    color: white;
+    height: 100vh;
+}
+.form-control {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 254, 254);
+    margin-top: 5px;
+}
+.form-control:focus {
+    color: white;
+    background-color: transparent;
+    outline: none;
+    border-color: transparent;
+}
+.divider-nospace {
+    border-bottom: 1px solid whitesmoke;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.password {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    color: rgb(189, 188, 188);
+    cursor: pointer;
+}
+input::placeholder{
+    color: rgb(68, 66, 66);
+    font-size: smaller;
+}
+.checkbox-text input[type="checkbox"]:checked {
+    background-color: rgb(233, 68, 178);
+    margin-right: 10px;
+}
+
+.form-group {
+    margin: 10px;
+    border: none;
+
+}
+.center{
+    text-align: center;
+}
+
+.input:focus{
+    border: none;
+    outline: none;
+    box-shadow: none;  
+}
+.checkbox-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+.form-check-label{
+    margin-left: 5px;
+}
+.register-button{
+    
+    background: linear-gradient(to right,rgb(225, 64,180),rgb(126,43,237));
+    border: none;
+    width: 20%;
+    border-radius: 8px;
+    color: white;
+    height: 35px;
+}
+.register-header {
+    font-size: 2rem; /* Kích thước chữ */
+    font-weight: bold; /* Đậm chữ */
+    color: rgb(225, 64,180); /* Màu chữ */
+    text-align: center; /* Căn giữa */
+    margin-bottom: 1rem; /* Khoảng cách dưới tiêu đề */
+    border-bottom: 2px solid white; /* Đường viền dưới tiêu đề */
+    padding-bottom: 0.5rem; /* Khoảng cách dưới chữ và đường viền */
+    text-transform: uppercase; /* Chữ hoa */
+    letter-spacing: 1px; /* Khoảng cách giữa các chữ cái */
+}
+
+.register-form{
+    background-color: rgb(12, 12, 55);
+    padding: 5px;
+    border-radius:8px ;
+    box-shadow: 8px rgba(0,0,0,0.2);
+    
+    width: 100%;
+}
+.divider-nospace{
+    margin-top: 5px;
+}
+.log-in{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+.forgot-password {
+    justify-content: space-between;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    color:  rgb(225, 64,180);
+    position: relative;
+}
+
+  

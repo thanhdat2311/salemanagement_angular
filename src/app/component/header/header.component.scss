@@ -1,0 +1,97 @@
+/* Custom Navbar */
+.custom-navbar {
+    position: sticky; /* Giữ header ở vị trí trên cùng */
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.1); /* Nền trong suốt */
+    backdrop-filter: blur(10px); /* Hiệu ứng mờ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Viền nhẹ */
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+    transition: background 0.3s ease; /* Hiệu ứng chuyển nền */
+  }
+  
+  /* Logo */
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  /* Navbar Links */
+  .nav-link {
+    color: white !important;
+    font-size: 1rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .nav-link:hover {
+    color: #ffaf40;
+    text-shadow: 0 0 8px rgba(255, 175, 64, 0.8);
+  }
+  
+  /* Active Link */
+  .nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid #fc5afc; /* Đánh dấu link đang chọn */
+  }
+  
+  /* Search Form */
+  .search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .search-input {
+    background: rgba(255, 255, 255, 0.1); /* Nền trong suốt */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 5px 15px;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .search-input:focus {
+    border-color: #ffaf40;
+    box-shadow: 0 0 8px rgba(255, 175, 64, 0.8);
+    outline: none;
+  }
+  .search-btn {
+    background: #fc5afc56;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 25px;
+    transition: background 0.3s ease, transform 0.2s;
+  }
+  .search-btn:hover {
+    background: #fc5afc91;
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .nav-item {
+      margin: 5px 0;
+    }
+    .search-form {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  

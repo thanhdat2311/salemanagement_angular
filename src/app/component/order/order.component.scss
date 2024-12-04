@@ -1,0 +1,100 @@
+table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(12, 13, 54);
+    text-align: left;
+
+}
+
+th, td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    font-size: 10px;
+    width: flex;
+}
+
+th {
+    text-transform: uppercase;
+}
+
+tr{
+    height: 60px;
+}
+tr:nth-child(even) {
+    background-color:rgba (12, 13, 54,0.5);
+}
+
+tr:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    transition: all 0.2s ease-in-out;
+}
+
+tr:hover {
+    background-color: rgba(12, 13, 54, 0.7);
+}
+
+.container{
+    color: white;
+}
+.intro-section {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+.product-header{
+    color: rgb(233, 66, 176);
+}
+.form-control{
+    background-color: rgb(19, 23, 42);
+    border: 1PX SOLID rgb(29, 33, 54);
+    color: white;
+    height: 30px;
+}
+.form-control:focus{
+    border-color: rgb(233, 66, 176);
+    background-color: rgb(19, 23, 42);
+}
+.form-label{
+    color: white;
+}
+.product-order{
+    color: rgb(185, 244, 181);
+}
+.product-infor{
+    display: flex;
+    align-items: center;
+}
+.product-image{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    margin-right:10px ;
+}
+.product-name{
+    margin-right: 10px;
+}
+h1, h2, h3, h4 {
+    font-family: 'Arial', sans-serif; /* Hoặc bất kỳ font nào bạn muốn */
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+.btn-gradient{
+    background: linear-gradient(to right,rgb(225,64,180),rgb(126,43,237));
+    color: white;
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    text-align:center;
+}
+.input-group{
+    height: 30px;
+    margin: 5px;
+}

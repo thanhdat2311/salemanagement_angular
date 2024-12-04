@@ -1,0 +1,164 @@
+
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* Hiệu ứng gradient hiện đại */
+$background-dark: #0a122a; /* Màu nền chính */
+$card-bg: #1b1f3b; /* Màu nền của các thẻ (card) */
+$text-color: #ffffff; /* Màu chữ sáng */
+$highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
+$border-color: #4c5270; /* Màu viền nhạt */
+$secondary-bg: #10152f; /* Màu nền phụ */
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
+$padding: 20px; /* Khoảng cách nội bộ */
+
+$border-radius: 12px;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Ensure full screen for container */
+html,
+body {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.no-overflow {
+    width: 100%;
+}
+
+
+/* Header styling */
+.title {
+    color: rgb(234, 107, 238);
+    text-align: center;
+    padding: $padding;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    grid-row: 1; 
+    height: 4vh;
+}
+
+/* Content area with responsive columns */
+.content {
+    /* Fill remaining height */
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping for smaller screens */
+    padding: $padding;
+    gap: $padding;
+    height: 84.5vh;
+    grid-row: 2; 
+    width: 100%;
+    margin-top: 20px;
+    /* Columns for customer, task, and details */
+    .scroll_y {
+        overflow-y: scroll;
+        overflow-x: hidden;
+      
+        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+        &::-webkit-scrollbar {
+          width: 10px; /* Độ rộng thanh cuộn */
+        }
+      
+        &::-webkit-scrollbar-track {
+          background: rgba(16, 21, 47, 0.5); /* Màu nền của track (vùng kéo thanh cuộn) */
+          border-radius: 10px; /* Bo góc */
+        }
+      
+       
+        /* Với Firefox */
+        scrollbar-width: thin; /* Sử dụng thanh cuộn mỏng */
+        scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5); /* Màu thanh cuộn và track */
+      }
+      
+    .list-customer,
+    .list-task,
+    .task-detail {
+        background: $card-bg;
+        flex: 1;
+        flex-direction: column;
+        border-radius: $border-radius;
+        box-shadow: $shadow;
+        padding: $padding;
+        display: flex;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: auto;
+        color: $text-color;
+        height: 100%;
+        width: 100%;
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: $padding / 2;
+            color: $highlight-color;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid $secondary-bg;
+            padding-bottom: $padding / 4;
+        }
+        h4 {
+            font-size: 1.5rem;
+            margin-bottom: $padding / 2;
+            color: whitesmoke;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid $secondary-bg;
+            padding-bottom: $padding / 4;
+        }
+
+        .icon {
+            font-size: 1.8rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: $padding / 2;
+
+            li {
+                background: $secondary-bg;
+                padding: 10px;
+                border-radius: $border-radius / 2;
+                margin-bottom: 10px;
+                cursor: pointer;
+                transition: background 0.3s, transform 0.2s;
+
+                &:hover {
+                    background: $primary-gradient;
+                    color: white;
+                    transform: translateX(5px);
+                }
+            }
+        }
+
+        p {
+            margin-top: $padding / 2;
+            font-size: 1rem;
+            color: $text-color;
+        }
+    }
+}
+
+/* Footer styling */
+// .footer {
+//     color: white;
+//     text-align: center;
+//     height: 1vh;
+// }
+
+
+
