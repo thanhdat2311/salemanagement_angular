@@ -39,12 +39,10 @@ body {
 .title {
     color: rgb(234, 107, 238);
     text-align: center;
-    padding: $padding;
-    font-size: 2rem;
-    font-weight: 700;
+    padding-top: 4px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     grid-row: 1; 
-    height: 4vh;
+    height: 2vh;
 }
 
 /* Content area with responsive columns */
@@ -55,7 +53,7 @@ body {
     /* Allow wrapping for smaller screens */
     padding: $padding;
     gap: $padding;
-    height: 84.5vh;
+    height: 88.5vh;
     grid-row: 2; 
     width: 100%;
     margin-top: 20px;

@@ -4,9 +4,9 @@
     width: 100%;
     height: 40px;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.1); /* Nền trong suốt */
+    background: none; /* Nền trong suốt */
     backdrop-filter: blur(10px); /* Hiệu ứng mờ */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Viền nhẹ */
+    border-bottom: none; /* Viền nhẹ */
     padding: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
     transition: background 0.3s ease; /* Hiệu ứng chuyển nền */

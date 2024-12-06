@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HomeComponent } from './component/home/home.component';
+import { HomeComponent } from './component/task/task.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { OrderComponent } from './component/order/order.component';
@@ -18,7 +18,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    HomeComponent,//task
     HeaderComponent,
     FooterComponent,
     OrderComponent,

@@ -1,4 +1,5 @@
-export interface Categories {
+export interface Status {
     id: number;
     name: string;
-}
+  }
+  
