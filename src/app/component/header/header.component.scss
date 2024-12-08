@@ -35,8 +35,8 @@
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }
   .nav-link:hover {
-    color: #ffaf40;
-    text-shadow: 0 0 8px rgba(255, 175, 64, 0.8);
+    color:#fc5afc;
+    text-shadow: 0 0 8px #fc5afcb9;
   }
   
   /* Active Link */
@@ -63,8 +63,8 @@
     color: rgba(255, 255, 255, 0.6);
   }
   .search-input:focus {
-    border-color: #ffaf40;
-    box-shadow: 0 0 8px rgba(255, 175, 64, 0.8);
+    border-color: #fc5afc69;
+    box-shadow: 0 0 8px #fc5afcc4;
     outline: none;
   }
   .search-btn {

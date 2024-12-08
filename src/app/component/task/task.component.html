@@ -5,9 +5,10 @@
   </header>
   <div class="content">
     <div class="list-customer">
-      <h4>
+      <h6>
         <span class="icon">👥</span> List Customer
-      </h4>
+        <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+      </h6>
       <div class="scroll_y" >
       <ul *ngFor="let company of companyList" >
         <li [value]="company.id"
@@ -17,9 +18,9 @@
     </div>
     </div>
     <div class="list-task">
-      <h4>
+      <h6>
         <span class="icon">📝</span> List Task
-      </h4>
+      </h6>
       <div class="scroll_y">
       <ul *ngFor="let task of taskList">
         <li>{{task.title}}</li>
@@ -27,10 +28,83 @@
     </div>
     </div>
     <div class="task-detail">
-      <h4>
+      <h6>
         <span class="icon">🔍</span> Task Detail
-      </h4>
-      <p>Chọn một task để xem chi tiết.</p>
+      </h6>
+    
+      <div class="task-form">
+        <form>
+          <!-- Title -->
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" name="title" readonly />
+          </div>
+    
+          <!-- Description -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              
+              name="description"
+              rows="3"
+              readonly
+            ></textarea>
+          </div>
+    
+          <!-- Action -->
+          <div class="form-group">
+            <label for="action">Action</label>
+            <input type="text" id="action" class="form-control"  name="action" readonly />
+          </div>
+    
+          <!-- Urgent -->
+          <div class="form-group">
+            <label for="urgent">Urgent</label>
+            <input
+              type="checkbox"
+              id="urgent"
+              class="form-check-input"
+             
+              name="urgent"
+              disabled
+            />
+            <label class="form-check-label" for="urgent">Is urgent</label>
+          </div>
+    
+          <!-- Start Date -->
+          <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input
+              type="date"
+              id="startDate"
+              class="form-control"
+             
+              name="startDate"
+              readonly
+            />
+          </div>
+    
+          <!-- Completed Date -->
+          <div class="form-group">
+            <label for="completedDate">Completed Date</label>
+            <input
+              type="date"
+              id="completedDate"
+              class="form-control"
+                           name="completedDate"
+              readonly
+            />
+          </div>
+        </form>
+      </div>
+    
+      <!-- No task selected message -->
+      <ng-template #noTaskSelected>
+        <p>No task selected. Please select a task from the list to view details.</p>
+      </ng-template>
+      <!-- <p>Chọn một task để xem chi tiết.</p> -->
     </div>
   </div>
   <!-- <app-footer></app-footer> -->

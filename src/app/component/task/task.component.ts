@@ -12,7 +12,7 @@ import { Company } from '../models/company';
 })
 export class HomeComponent implements OnInit {
   //search
-  email: String ='datmkt23112@gmail.com';
+  email: String ='datmkt2311@gmail.com';
   //categories
   companyId: number= 0;
   //products

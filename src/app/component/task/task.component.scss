@@ -48,18 +48,20 @@ body {
 /* Content area with responsive columns */
 .content {
     /* Fill remaining height */
-    display: flex;
+    display: flex ;
+    flex-direction: row;
+
     flex-wrap: wrap;
     /* Allow wrapping for smaller screens */
     padding: $padding;
     gap: $padding;
     height: 88.5vh;
-    grid-row: 2; 
     width: 100%;
+    grid-row: 2; 
     margin-top: 20px;
     /* Columns for customer, task, and details */
     .scroll_y {
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
       
         /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
@@ -82,21 +84,20 @@ body {
     .list-task,
     .task-detail {
         background: $card-bg;
-        flex: 1;
+        flex: 3;
         flex-direction: column;
         border-radius: $border-radius;
         box-shadow: $shadow;
         padding: $padding;
         display: flex;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: auto;
+        width: 70%;
         color: $text-color;
         height: 100%;
-        width: 100%;
-        &:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-        }
+        // &:hover {
+        //     transform: translateY(-8px);
+        //     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        // }
 
         h3 {
             font-size: 1.5rem;
@@ -149,8 +150,58 @@ body {
             color: $text-color;
         }
     }
-}
+    .list-task{
+        width: 20%;
+        flex: 1;
+        flex-direction: column;
 
+    }
+    .list-customer{
+        width: 10%;
+        flex: 1;
+        flex-direction: column;
+
+    }
+}
+.task-form {
+    background: #1b1f3b; /* Màu nền tối */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #ffffff; /* Màu chữ */
+  
+    .form-group {
+      margin-bottom: 15px;
+  
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+      }
+  
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background: #2c2f47;
+        color: #ffffff;
+        font-size: 1rem;
+      }
+  
+      input:disabled,
+      textarea:disabled {
+        background: #3b3f5a;
+        color: #bbbbbb;
+      }
+  
+      .form-check-input {
+        margin-right: 10px;
+      }
+    }
+  }
+  
 /* Footer styling */
 // .footer {
 //     color: white;
