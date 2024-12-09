@@ -1,108 +1,104 @@
 <app-header></app-header>
-<div class="container">
-    <form #registerForm="ngForm">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="register-form mx-auto">
-                    <h1 class="register-header">REGISTER</h1>
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" [(ngModel)]="fullname" 
-                        class="form-control input" 
-                        required 
-                        (focus)="registerForm.form.markAsTouched()"
-                        name="fullname"
-                        id="name">
-                        <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="fullname.length < 6 && registerForm.controls['fullname'].touched">
-                            Name phải có ít nhất 6  ký tự</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" [(ngModel)]="address" 
-                        class="form-control input" 
-                        required 
-                        (focus)="registerForm.form.markAsTouched()"
-                        name="address"
-                        id="address">
-                        <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="address.length < 6 && registerForm.controls['address'].touched">
-                            address phải có ít nhất 6  ký tự</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="date-of-birth">Date of birth
-                        </label>
-                        <input type="date" class="form-control" 
-                        required 
-                        [(ngModel)]="dateOfBirth" 
-                        name="dateOfBirth"
-                        id="date-of-birth">
-                        <div class="divider-nospace"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="form-control input" [(ngModel)]="phone"
-                            (focus)="registerForm.form.markAsTouched()" 
-                            required 
-                            (input)="onPhoneChange()" 
-                            name="phone"
-                            id="phone">
-                        <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="phone.length <= 9 && registerForm.controls['phone'].touched">
-                            Phone phải có ít nhất 10 số</p>
-                    </div>
-                    <div class="form-group password">
-                        <label for="password">Password
-                        </label>
-                        <input type="password" [(ngModel)]="password" 
-                        (focus)="registerForm.form.markAsTouched()" 
-                        class="form-control input"
-                        name="password"
-                        id="password"
-                            placeholder="at least 3 characters.">
-                        <i class="password-toggle fas fa-eye-slash"></i>
-                        <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="password.length <= 5 
-                        && registerForm.controls['password'].touched">
-                            password phải có ít nhất 5 kí tự</p>
-                    </div>
-                    <div class="form-group password">
-                        <label for="retype-password">Re-enter Password</label>  
-                        <input type="password" 
-                        [(ngModel)]="retypePassword" 
-                        name="retypePassword"
-                        class="form-control input" 
-                        (input)="registerForm.form.markAsTouched(); isCheckPassword()"
-                        required 
-                        id="retypePassword"
-                        placeholder="at least 3 characters.">
-                        <i class="password-toggle fas fa-eye-slash"></i>
-                        <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="registerForm.controls['retypePassword'].hasError('PasswordIsCheck') && registerForm.form.touched">
-                            Phải giống với password </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check checkbox-text">
-                        <span style="display: flex;">
-                            <input type="checkbox" [(ngModel)]="isCheck" class="form-check-input" id="agree">
-                            <label class="form-check-label text-start" for="agree">I agree to all terms and
-                                conditions</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group center">
-                    <button type="button" (click)="register()" class="register-button">Register</button>
-                </div>
-                <div class="divider-nospace mt-3"></div>
-                <div class="mt-3">
-                    <div class="log-in">
-                        <p>Do you already have an account?</p>
-                        <a href="https://www.instagram.com/lvtdatt/" class="forgot-password">Log In</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="register-container">
+  <div class="register-card">
+    <h3>Register User</h3>
+    <form>
+      <!-- Fullname -->
+      <div class="form-group">
+        <label for="fullname">Full Name</label>
+        <input
+          type="text"
+          id="fullname"
+          class="form-control"
+          name="fullname"
+          [(ngModel)]="fullname"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="email"
+          required
+        />
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          class="form-control"
+          name="phone"
+          [(ngModel)]="phone"
+          required
+        />
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          class="form-control"
+          name="address"
+          [(ngModel)]="address"
+          rows="2"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+
+      <!-- Retype Password -->
+      <div class="form-group">
+        <label for="retypePassword">Retype Password</label>
+        <input
+          type="password"
+          id="retypePassword"
+          class="form-control"
+          name="retypePassword"
+          [(ngModel)]="retypePassword"
+
+          required
+        />
+      </div>
+
+      <!-- Role -->
+      <!-- <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" class="form-control" name="role" required>
+          <option value="1">Admin</option>
+          <option value="2">User</option>
+        </select>
+      </div> -->
+
+      <!-- Submit Button -->
+      <div class="form-group text-center">
+        <button type="submit" 
+        class="btn btn-primary"
+        (click)="register()"
+        >Register</button>
+      </div>
     </form>
+  </div>
 </div>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

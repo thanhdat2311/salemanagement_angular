@@ -13,45 +13,38 @@ export class RegisterComponent {
   @ViewChild('registerForm') registerForm!: NgForm;
   // khai báo các biến tương ứng với field dữ liệu trên form
   phone: string;
+  email:string;
   password: string;
   retypePassword: string;
   fullname: string;
   address: string;
   isCheck: boolean;
-  dateOfBirth: Date;
   isPhoneValid: boolean;
   constructor( private router: Router, private UserService: UserService ) {
+    this.email = '',
     this.phone = '';
     this.password = '';
     this.retypePassword = '';
     this.address = '';
     this.fullname = '';
     this.isCheck = false;
-    this.dateOfBirth = new Date();
-    this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
     this.isPhoneValid = false;
     // inject dependency
 
-  }
-
-  onPhoneChange() {
-    console.log(`Phone type: ${this.phone}`);
   }
   register() {
 
     // Sử dụng Observer object
     const registerDTO:RegisterDTO =
     {
-      "fullname": this.fullname,
-      "phone": this.phone,
-      "address": this.address,
-      "password": this.password,
-      "retypePassword": this.retypePassword,
-      "date_of_birth": this.dateOfBirth,
-      "facebook_account_id": 0,
-      "google_account_id": 0,
-      "role_id": 0,
-      "is_active": 1
+      "fullname":this.fullname,
+      "email":this.email,
+      "phone":this.phone,
+      "address":this.address,
+      "password":this.password,
+      "retypePassword":this.retypePassword,
+      "roleId":2,
+      "is_active":1
     
     };
     this.UserService.register(registerDTO).subscribe({

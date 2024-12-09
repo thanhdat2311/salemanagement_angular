@@ -9,8 +9,8 @@ import { enviroment } from '../enviroment/enviroment';
   providedIn: 'root'
 })
 export class UserService {
-  private apiRegister = `${enviroment.apiBaseUrl}/users/register`;
-  private apiLogin = `${enviroment.apiBaseUrl}/users/login`;
+  private apiRegister = `${enviroment.apiBaseUrl}/user/register`;
+  private apiLogin = `${enviroment.apiBaseUrl}/user/login`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -24,6 +24,6 @@ export class UserService {
   }
   login(loginDTO: LoginDTO): Observable<any> {
     debugger
-    return this.http.post(this.apiLogin, loginDTO, { headers: this.createHeaders() })
+    return this.http.post(this.apiLogin, loginDTO)
   }
 }

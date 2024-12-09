@@ -16,7 +16,7 @@ import { Role } from '../models/role';
 })
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
-  phone: string;
+  email: string;
   password: string;
   roles: Role[] = [];
   selectedRole: Role  | undefined;
@@ -26,12 +26,12 @@ export class LoginComponent {
     private tokenService: TokenService,
     private roleService: RoleService
   ) {
-    this.phone = '',
+    this.email = '',
     this.password = '',
     this.role = 0
   }
   onPhoneChange() {
-    console.log(`Phone type: ${this.phone}`);
+    console.log(`Phone type: ${this.email}`);
   }
   onRoleChange(event: any) {
     console.log('Role selected:', this.selectedRole);
@@ -39,50 +39,30 @@ export class LoginComponent {
   
   ngOnInit(){
     debugger
-    this.roleService.getRoles().subscribe({
-      next: (rolesResponse:Role[]) =>{
-        debugger
-        console.log('Roles fetched:', rolesResponse);
-        this.roles = rolesResponse;
-          this.selectedRole = this.roles.length > 0 ? this.roles[0] : undefined; // Gán giá trị mặc định là phần tử đầu tiên
-      },
-      error: (error: any) => {
-        Swal.fire({
-          position: 'center',
-          icon: 'warning',          // Biểu tượng error
-          title: `${error.message}`,
-          text: 'An error occurred. Please try again later!',
-          width: '600px',
-          padding: '1em',
-          timer: 8000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'
-        });
-      }
-    })
+    
   }
   login() {
     debugger
     // Sử dụng Observer object
     const loginDTO: LoginDTO =
     {
-      "phone": this.phone,
+      "email": this.email,
       "password": this.password,
-      "roleId": this.selectedRole?.id || 0
+      "roleId":2
     };
   
     this.UserService.login(loginDTO).subscribe({
       next: (response: any) => {
       debugger
-        const message = `${response?.message}`
-        const {token} = response;
+        //const message = `${response?.message}`
+        const  token = response;
         this.tokenService.setToken(token);
         if ((response != null)) {
           Swal.fire({
             position: 'center',
             icon: 'success',          // Biểu tượng thành công
             title: 'Successfully!',
-            text: "Status: " +message,
+            text: `${response.token}`,
             width: '600px',
             padding: '1em',
             timer: 5000,                  // Thời gian tự động đóng (ms)
@@ -104,7 +84,7 @@ export class LoginComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',          // Biểu tượng error
-          title: `${error.error.message}`,
+          title: `${error.error}`,
           text: 'An error occurred. Please try again later!',
           width: '600px',
           padding: '1em',

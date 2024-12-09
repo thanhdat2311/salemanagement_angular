@@ -23,21 +23,22 @@
       </h6>
       <div class="scroll_y">
       <ul *ngFor="let task of taskList">
-        <li>{{task.title}}</li>
+        <li [value]="task.id"
+        (click)="getTaskDetail(task.id)">{{task.title}}</li>
       </ul>
     </div>
     </div>
-    <div class="task-detail">
-      <h6>
-        <span class="icon">🔍</span> Task Detail
-      </h6>
-    
+    <div class="task-detail"> 
       <div class="task-form">
         <form>
           <!-- Title -->
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" id="title" class="form-control" name="title" readonly />
+            <input type="text" 
+            id="title"
+            [value]="taskDetail?.title" 
+            class="form-control" 
+            name="title" readonly />
           </div>
     
           <!-- Description -->
@@ -46,9 +47,9 @@
             <textarea
               id="description"
               class="form-control"
-              
+              [value]="taskDetail?.description" 
               name="description"
-              rows="3"
+              rows="2"
               readonly
             ></textarea>
           </div>
@@ -56,7 +57,11 @@
           <!-- Action -->
           <div class="form-group">
             <label for="action">Action</label>
-            <input type="text" id="action" class="form-control"  name="action" readonly />
+            <input type="text" 
+            id="action" 
+            class="form-control"  
+            [value]="taskDetail?.action" 
+            name="action" readonly />
           </div>
     
           <!-- Urgent -->
@@ -66,7 +71,7 @@
               type="checkbox"
               id="urgent"
               class="form-check-input"
-             
+              [value]="taskDetail?.urgent" 
               name="urgent"
               disabled
             />
@@ -80,10 +85,11 @@
               type="date"
               id="startDate"
               class="form-control"
-             
+              [value]="taskDetail?.startDate" 
               name="startDate"
               readonly
             />
+            
           </div>
     
           <!-- Completed Date -->
@@ -93,18 +99,16 @@
               type="date"
               id="completedDate"
               class="form-control"
-                           name="completedDate"
+              [value]="taskDetail?.completedDate" 
+              name="completedDate"
               readonly
             />
           </div>
         </form>
       </div>
-    
-      <!-- No task selected message -->
-      <ng-template #noTaskSelected>
+        <ng-template #noTaskSelected>
         <p>No task selected. Please select a task from the list to view details.</p>
       </ng-template>
-      <!-- <p>Chọn một task để xem chi tiết.</p> -->
     </div>
   </div>
   <!-- <app-footer></app-footer> -->

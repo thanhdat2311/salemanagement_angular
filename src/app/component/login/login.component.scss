@@ -1,154 +1,144 @@
-.container {
-    color: white;
-    height: 100%;
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+$card-bg: #1b1f3b;
+$input-bg: #2c2f47;
+$text-color: #ffffff;
+$highlight-color: #ff4081;
+$secondary-bg: #3b3f5a;
+$border-radius: 12px;
+$padding: 20px;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-.divider-nospace {
-    border-bottom: 1px solid whitesmoke;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $primary-gradient;
 }
 
-.login-form {
-    background-color: rgb(12, 12, 55);
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 500px;
-    border: 1px solid rgb(38, 38, 104);
-    align-items: center;
-    justify-content: center;
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $primary-gradient;
 }
 
-.form-control {
-    background-color: transparent;
-    border: none;
-    color: rgb(255, 254, 254);
-    margin-top: 5px;
-}
+.login-card {
+  background: $card-bg;
+  padding: $padding;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  color: $text-color;
 
-.form-control:focus {
-    color: white;
-    background-color: transparent;
-    outline: none;
-    border-color: transparent;
-}
-
-.password {
-    position: relative;
-}
-
-.password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    color: rgb(189, 188, 188);
-    cursor: pointer;
-}
-
-.checkbox-text input [type="checkbox"]:checked {
-    background-color: rgb(233, 68, 178);
-    margin-right: 10px;
-}
-
-.form-group {
-    margin: 5px;
-}
-
-.checkbox-text {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    vertical-align: middle;
-}
-
-.forgot-password {
-    color: rgb(188, 255, 233);
-}
-
-.forgot-password {
-    justify-content: space-between;
-    text-decoration: none;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-.form-check {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.access-right {
-    background-color: transparent;
-    color: white;
-    border: 1px transparent;
-}
-
-.access-right:focus {
-    background-color: transparent;
-    color: white;
-}
-
-.col {
-    background-color: rgb(36, 26, 73);
-}
-
-.col:hover {
-    background-color: rgb(233, 68, 178);
-    cursor: pointer;
-}
-
-.test:hover {
-    background-color: rgb(233, 68, 178);
-}
-
-.text-create-account {
-    text-align: center;
-}
-
-.login-button {
-    background: linear-gradient(to right, rgb(225, 64, 180), rgb(126, 43, 237));
-    color: white;
-    border: none;
-    border-radius: 8px;
-    margin-left: 5px;
-    width: 30%;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    margin-left: 90px;
-    height: 30px;
-}
-
-.divider {
-    width: 90%;
-    border: 1px solid;
-    margin-top: 5px;
-    margin-left: 25px;
-}
-
-option:hover {
-    background: rgb(233, 68, 178);
-}
-
-
-.create-account {
-    color: rgb(188, 255, 233);
-}
-
-.input:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
-select.form-selection {
-    background-color: rgb(12, 12, 55); /* Nền màu tối */
-    color: white; /* Chữ màu trắng */
-    border: 1px solid #cccccc; /* Viền sáng */
-    border-radius: 8px;
+  .login-title {
+    font-size: 1.8rem;
+    color: $highlight-color;
+    margin-bottom: 20px;
   }
-  
-  select.form-selection option {
-    background-color: rgb(12, 12, 55); /* Nền của các tùy chọn */
-    color: white; /* Chữ màu đen */
+
+  form {
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background: $input-bg;
+        color: $text-color;
+        font-size: 1rem;
+      }
+      input::placeholder {
+        color: #ffffff71;
+      }
+
+      input:focus {
+        outline: none;
+        box-shadow: 0 0 5px $highlight-color;
+      }
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      input {
+        flex:1;
+        margin-right: 2px;
+      }
+
+      label {
+        flex:9;
+        font-size: 0.9rem;
+      }
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: $border-radius;
+      background: $highlight-color;
+      color: $text-color;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: lighten($highlight-color, 10%);
+      }
+    }
+
+    .form-footer {
+      margin-top: 20px;
+
+      .forgot-password {
+        color: lighten($highlight-color, 15%);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $highlight-color;
+        }
+      }
+
+      .signup {
+        margin-top: 10px;
+        font-size: 0.9rem;
+
+        a {
+          color: $highlight-color;
+          text-decoration: none;
+          font-weight: bold;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: lighten($highlight-color, 10%);
+          }
+        }
+      }
+    }
   }
-  
+}

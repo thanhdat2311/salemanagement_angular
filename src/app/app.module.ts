@@ -38,10 +38,10 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     multi:true
   }],
   bootstrap: [
-     HomeComponent
+     //HomeComponent
     //OrderComponent
     //OrderConfirmComponent
-    //LoginComponent
+    LoginComponent
     //RegisterComponent
     //DetailProductComponent
   ]

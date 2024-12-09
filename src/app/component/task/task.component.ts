@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   companyId: number= 0;
   //products
 companyList: Company[] = [];
+taskDetail: Task | undefined;
 taskList: Task[] = [];
 currentPage: number = 0;
 itemsPerPage: number = 12;
@@ -65,6 +66,24 @@ getTaskList( idCompany: number){
     next: (response: Task[])=>{
       debugger
       this.taskList = response;
+    }
+    ,
+    complete: () => {
+      debugger;
+    }
+    ,
+    error: (error: any) => {
+     debugger
+
+    }
+  }
+)
+}
+getTaskDetail( idTask: number){
+  this.taskService.getTaskDetail(idTask).subscribe({
+    next: (response: Task)=>{
+      debugger
+      this.taskDetail = response;
     }
     ,
     complete: () => {

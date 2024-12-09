@@ -4,17 +4,19 @@ import {
     IsPhoneNumber,
     IsDate,
     isPhoneNumber,
-    IsNumber
+    IsNumber,
+    IsEmail
 } from 'class-validator'
 export class LoginDTO {
-    @IsPhoneNumber()
-    phone: string;
+    @IsEmail()
+    email: string;
     @IsString()
     password: string;
-    roleId: number;
+    roleId:number|2;
     constructor(data: any) {
-        this.phone = data.phone;
+        this.email = data.email;
         this.password = data.password;
-        this.roleId = data.role
+        this.roleId = data.roleId;
+
     }
 }
