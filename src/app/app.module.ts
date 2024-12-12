@@ -14,16 +14,21 @@ import { HttpClientModule,
           HTTP_INTERCEPTORS 
         } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
-
+import { Routes } from '@angular/router';
+const routes: Routes = [
+  { path: '', component: HomeComponent }, // Trang chủ
+  { path: 'login', component: LoginComponent } // Trang đăng nhập
+];
 
 @NgModule({
   declarations: [
-    HomeComponent,//task
+    //AppComponent,
+    LoginComponent,
+     HomeComponent,//task
     HeaderComponent,
     FooterComponent,
     OrderComponent,
     OrderConfirmComponent,
-    LoginComponent,
     RegisterComponent,
     DetailProductComponent
   ],
@@ -38,10 +43,10 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     multi:true
   }],
   bootstrap: [
-     //HomeComponent
+    LoginComponent, 
+    // HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
-    LoginComponent
     //RegisterComponent
     //DetailProductComponent
   ]

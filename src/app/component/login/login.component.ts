@@ -52,29 +52,23 @@ export class LoginComponent {
     };
   
     this.UserService.login(loginDTO).subscribe({
-      next: (response: any) => {
+      next: (response: LoginResponse) => {
       debugger
-        //const message = `${response?.message}`
-        const  token = response;
+        const message = `${response?.message}`
+        const  token = `${response.token}`;
         this.tokenService.setToken(token);
-        if ((response != null)) {
+       
           Swal.fire({
             position: 'center',
             icon: 'success',          // Biểu tượng thành công
             title: 'Successfully!',
-            text: `${response.token}`,
+            text: message,
             width: '600px',
             padding: '1em',
             timer: 5000,                  // Thời gian tự động đóng (ms)
             timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
             confirmButtonText: 'OK'   // Nút xác nhận
           })
-        }
-        else {
-          // đăng ký không thành công
-
-
-        }
       },
       complete: () => {
         
@@ -84,7 +78,7 @@ export class LoginComponent {
         Swal.fire({
           position: 'center',
           icon: 'error',          // Biểu tượng error
-          title: `${error.error}`,
+          title: `${error.error.message}`,
           text: 'An error occurred. Please try again later!',
           width: '600px',
           padding: '1em',
@@ -96,3 +90,5 @@ export class LoginComponent {
     })
   }
 }
+
+// Login Response

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dtos';
 import { enviroment } from '../enviroment/enviroment';
+import { LoginResponse } from '../response/user/login.response';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class UserService {
 
     return this.http.post(this.apiRegister, registerDTO, { headers: this.createHeaders() })
   }
-  login(loginDTO: LoginDTO): Observable<any> {
+  login(loginDTO: LoginDTO):Observable<LoginResponse>  {
     debugger
-    return this.http.post(this.apiLogin, loginDTO)
+    return this.http.post<LoginResponse>(this.apiLogin, loginDTO)
   }
 }
