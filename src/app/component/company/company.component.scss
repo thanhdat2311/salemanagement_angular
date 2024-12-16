@@ -1,0 +1,99 @@
+$primary-bg: #1b1f3b;
+$text-light: #ffffff;
+$highlight-color: #ff4081;
+$input-bg: rgba(16, 21, 47, 0.7);
+$input-border: rgba(255, 255, 255, 0.3);
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: $primary-bg;
+    padding: 40px;
+    border-radius: 10px;
+    color: $text-light;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 2rem;
+    color: $highlight-color;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $input-border;
+        border-radius: 5px;
+        background: $input-bg;
+        color: $text-light;
+        font-size: 1rem;
+
+        &::placeholder {
+            color: lighten($text-light, 40%);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $highlight-color;
+        }
+    }
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background: $highlight-color;
+    border: none;
+    border-radius: 5px;
+    color: $text-light;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: darken($highlight-color, 10%);
+        transform: translateY(-2px);
+    }
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+
+    .forgot-password,
+    .signup a {
+        color: lighten($highlight-color, 10%);
+        text-decoration: none;
+        font-size: 0.9rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .btn-submit {
+        font-size: 0.9rem;
+    }
+}

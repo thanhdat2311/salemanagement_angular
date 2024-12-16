@@ -15,6 +15,7 @@ import { HttpClientModule,
         } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { Routes } from '@angular/router';
+import { CompanyComponent } from './component/company/company.component';
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -30,7 +31,8 @@ const routes: Routes = [
     OrderComponent,
     OrderConfirmComponent,
     RegisterComponent,
-    DetailProductComponent
+    DetailProductComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ const routes: Routes = [
     multi:true
   }],
   bootstrap: [
-    LoginComponent, 
+    CompanyComponent,
+    //LoginComponent, 
     // HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
