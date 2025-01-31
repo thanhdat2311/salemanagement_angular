@@ -7,8 +7,10 @@ $highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
 $border-color: #4c5270; /* Màu viền nhạt */
 $secondary-bg: #10152f; /* Màu nền phụ */
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
-$padding: 20px; /* Khoảng cách nội bộ */
-
+$padding:8px; /* Khoảng cách nội bộ */
+$font-size-large: 1.5rem; /* Kích thước font lớn */
+$font-size-medium: 1rem;  /* Kích thước font vừa */
+$font-size-small: 0.875rem;
 $border-radius: 12px;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -82,6 +84,7 @@ body {
       
     .list-customer,
     .list-task,
+    .task-form,
     .task-detail {
         background: $card-bg;
         flex: 3;
@@ -100,7 +103,7 @@ body {
         // }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin-bottom: $padding / 2;
             color: $highlight-color;
             display: flex;
@@ -110,7 +113,7 @@ body {
             padding-bottom: $padding / 4;
         }
         h4 {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin-bottom: $padding / 2;
             color: whitesmoke;
             display: flex;
@@ -119,9 +122,19 @@ body {
             border-bottom: 2px solid $secondary-bg;
             padding-bottom: $padding / 4;
         }
+        h6 {
+          font-size: $font-size-medium;
+          color: whitesmoke;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          border-bottom: 0px solid $secondary-bg;
+          padding-bottom: $padding / 4;
+          margin-left: 2px;
+      }
 
         .icon {
-            font-size: 1.8rem;
+            font-size: 1rem;
         }
 
         ul {
@@ -132,7 +145,7 @@ body {
                 background: $secondary-bg;
                 padding: 10px;
                 border-radius: $border-radius / 2;
-                margin-bottom: 10px;
+                margin-bottom: $padding/2;
                 cursor: pointer;
                 transition: background 0.3s, transform 0.2s;
 
@@ -146,7 +159,7 @@ body {
 
         p {
             margin-top: $padding / 2;
-            font-size: 1rem;
+            font-size: 0.5rem;
             color: $text-color;
         }
     }
@@ -164,54 +177,149 @@ body {
     }
 }
 .task-form {
+  display: flex;
   flex-direction: column;
-  flex-grow: 1;
-    background: #1b1f3b; /* Màu nền tối */
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    color: #ffffff; /* Màu chữ */
-    max-height: 100%;
+  gap: 20px; /* Khoảng cách giữa các nhóm */
+  justify-content: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
+  height: 100%; /* Đảm bảo phần form chiếm hết chiều cao của task-form */
+  
+  .form-group {
     display: flex;
-    .form-group {
-      margin-bottom: 10px;
-      // display: flex;
-      // flex-direction: column;
-      label {
-        font-weight: bold;
-        margin-bottom: 2px;
-        display: block;
-      }
-  
-      input,
-      textarea {
-        width: 100%;
-        padding: 8px;
-        border-radius: 5px;
-        border: none;
-        background: #2c2f47;
-        color: #ffffff;
-        font-size: 1rem;
-      }
-  
-      input:disabled,
-      textarea:disabled {
-        background: #3b3f5a;
-        color: #bbbbbb;
-      }
-  
-      .form-check-input {
-        margin-right: 10px;
-      }
+    flex-direction: column;
+    width: 100%; /* Chiếm hết chiều rộng */
+    margin-bottom: 10px;
+    label {
+      font-weight: lighter;
+      margin-bottom: 5px;
+      font-size: $font-size-medium;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background: #2c2f47;
+      color: #ffffff;
+      font-size: $font-size-small;
+    }
+
+    textarea {
+      resize: none; /* Không cho phép kéo giãn */
+      height: 60px; /* Giữ chiều cao cố định */
     }
   }
-  
-/* Footer styling */
-// .footer {
-//     color: white;
-//     text-align: center;
-//     height: 1vh;
-// }
+
+  .row {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between; /* Giãn đều khoảng cách giữa các phần tử trong hàng */
+
+    .form-group {
+      flex: 1; /* Chia đều khoảng trống */
+    }
+  }
+
+}
+
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .form-check-input {
+    
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .form-check-label {
+    font-size: 1rem;
+  }
+}
+
+.action-urgent-group {
+  display: flex;
+  align-items: center; // Căn giữa theo chiều dọc
+  gap: 10px;
+  .form-group {
+    flex: 1; // Chia đều khoảng trống
+  }
+
+  /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
+  .urgent-checkbox {
+    display: flex;
+    align-items: center;
+    flex:1;
+    gap: 8px;
+    white-space: nowrap; // Giữ nội dung trên một dòng
+  }
+}
+.action-buttons {
+  display: flex; /* Sử dụng flexbox để sắp xếp các nút */
+  justify-content: flex-end; /* Để các nút không giãn ra mà nằm sát nhau */
+  gap: 5px; /* Khoảng cách nhỏ giữa các nút */
+  padding: 0; /* Không có khoảng cách padding bên ngoài */
+  margin-top: 10px; /* Khoảng cách từ phần tử phía trên nếu cần */
+  flex: 0.1;
+}
+
+.btn {
+  background-color: #007bff; /* Màu nền cho nút */
+  color: white; /* Màu chữ */
+  border: none;
+  border-radius: 5px; /* Bo góc */
+  padding: 8px 12px; /* Khoảng cách trong nút */
+  cursor: pointer;
+  font-size: 0.875rem; /* Kích thước chữ nhỏ hơn một chút */
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Thay đổi màu nền khi hover */
+}
+.form-fill-task{
+  flex: auto;
+}
+/* Nút chung */
+.btn {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Nút Save */
+.save-btn {
+  background-color: #5a607f; /* Màu xanh lá */
+}
+
+.save-btn:hover {
+  background-color: #7a809f; /* Màu xanh lá đậm khi hover */
+}
+
+/* Nút Edit */
+.delete-btn {
+  background-color: #d63377; /* Màu vàng */
+}
+
+.delete-btn:hover {
+  background-color: #e06b98; /* Màu vàng đậm khi hover */
+}
+
+/* Nút View */
+.view-btn {
+  background-color: #5a607f; /* Màu xanh dương */
+}
+
+.view-btn:hover {
+  background-color: #7a809f; /* Màu xanh dương đậm khi hover */
+}
 
 
 

@@ -1,99 +1,125 @@
-$primary-bg: #1b1f3b;
-$text-light: #ffffff;
+/* Màu và biến toàn cục */
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+$card-bg: #1b1f3b;
+$input-bg: #2c2f47;
+$text-color: #ffffff;
 $highlight-color: #ff4081;
-$input-bg: rgba(16, 21, 47, 0.7);
-$input-border: rgba(255, 255, 255, 0.3);
+$secondary-bg: #3b3f5a;
+$border-radius: 12px;
+$padding: 20px;
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  background: $primary-gradient;
+}
+
+/* Container Form */
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: $primary-bg;
-    padding: 40px;
-    border-radius: 10px;
-    color: $text-light;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin: 50px auto;
+  background: $card-bg;
+  padding: 40px;
+  border-radius: $border-radius;
+  color: $text-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  
 }
 
 .form-title {
-    text-align: center;
-    font-size: 2rem;
-    color: $highlight-color;
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  color: $highlight-color;
+  margin-bottom: 20px;
 }
 
+/* Nhóm Input */
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
 
-    input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid $input-border;
-        border-radius: 5px;
-        background: $input-bg;
-        color: $text-light;
-        font-size: 1rem;
-
-        &::placeholder {
-            color: lighten($text-light, 40%);
-        }
-
-        &:focus {
-            outline: none;
-            border-color: $highlight-color;
-        }
-    }
-}
-
-.btn-submit {
+  input {
     width: 100%;
     padding: 10px;
-    background: $highlight-color;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    color: $text-light;
+    background: $input-bg;
+    color: $text-color;
     font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
 
-    &:hover {
-        background: darken($highlight-color, 10%);
-        transform: translateY(-2px);
+    &::placeholder {
+      color: #ffffff75;
     }
+
+    &:focus {
+      outline: none;
+      border-color: $highlight-color;
+      box-shadow: 0 0 5px $highlight-color;
+    }
+  }
 }
 
+/* Nút Gửi Form */
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: $highlight-color;
+  border: none;
+  border-radius: $border-radius;
+  color: $text-color;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: darken($highlight-color, 10%);
+    transform: translateY(-2px);
+  }
+}
+
+/* Footer Form */
 .form-footer {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 
-    .forgot-password,
-    .signup a {
-        color: lighten($highlight-color, 10%);
-        text-decoration: none;
-        font-size: 0.9rem;
+  .forgot-password,
+  .signup a {
+    color: lighten($highlight-color, 10%);
+    text-decoration: none;
+    font-size: 0.9rem;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
+  .container {
+    padding: 20px;
+  }
 
-    .form-title {
-        font-size: 1.5rem;
-    }
+  .form-title {
+    font-size: 1.5rem;
+  }
 
-    .btn-submit {
-        font-size: 0.9rem;
-    }
+  .btn-submit {
+    font-size: 0.9rem;
+  }
 }

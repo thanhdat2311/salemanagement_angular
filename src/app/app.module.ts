@@ -45,9 +45,9 @@ const routes: Routes = [
     multi:true
   }],
   bootstrap: [
-    CompanyComponent,
+    //CompanyComponent,
     //LoginComponent, 
-    // HomeComponent,
+    HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
     //RegisterComponent
