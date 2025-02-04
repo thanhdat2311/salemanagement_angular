@@ -8,10 +8,10 @@ export interface Task {
         description: string;
         action: string;
         urgent: boolean;
-        assignedUser: AssignedPerson;
+        assignedUsers: AssignedPerson[]|undefined;
         startDate: string;
-        company: Company;
-        status: Status;
+        company: Company|undefined;
+        status: Status|undefined;
         completedDate: string;
         createdAt: string;
         updatedAt: string;

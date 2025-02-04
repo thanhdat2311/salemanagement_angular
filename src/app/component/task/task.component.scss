@@ -8,9 +8,20 @@ $border-color: #4c5270; /* Màu viền nhạt */
 $secondary-bg: #10152f; /* Màu nền phụ */
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
 $padding:8px; /* Khoảng cách nội bộ */
-$font-size-large: 1.5rem; /* Kích thước font lớn */
-$font-size-medium: 1rem;  /* Kích thước font vừa */
-$font-size-small: 0.875rem;
+$spacing-xxl: 64px;  // Dùng cho layout lớn
+$spacing-xl: 48px;   // Khoảng cách section
+$spacing-lg: 32px;   // Padding container lớn
+$spacing-md: 24px;   // Padding container vừa
+$spacing-sm: 16px;   // Padding nhỏ
+$spacing-xs: 8px;    // Khoảng cách giữa các thành phần
+$spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
+
+$font-size-xxl: 2.5rem; // Tiêu đề chính (H1)
+$font-size-xl: 2rem;    // Tiêu đề phụ (H2)
+$font-size-lg: 1.5rem;  // Tiêu đề nhỏ (H3, H4)
+$font-size-md: 1.25rem; // Nội dung chính (p, span)
+$font-size-sm: 1rem;    // Nội dung phụ, nhãn label
+$font-size-xs: 0.875rem; // Chú thích, ghi chú nhỏ
 $border-radius: 12px;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -103,7 +114,7 @@ body {
         // }
 
         h3 {
-            font-size: 1rem;
+            font-size: $font-size-lg;
             margin-bottom: $padding / 2;
             color: $highlight-color;
             display: flex;
@@ -113,7 +124,7 @@ body {
             padding-bottom: $padding / 4;
         }
         h4 {
-            font-size: 1rem;
+            font-size: $font-size-lg;
             margin-bottom: $padding / 2;
             color: whitesmoke;
             display: flex;
@@ -123,7 +134,7 @@ body {
             padding-bottom: $padding / 4;
         }
         h6 {
-          font-size: $font-size-medium;
+          font-size: $font-size-md;
           color: whitesmoke;
           display: flex;
           align-items: center;
@@ -134,16 +145,16 @@ body {
       }
 
         .icon {
-            font-size: 1rem;
+            font-size: $font-size-md;
         }
 
         ul {
             list-style: none;
             margin-top: $padding / 2;
-
+            font-size: $font-size-xs;
             li {
                 background: $secondary-bg;
-                padding: 10px;
+                padding: $padding;
                 border-radius: $border-radius / 2;
                 margin-bottom: $padding/2;
                 cursor: pointer;
@@ -191,7 +202,7 @@ body {
     label {
       font-weight: lighter;
       margin-bottom: 5px;
-      font-size: $font-size-medium;
+      font-size: $font-size-sm;
     }
 
     input,
@@ -202,12 +213,12 @@ body {
       border: none;
       background: #2c2f47;
       color: #ffffff;
-      font-size: $font-size-small;
+      font-size: $font-size-xs;
     }
 
     textarea {
       resize: none; /* Không cho phép kéo giãn */
-      height: 60px; /* Giữ chiều cao cố định */
+      height: 70px; /* Giữ chiều cao cố định */
     }
   }
 
@@ -296,11 +307,11 @@ body {
 
 /* Nút Save */
 .save-btn {
-  background-color: #5a607f; /* Màu xanh lá */
+  background-color: lighten($secondary-bg, 40%);
 }
 
 .save-btn:hover {
-  background-color: #7a809f; /* Màu xanh lá đậm khi hover */
+  background-color:lighten($secondary-bg, 55%) ; 
 }
 
 /* Nút Edit */
@@ -321,5 +332,34 @@ body {
   background-color: #7a809f; /* Màu xanh dương đậm khi hover */
 }
 
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  height: 14px;
+}
 
+.plus-icon {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
 
+.plus-icon:hover {
+  color: #ff4081;
+}
+.plus-icon.disabled {
+  pointer-events: none; /* Vô hiệu hóa sự kiện click */
+  opacity: 0.5; /* Làm mờ phần tử để trông giống như bị vô hiệu hóa */
+}
+
+// Giả sử biến $secondary-bg được định nghĩa trước, ví dụ: #10152f
+.active {
+  background:  lighten($secondary-bg, 20%) !important; // Làm sáng màu nền của $secondary-bg 20%
+  font-weight: bold;
+  transition: background 0.3s ease;
+}

@@ -9,13 +9,14 @@ import { OrderConfirmComponent } from './component/order-confirm/order-confirm.c
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DetailProductComponent } from './component/detail-product/detail-product.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, 
           HTTP_INTERCEPTORS 
         } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { Routes } from '@angular/router';
 import { CompanyComponent } from './component/company/company.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -35,9 +36,11 @@ const routes: Routes = [
     CompanyComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

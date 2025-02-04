@@ -5,74 +5,87 @@
   </header>
   <div class="content">
     <div class="list-customer">
-      <h6>
-        <!-- <span class="icon">👥</span> LIST CUSTOMER -->
-        <!-- <i class="fa-solid fa-cart-shopping"></i> -->
-        LIST CUSTOMER
-      </h6>
+      <div class="list-header">
+        <span class="header-text">CUSTOMER</span>
+        <span class="plus-icon">+</span>
+      </div>
       <div class="scroll_y">
         <ul *ngFor="let company of companyList">
-          <li [value]="company.id" (click)="getTaskList(company.id)">{{company.companyName}}</li>
+          <li [value]="company.id" (click)="getTaskList(company.id)"
+            [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
         </ul>
       </div>
     </div>
     <div class="list-task">
-      <h6>
-        <!-- <span class="icon">📝</span> LIST TASK -->
-        LIST TASK
-      </h6>
+      <div class="list-header">
+        <span class="header-text">TASK</span>
+        <span class="plus-icon" (click)="changeTODO('addnew')">+</span>
+      </div>
       <div class="scroll_y">
         <ul *ngFor="let task of taskList">
-          <li [value]="task.id" (click)="getTaskDetail(task.id)">{{task.title}}</li>
+          <li [value]="task.id" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
+            {{task.title}}</li>
         </ul>
       </div>
     </div>
     <!-- <div class="task-detail">  -->
-      <div class="task-form">
-        <form class="form-fill-task">
-          <!-- Title (Dòng 1) -->
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title" [disabled]="true" />
-          </div>
-      
-          <!-- Description (Dòng 2) -->
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description" rows="8" [disabled]="false"></textarea>
-          </div>
-      
-          <!-- Action + Urgent (Dòng 3) -->
-          <div class="action-urgent-group">
-            <div class="form-group">
-              <label for="action">Action</label>
-              <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action" name="action" [disabled]="false"></textarea>
-            </div>
-            <div class="urgent-checkbox">
-              <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent" [disabled]="true">
-              <label class="form-check-label" for="urgent">Urgent</label>
-            </div>
-            
-          </div>
-          <!-- Start Date + Completed Date (Dòng 4) -->
-          <div class="row">
-            <div class="form-group">
-              <label for="startDate">Start Date</label>
-              <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate" [disabled]="true" />
-            </div>
-            <div class="form-group">
-              <label for="completedDate">Completed Date</label>
-              <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate" name="completedDate" [disabled]="true" />
-            </div>
-          </div>
-        </form>
-        <div class="action-buttons">
-          <!-- <button class="btn view-btn" >View</button> -->
-          <button class="btn delete-btn" >Delete</button>
-          <button class="btn save-btn">Save</button>
+    <div class="task-form">
+      <form class="form-fill-task" [formGroup]="taskForm">
+        <!-- Title (Dòng 1) -->
+        <div class="form-group">
+          <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
+          <label for="title">Title</label>
+          <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title" />
         </div>
+
+        <!-- Description (Dòng 2) -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
+            rows="8"></textarea>
+        </div>
+        
+        <!-- Combobox để chọn người dùng -->
+        <div class="form-group">
+          <label for="user">Select Users</label>
+          <ng-multiselect-dropdown placeholder="Select Users" 
+          [settings]="dropdownSettings"
+          [data]="dropdownList">
+          </ng-multiselect-dropdown>
+          </div>
+        <!-- Action + Urgent (Dòng 3) -->
+        <div class="action-urgent-group">
+          <div class="form-group">
+            <label for="action">Action</label>
+            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action"
+              name="action"></textarea>
+          </div>
+          <div class="urgent-checkbox">
+            <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent">
+            <label class="form-check-label" for="urgent">Urgent</label>
+          </div>
+
+        </div>
+        <!-- Start Date + Completed Date (Dòng 4) -->
+        <div class="row">
+          <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate" />
+          </div>
+          <div class="form-group">
+            <label for="completedDate">Completed Date</label>
+            <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
+              name="completedDate" />
+          </div>
+        </div>
+      </form>
+      <div class="action-buttons">
+        <!-- <button class="btn view-btn" >View</button> -->
+        <button class="btn delete-btn" [disabled]="isToDo=='addnew'">Delete</button>
+        <button class="btn save-btn">Save</button>
       </div>
-      
+    </div>
+
     <ng-template #noTaskSelected>
       <p>No task selected. Please select a task from the list to view details.</p>
     </ng-template>
