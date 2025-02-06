@@ -35,13 +35,15 @@
         <div class="form-group">
           <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
           <label for="title">Title</label>
-          <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title" />
+          <input type="text" id="title" [value]="taskDetail?.title" class="form-control" 
+          name="title" formControlName="title" />
         </div>
 
         <!-- Description (Dòng 2) -->
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
+          <textarea id="description" class="form-control" [value]="taskDetail?.description" 
+          name="description" formControlName="description"
             rows="8"></textarea>
         </div>
         
@@ -50,18 +52,23 @@
           <label for="user">Select Users</label>
           <ng-multiselect-dropdown placeholder="Select Users" 
           [settings]="dropdownSettings"
-          [data]="dropdownList">
+          [data]="dropdownList"
+          formControlName="assignedUsers"
+  (onSelect)="onUserSelect($event)"
+  (onDeSelect)="onUserDeselect($event)"
+          >
           </ng-multiselect-dropdown>
           </div>
         <!-- Action + Urgent (Dòng 3) -->
         <div class="action-urgent-group">
           <div class="form-group">
             <label for="action">Action</label>
-            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action"
-              name="action"></textarea>
+            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action "
+              name="action" formControlName="action"></textarea>
           </div>
           <div class="urgent-checkbox">
-            <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent">
+            <input type="checkbox" class="form-check-input" id="urgent" 
+            [checked]="taskDetail?.urgent" formControlName="urgent">
             <label class="form-check-label" for="urgent">Urgent</label>
           </div>
 
@@ -70,19 +77,20 @@
         <div class="row">
           <div class="form-group">
             <label for="startDate">Start Date</label>
-            <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate" />
+            <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" 
+            name="startDate" formControlName="startDate" />
           </div>
           <div class="form-group">
             <label for="completedDate">Completed Date</label>
             <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
-              name="completedDate" />
+              name="completedDate" formControlName="completedDate"/>
           </div>
         </div>
       </form>
       <div class="action-buttons">
         <!-- <button class="btn view-btn" >View</button> -->
         <button class="btn delete-btn" [disabled]="isToDo=='addnew'">Delete</button>
-        <button class="btn save-btn">Save</button>
+        <button class="btn save-btn" (click)="saveTask()">Save</button>
       </div>
     </div>
 

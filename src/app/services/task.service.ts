@@ -4,6 +4,7 @@ import { Task } from "../component/models/task";
 import { Observable } from "rxjs";
 import { enviroment } from "../enviroment/enviroment";
 import { Company } from "../component/models/company";
+import { TaskDTO } from "../dtos/task.dto";
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +12,9 @@ import { Company } from "../component/models/company";
 export class TaskService {
   private apiGetCompany = `${enviroment.apiBaseUrl}/company/assignedPerson`;
   private apiGetListTask = `${enviroment.apiBaseUrl}/tasks/company`;
-  private apirGetTaskDetail = `${enviroment.apiBaseUrl}/tasks/taskId`;
+  private apiGetTaskDetail = `${enviroment.apiBaseUrl}/tasks/taskId`;
+  private apiCreateTask= `${enviroment.apiBaseUrl}/tasks`;
+  private apiEditTask= `${enviroment.apiBaseUrl}/tasks`;
 
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
@@ -30,6 +33,12 @@ export class TaskService {
   }
   getTaskDetail(taskId: number): Observable<Task> {
     const params = new HttpParams().set('taskId', taskId.toString());
-    return this.http.get<Task>(this.apirGetTaskDetail, { params })
+    return this.http.get<Task>(this.apiGetTaskDetail, { params })
+  }
+  createTask(taskDetailCreate: TaskDTO|undefined){
+    return this.http.post(this.apiCreateTask,taskDetailCreate)
+  }
+  updateTask( taskId: number,taskDetailEdit: TaskDTO|undefined){
+    return this.http.put(`${this.apiEditTask}/${taskId}`, taskDetailEdit);
   }
 }

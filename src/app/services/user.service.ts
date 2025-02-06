@@ -12,6 +12,7 @@ import { LoginResponse } from '../response/user/login.response';
 export class UserService {
   private apiRegister = `${enviroment.apiBaseUrl}/user/register`;
   private apiLogin = `${enviroment.apiBaseUrl}/user/login`;
+  private apiGetAllUser = `${enviroment.apiBaseUrl}/user/all`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -26,5 +27,8 @@ export class UserService {
   login(loginDTO: LoginDTO):Observable<LoginResponse>  {
     debugger
     return this.http.post<LoginResponse>(this.apiLogin, loginDTO)
+  }
+  getAllUser(){
+    return this.http.get(this.apiGetAllUser);
   }
 }

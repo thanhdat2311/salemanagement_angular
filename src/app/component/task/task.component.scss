@@ -190,10 +190,10 @@ body {
 .task-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Khoảng cách giữa các nhóm */
+  gap: 10px; /* Khoảng cách giữa các nhóm */
   justify-content: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
   height: 100%; /* Đảm bảo phần form chiếm hết chiều cao của task-form */
-  
+  max-height: 100%px;
   .form-group {
     display: flex;
     flex-direction: column;
@@ -218,7 +218,7 @@ body {
 
     textarea {
       resize: none; /* Không cho phép kéo giãn */
-      height: 70px; /* Giữ chiều cao cố định */
+      height: 60px; /* Giữ chiều cao cố định */
     }
   }
 
