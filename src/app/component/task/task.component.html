@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div class="no-overflow">
-  <header class="title">
+  <!-- <header class="title">
     <h3>Task Management</h3>
-  </header>
+  </header> -->
   <div class="content">
     <div class="list-customer">
       <div class="list-header">
@@ -13,7 +13,7 @@
         <ul *ngFor="let company of companyList">
           <li [value]="company.id" (click)="getTaskList(company.id)"
             [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
-        </ul>
+        </ul>   
       </div>
     </div>
     <div class="list-task">
@@ -89,7 +89,9 @@
       </form>
       <div class="action-buttons">
         <!-- <button class="btn view-btn" >View</button> -->
-        <button class="btn delete-btn" [disabled]="isToDo=='addnew'">Delete</button>
+        <button class="btn delete-btn"  
+        [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined" 
+        (click)="deleteTask(selectedTask)">Delete</button>
         <button class="btn save-btn" (click)="saveTask()">Save</button>
       </div>
     </div>

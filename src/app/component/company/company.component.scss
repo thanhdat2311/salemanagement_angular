@@ -8,6 +8,31 @@ $secondary-bg: #3b3f5a;
 $border-radius: 12px;
 $padding: 20px;
 
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* Hiệu ứng gradient hiện đại */
+$background-dark: #0a122a; /* Màu nền chính */
+$card-bg: #1b1f3b; /* Màu nền của các thẻ (card) */
+$text-color: #ffffff; /* Màu chữ sáng */
+$highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
+$border-color: #4c5270; /* Màu viền nhạt */
+$secondary-bg: #10152f; /* Màu nền phụ */
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
+$padding:8px; /* Khoảng cách nội bộ */
+$spacing-xxl: 64px;  // Dùng cho layout lớn
+$spacing-xl: 48px;   // Khoảng cách section
+$spacing-lg: 32px;   // Padding container lớn
+$spacing-md: 24px;   // Padding container vừa
+$spacing-sm: 16px;   // Padding nhỏ
+$spacing-xs: 8px;    // Khoảng cách giữa các thành phần
+$spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
+
+$font-size-xxl: 2rem;   // Tiêu đề chính (H1) - Giảm từ 2.5rem → 2rem
+$font-size-xl: 1.75rem; // Tiêu đề phụ (H2) - Giảm từ 2rem → 1.75rem
+$font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1.25rem
+$font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
+$font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
+$font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
+$border-radius: 12px;
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 /* Reset CSS */
@@ -38,7 +63,7 @@ body {
 
 .form-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: $font-size-xl;
   color: $highlight-color;
   margin-bottom: 20px;
 }
@@ -60,7 +85,7 @@ body {
     border-radius: 5px;
     background: $input-bg;
     color: $text-color;
-    font-size: 1rem;
+    font-size: $font-size-sm;
 
     &::placeholder {
       color: #ffffff75;
@@ -116,7 +141,7 @@ body {
   }
 
   .form-title {
-    font-size: 1.5rem;
+    font-size: $font-size-sm;
   }
 
   .btn-submit {

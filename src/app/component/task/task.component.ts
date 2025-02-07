@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'email',
-      textField: 'name',
+      textField: 'email',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 5,
@@ -90,6 +90,55 @@ export class HomeComponent implements OnInit {
     console.log(this.taskForm.controls['assignedUsers'].getRawValue())
   }
 
+  deleteTask(taskId:number|undefined){
+    Swal.fire({
+      title: 'Are you sure?'+taskId,
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,       // Hiển thị nút Cancel
+      confirmButtonColor: '#d63377',   // Màu cho nút xác nhận
+      cancelButtonColor: '#A9A9A9', // Màu cho nút hủy
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true 
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this.taskService.deleteTask(this.selectedTask).subscribe({
+          next: (response: any) => {
+            debugger
+            this.taskDetail = undefined;
+            if(this.selectedCompany!=undefined){
+            this.getTaskList(this.selectedCompany);
+            };
+            console.log(`delete:` + response)
+          }
+          ,
+          complete: () => {
+            debugger;
+          }
+          ,
+          error: (error: any) => {
+            debugger
+            Swal.fire({
+              position: 'center',
+              icon: 'error',          // Biểu tượng error
+              title: `Error: ${error.error}`,
+              text: 'An error occurred. Please try again later!',
+              width: '600px',
+              padding: '1em',
+              timer: 8000,                  // Thời gian tự động đóng (ms)
+              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
+              confirmButtonText: 'OK'
+            });
+    
+          }
+        }
+        )
+      }
+    }
+
+    )
+  }
   getAllUser() {
     this.userService.getAllUser().subscribe({
       next: (response: any) => {
@@ -325,6 +374,8 @@ export class HomeComponent implements OnInit {
 
   getTaskList(idCompany: number) {
     this.isToDo = "";
+    this.selectedTask = undefined;
+    this.taskDetail = undefined;
     this.selectedCompany = idCompany;
     this.taskService.getTaskList(idCompany).subscribe({
       next: (response: Task[]) => {

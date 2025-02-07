@@ -1,5 +1,5 @@
 
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* Hiệu ứng gradient hiện đại */
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%) ;
 $background-dark: #0a122a; /* Màu nền chính */
 $card-bg: #1b1f3b; /* Màu nền của các thẻ (card) */
 $text-color: #ffffff; /* Màu chữ sáng */
@@ -16,12 +16,12 @@ $spacing-sm: 16px;   // Padding nhỏ
 $spacing-xs: 8px;    // Khoảng cách giữa các thành phần
 $spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
 
-$font-size-xxl: 2.5rem; // Tiêu đề chính (H1)
-$font-size-xl: 2rem;    // Tiêu đề phụ (H2)
-$font-size-lg: 1.5rem;  // Tiêu đề nhỏ (H3, H4)
-$font-size-md: 1.25rem; // Nội dung chính (p, span)
-$font-size-sm: 1rem;    // Nội dung phụ, nhãn label
-$font-size-xs: 0.875rem; // Chú thích, ghi chú nhỏ
+$font-size-xxl: 2rem;   // Tiêu đề chính (H1) - Giảm từ 2.5rem → 2rem
+$font-size-xl: 1.75rem; // Tiêu đề phụ (H2) - Giảm từ 2rem → 1.75rem
+$font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1.25rem
+$font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
+$font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
+$font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
 $border-radius: 12px;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -45,6 +45,8 @@ body {
 
 .no-overflow {
     width: 100%;
+    height: 100%;
+    background-color: $primary-gradient !important;
 }
 
 
@@ -98,7 +100,7 @@ body {
     .task-form,
     .task-detail {
         background: $card-bg;
-        flex: 3;
+        flex: 8;
         flex-direction: column;
         border-radius: $border-radius;
         box-shadow: $shadow;
@@ -114,7 +116,7 @@ body {
         // }
 
         h3 {
-            font-size: $font-size-lg;
+            font-size: $font-size-sm;
             margin-bottom: $padding / 2;
             color: $highlight-color;
             display: flex;
@@ -124,7 +126,7 @@ body {
             padding-bottom: $padding / 4;
         }
         h4 {
-            font-size: $font-size-lg;
+            font-size: $font-size-sm;
             margin-bottom: $padding / 2;
             color: whitesmoke;
             display: flex;
@@ -134,7 +136,7 @@ body {
             padding-bottom: $padding / 4;
         }
         h6 {
-          font-size: $font-size-md;
+          font-size: $font-size-xl;
           color: whitesmoke;
           display: flex;
           align-items: center;
@@ -145,13 +147,14 @@ body {
       }
 
         .icon {
-            font-size: $font-size-md;
+            font-size: $font-size-sm;
         }
 
         ul {
             list-style: none;
             margin-top: $padding / 2;
             font-size: $font-size-xs;
+            width: 100%;
             li {
                 background: $secondary-bg;
                 padding: $padding;
@@ -175,14 +178,13 @@ body {
         }
     }
     .list-task{
-        width: 20%;
-        flex: 1;
+        flex: 2;
         flex-direction: column;
 
     }
     .list-customer{
         width: 10%;
-        flex: 1;
+        flex: 1.5;
         flex-direction: column;
 
     }
@@ -202,7 +204,7 @@ body {
     label {
       font-weight: lighter;
       margin-bottom: 5px;
-      font-size: $font-size-sm;
+      font-size: $font-size-xs;
     }
 
     input,
@@ -277,16 +279,7 @@ body {
   flex: 0.1;
 }
 
-.btn {
-  background-color: #007bff; /* Màu nền cho nút */
-  color: white; /* Màu chữ */
-  border: none;
-  border-radius: 5px; /* Bo góc */
-  padding: 8px 12px; /* Khoảng cách trong nút */
-  cursor: pointer;
-  font-size: 0.875rem; /* Kích thước chữ nhỏ hơn một chút */
-  transition: background-color 0.3s ease;
-}
+
 
 .btn:hover {
   background-color: #0056b3; /* Thay đổi màu nền khi hover */
@@ -301,7 +294,7 @@ body {
   border-radius: 5px;
   padding: 8px 12px;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: $font-size-xs;
   transition: background-color 0.3s ease;
 }
 
@@ -316,11 +309,11 @@ body {
 
 /* Nút Edit */
 .delete-btn {
-  background-color: #d63377; /* Màu vàng */
+  background-color: #d63377;
 }
 
 .delete-btn:hover {
-  background-color: #e06b98; /* Màu vàng đậm khi hover */
+  background-color: #e06b98;
 }
 
 /* Nút View */
@@ -344,7 +337,7 @@ body {
 
 .plus-icon {
   cursor: pointer;
-  font-size: 20px;
+  font-size: $font-size-xl;
   font-weight: bold;
   color: white;
 }
@@ -363,3 +356,29 @@ body {
   font-weight: bold;
   transition: background 0.3s ease;
 }
+::ng-deep .multiselect-dropdown .dropdown-btn {
+  font-size: 12px !important; /* Chữ nhỏ lại */
+  color: $text-color !important; /* Màu chữ */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Màu nền nhẹ nhàng hơn */
+  padding: $padding !important; /* Điều chỉnh padding */
+  transition: all 0.3s ease;
+}
+
+::ng-deep .multiselect-dropdown .selected-item {
+  max-width: 180px !important; /* Giới hạn độ rộng của user */
+  white-space: nowrap !important; /* Ngăn chữ xuống dòng */
+  overflow: hidden !important; /* Ẩn phần bị tràn */
+  text-overflow: ellipsis !important; /* Hiển thị dấu "..." nếu quá dài */
+  color: $text-color !important;
+}
+
+::ng-deep .multiselect-dropdown .dropdown-list *{
+  font-size: $font-size-xs !important;
+  background-color: darken($card-bg, 0.5%) !important;
+  color: white !important; /* Bắt buộc chữ màu trắng */
+}
+
+
+
+
+

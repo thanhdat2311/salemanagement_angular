@@ -15,7 +15,7 @@ export class TaskService {
   private apiGetTaskDetail = `${enviroment.apiBaseUrl}/tasks/taskId`;
   private apiCreateTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiEditTask= `${enviroment.apiBaseUrl}/tasks`;
-
+  private apiDeleteTask= `${enviroment.apiBaseUrl}/tasks`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -40,5 +40,8 @@ export class TaskService {
   }
   updateTask( taskId: number,taskDetailEdit: TaskDTO|undefined){
     return this.http.put(`${this.apiEditTask}/${taskId}`, taskDetailEdit);
+  }
+  deleteTask(taskId:number|undefined){
+    return this.http.delete(`${this.apiEditTask}/${taskId}`);
   }
 }
