@@ -1,20 +1,20 @@
 /* Custom Navbar */
 .custom-navbar {
     position: sticky; /* Giữ header ở vị trí trên cùng */
+    justify-content: center; /* Căn giữa theo chiều dọc */
     width: 100%;
-    height: 40px;
+    height: 30px;
     z-index: 10;
     background: none; /* Nền trong suốt */
     backdrop-filter: blur(10px); /* Hiệu ứng mờ */
     border-bottom: none; /* Viền nhẹ */
     padding: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
     transition: background 0.3s ease; /* Hiệu ứng chuyển nền */
   }
   
   /* Logo */
   .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 0.75 rem !important;
     font-weight: bold;
     color: white;
     display: flex;
@@ -30,7 +30,7 @@
   /* Navbar Links */
   .nav-link {
     color: white !important;
-    font-size: 1rem;
+    font-size: 0.75 rem !important;
     margin: 0 10px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }

@@ -17,6 +17,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { Routes } from '@angular/router';
 import { CompanyComponent } from './component/company/company.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ConfigurationComponent } from './component/configuration/configuration.component';
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -33,7 +34,8 @@ const routes: Routes = [
     OrderConfirmComponent,
     RegisterComponent,
     DetailProductComponent,
-    CompanyComponent
+    CompanyComponent,
+    ConfigurationComponent
   ],
   imports: [
     ReactiveFormsModule,

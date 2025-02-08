@@ -99,7 +99,7 @@ body {
     .list-task,
     .task-form,
     .task-detail {
-        background: $card-bg;
+        background:$card-bg;
         flex: 8;
         flex-direction: column;
         border-radius: $border-radius;
@@ -166,7 +166,6 @@ body {
                 &:hover {
                     background: $primary-gradient;
                     color: white;
-                    transform: translateX(5px);
                 }
             }
         }
@@ -258,14 +257,14 @@ body {
   align-items: center; // Căn giữa theo chiều dọc
   gap: 10px;
   .form-group {
-    flex: 1; // Chia đều khoảng trống
+    flex: 4; // Chia đều khoảng trống
   }
 
   /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
   .urgent-checkbox {
     display: flex;
     align-items: center;
-    flex:1;
+    flex:0.5;
     gap: 8px;
     white-space: nowrap; // Giữ nội dung trên một dòng
   }

@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { enviroment } from "../enviroment/enviroment";
 import { Company } from "../component/models/company";
 import { TaskDTO } from "../dtos/task.dto";
+import { Status } from "../component/models/status";
 
 @Injectable({
   providedIn: "root"
@@ -16,6 +17,8 @@ export class TaskService {
   private apiCreateTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiEditTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiDeleteTask= `${enviroment.apiBaseUrl}/tasks`;
+  private apiGetStatus= `${enviroment.apiBaseUrl}/status`;
+
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -43,5 +46,8 @@ export class TaskService {
   }
   deleteTask(taskId:number|undefined){
     return this.http.delete(`${this.apiEditTask}/${taskId}`);
+  }
+  getStatus(): Observable<Status[]> {
+    return this.http.get<Status[]>(this.apiGetStatus)
   }
 }

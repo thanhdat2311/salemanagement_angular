@@ -8,6 +8,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { UserService } from 'src/app/services/user.service';
 import { TaskDTO } from 'src/app/dtos/task.dto';
+import { Status } from '../models/status';
 
 @Component({
   selector: 'app-task',
@@ -16,6 +17,8 @@ import { TaskDTO } from 'src/app/dtos/task.dto';
 })
 export class HomeComponent implements OnInit {
   dropdownSettings = {};
+  dropdownStatusSetting = {};
+  status : Status[] = [];
   taskDTO: TaskDTO = {
     "title": "",
     "description": "",
@@ -51,7 +54,7 @@ export class HomeComponent implements OnInit {
       description: ['', Validators.required], // Bắt buộc nhập description
       action: ['', Validators.required], // Bắt buộc nhập actionz 
       urgent: [false, Validators.required], // Bắt buộc nhập urgent (boolean)
-      status: [1, Validators.required], // Bắt buộc nhập status (number)
+      status: [[], Validators.required], // Bắt buộc nhập status (number)
       assignedUsers: [[], Validators.required], // Bắt buộc có assignedUser (mảng email)
       startDate: ['', Validators.required], // Bắt buộc nhập startDate
       completedDate: ['', Validators.required], // Bắt buộc nhập completedDate
@@ -71,8 +74,18 @@ export class HomeComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
+    this.getStatus();
     this.getAllUser()
     console.log(this.dropdownSettings)
+    this.dropdownStatusSetting = {
+      singleSelection: true,  // Nếu bạn chỉ cho phép chọn một giá trị
+  idField: 'id',  // Trường duy nhất để tham chiếu (ID của status)
+  textField: 'name',  // Trường hiển thị trong dropdown (Tên của status)
+  selectAllText: 'Select All',
+  unSelectAllText: 'Unselect All',
+  searchPlaceholderText: 'Search...',
+  noDataLabel: 'No Data Found'
+    };
   }
 
 
@@ -174,9 +187,13 @@ export class HomeComponent implements OnInit {
         debugger
         // Logic cho trường hợp 'addnew'
         const assginedListNew = (this.taskForm.get('assignedUsers') as FormArray).getRawValue();
-        const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);                                                                
+        const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);    
+        const statusAddNew = (this.taskForm.get('status') as FormArray).getRawValue();
+        const statusId = assginedListNew.map((status: { id: any; }) => status.id);                                                                   
         this.taskForm.controls['companyId'].setValue(this.selectedCompany);
         this.taskForm.controls['assignedUsers'].setValue(emailListNew);
+        this.taskForm.controls['status'].setValue(statusId);
+
         this.taskDTO = {
           ...this.taskForm.value
         };
@@ -326,6 +343,7 @@ export class HomeComponent implements OnInit {
     }
   }
   clearForm() {
+    this.taskForm.reset();
     this.taskDetail = {
       id: 0, // Hoặc null tùy vào logic của bạn
       title: '',
@@ -402,9 +420,18 @@ export class HomeComponent implements OnInit {
         debugger
         this.taskDetail = response;
         this.taskForm.patchValue({
-          ...this.taskDetail,
-          status: this.taskDetail.status?.id ?? null
-      });
+          title: this.taskDetail.title,
+          description: this.taskDetail.description,
+          action: this.taskDetail.action,
+          urgent: this.taskDetail.urgent,
+          assignedUsers: this.taskDetail.assignedUsers,
+          startDate: this.taskDetail.startDate,
+          completedDate: this.taskDetail.completedDate,
+          companyId: this.taskDetail.company?.id
+        });
+        
+        // Gán giá trị cho dropdown status
+        this.taskForm.controls['status'].setValue([this.taskDetail.status]); 
 
       }
       ,
@@ -419,7 +446,26 @@ export class HomeComponent implements OnInit {
     }
     )
   }
+  getStatus() {
 
+    this.taskService.getStatus().subscribe({
+      next: (response: any) => {
+        debugger
+        this.status = response;
+
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+
+      }
+    }
+    )
+  }
   generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
     const maxVisiblePages = 5;
     const halfVisiblePages = Math.floor(maxVisiblePages / 2);
