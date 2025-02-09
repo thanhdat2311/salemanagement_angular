@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
         const assginedListNew = (this.taskForm.get('assignedUsers') as FormArray).getRawValue();
         const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);    
         const statusAddNew = (this.taskForm.get('status') as FormArray).getRawValue();
-        const statusId = assginedListNew.map((status: { id: any; }) => status.id);                                                                   
+        const statusId = statusAddNew.map((status: { id: any; }) => status.id);                                                                   
         this.taskForm.controls['companyId'].setValue(this.selectedCompany);
         this.taskForm.controls['assignedUsers'].setValue(emailListNew);
         this.taskForm.controls['status'].setValue(statusId);
@@ -214,6 +214,7 @@ export class HomeComponent implements OnInit {
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'
             });
+            this.clearForm()
           } else{
             Swal.fire({
               position: 'center',
@@ -258,6 +259,9 @@ export class HomeComponent implements OnInit {
         const emailListEdit = assginedListEdit.map((user: { email: any }) => user.email); // do form mang cả name ko truyền vào được                                                         
         this.taskForm.controls['assignedUsers'].setValue(emailListEdit);
         this.taskForm.controls['companyId'].setValue(this.selectedCompany); // companyId chỉ là number
+        const statusEdit = (this.taskForm.get('status') as FormArray).getRawValue();
+        const statusIdEdit = statusEdit.map((status: { id: any; }) => status.id);  
+        this.taskForm.controls['status'].setValue(statusIdEdit[0]);
 
         this.taskDTO = {
           ...this.taskDetail,
@@ -280,6 +284,7 @@ export class HomeComponent implements OnInit {
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'
             });
+            this.clearForm()
           } else{
             Swal.fire({
               position: 'center',

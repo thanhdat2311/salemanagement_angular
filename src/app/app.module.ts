@@ -52,11 +52,12 @@ const routes: Routes = [
   bootstrap: [
     //CompanyComponent,
     //LoginComponent, 
-    HomeComponent,
+    //HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
     //RegisterComponent
-    //DetailProductComponent
+    //DetailProductComponent,
+    ConfigurationComponent
   ]
 })
 export class AppModule { }
