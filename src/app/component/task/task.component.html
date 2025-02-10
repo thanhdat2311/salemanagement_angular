@@ -95,7 +95,7 @@
       </form>
       <div class="action-buttons">
         <!-- <button class="btn view-btn" >View</button> -->
-        <button class="btn delete-btn"
+        <button class="btn "
           [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined"
           (click)="deleteTask(selectedTask)" *ngIf="selectedTask || isToDo === 'addnew'">Delete</button>
         <button class="btn save-btn" (click)="saveTask()" *ngIf="selectedTask || isToDo === 'addnew'">Save</button>
