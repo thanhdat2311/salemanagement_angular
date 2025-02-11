@@ -286,3 +286,7 @@ $font-size-sm: 0.875rem;
 .page-navigation__text--disable:hover {
     cursor: default;
 }
+
+.status-configuration__table {
+    justify-content: space-around;
+}
