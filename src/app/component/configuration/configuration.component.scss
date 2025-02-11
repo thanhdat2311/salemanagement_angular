@@ -75,11 +75,12 @@ $font-size-xs: 0.75rem;
 
 .configuration-bar_list > li:hover {
     background-color: #4c527025;
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 .configuration-bar_list > li.configuration-bar_list--active {
     background-color: #4c52705c;
+    cursor: pointer;
 }
 
 .configuration-content {

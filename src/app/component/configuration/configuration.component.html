@@ -8,7 +8,6 @@
             <ul class="configuration-bar_list">
                 <li class="" *ngFor="let bar of barList" (click)="onBarSelected(bar.id)"
                 [ngClass]="{'configuration-bar_list--active':bar.id === barSelected}">{{bar.name}}</li>
-                <!-- <li class="configuration-bar_list--active">User</li> -->
             </ul>
         </div>
         <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
