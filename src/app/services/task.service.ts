@@ -14,7 +14,7 @@ export class TaskService {
   private apiGetCompany = `${enviroment.apiBaseUrl}/company/assignedPerson`;
   private apiGetListTask = `${enviroment.apiBaseUrl}/tasks/company`;
   private apiGetTaskDetail = `${enviroment.apiBaseUrl}/tasks/taskId`;
-  private apiCreateTask= `${enviroment.apiBaseUrl}/tasks`;
+  private apiCreateTask= `${enviroment.apiBaseUrl}/tasks/createTask`;
   private apiEditTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiDeleteTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiGetStatus= `${enviroment.apiBaseUrl}/status`;

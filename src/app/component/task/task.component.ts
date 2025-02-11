@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
 
   deleteTask(taskId:number|undefined){
     Swal.fire({
-      title: 'Are you sure?'+taskId,
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,       // Hiển thị nút Cancel
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit {
         const statusId = statusAddNew.map((status: { id: any; }) => status.id);                                                                   
         this.taskForm.controls['companyId'].setValue(this.selectedCompany);
         this.taskForm.controls['assignedUsers'].setValue(emailListNew);
-        this.taskForm.controls['status'].setValue(statusId);
+        this.taskForm.controls['status'].setValue(statusId[0]);
 
         this.taskDTO = {
           ...this.taskForm.value
@@ -200,9 +200,9 @@ export class HomeComponent implements OnInit {
         this.taskService.createTask(this.taskDTO).subscribe({
           next: (response: any) => {
             debugger
-            this.taskDetail = response;
-            if(this.taskDetail != null && this.taskDetail != undefined){ 
-              this.getTaskList(this.taskDTO.companyId)
+            this.taskList = response;
+            if(this.taskList != null && this.taskList != undefined){ 
+              //this.getTaskList(this.taskDTO.companyId)
             Swal.fire({
               position: 'center',
               icon: 'success',          // Biểu tượng error

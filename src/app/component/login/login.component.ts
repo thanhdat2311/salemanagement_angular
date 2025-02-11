@@ -8,6 +8,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { LoginResponse } from 'src/app/response/user/login.response';
 import { RoleService } from 'src/app/services/role.service';
 import { Role } from '../models/role';
+import { UserResponse } from 'src/app/response/user/user.response';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
   selectedRole: Role  | undefined;
   role:number;
   constructor(private router: Router, 
-    private UserService: UserService,
+    private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService
   ) {
@@ -41,6 +42,25 @@ export class LoginComponent {
     debugger
     
   }
+  getUserDetails(){
+    debugger
+    this.userService.getUserDetails().subscribe({
+      
+      next: (response: any) => {
+      debugger
+        this.userService.saveUserToLocalStorage(response)
+        
+         
+      },
+      complete: () => {
+        
+      },
+      error: (error: any) => {
+        debugger
+        
+      }
+    })
+  }
   login() {
     debugger
     // Sử dụng Observer object
@@ -48,16 +68,15 @@ export class LoginComponent {
     {
       "email": this.email,
       "password": this.password,
-      "roleId":2
+      "roleId":1
     };
   
-    this.UserService.login(loginDTO).subscribe({
+    this.userService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
       debugger
         const message = `${response?.message}`
         const  token = `${response.token}`;
         this.tokenService.setToken(token);
-       
           Swal.fire({
             position: 'center',
             icon: 'success',          // Biểu tượng thành công
@@ -71,7 +90,8 @@ export class LoginComponent {
           })
       },
       complete: () => {
-        
+        this.getUserDetails();
+
       },
       error: (error: any) => {
         debugger

@@ -5,6 +5,7 @@ import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dtos';
 import { enviroment } from '../enviroment/enviroment';
 import { LoginResponse } from '../response/user/login.response';
+import { UserResponse } from '../response/user/user.response';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class UserService {
   private apiRegister = `${enviroment.apiBaseUrl}/user/register`;
   private apiLogin = `${enviroment.apiBaseUrl}/user/login`;
   private apiGetAllUser = `${enviroment.apiBaseUrl}/user/all`;
+  private apiUserDetails = `${enviroment.apiBaseUrl}/user/details`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -30,5 +32,28 @@ export class UserService {
   }
   getAllUser(){
     return this.http.get(this.apiGetAllUser);
+  }
+  getUserDetails(){
+    return this.http.get(this.apiUserDetails);
+  }
+
+  saveUserToLocalStorage(userResponse: UserResponse){
+    if(userResponse != null && userResponse != undefined){
+  const userResponseJson = JSON.stringify(userResponse);
+  localStorage.setItem('userDetails', userResponseJson);
+  console.info("Set User Detail")}
+  else{
+    console.info("User Detail Set Fail!")
+  }
+  }
+  getUserFromLocalStorage(){
+    const userResponseJson = localStorage.getItem('userDetails');
+    if(userResponseJson == null || userResponseJson == undefined){
+      return null;
+    }else{
+      const userResponse = JSON.parse(userResponseJson)
+      console.info("GetUserDetails")
+      return userResponse
+    }
   }
 }
