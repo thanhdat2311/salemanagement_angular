@@ -6,6 +6,7 @@ $text-color: #ffffff; /* Màu chữ sáng */
 $highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
 $border-color: #4c5270; /* Màu viền nhạt */
 $secondary-bg: #10152f; /* Màu nền phụ */
+$hover-label: #4c527025;
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
 $padding:8px; /* Khoảng cách nội bộ */
 $spacing-xxl: 64px;  // Dùng cho layout lớn
@@ -164,7 +165,7 @@ body {
                 transition: background 0.3s, transform 0.2s;
 
                 &:hover {
-                    background: $primary-gradient;
+                    background: $hover-label;
                     color: white;
                 }
             }

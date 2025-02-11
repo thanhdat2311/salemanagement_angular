@@ -5,8 +5,8 @@ export interface AssignedPerson {
   name: string;
   email: string;
   phone: string;
-  password: string;
+  //password: string;
   address: string;
-  is_active: number | null; // Có thể là "0" hoặc null
+  is_active: number | null; 
   role: Role;
 }

@@ -3,13 +3,13 @@ import { enviroment } from "../enviroment/enviroment";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Company } from "../component/models/company";
+import { Status } from "../component/models/status";
 
 @Injectable({
     providedIn: "root"
   })
-  export class CompanyService {
-    private apiCreateCompany = `${enviroment.apiBaseUrl}/company`;
-    private apiGetAllCompany = `${enviroment.apiBaseUrl}/company/admin`;
+  export class StatusService {
+    private apiGetStatus = `${enviroment.apiBaseUrl}/status`;
   
     constructor(private http: HttpClient) { }
     private createHeaders(): HttpHeaders {
@@ -18,10 +18,7 @@ import { Company } from "../component/models/company";
         'Accept-Language': 'en'
       });
     }
-    createCompany(company: Company) {
-      return this.http.get<Company[]>(this.apiCreateCompany)
-    }
-    getAllCompany(){
-      return this.http.get<Company[]>(this.apiGetAllCompany)
-    }
+    getStatus(): Observable<Status[]> {
+        return this.http.get<Status[]>(this.apiGetStatus)
+      }
   }
