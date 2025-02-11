@@ -6,9 +6,8 @@
                 Configuration
             </h2>
             <ul class="configuration-bar_list">
-                <li class="">Customer</li>
-                <li class="">Status</li>
-                <li class="configuration-bar_list--active">User</li>
+                <li class="" *ngFor="let bar of barList">{{bar.name}}</li>
+                <!-- <li class="configuration-bar_list--active">User</li> -->
             </ul>
         </div>
         <div class="customer-configuration configuration-content content-active" >

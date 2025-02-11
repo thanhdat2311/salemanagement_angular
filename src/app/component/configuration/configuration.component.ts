@@ -19,6 +19,7 @@ export class ConfigurationComponent implements OnInit{
   companySelected: number = 0;
   statusSelected: number = 0;
   emailUser: string = '';
+  barList: { id: number; name: string }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
     private comapnyService: CompanyService,
@@ -29,12 +30,24 @@ export class ConfigurationComponent implements OnInit{
   this.getAllCompany();
   this.getAllStatus();
   this.getAllUser();
+
+  this.barList = [
+    {id:1, name: "Customer"},
+    {id:2, name: "Status"},
+    {id:3, name: "User"}
+
+
+
+  ]
+
+
   }
 
   onCompanySelected(companyId : number){
     this.companySelected = companyId;
   }
   onUserSelected(email: string){
+    debugger
     this.emailUser = email;
   }
   onStatusSelected(statusId : number){
