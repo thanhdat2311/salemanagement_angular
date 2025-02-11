@@ -16,6 +16,9 @@ export class ConfigurationComponent implements OnInit{
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
+  companySelected: number = 0;
+  statusSelected: number = 0;
+  emailUser: string = '';
   constructor(private taskService: TaskService,
     private userService: UserService,
     private comapnyService: CompanyService,
@@ -27,6 +30,17 @@ export class ConfigurationComponent implements OnInit{
   this.getAllStatus();
   this.getAllUser();
   }
+
+  onCompanySelected(companyId : number){
+    this.companySelected = companyId;
+  }
+  onUserSelected(email: string){
+    this.emailUser = email;
+  }
+  onStatusSelected(statusId : number){
+    this.statusSelected = statusId;
+  }
+
   getAllUser(){
     this.userService.getAllUser().subscribe({
       next: (response: any) => {
