@@ -294,23 +294,25 @@
         .form-group {
             margin-bottom: $spacing-sm;
             text-align: left;
+            padding: 2px;
     
             label {
                 font-weight: bold;
                 margin-bottom: $spacing-xxs;
                 display: block;
+                font-size: $font-size-xs;
             }
     
             input,
             textarea,
             select {
                 width: 100%;
-                padding: $spacing-input;
+                padding: $spacing-xxs;
                 border-radius: $border-input;
                 border: none;
                 background: $input-background;
                 color: $text-color;
-                font-size: $font-size-md;
+                font-size: $font-size-xs;
             }
 
             input::placeholder,
@@ -362,6 +364,7 @@
     height: 100%;
     flex-direction: column;
     align-content: flex-start;
+    overflow: hidden;
 }
 
 .form-button {
