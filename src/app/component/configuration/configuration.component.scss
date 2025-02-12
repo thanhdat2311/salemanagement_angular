@@ -3,7 +3,7 @@
 .configuration-container {
     height: 100vh;
     display: flex;
-    margin-bottom: $spacing-sm;
+    padding-bottom: $spacing-sm;
     justify-content: space-between;
     overflow: hidden;
     gap: $spacing-xs;
@@ -13,6 +13,7 @@
     background-color: $background;
     width: 20%;
     border-radius: $spacing-input;
+    box-shadow: $box-shadow !important;
 }
 
 .configuration-content {
@@ -20,6 +21,7 @@
     background-color: $background;
     width: 80%;
     border-radius: $border-container;
+    box-shadow: $box-shadow;
 }
 
 .configuration-bar__header-text {
@@ -126,7 +128,7 @@
     display: flex;
     color: $text-color;
     margin: 0;
-    margin-top: $spacing-xs;
+    margin-top: $spacing-xxs;
     padding: $spacing-input 0px;
     width: 100%;
     border-radius: $border-button;
@@ -266,18 +268,19 @@
 
 .form-container {
     height: 100%;
+    width: 30%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-bottom: $spacing-sm;
 }
 
 .form-card {
-    background: $background;
+    display: none;
+    flex-direction: column;
+    background: $secondary-background;
     padding: $spacing-sm;
     border-radius: $border-container;
     box-shadow: $box-shadow;
     width: 100%;
-    max-width: 400px;
     color: $text-color;
     text-align: center;
 
@@ -294,7 +297,7 @@
     
             label {
                 font-weight: bold;
-                margin-bottom: 5px;
+                margin-bottom: $spacing-xxs;
                 display: block;
             }
     
@@ -326,13 +329,10 @@
     }
 
     .btn-form {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: $border-container;
-        background: $highlight-color;
+        padding: $spacing-xs;
+        border-radius: $border-button;
+        font-size: $font-size-xs;
         color: $text-color;
-        font-size: $font-size-lg;
         cursor: pointer;
         transition: background 0.3s ease;
   
@@ -341,4 +341,51 @@
             cursor: pointer;
         }
     }
+}
+
+.configuration-container {
+    position: relative;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    left: calc(70%)
+}
+
+.form-active {
+    display: flex;
+}
+
+.form-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.form-button {
+    margin-top: auto;
+    display: flex;
+    align-self: end;
+}
+
+.btn-form {
+    margin-left: $spacing-xxs;
+}
+
+.btn-form:hover {
+    cursor: pointer;
+}
+
+.btn-form-cancel {
+    background-color: $save-background;
+}
+
+.btn-form-delete {
+    background-color: $delete-background;
+}
+
+.btn-form-save {
+    background-color: $cancel-background;
 }
