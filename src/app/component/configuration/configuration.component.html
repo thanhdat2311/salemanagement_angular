@@ -200,7 +200,8 @@
                   
                   <button type="submit" 
                   class="btn btn-form btn-form-cancel"
-                  >Cancal</button>
+                  (click)="onCanceled()"
+                  >Cancel</button>
                   
                   <button type="submit" 
                   class="btn btn-form btn-form-delete"
@@ -208,7 +209,7 @@
                 </div>
               </form>
             </div>
-            <div class="form-card" [ngClass]="{'form-active':form == 'user'}">
+            <div class="form-card" [ngClass]="{'form-active':form == 'status'}">
               <h3 class="form-title">Form</h3>
               <form class="form-content">
                 <!-- ID -->
@@ -231,7 +232,8 @@
                   
                   <button type="submit" 
                   class="btn btn-form btn-form-cancel"
-                  >Cancal</button>
+                  (click)="onCanceled()"
+                  >Cancel</button>
                   
                   <button type="submit" 
                   class="btn btn-form btn-form-delete"
@@ -239,7 +241,7 @@
                 </div>
               </form>
             </div>
-            <div class="form-card">
+            <div class="form-card" [ngClass]="{'form-active':form == 'user'}">
               <h3 class="form-title">Form</h3>
               <form class="form-content">
                 <!-- Fullname -->
@@ -285,8 +287,9 @@
                   >Save</button>
                   
                   <button type="submit" 
-                  class="btn btn-form btn-form-cancel"
-                  >Cancal</button>
+                  class="btn btn-form btn-form-cancel" 
+                  (click)="onCanceled()"
+                  >Cancel</button>
                   
                   <button type="submit" 
                   class="btn btn-form btn-form-delete"

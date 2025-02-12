@@ -39,9 +39,12 @@ export class ConfigurationComponent implements OnInit{
     {id:2, name: "Status"},
     {id:3, name: "User"}]
   }
-  
+  onCanceled(){
+    this.form =""
+  }
   onBarSelected(barID : number){
     this.barSelected = barID;
+    this.form =""
   }
   onCompanySelected(companyId : number, formName: string){
     this.companySelected = companyId;
