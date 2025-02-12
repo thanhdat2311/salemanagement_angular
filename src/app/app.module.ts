@@ -51,11 +51,11 @@ const routes: Routes = [
   }],
   bootstrap: [
     //CompanyComponent,
-    //LoginComponent, 
+    LoginComponent, 
     HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
-    //RegisterComponent
+    RegisterComponent,
     //DetailProductComponent,
     ConfigurationComponent
   ]

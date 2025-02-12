@@ -163,7 +163,9 @@ body {
                 margin-bottom: $padding/ 2;
                 cursor: pointer;
                 transition: background 0.3s, transform 0.2s;
-
+              
+                display: flex;
+                flex-direction: column;
                 &:hover {
                     background: $hover-label;
                     color: white;
