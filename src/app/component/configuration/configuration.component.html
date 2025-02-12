@@ -18,26 +18,25 @@
                 </div>
             </div>
             <div class="configuration-content__middle" >
-                <ul class="configuration-table__header">
-                    <li>Company Name</li>
-                    <li>Email</li>
-                    <li>Phone</li>
-                    <li>Assigned Person</li>
-                    <li>Create Date</li>
-                    <li>Update Date</li>
-                </ul>
-                <div class="configuration-table__content" *ngFor=" let company of companyList">
-                    <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id)"
-                    [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}">
-                        <li>{{company.companyName}}</li>
-                        <li>{{company.email}}</li>
-                        <li>{{company.phone}}</li>
-                        <li>{{company.assignedPerson.email}}</li>
-                        <li>{{company.createdAt}}</li>
-                        <li>{{company.updateAt}}</li>
-                    </ul>
-                    
-                </div>
+              <ul class="configuration-table__header">
+                  <li>Company Name</li>
+                  <li>Email</li>
+                  <li>Phone</li>
+                  <li>Assigned Person</li>
+                  <li>Create Date</li>
+                  <li>Update Date</li>
+              </ul>
+              <div class="configuration-table__content" *ngFor=" let company of companyList">
+                  <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id, 'customer')"
+                  [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}">
+                      <li>{{company.companyName}}</li>
+                      <li>{{company.email}}</li>
+                      <li>{{company.phone}}</li>
+                      <li>{{company.assignedPerson.email}}</li>
+                      <li>{{company.createdAt}}</li>
+                      <li>{{company.updateAt}}</li>
+                  </ul>
+              </div>
             </div>
             <div class="configuration-content__page ">
                 <div class="configuration-page__quality">
@@ -74,7 +73,7 @@
                 </ul>
                 <div class="configuration-table__content" *ngFor="let status of statusList">
                     <ul class="configuration-table__content-line status-configuration__table" 
-                    (click)="onStatusSelected(status.id)" 
+                    (click)="onStatusSelected(status.id, 'status')" 
                     [ngClass]="{'configuration-table__content-line--active':status.id === statusSelected}"
                     >
                         <li>{{status.id}}</li>
@@ -120,7 +119,7 @@
                 </ul>
                 <div class="configuration-table__content" *ngFor="let user of userList">
                     <ul class="configuration-table__content-line status-configuration__table" 
-                    (click)="onUserSelected(user.email)" 
+                    (click)="onUserSelected(user.email, 'user')" 
                     [ngClass]="{'configuration-table__content-line--active':user.email === emailUser}"
                     >
                         <li>{{user.id}}</li>
@@ -153,60 +152,147 @@
             </div>
         </div> 
         <div class="form-container">
-            <div class="form-card">
-              <h3 class="form-title">form</h3>
-              <form>
+            <div class="form-card" [ngClass]="{'form-active':form == 'customer'}">
+              <h3 class="form-title">Form</h3>
+              <form class="form-content">
                 <!-- Fullname -->
                 <div class="form-group">
-                  <label for="fullname">Full Name</label>
-                  <input/>
+                  <label for="fullname">Company Name</label>
+                  <input type="text">
                 </div>
           
                 <!-- Email -->
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input/>
+                  <input type="text">
                 </div>
           
                 <!-- Phone -->
                 <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input/>
+                  <input type="text">
+                </div>
+          
+                <!-- Assigned Person -->
+                <div class="form-group">
+                  <label for="assignedPerson">Assigned Person</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Create date -->
+                <div class="form-group">
+                  <label for="createdAt">Create Date</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Update date -->
+                <div class="form-group">
+                  <label for="updateAt">Update Date</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Submit Button -->
+                <div class="form-group form-button">
+                  <button type="submit" 
+                  class="btn btn-form btn-form-save"
+                  >Save</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-cancel"
+                  >Cancal</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-delete"
+                  >Delete</button>
+                </div>
+              </form>
+            </div>
+            <div class="form-card" [ngClass]="{'form-active':form == 'user'}">
+              <h3 class="form-title">Form</h3>
+              <form class="form-content">
+                <!-- ID -->
+                <div class="form-group">
+                  <label for="ID">Company Name</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Name -->
+                <div class="form-group">
+                  <label for="Name">Email</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Submit Button -->
+                <div class="form-group form-button">
+                  <button type="submit" 
+                  class="btn btn-form btn-form-save"
+                  >Save</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-cancel"
+                  >Cancal</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-delete"
+                  >Delete</button>
+                </div>
+              </form>
+            </div>
+            <div class="form-card">
+              <h3 class="form-title">Form</h3>
+              <form class="form-content">
+                <!-- Fullname -->
+                <div class="form-group">
+                  <label for="fullname">Company Name</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Phone -->
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text">
                 </div>
           
                 <!-- Address -->
                 <div class="form-group">
-                  <label for="address">Address</label>
-                  <textarea></textarea>
-                </div>
-          
-                <!-- Password -->
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input/>
-                </div>
-          
-                <!-- Retype Password -->
-                <div class="form-group">
-                  <label for="retypePassword">Retype Password</label>
-                  <input/>
+                  <label for="address">Assigned Person</label>
+                  <input type="text">
                 </div>
           
                 <!-- Role -->
-                <!-- <div class="form-group">
-                  <label for="role">Role</label>
-                  <select id="role" class="form-control" name="role" required>
-                    <option value="1">Admin</option>
-                    <option value="2">User</option>
-                  </select>
-                </div> -->
+                <div class="form-group">
+                  <label for="Role">Role</label>
+                  <input type="text">
+                </div>
+          
+                <!-- Active -->
+                <div class="form-group">
+                  <label for="Active">Active</label>
+                  <input type="text">
+                </div>
           
                 <!-- Submit Button -->
-                <div class="form-group text-center">
-                  <button type="submit">form</button>
+                <div class="form-group form-button">
+                  <button type="submit" 
+                  class="btn btn-form btn-form-save"
+                  >Save</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-cancel"
+                  >Cancal</button>
+                  
+                  <button type="submit" 
+                  class="btn btn-form btn-form-delete"
+                  >Delete</button>
                 </div>
               </form>
             </div>
-          </div>
+        </div>
     </div>
 </div>

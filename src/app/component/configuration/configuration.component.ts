@@ -17,6 +17,7 @@ export class ConfigurationComponent implements OnInit{
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
   companySelected: number = 0;
+  form : string = "";
   barSelected: number = 1;
   statusSelected: number = 0;
   emailUser: string = '';
@@ -42,15 +43,18 @@ export class ConfigurationComponent implements OnInit{
   onBarSelected(barID : number){
     this.barSelected = barID;
   }
-  onCompanySelected(companyId : number){
+  onCompanySelected(companyId : number, formName: string){
     this.companySelected = companyId;
+    this.form = formName;
   }
-  onUserSelected(email: string){
+  onUserSelected(email: string, formUSer: string){
     debugger
     this.emailUser = email;
+    this.form = formUSer;
   }
-  onStatusSelected(statusId : number){
+  onStatusSelected(statusId : number, formStatus: string){
     this.statusSelected = statusId;
+    this.form = formStatus;
   }
 
   getAllUser(){
