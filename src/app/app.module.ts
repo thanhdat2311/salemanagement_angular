@@ -27,7 +27,7 @@ const routes: Routes = [
   declarations: [
     //AppComponent,
     LoginComponent,
-     HomeComponent,//task
+    HomeComponent,//task
     HeaderComponent,
     FooterComponent,
     OrderComponent,
@@ -53,9 +53,15 @@ const routes: Routes = [
     //CompanyComponent,
     LoginComponent, 
     HomeComponent,
+<<<<<<< HEAD
     //OrderComponent
     //OrderConfirmComponent
     RegisterComponent,
+=======
+    //OrderComponent,
+    //OrderConfirmComponent,
+    //RegisterComponent,
+>>>>>>> 10ea64ff2768ea7672111e91de49ee27bf38f57d
     //DetailProductComponent,
     ConfigurationComponent
   ]

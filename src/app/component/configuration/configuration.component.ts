@@ -17,6 +17,7 @@ export class ConfigurationComponent implements OnInit{
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
   companySelected: number = 0;
+  barSelected: number = 1;
   statusSelected: number = 0;
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
@@ -26,6 +27,7 @@ export class ConfigurationComponent implements OnInit{
     private fb: FormBuilder) {
 
   }
+
   ngOnInit() {
   this.getAllCompany();
   this.getAllStatus();
@@ -34,15 +36,12 @@ export class ConfigurationComponent implements OnInit{
   this.barList = [
     {id:1, name: "Customer"},
     {id:2, name: "Status"},
-    {id:3, name: "User"}
-
-
-
-  ]
-
-
+    {id:3, name: "User"}]
   }
-
+  
+  onBarSelected(barID : number){
+    this.barSelected = barID;
+  }
   onCompanySelected(companyId : number){
     this.companySelected = companyId;
   }

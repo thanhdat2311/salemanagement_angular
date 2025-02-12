@@ -1,4 +1,4 @@
-<div class="container container-custom">
+<div class="container">
     <app-header></app-header>
     <div class="configuration-container">
         <div class="configuration-bar">
@@ -8,9 +8,11 @@
             <ul class="configuration-bar_list">
                 <li class="" *ngFor="let bar of barList"    >{{bar.name}}</li>
                 <!-- <li class="configuration-bar_list--active">User</li> -->
+                <li class="" *ngFor="let bar of barList" (click)="onBarSelected(bar.id)"
+                [ngClass]="{'configuration-bar_list--active':bar.id === barSelected}">{{bar.name}}</li>
             </ul>
         </div>
-        <div class="customer-configuration configuration-content content-active" >
+        <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
             <div class="configuration-content__header">
                 <div class="configuration-content__add-btn">+ Add New</div>
                 <div class="configuration-content__refresh-btn">
@@ -28,8 +30,7 @@
                 </ul>
                 <div class="configuration-table__content" *ngFor=" let company of companyList">
                     <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id)"
-                    [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}"
-                    >
+                    [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}">
                         <li>{{company.companyName}}</li>
                         <li>{{company.email}}</li>
                         <li>{{company.phone}}</li>
@@ -61,7 +62,7 @@
             </div>
             
         </div>
-        <div class="status-configuration configuration-content">
+        <div class="status-configuration configuration-content" [ngClass]="{'content-active':barSelected == 2}">
             <div class="configuration-content__header">
                 <div class="configuration-content__add-btn">+ Add New</div>
                 <div class="configuration-content__refresh-btn">
@@ -103,62 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="user-configuration configuration-content">
-            <div class="configuration-content__header">
-                <div class="configuration-content__add-btn">+ Add New</div>
-                <div class="configuration-content__refresh-btn">
-                    <i class="fa fa-refresh"></i>
-                </div>
-            </div>
-            <div class="configuration-content__middle">
-                <ul class="configuration-table__header">
-                    <li>Full Name</li>
-                    <li>Email</li>
-                    <li>Phone</li>
-                    <li>Address</li>
-                    <li>Role</li>
-                    <li>Active</li>
-                </ul>
-                <div class="configuration-table__content" *ngFor="let user of userList"                >
-                    <ul class="configuration-table__content-line " (click)="onUserSelected(user.email)"
-                    [ngClass]="{'configuration-table__content-line--active':user.email === emailUser}"
-                    >
-                        <li>{{user.name}}</li>
-                        <li>{{user.email}}</li>
-                        <li>{{user.phone}}</li>
-                        <li>{{user.address}}</li>
-                        <li>{{user.role.name}}</li>
-                        <li>{{user.is_active}}</li>
-                    </ul>
-                    <!-- <ul class="configuration-table__content-line configuration-table__content-line--active">
-                        <li>Khoa hoc tu nhien</li>
-                        <li>lvtd#gmail.com</li>
-                        <li>18902392</li>
-                        <li>DATLE#gmail.com</li>
-                        <li>Admin</li>
-                        <li>11/1/2025</li>
-                    </ul> -->
-                </div>
-            </div>
-            <div class="configuration-content__page">
-                <div class="configuration-page__quality">
-                    <div class="page-quality__content">Per page:</div>
-                    <div class="page-quality__text ">3</div>
-                    <div class="page-quality__text ">5</div>
-                    <div class="page-quality__text page-quality__text--active">7</div>
-                </div>
-                <div class="configuration-page__view">
-                    <div class="page-view__text page-view__text--active">1</div>
-                    <div class="page-view__text ">2</div>
-                    <div class="page-view__text ">3</div>
-                    <div class="page-view__text page-view__text-vv">...</div>
-                    <div class="page-view__text ">50</div>
-                </div>
-                <div class="configuration-page__navigation">
-                    <div class="page-navigation__text ">Previous</div>
-                    <div class="page-navigation__text page-navigation__text--disable">Next</div>
-                </div>
-            </div>
-        </div>
+        <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
+        </div> 
     </div>
 </div>
