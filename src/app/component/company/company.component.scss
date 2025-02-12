@@ -1,150 +1,101 @@
-/* Màu và biến toàn cục */
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-$card-bg: #1b1f3b;
-$input-bg: #2c2f47;
-$text-color: #ffffff;
-$highlight-color: #ff4081;
-$secondary-bg: #3b3f5a;
-$border-radius: 12px;
-$padding: 20px;
+// @import "../../../styles.scss";
 
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); /* Hiệu ứng gradient hiện đại */
-$background-dark: #0a122a; /* Màu nền chính */
-$card-bg: #1b1f3b; /* Màu nền của các thẻ (card) */
-$text-color: #ffffff; /* Màu chữ sáng */
-$highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
-$border-color: #4c5270; /* Màu viền nhạt */
-$secondary-bg: #10152f; /* Màu nền phụ */
-$shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
-$padding:8px; /* Khoảng cách nội bộ */
-$spacing-xxl: 64px;  // Dùng cho layout lớn
-$spacing-xl: 48px;   // Khoảng cách section
-$spacing-lg: 32px;   // Padding container lớn
-$spacing-md: 24px;   // Padding container vừa
-$spacing-sm: 16px;   // Padding nhỏ
-$spacing-xs: 8px;    // Khoảng cách giữa các thành phần
-$spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
-
-$font-size-xxl: 2rem;   // Tiêu đề chính (H1) - Giảm từ 2.5rem → 2rem
-$font-size-xl: 1.75rem; // Tiêu đề phụ (H2) - Giảm từ 2rem → 1.75rem
-$font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1.25rem
-$font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
-$font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
-$font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
-$border-radius: 12px;
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-
-/* Reset CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
-
-html,
-body {
-  height: 100%;
-  background: $primary-gradient;
-}
-
-/* Container Form */
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  background: $card-bg;
-  padding: 40px;
-  border-radius: $border-radius;
-  color: $text-color;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+// /* Container Form */
+// .container {
+//   max-width: 600px;
+//   margin: 50px auto;
+//   background: $card-background;
+//   padding: 40px;
+//   border-radius: $border-radius;
+//   color: $text-color;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   
-}
+// }
 
-.form-title {
-  text-align: center;
-  font-size: $font-size-xl;
-  color: $highlight-color;
-  margin-bottom: 20px;
-}
+// .form-title {
+//   text-align: center;
+//   font-size: $font-size-xl;
+//   color: $highlight-color;
+//   margin-bottom: 20px;
+// }
 
-/* Nhóm Input */
-.form-group {
-  margin-bottom: 20px;
+// /* Nhóm Input */
+// .form-group {
+//   margin-bottom: 20px;
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
+//   label {
+//     display: block;
+//     margin-bottom: 5px;
+//     font-weight: bold;
+//   }
 
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    background: $input-bg;
-    color: $text-color;
-    font-size: $font-size-sm;
+//   input {
+//     width: 100%;
+//     padding: 10px;
+//     border: 1px solid rgba(255, 255, 255, 0.3);
+//     border-radius: 5px;
+//     background: $input-background;
+//     color: $text-color;
+//     font-size: $font-size-sm;
 
-    &::placeholder {
-      color: #ffffff75;
-    }
+//     &::placeholder {
+//       color: #ffffff75;
+//     }
 
-    &:focus {
-      outline: none;
-      border-color: $highlight-color;
-      box-shadow: 0 0 5px $highlight-color;
-    }
-  }
-}
+//     &:focus {
+//       outline: none;
+//       border-color: $highlight-color;
+//       box-shadow: 0 0 5px $highlight-color;
+//     }
+//   }
+// }
 
-/* Nút Gửi Form */
-.btn-submit {
-  width: 100%;
-  padding: 12px;
-  background: $highlight-color;
-  border: none;
-  border-radius: $border-radius;
-  color: $text-color;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+// /* Nút Gửi Form */
+// .btn-submit {
+//   width: 100%;
+//   padding: 12px;
+//   background: $highlight-color;
+//   border: none;
+//   border-radius: $border-radius;
+//   color: $text-color;
+//   font-size: 1.2rem;
+//   cursor: pointer;
+//   transition: all 0.3s ease;
 
-  &:hover {
-    background: darken($highlight-color, 10%);
-    transform: translateY(-2px);
-  }
-}
+//   &:hover {
+//     background: darken($highlight-color, 10%);
+//     transform: translateY(-2px);
+//   }
+// }
 
-/* Footer Form */
-.form-footer {
-  text-align: center;
-  margin-top: 20px;
+// /* Footer Form */
+// .form-footer {
+//   text-align: center;
+//   margin-top: 20px;
 
-  .forgot-password,
-  .signup a {
-    color: lighten($highlight-color, 10%);
-    text-decoration: none;
-    font-size: 0.9rem;
+//   .forgot-password,
+//   .signup a {
+//     color: lighten($highlight-color, 10%);
+//     text-decoration: none;
+//     font-size: 0.9rem;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
+//     &:hover {
+//       text-decoration: underline;
+//     }
+//   }
+// }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
-  }
+// /* Responsive Design */
+// @media (max-width: 768px) {
+//   .container {
+//     padding: 20px;
+//   }
 
-  .form-title {
-    font-size: $font-size-sm;
-  }
+//   .form-title {
+//     font-size: $font-size-sm;
+//   }
 
-  .btn-submit {
-    font-size: 0.9rem;
-  }
-}
+//   .btn-submit {
+//     font-size: 0.9rem;
+//   }
+// }

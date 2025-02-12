@@ -1,91 +1,61 @@
-// Biến màu sắc và kiểu dáng
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-$background-dark: #0a122a;
-$card-bg: #1b1f3b;
-$text-color: #ffffff;
-$highlight-color: #ff4081;
-$highlight-color-hover: #ff6b9d;
-$border-color: #4c5270;
-$secondary-bg: #10152f;
-$shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-$padding: 8px;
-$border-radius: 12px;
-
-// Font Sizes
-$font-size-extra-lg: 1.8rem;
-$font-size-lg: 1.25rem;
-$font-size-md: 1rem;
-$font-size-sm: 0.875rem;
-$font-size-xs: 0.75rem;
-.container{
-    max-width: 1800px;
-}
-.container-custom {
-    height: 100%;
-    display: flex;
-    flex-direction: column ;
-}
+@import "../../../styles.scss";
 
 .configuration-container {
     height: 100vh;
     display: flex;
-    margin-top: 24px;
-    margin-bottom: 32px;
+    margin-bottom: $spacing-sm;
     justify-content: space-between;
     overflow: hidden;
+    gap: $spacing-xs;
 }
 
 .configuration-bar {
-    background-color: #1B1F3B;
-    width: 22%;
-    margin-right: 8px;
-    border-radius: 12px;
+    background-color: $background;
+    width: 20%;
+    border-radius: $spacing-input;
 }
 
 .configuration-content {
     display: none;
-    background-color: #1B1F3B;
-    width: 78%;
-    margin-left: 8px;
-    border-radius: 12px;
+    background-color: $background;
+    width: 80%;
+    border-radius: $border-container;
 }
 
 .configuration-bar__header-text {
     color: $text-color;
-    opacity: .8;
-    padding: 12px;
+    padding: $spacing-input;
     font-size: $font-size-lg;
     text-transform: uppercase;
-    margin-bottom: 0;
 }
 
 .configuration-bar_list {
     font-size: $font-size-sm;
     color: $text-color;
     list-style-type: none;
-    padding: 12px;
+    padding: $spacing-sm;
 }
 
 .configuration-bar_list > li {
-    padding: 8px 0 8px 0;
+    padding: $spacing-xs 0;
     padding-left: 1.8rem;
-    margin-bottom: 4px;
-    border-radius: 8px;
+    margin-bottom: $spacing-xxs;
+    border-radius: $border-button;
 }
 
 .configuration-bar_list > li:hover {
-    background-color: #4c527025;
+    background-color: $hover-label;
     cursor: pointer;
 }
 
 .configuration-bar_list > li.configuration-bar_list--active {
-    background-color: #4c52705c;
+    background-color: $active-label;
     cursor: pointer;
 }
 
 .configuration-content {
     display: none;
-    padding: 12px;
+    padding: $spacing-sm;
     flex-direction: column;
 }
 
@@ -102,8 +72,8 @@ $font-size-xs: 0.75rem;
     background-color: $highlight-color;
     font-size: $font-size-sm;
     color: $text-color;
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-button;
 }
 
 .configuration-content__add-btn:hover, .configuration-content__refresh-btn:hover {
@@ -115,9 +85,8 @@ $font-size-xs: 0.75rem;
     background-color: $highlight-color;
     font-size: $font-size-lg;
     color: $text-color;
-    padding: 4px 10;
-    padding: 4px 10px;
-    margin-left: 12px;
+    padding: $spacing-xxs $spacing-input;
+    margin-left: $spacing-input;
     border-radius: 50%;
 }
 
@@ -129,7 +98,7 @@ $font-size-xs: 0.75rem;
     flex-grow: 2;
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
+    margin-top: $spacing-xs;
     overflow: hidden;
 }
 
@@ -137,11 +106,10 @@ $font-size-xs: 0.75rem;
     list-style-type: none;
     display: flex;
     color: $highlight-color;
-    margin: 0;
-    padding: 12px 0px;
+    padding: $spacing-input 0px;
     width: 100%;
-    background-color: #4c52705c;
-    border-radius: 8px;
+    background-color: $active-label;
+    border-radius: $border-button;
     justify-content: space-between;
 }
 
@@ -149,7 +117,7 @@ $font-size-xs: 0.75rem;
     font-size: $font-size-xs;
     width: 17%;
     font-weight: 700;
-    padding: 0 16px;
+    padding: 0 $spacing-sm;
     text-align: start;
 }
 
@@ -158,10 +126,10 @@ $font-size-xs: 0.75rem;
     display: flex;
     color: $text-color;
     margin: 0;
-    margin-top: 8px;
-    padding: 12px 0px;
+    margin-top: $spacing-xs;
+    padding: $spacing-input 0px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: $border-button;
     justify-content: space-between;
     max-height: 48px;
 }
@@ -170,17 +138,17 @@ $font-size-xs: 0.75rem;
     width: 17%;
     font-size: $font-size-xs;
     font-weight: 400;
-    padding: 0 16px;
+    padding: 0 $spacing-sm;
     text-align: start;
 }
 
 .configuration-table__content-line:hover{
-    background-color: #4c527024;
+    background-color: $hover-label;
     cursor: pointer;
 }
 
 .configuration-table__content-line--active {
-    background-color: #4c527024;
+    background-color: $active-label;
 }
 
 .configuration-content__page {
@@ -189,10 +157,10 @@ $font-size-xs: 0.75rem;
     display: flex;
     justify-content: space-between;
     margin: 0;
-    padding: 12px 0px;
+    padding: $spacing-input 0px;
     width: 100%;
-    background-color: #4c52705c;
-    border-radius: 8px;
+    background-color: $active-label;
+    border-radius: $border-button;
 }
 
 .configuration-page__quality {
@@ -203,7 +171,7 @@ $font-size-xs: 0.75rem;
 .page-quality__content {
     font-size: $font-size-sm;
     font-weight: 700;
-    padding: 0 8px 0 16px;
+    padding: 0 $spacing-xs 0 $spacing-sm;
     text-align: start;
     color: $highlight-color;
 }
@@ -213,7 +181,7 @@ $font-size-xs: 0.75rem;
     font-weight: 400;
     width: 22px;
     height: 22px;
-    padding: 0 2px 4px 6px;
+    padding: 0 2px $spacing-xxs 6px;
     margin-left: 6px;
     text-align: start;
     color: $text-color;
@@ -222,7 +190,7 @@ $font-size-xs: 0.75rem;
 
 .page-quality__text--active {
     font-weight: 800;
-    border-radius: 4px;
+    border-radius: $spacing-xxs;
     border: 1px solid $highlight-color;
 }
 
@@ -245,7 +213,7 @@ $font-size-xs: 0.75rem;
     font-weight: 400;
     width: 22px;
     height: 22px;
-    padding: 0 2px 4px 6px;
+    padding: 0 2px $spacing-xxs 6px;
     margin-left: 6px;
     text-align: start;
     color: $text-color;
@@ -284,7 +252,7 @@ $font-size-xs: 0.75rem;
 }
 
 .page-navigation__text--disable {
-    color: #5f5f63;
+    color: #cacaca;
 }
 
 .page-navigation__text--disable:hover {

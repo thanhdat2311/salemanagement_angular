@@ -1,80 +1,80 @@
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-$card-bg: #1b1f3b;
-$input-bg: #2c2f47;
-$text-color: #ffffff;
-$highlight-color: #ff4081;
-$secondary-bg: #3b3f5a;
-$border-radius: 12px;
-$padding: 20px;
+@import "../../../styles.scss";
+
 .register-container {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    justify-content: center;
     align-items: center;
-    height: 93.5vh;
-    background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
 }
 
 .register-card {
-    background: #1b1f3b;
-    padding: 20px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    width: 500px;
-    height: 90.5vh;
-    color: #ffffff;
+    background: $background;
+    padding: $spacing-sm;
+    border-radius: $border-container;
+    box-shadow: $box-shadow;
+    width: 100%;
+    max-width: 400px;
+    color: $text-color;
+    text-align: center;
 
-    h3 {
-        text-align: center;
+    .register-title {
+        font-size: $font-size-xl;
+        color: $title-color;
         margin-bottom: 20px;
-        height: 1vh;
-        color: #ff4081;
     }
 
-    .form-group {
-        margin-bottom: 8px;
+    form {
+        .form-group {
+            margin-bottom: $spacing-sm;
+            text-align: left;
+    
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                display: block;
+            }
+    
+            input,
+            textarea,
+            select {
+                width: 100%;
+                padding: $spacing-input;
+                border-radius: $border-input;
+                border: none;
+                background: $input-background;
+                color: $text-color;
+                font-size: $font-size-md;
+            }
 
-        label {
-            font-weight: normal;
-            margin-bottom: 1px;
-            display: block;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background: #2c2f47;
-            color: #ffffff;
-            font-size: 1rem;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            box-shadow: 0 0 3px #ff4081;
+            input::placeholder,
+            textarea::placeholder,
+            select::placeholder {
+                color: $placeholder;
+            }
+    
+            input:focus,
+            textarea:focus,
+            select:focus {
+                outline: none;
+                box-shadow: 0 0 5px $highlight-color;
+            }
         }
     }
 
-    .btn-primary {
+    .btn-register {
         width: 100%;
         padding: 12px;
         border: none;
-        border-radius: $border-radius;
+        border-radius: $border-container;
         background: $highlight-color;
         color: $text-color;
-        font-size: 1.2rem;
+        font-size: $font-size-lg;
         cursor: pointer;
         transition: background 0.3s ease;
   
         &:hover {
-          background: lighten($highlight-color, 10%);
+            background: $highlight-color-hover;
+            cursor: pointer;
         }
     }
 }

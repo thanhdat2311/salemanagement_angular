@@ -1,80 +1,28 @@
-
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%) ;
-$background-dark: #0a122a; /* Màu nền chính */
-$card-bg: #1b1f3b; /* Màu nền của các thẻ (card) */
-$text-color: #ffffff; /* Màu chữ sáng */
-$highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
-$border-color: #4c5270; /* Màu viền nhạt */
-$secondary-bg: #10152f; /* Màu nền phụ */
-$hover-label: #4c527025;
-$shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
-$padding:8px; /* Khoảng cách nội bộ */
-$spacing-xxl: 64px;  // Dùng cho layout lớn
-$spacing-xl: 48px;   // Khoảng cách section
-$spacing-lg: 32px;   // Padding container lớn
-$spacing-md: 24px;   // Padding container vừa
-$spacing-sm: 16px;   // Padding nhỏ
-$spacing-xs: 8px;    // Khoảng cách giữa các thành phần
-$spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
-
-$font-size-xxl: 2rem;   // Tiêu đề chính (H1) - Giảm từ 2.5rem → 2rem
-$font-size-xl: 1.75rem; // Tiêu đề phụ (H2) - Giảm từ 2rem → 1.75rem
-$font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1.25rem
-$font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
-$font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
-$font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
-$border-radius: 12px;
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-/* General reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Ensure full screen for container */
-html,
-body {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-}
-
-.no-overflow {
-    width: 100%;
-    height: 100%;
-    background-color: $primary-gradient !important;
-}
+@import "../../../styles.scss";
 
 
-/* Header styling */
-.title {
-    color: rgb(234, 107, 238);
-    text-align: center;
-    padding-top: 4px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    grid-row: 1; 
-    height: 2vh;
-}
+// /* Header styling */
+// .title {
+//     color: rgb(234, 107, 238);
+//     text-align: center;
+//     padding-top: 4px;
+//     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+//     grid-row: 1; 
+//     height: 2vh;
+// }
 
-/* Content area with responsive columns */
-.content {
+/* task-container area with responsive columns */
+.task-container {
     /* Fill remaining height */
     display: flex ;
     flex-direction: row;
-
     flex-wrap: wrap;
     /* Allow wrapping for smaller screens */
-    padding: $padding;
-    gap: $padding;
-    height: 88.5vh;
+    gap: $spacing-xs;
+    height: 100vh;
     width: 100%;
     grid-row: 2; 
-    margin-top: 20px;
+    margin-bottom: $spacing-sm;
     /* Columns for customer, task, and details */
     .scroll_y {
         overflow-y: auto;
@@ -100,12 +48,12 @@ body {
     .list-task,
     .task-form,
     .task-detail {
-        background:$card-bg;
+        background:$background;
         flex: 8;
         flex-direction: column;
-        border-radius: $border-radius;
-        box-shadow: $shadow;
-        padding: $padding;
+        border-radius: $border-container;
+        box-shadow: $box-shadow;
+        padding: $spacing-md;
         display: flex;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         width: 70%;
@@ -118,23 +66,23 @@ body {
 
         h3 {
             font-size: $font-size-sm;
-            margin-bottom: $padding / 2;
+            margin-bottom: $spacing-md / 2;
             color: $highlight-color;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border-bottom: 2px solid $secondary-bg;
-            padding-bottom: $padding / 4;
+            border-bottom: 2px solid $secondary-background;
+            padding-bottom: $spacing-md / 4;
         }
         h4 {
             font-size: $font-size-sm;
-            margin-bottom: $padding / 2;
+            margin-bottom: $spacing-md / 2;
             color: whitesmoke;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border-bottom: 2px solid $secondary-bg;
-            padding-bottom: $padding / 4;
+            border-bottom: 2px solid $secondary-background;
+            padding-bottom: $spacing-md / 4;
         }
         h6 {
           font-size: $font-size-xl;
@@ -142,8 +90,8 @@ body {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          border-bottom: 0px solid $secondary-bg;
-          padding-bottom: $padding / 4;
+          border-bottom: 0px solid $secondary-background;
+          padding-bottom: $spacing-md / 4;
           margin-left: 2px;
       }
 
@@ -153,14 +101,14 @@ body {
 
         ul {
             list-style: none;
-            margin-top: $padding / 2;
+            margin-top: $spacing-md / 2;
             font-size: $font-size-xs;
             width: 100%;
             li {
-                background: $secondary-bg;
-                padding: $padding;
-                border-radius: $border-radius / 2;
-                margin-bottom: $padding/ 2;
+                background: $secondary-background;
+                padding: $spacing-md;
+                border-radius: $border-container / 2;
+                margin-bottom: $spacing-md/ 2;
                 cursor: pointer;
                 transition: background 0.3s, transform 0.2s;
 
@@ -172,7 +120,7 @@ body {
         }
 
         p {
-            margin-top: $padding / 2;
+            margin-top: $spacing-md / 2;
             font-size: 0.5rem;
             color: $text-color;
         }
@@ -193,7 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Khoảng cách giữa các nhóm */
-  justify-content: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
+  justify-task-container: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
   height: 100%; /* Đảm bảo phần form chiếm hết chiều cao của task-form */
   max-height: 100%px;
   .form-group {
@@ -227,7 +175,7 @@ body {
   .row {
     display: flex;
     gap: 10px;
-    justify-content: space-between; /* Giãn đều khoảng cách giữa các phần tử trong hàng */
+    justify-task-container: space-between; /* Giãn đều khoảng cách giữa các phần tử trong hàng */
 
     .form-group {
       flex: 1; /* Chia đều khoảng trống */
@@ -272,7 +220,7 @@ body {
 }
 .action-buttons {
   display: flex; /* Sử dụng flexbox để sắp xếp các nút */
-  justify-content: flex-end; /* Để các nút không giãn ra mà nằm sát nhau */
+  justify-task-container: flex-end; /* Để các nút không giãn ra mà nằm sát nhau */
   gap: 5px; /* Khoảng cách nhỏ giữa các nút */
   padding: 0; /* Không có khoảng cách padding bên ngoài */
   margin-top: 10px; /* Khoảng cách từ phần tử phía trên nếu cần */
@@ -300,11 +248,11 @@ body {
 
 /* Nút Save */
 .save-btn {
-  background-color: lighten($secondary-bg, 40%);
+  background-color: lighten($secondary-background, 40%);
 }
 
 .save-btn:hover {
-  background-color:lighten($secondary-bg, 55%) ; 
+  background-color:lighten($secondary-background, 55%) ; 
 }
 
 /* Nút Edit */
@@ -327,7 +275,7 @@ body {
 
 .list-header {
   display: flex;
-  justify-content: space-between;
+  justify-task-container: space-between;
   align-items: center;
   color: white;
   padding: 10px;
@@ -350,9 +298,9 @@ body {
   opacity: 0.5; /* Làm mờ phần tử để trông giống như bị vô hiệu hóa */
 }
 
-// Giả sử biến $secondary-bg được định nghĩa trước, ví dụ: #10152f
+// Giả sử biến $secondary-background được định nghĩa trước, ví dụ: #10152f
 .active {
-  background:  lighten($secondary-bg, 20%) !important; // Làm sáng màu nền của $secondary-bg 20%
+  background:  lighten($secondary-background, 20%) !important; // Làm sáng màu nền của $secondary-background 20%
   font-weight: bold;
   transition: background 0.3s ease;
 }
@@ -360,7 +308,7 @@ body {
   font-size: 12px !important; /* Chữ nhỏ lại */
   color: $text-color !important; /* Màu chữ */
   background-color: rgba(255, 255, 255, 0.1) !important; /* Màu nền nhẹ nhàng hơn */
-  padding: $padding !important; /* Điều chỉnh padding */
+  padding: $spacing-md !important; /* Điều chỉnh padding */
   transition: all 0.3s ease;
 }
 
@@ -374,7 +322,7 @@ body {
 
 ::ng-deep .multiselect-dropdown .dropdown-list *{
   font-size: $font-size-xs !important;
-  background-color: darken($card-bg, 0.5%) !important;
+  background-color: darken($background, 0.5%) !important;
   color: white !important; /* Bắt buộc chữ màu trắng */
 }
 

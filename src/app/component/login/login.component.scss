@@ -1,56 +1,31 @@
-$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
-$card-bg: #1b1f3b;
-$input-bg: #2c2f47;
-$text-color: #ffffff;
-$highlight-color: #ff4081;
-$secondary-bg: #3b3f5a;
-$border-radius: 12px;
-$padding: 20px;
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: $primary-gradient;
-}
+@import "../../../styles.scss";
 
 .login-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $primary-gradient;
 }
 
 .login-card {
-  background: $card-bg;
-  padding: $padding;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  width: 90%;
+  background: $background;
+  padding: $spacing-sm;
+  border-radius: $border-container;
+  box-shadow: $box-shadow;
+  width: 100%;
   max-width: 400px;
-  text-align: center;
   color: $text-color;
+  text-align: center;
 
   .login-title {
-    font-size: 1.8rem;
-    color: $highlight-color;
+    font-size: $font-size-xl;
+    color: $title-color;
     margin-bottom: 20px;
   }
 
   form {
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: $spacing-sm;
       text-align: left;
 
       label {
@@ -61,15 +36,16 @@ body {
 
       input {
         width: 100%;
-        padding: 10px;
-        border-radius: 5px;
+        padding: $spacing-input;
+        border-radius: $border-input;
         border: none;
-        background: $input-bg;
+        background: $input-background;
         color: $text-color;
-        font-size: 1rem;
+        font-size: $font-size-md;
       }
+      
       input::placeholder {
-        color: #ffffff71;
+        color: $placeholder;
       }
 
       input:focus {
@@ -86,11 +62,15 @@ body {
       input {
         flex:0;
         margin-right: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       label {
         flex:9;
-        font-size: 0.8rem;
+        font-size: $font-size-xs;
         margin-top: auto;
         margin-bottom: 0;
       }
@@ -100,15 +80,16 @@ body {
       width: 100%;
       padding: 12px;
       border: none;
-      border-radius: $border-radius;
+      border-radius: $border-container;
       background: $highlight-color;
       color: $text-color;
-      font-size: 1.2rem;
+      font-size: $font-size-lg;
       cursor: pointer;
       transition: background 0.3s ease;
 
       &:hover {
-        background: lighten($highlight-color, 10%);
+        background: $highlight-color-hover;
+        cursor: pointer;
       }
     }
 
@@ -116,7 +97,7 @@ body {
       margin-top: 20px;
 
       .forgot-password {
-        color: lighten($highlight-color, 15%);
+        color: $highlight-color-hover;
         text-decoration: none;
         font-size: 0.9rem;
         transition: color 0.3s ease;
@@ -137,7 +118,7 @@ body {
           transition: color 0.3s ease;
 
           &:hover {
-            color: lighten($highlight-color, 10%);
+            color: $highlight-color-hover;
           }
         }
       }

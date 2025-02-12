@@ -27,7 +27,7 @@ const routes: Routes = [
   declarations: [
     //AppComponent,
     LoginComponent,
-     HomeComponent,//task
+    HomeComponent,//task
     HeaderComponent,
     FooterComponent,
     OrderComponent,
@@ -52,10 +52,10 @@ const routes: Routes = [
   bootstrap: [
     //CompanyComponent,
     //LoginComponent, 
-    //HomeComponent,
-    //OrderComponent
-    //OrderConfirmComponent
-    //RegisterComponent
+    HomeComponent,
+    //OrderComponent,
+    //OrderConfirmComponent,
+    //RegisterComponent,
     //DetailProductComponent,
     ConfigurationComponent
   ]
