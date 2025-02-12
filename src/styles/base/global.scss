@@ -1,4 +1,5 @@
 // Biến màu sắc và kiểu dáng
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 $primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%) ;
 $background: #0a122a; /* Màu container chính */
@@ -29,6 +30,7 @@ $font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1
 $font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
 $font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
 $font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
+
 
 $border-container: 12px;
 $border-input: 4px;

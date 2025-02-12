@@ -53,7 +53,7 @@
         flex-direction: column;
         border-radius: $border-container;
         box-shadow: $box-shadow;
-        padding: $spacing-md;
+        padding: $spacing-xs;
         display: flex;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         width: 70%;
@@ -66,23 +66,23 @@
 
         h3 {
             font-size: $font-size-sm;
-            margin-bottom: $spacing-md / 2;
+            margin-bottom: $spacing-xs / 2;
             color: $highlight-color;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             border-bottom: 2px solid $secondary-background;
-            padding-bottom: $spacing-md / 4;
+            padding-bottom: $spacing-xs / 4;
         }
         h4 {
             font-size: $font-size-sm;
-            margin-bottom: $spacing-md / 2;
+            margin-bottom: $spacing-xs / 2;
             color: whitesmoke;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             border-bottom: 2px solid $secondary-background;
-            padding-bottom: $spacing-md / 4;
+            padding-bottom: $spacing-xs / 4;
         }
         h6 {
           font-size: $font-size-xl;
@@ -91,7 +91,7 @@
           align-items: center;
           gap: 0.5rem;
           border-bottom: 0px solid $secondary-background;
-          padding-bottom: $spacing-md / 4;
+          padding-bottom: $spacing-xs / 4;
           margin-left: 2px;
       }
 
@@ -101,14 +101,13 @@
 
         ul {
             list-style: none;
-            margin-top: $spacing-md / 2;
+            margin-top: $spacing-xxs / 2;
             font-size: $font-size-xs;
             width: 100%;
             li {
                 background: $secondary-background;
-                padding: $spacing-md;
+                padding: $spacing-xs;
                 border-radius: $border-container / 2;
-                margin-bottom: $spacing-md/ 2;
                 cursor: pointer;
                 transition: background 0.3s, transform 0.2s;
               
@@ -122,7 +121,7 @@
         }
 
         p {
-            margin-top: $spacing-md / 2;
+            margin-top: $spacing-xs / 2;
             font-size: 0.5rem;
             color: $text-color;
         }
@@ -150,9 +149,9 @@
     display: flex;
     flex-direction: column;
     width: 100%; /* Chiếm hết chiều rộng */
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     label {
-      font-weight: lighter;
+      font-weight: bold;
       margin-bottom: 5px;
       font-size: $font-size-xs;
     }
@@ -176,7 +175,7 @@
 
   .row {
     display: flex;
-    gap: 10px;
+    gap: 2px;
     justify-task-container: space-between; /* Giãn đều khoảng cách giữa các phần tử trong hàng */
 
     .form-group {
@@ -190,7 +189,7 @@
 .checkbox-group {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
 
   .form-check-input {
     
@@ -277,7 +276,7 @@
 
 .list-header {
   display: flex;
-  justify-task-container: space-between;
+  justify-content: space-between;
   align-items: center;
   color: white;
   padding: 10px;
@@ -310,7 +309,7 @@
   font-size: 12px !important; /* Chữ nhỏ lại */
   color: $text-color !important; /* Màu chữ */
   background-color: rgba(255, 255, 255, 0.1) !important; /* Màu nền nhẹ nhàng hơn */
-  padding: $spacing-md !important; /* Điều chỉnh padding */
+  padding: $spacing-xxs !important; /* Điều chỉnh padding */
   transition: all 0.3s ease;
 }
 
