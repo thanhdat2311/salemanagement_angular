@@ -13,7 +13,7 @@
         </div>
         <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
             <div class="configuration-content__header">
-                <div class="configuration-content__add-btn">+ Add New</div>
+                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
                 <div class="configuration-content__refresh-btn">
                     <i class="fa fa-refresh"></i>
                 </div>

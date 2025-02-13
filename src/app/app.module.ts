@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PopupComponent } from './component/popup/popup.component';
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -39,7 +40,8 @@ const routes: Routes = [
     RegisterComponent,
     DetailProductComponent,
     CompanyComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    PopupComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -65,7 +67,8 @@ const routes: Routes = [
     //OrderConfirmComponent
     //RegisterComponent,
     //DetailProductComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    PopupComponent
   ]
 })
 export class AppModule { }
