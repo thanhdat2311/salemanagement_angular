@@ -18,6 +18,10 @@ import { Routes } from '@angular/router';
 import { CompanyComponent } from './component/company/company.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -42,8 +46,12 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule.forRoot()
-    ],
+    NgMultiSelectDropDownModule.forRoot()  ,  
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
+  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

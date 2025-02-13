@@ -25,10 +25,9 @@
         <ul *ngFor="let task of taskList">
           <li [value]="task.id" (click)="getTaskDetail(task.id)" 
           [ngClass]="{'active': task.id === selectedTask}">
-            <!-- {{task.title}} -->
             <a>Task: {{task.title}}</a>
           <a>Status: {{task.status?.name}} | Urgent: {{task.urgent}}</a>
-          <a>Assign: 
+          <a>👨‍👨‍👧: 
             <span *ngFor="let user of task.assignedUsers; let last = last">
               {{ user.name }}{{ last ? '' : ', ' }}
             </span>
@@ -38,6 +37,8 @@
            
         </ul>
       </div>
+    <!-- // Thế dân -->
+    
     </div>
     <!-- <div class="task-detail">  -->
     <div class="task-form">
