@@ -6,6 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import { Company } from '../models/company';
 import { Status } from '../models/status';
 import { AssignedPerson } from '../models/user';
+import { PopupComponent } from '../popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuration',
@@ -25,7 +27,9 @@ export class ConfigurationComponent implements OnInit{
   constructor(private taskService: TaskService,
     private userService: UserService,
     private comapnyService: CompanyService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public dialog: MatDialog
+  ) {
 
   }
 
@@ -39,6 +43,13 @@ export class ConfigurationComponent implements OnInit{
     {id:2, name: "Status"},
     {id:3, name: "User"}]
   }
+  openPopup(): void {
+    this.dialog.open(PopupComponent, {
+      width: '500px',  // Chiều rộng popup
+      height: '300px', // Chiều cao popup
+      disableClose: false
+    })
+  };
   onCanceled(){
     this.form =""
   }
