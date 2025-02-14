@@ -62,7 +62,7 @@
         </div>
         <div class="status-configuration configuration-content" [ngClass]="{'content-active':barSelected == 2}">
             <div class="configuration-content__header">
-                <div class="configuration-content__add-btn">+ Add New</div>
+                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
                 <div class="configuration-content__refresh-btn">
                     <i class="fa fa-refresh"></i>
                 </div>
@@ -104,7 +104,7 @@
         </div>
         <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
             <div class="configuration-content__header">
-                <div class="configuration-content__add-btn">+ Add New</div>
+                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
                 <div class="configuration-content__refresh-btn">
                     <i class="fa fa-refresh"></i>
                 </div>

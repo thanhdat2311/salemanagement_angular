@@ -23,6 +23,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PopupComponent } from './component/popup/popup.component';
+import { MatOption, MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
   { path: 'login', component: LoginComponent } // Trang đăng nhập
@@ -49,10 +53,13 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot()  ,  
+    MatOptionModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -68,7 +75,7 @@ const routes: Routes = [
     //RegisterComponent,
     //DetailProductComponent,
     ConfigurationComponent,
-    PopupComponent,
+    //PopupComponent,
   ]
 })
 export class AppModule { }
