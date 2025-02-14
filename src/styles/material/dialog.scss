@@ -1,0 +1,9 @@
+::ng-deep .mat-mdc-dialog-surface.mdc-dialog__surface {
+    border-radius: $border-container;
+    flex-direction: column;
+    background: $light-background;
+    padding: $spacing-sm;
+    width: 100%;
+    color: $text-color;
+    text-align: center;
+}

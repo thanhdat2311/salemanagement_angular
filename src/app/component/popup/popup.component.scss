@@ -1,0 +1,36 @@
+@import "../../../styles.scss";
+
+.popup-title {
+    font-size: $font-size-xl;
+    color: $title-color;
+    margin-bottom: 20px;
+}
+
+.popup-content {
+    height: auto;
+    .popup-group {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    mat-form-field {
+        width: 100%;
+        mat-label {
+        }
+        input::placeholder {
+        }
+    }
+}
+
+.popup-footer {
+    .popup-actions {
+        display: block;
+        justify-self: flex-end;
+        align-self: flex-end;
+    }
+
+    button {
+        margin-left: $spacing-xxs;;
+    }
+}

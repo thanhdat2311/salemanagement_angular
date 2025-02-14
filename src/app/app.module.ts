@@ -68,7 +68,7 @@ const routes: Routes = [
     //RegisterComponent,
     //DetailProductComponent,
     ConfigurationComponent,
-    PopupComponent
+    PopupComponent,
   ]
 })
 export class AppModule { }

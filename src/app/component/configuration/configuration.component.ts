@@ -46,8 +46,7 @@ export class ConfigurationComponent implements OnInit{
   openPopup(): void {
     this.dialog.open(PopupComponent, {
       width: '500px',  // Chiều rộng popup
-      height: '300px', // Chiều cao popup
-      disableClose: false
+      disableClose: false,
     })
   };
   onCanceled(){
