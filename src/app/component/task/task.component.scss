@@ -141,7 +141,7 @@
 .task-form {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Khoảng cách giữa các nhóm */
+  gap: 4px; /* Khoảng cách giữa các nhóm */
   justify-content: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
   height: 100%; /* Đảm bảo phần form chiếm hết chiều cao của task-form */
   max-height: 100%px;
@@ -149,7 +149,7 @@
     display: flex;
     flex-direction: column;
     width: 100%; /* Chiếm hết chiều rộng */
-    margin-bottom: 2px;
+    margin-bottom: 15px;
     label {
       font-weight: bold;
       margin-bottom: 5px;
@@ -175,10 +175,13 @@
 
   .row {
     display: flex;
-    gap: 2px;
-    justify-task-container: space-between; /* Giãn đều khoảng cách giữa các phần tử trong hàng */
+    flex-direction: row;
+    flex: 4;
     .form-group {
-      flex: 1; /* Chia đều khoảng trống */
+      flex: 3; /* Chia đều khoảng trống */
+    }
+    status-group {
+      flex: 1
     }
   }
 
@@ -310,15 +313,21 @@
   background-color: rgba(255, 255, 255, 0.1) !important; /* Màu nền nhẹ nhàng hơn */
   padding: $spacing-xxs !important; /* Điều chỉnh padding */
   transition: all 0.3s ease;
+  margin-right: 50px !important; /* điều chỉnh giá trị này cho phù hợp */
+  white-space: nowrap;       // Ngăn không cho xuống dòng
+
 }
 
 ::ng-deep .multiselect-dropdown .selected-item {
-  max-width: 180px !important; /* Giới hạn độ rộng của user */
+  max-width: 160px !important; /* Giới hạn độ rộng của user */
   white-space: nowrap !important; /* Ngăn chữ xuống dòng */
   overflow: hidden !important; /* Ẩn phần bị tràn */
   text-overflow: ellipsis !important; /* Hiển thị dấu "..." nếu quá dài */
   color: $text-color !important;
+  margin-right: 5px !important; /* điều chỉnh giá trị này cho phù hợp */
+
 }
+
 
 ::ng-deep .multiselect-dropdown .dropdown-list *{
   font-size: $font-size-xs !important;

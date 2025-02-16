@@ -9,17 +9,17 @@
                     <input matInput placeholder="Nhập dữ liệu...">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
-                    <mat-label class="custom-label">Company Name</mat-label>
+                    <mat-label class="custom-label">Email</mat-label>
                     <input matInput placeholder="Nhập dữ liệu...">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
-                    <mat-label class="custom-label">Assigned User</mat-label>
-                    <mat-select [(value)]="numberTest" multiple>
-                        <mat-option *ngFor="let data of dataTest" [value]="data.id">{{data.name}}</mat-option>
+                    <mat-label class="custom-label">Assigned Person</mat-label>
+                    <mat-select [(value)]="selectedUserEmails" multiple>
+                        <mat-option *ngFor="let data of dataTest" [value]="data.email">{{data.name}}</mat-option>
                       </mat-select>
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
-                    <mat-label class="custom-label">Company Name</mat-label>
+                    <mat-label class="custom-label">Phone</mat-label>
                     <input matInput placeholder="Nhập dữ liệu...">
                 </mat-form-field>
             </div>

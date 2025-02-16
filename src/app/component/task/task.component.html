@@ -26,12 +26,12 @@
           <li [value]="task.id" (click)="getTaskDetail(task.id)" 
           [ngClass]="{'active': task.id === selectedTask}">
             <a>Task: {{task.title}}</a>
-          <a>Status: {{task.status?.name}} | Urgent: {{task.urgent}}</a>
+          <!-- <a>Status: {{task.status?.name}} | Urgent: {{task.urgent}}</a>
           <a>👨‍👨‍👧: 
             <span *ngFor="let user of task.assignedUsers; let last = last">
               {{ user.name }}{{ last ? '' : ', ' }}
             </span>
-          </a>
+          </a> -->
           
           </li>
            
@@ -53,22 +53,22 @@
 
         <!-- Description (Dòng 2) -->
         <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
-            formControlName="description" rows="8"></textarea>
+          <label for="user">Users</label>
+          <ng-multiselect-dropdown placeholder="Select Users" [settings]="dropdownSettings" 
+          [data]="dropdownList"
+            formControlName="assignedUsers" >
+          </ng-multiselect-dropdown>
         </div>
 
         <!-- Combobox để chọn người dùng -->
         <div class="row">
           <div class="form-group">
-            <label for="user">Users</label>
-            <ng-multiselect-dropdown placeholder="Select Users" [settings]="dropdownSettings" 
-            [data]="dropdownList"
-              formControlName="assignedUsers" >
-            </ng-multiselect-dropdown>
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
+              formControlName="description" rows="8"></textarea>
           </div>
-          <div class="form-group">
-            <label for="status">Status</label>
+          <div class="form-group status-group">
+            <label for="status">Status</label>  
             <ng-multiselect-dropdown placeholder="Select Status" 
                                       [settings]="dropdownStatusSetting" 
                                       [data]="status" 

@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AssignedPerson } from '../models/user';
 
 @Component({
   selector: 'app-popup',
@@ -9,8 +10,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export class PopupComponent implements OnInit{
   visibleFormId: number = 0;
-  numberTest: number= 0;
-  dataTest :{ id: number; name: string; }[] = [];
+  selectedUserEmails: string[] = [];
+  numberTest: number= 2;
+  dataTest : AssignedPerson[] = [];
   constructor(public dialogRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
 
@@ -18,12 +20,10 @@ export class PopupComponent implements OnInit{
   { }
   ngOnInit(): void {
   this.setVisibleForm(this.data.barId);
-  this.dataTest = [
-    {id:1, name: "Customer"},
-    {id:2, name: "Status"},
-    {id:3, name: "User"}];
-  }
-
+  this.dataTest = this.data.userList || [];
+  console.log("Danh sách user:", JSON.stringify(this.dataTest, null, 2))  
+    console.log("Danh sách user:",this.visibleFormId)
+}
   onClose(): void {
     this.dialogRef.close();
   }

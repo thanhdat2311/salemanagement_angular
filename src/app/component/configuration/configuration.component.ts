@@ -44,12 +44,12 @@ export class ConfigurationComponent implements OnInit{
     {id:3, name: "User"}]
   }
   openPopup(): void {
-    const formVisibleId = {barId: this.barSelected}
-
+    const userListPopUp = {barId:this.barSelected,userList: this.userList}
+    console.info(userListPopUp)
     this.dialog.open(PopupComponent, {
       width: '500px',  // Chiều rộng popup
       disableClose: false,
-      data: formVisibleId
+      data: userListPopUp
     })
   };
   onCanceled(){

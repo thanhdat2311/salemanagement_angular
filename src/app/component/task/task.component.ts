@@ -434,7 +434,10 @@ export class HomeComponent implements OnInit {
           completedDate: this.taskDetail.completedDate,
           companyId: this.taskDetail.company?.id
         });
-        
+        const assginedListNew = (this.taskForm.get('assignedUsers') as FormArray).getRawValue();
+        const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);
+        this.taskForm.controls['assignedUsers'].setValue(emailListNew);
+
         // Gán giá trị cho dropdown status
         this.taskForm.controls['status'].setValue([this.taskDetail.status]); 
 
