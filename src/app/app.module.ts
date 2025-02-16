@@ -26,6 +26,7 @@ import { PopupComponent } from './component/popup/popup.component';
 import { MatOption, MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -45,7 +46,8 @@ const routes: Routes = [
     DetailProductComponent,
     CompanyComponent,
     ConfigurationComponent,
-    PopupComponent
+    PopupComponent,
+    ChangepasswordComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -69,6 +71,7 @@ const routes: Routes = [
   bootstrap: [
     //CompanyComponent,
     //LoginComponent, 
+    ChangepasswordComponent,
     HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
