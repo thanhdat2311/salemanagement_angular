@@ -17,8 +17,14 @@
     mat-form-field {
         width: 100%;
         mat-label {
+            color: $text-color;
         }
-        input::placeholder {
+        input {
+            color: $text-color;
+       
+            &::placeholder {
+                color: #ccc;
+            }
         }
     }
 }
