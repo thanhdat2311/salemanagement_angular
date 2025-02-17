@@ -23,7 +23,13 @@
     width: 100%;
     grid-row: 2; 
     margin-bottom: $spacing-sm;
+    overflow: hidden;
     /* Columns for customer, task, and details */
+
+    .header-text {
+      overflow: hidden;
+    }
+
     .scroll_y {
         overflow-y: auto;
         overflow-x: hidden;
@@ -120,14 +126,14 @@
             }
         }
 
-        p {
-            margin-top: $spacing-xs / 2;
-            font-size: 0.5rem;
-            color: $text-color;
-        }
+        // p {
+        //     margin-top: $spacing-xs / 2;
+        //     font-size: 0.5rem;
+        //     color: $text-color;
+        // }
     }
     .list-task{
-        flex: 2;
+        flex: 3;
         flex-direction: column;
 
     }
@@ -333,6 +339,52 @@
   font-size: $font-size-xs !important;
   background-color: darken($background, 0.5%) !important;
   color: white !important; /* Bắt buộc chữ màu trắng */
+}
+
+
+// CSS for new task
+
+.task-content {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: $border-container;
+  border: 1.5px solid $border-color;
+  padding: $spacing-xs;
+  font-size: $font-size-xs;
+
+  .task-content-element {
+    display: flex;
+    
+    p {
+      margin-right: 8px;
+    }
+    .task-content-field {
+      font-weight: 800;
+    }
+  }
+  
+  
+  
+  .task-content__title {
+    .task-content__urgent > i{
+      display: none;
+    }
+    
+    .task-content__urgent > .urgent-active {
+      display: inline-block;
+    }
+
+    .task-content__title-name {
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    background-color: $secondary-background;
+    cursor: pointer !important;
+  }
 }
 
 
