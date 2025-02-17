@@ -36,10 +36,11 @@
           </li>
            
         </ul> -->
-        <div class="task-content">
+        <div *ngFor="let task of taskList">
+        <div class="task-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
           <div class="task-content-element task-content__title">
             <p class="task-content-field task-content__title-field">Title:</p>
-            <p class="task-content__title-name" style="color: pink">Con ddix mej mayf</p>
+            <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
             <p class="task-content__urgent">
               <i class="fa-regular fa-star"></i>
               <i class="fa-solid fa-star urgent-active"></i>
@@ -47,16 +48,16 @@
           </div>
           <div class="task-content-element task-content__status">
             <p class="task-content-field task-content__status-field">Status:</p>
-            <p class="task-content__status-value">Dix mej mayf</p>
+            <p class="task-content__status-value">{{task.status?.name}}</p>
           </div>
           <div class="task-content-element task-content__date">
             <p class="task-content-field task-content__created-date-field">Created date:</p>
-            <p class="task-content__created-date-Value">5/3/2003</p>
+            <p class="task-content__created-date-Value">{{task.createdAt}}</p>
             <p class="task-content-field task-content__modified-date-field">Created by:</p>
-            <p class="task-content__modified-date-value">TDan</p>
+            <p class="task-content__modified-date-value">{{task.createdAt}}</p>
           </div>
         </div>
-        
+      </div>
       </div>
     <!-- // Thế dân -->
     

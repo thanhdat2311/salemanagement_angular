@@ -310,7 +310,7 @@
 // Giả sử biến $secondary-background được định nghĩa trước, ví dụ: #10152f
 .active {
   background:  lighten($secondary-background, 20%) !important; // Làm sáng màu nền của $secondary-background 20%
-  font-weight: bold;
+  
   transition: background 0.3s ease;
 }
 ::ng-deep .multiselect-dropdown .dropdown-btn {
