@@ -6,6 +6,7 @@ import { LoginDTO } from '../dtos/user/login.dtos';
 import { enviroment } from '../enviroment/enviroment';
 import { LoginResponse } from '../response/user/login.response';
 import { UserResponse } from '../response/user/user.response';
+import { ChangePasswordDTO } from '../dtos/user/changepassword.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserService {
   private apiLogin = `${enviroment.apiBaseUrl}/user/login`;
   private apiGetAllUser = `${enviroment.apiBaseUrl}/user/all`;
   private apiUserDetails = `${enviroment.apiBaseUrl}/user/details`;
+  private apiUserChangePassword = `${enviroment.apiBaseUrl}/user/changePassword`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -55,5 +57,8 @@ export class UserService {
       console.info("GetUserDetails")
       return userResponse
     }
+  }
+  changePassword(changepasswordDTO :ChangePasswordDTO): Observable<any>{
+    return this.http.put(this.apiUserChangePassword, changepasswordDTO,{ headers: this.createHeaders() })
   }
 }

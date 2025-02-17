@@ -70,7 +70,7 @@ const routes: Routes = [
   }],
   bootstrap: [
     //CompanyComponent,
-    //LoginComponent, 
+    LoginComponent, 
     ChangepasswordComponent,
     HomeComponent,
     //OrderComponent

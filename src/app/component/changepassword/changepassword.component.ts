@@ -18,9 +18,10 @@ import { ChangePasswordDTO } from 'src/app/dtos/user/changepassword.dto';
 })
 export class ChangepasswordComponent {
   @ViewChild('changePasswordForm') changePasswordForm!: NgForm;
-  currentPassword: string = '';
-  password: string = '';
-  roles: Role[] = [];
+  oldPassword: string = '';
+  newPassword: string = '';
+  email: string = '';
+  retypePassword: string = '';
   selectedRole: Role  | undefined;
   role:number = 0;
   constructor(private router: Router, 
@@ -29,82 +30,38 @@ export class ChangepasswordComponent {
     private roleService: RoleService
   ) {
   }
-  // onPhoneChange() {
-  //   console.log(`Phone type: ${this.currentPassword}`);
-  // }
-  // onRoleChange(event: any) {
-  //   console.log('Role selected:', this.selectedRole);
-  // }
-  
-  // ngOnInit(){
-  //   debugger
-    
-  // }
-  // getUserDetails(){
-  //   debugger
-  //   this.userService.getUserDetails().subscribe({
-      
-  //     next: (response: any) => {
-  //     debugger
-  //       this.userService.saveUserToLocalStorage(response)
-        
-         
-  //     },
-  //     complete: () => {
-        
-  //     },
-  //     error: (error: any) => {
-  //       debugger
-        
-  //     }
-  //   })
-  // }
-  // changpassword() {
-  //   debugger
-  //   // Sử dụng Observer object
-  //   const ChangePasswordDTO: ChangePasswordDTO =
-  //   {
-  //     "currentPassword": this.currentPassword,
-  //     "password": this.password,
-  //     "roleId":1
-  //   };
-  
-  //   this.userService.login(loginDTO).subscribe({
-  //     next: (response: LoginResponse) => {
-  //     debugger
-  //       const message = `${response?.message}`
-  //       const  token = `${response.token}`;
-  //       this.tokenService.setToken(token);
-  //         Swal.fire({
-  //           position: 'center',
-  //           icon: 'success',          // Biểu tượng thành công
-  //           title: 'Successfully!',
-  //           text: message,
-  //           width: '600px',
-  //           padding: '1em',
-  //           timer: 5000,                  // Thời gian tự động đóng (ms)
-  //           timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-  //           confirmButtonText: 'OK'   // Nút xác nhận
-  //         })
-  //     },
-  //     complete: () => {
-  //       this.getUserDetails();
+  changePassword() {
+    debugger
+    const changepasswordDTO : ChangePasswordDTO = {
+      "oldPassword": this.oldPassword,
+      "newPassword": this.newPassword,
+      "retypePassword": this.retypePassword
+    }
+    this.userService.changePassword(changepasswordDTO).subscribe({
+      next: (response: any) => {
+        debugger
+        Swal.fire({
+          position: 'center',
+          icon: 'success',          // Biểu tượng thành công
+          title: 'Successfully!',
+          text: 'success',
+          width: '600px',
+          padding: '1em',
+          timer: 5000,                  // Thời gian tự động đóng (ms)
+          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
+          confirmButtonText: 'OK'   // Nút xác nhận
+        })
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
 
-  //     },
-  //     error: (error: any) => {
-  //       debugger
-  //       Swal.fire({
-  //         position: 'center',
-  //         icon: 'error',          // Biểu tượng error
-  //         title: `${error.error.message}`,
-  //         text: 'An error occurred. Please try again later!',
-  //         width: '600px',
-  //         padding: '1em',
-  //         timer: 8000,                  // Thời gian tự động đóng (ms)
-  //         timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-  //         confirmButtonText: 'OK'
-  //       });
-  //     }
-  //   })
-  // }
+      }
+    }
+    )
+  }
 }

@@ -9,14 +9,14 @@ import {
 } from 'class-validator'
 export class ChangePasswordDTO {
     @IsString()
-    email: string;
+    oldPassword: string;
     @IsString()
-    password: string;
-    roleId:number|2;
+    newPassword: string;
+    retypePassword:string;
     constructor(data: any) {
-        this.email = data.email;
-        this.password = data.password;
-        this.roleId = data.roleId;
+        this.oldPassword = data.oldPassword;
+        this.newPassword = data.newPassword;
+        this.retypePassword = data.retypePassword;
 
     }
 }
