@@ -77,7 +77,7 @@ const routes: Routes = [
     //OrderConfirmComponent
     //RegisterComponent,
     //DetailProductComponent,
-    //ConfigurationComponent,
+    ConfigurationComponent,
     //PopupComponent,
   ]
 })

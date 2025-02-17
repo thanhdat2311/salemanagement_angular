@@ -9,7 +9,7 @@ $input-background: #2c2f47;
 $highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
 $highlight-color-hover: lighten($highlight-color, 10%); /* Hồng neon cho các điểm nhấn khi hover */
 $border-color: #4c5270; /* Màu viền nhạt */
-$active-label: #4c52705c;
+$active-label: rgba(76, 82, 112, 0.3607843137);
 $hover-label: #4c527025;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
 $placeholder: #ffffff71;

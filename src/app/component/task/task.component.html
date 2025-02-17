@@ -9,10 +9,16 @@
         <span class="header-text">CUSTOMER</span>
         <span class="plus-icon">+</span>
       </div>
-      <div class="scroll_y">
+      <div class="scroll_y list-customer__content">
         <ul *ngFor="let company of companyList">
           <li [value]="company.id" (click)="getTaskList(company.id)"
             [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
+        </ul>
+        <ul>
+          <li>Customer cacs kieu do</li>
+          <li>Hello</li>
+          <li>Hello</li>
+          <li>Hello</li>
         </ul>
       </div>
     </div>
@@ -23,28 +29,90 @@
       </div>
       <div class="scroll_y">
         <div *ngFor="let task of taskList">
-        <div class="task-content" (click)="getTaskDetail(task.id)" 
-        [ngClass]="{'active': task.id === selectedTask}">
-          <div class="task-content-element task-content__title">
-            <p class="task-content-field task-content__title-field">Title:</p>
-            <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
-            <p class="task-content__urgent">
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-solid fa-star urgent-active"></i>
-            </p>
-          </div>
-          <div class="task-content-element task-content__status">
-            <p class="task-content-field task-content__status-field">Status:</p>
-            <p class="task-content__status-value">{{task.status?.name}}</p>
-          </div>
-          <div class="task-content-element task-content__date">
-            <p class="task-content-field task-content__created-date-field">Created date:</p>
-            <p class="task-content__created-date-Value">{{task.createdAt}}</p>
-            <p class="task-content-field task-content__modified-date-field">Created by:</p>
-            <p class="task-content__modified-date-value">{{task.createdAt}}</p>
+          <div class="task-content" (click)="getTaskDetail(task.id)" 
+          [ngClass]="{'active': task.id === selectedTask}">
+            <div class="task-content-element task-content__title">
+              <p class="task-content-field task-content__title-field">Title:</p>
+              <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
+              <p class="task-content__urgent">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-solid fa-star urgent-active"></i>
+              </p>
+            </div>
+            <div class="task-content-element task-content__status">
+              <p class="task-content-field task-content__status-field">Status:</p>
+              <p class="task-content__status-value">{{task.status?.name}}</p>
+            </div>
+            <div class="task-content-element task-content__date">
+              <p class="task-content-field task-content__created-date-field">Created date:</p>
+              <p class="task-content__created-date-Value">{{task.createdAt}}</p>
+              <p class="task-content-field task-content__modified-date-field">Created by:</p>
+              <p class="task-content__modified-date-value">{{task.createdAt}}</p>
+            </div>
           </div>
         </div>
-      </div>
+        <!-- <div>
+          <div class="task-content active">
+            <div class="task-content-element task-content__title">
+              <p class="task-content-field task-content__title-field">Title:</p>
+              <p class="task-content__title-name" style="color: pink">Danese</p>
+              <p class="task-content__urgent">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-solid fa-star urgent-active"></i>
+              </p>
+            </div>
+            <div class="task-content-element task-content__status">
+              <p class="task-content-field task-content__status-field">Status:</p>
+              <p class="task-content__status-value">Danese</p>
+            </div>
+            <div class="task-content-element task-content__date">
+              <p class="task-content-field task-content__created-date-field">Created date:</p>
+              <p class="task-content__created-date-Value">Danese</p>
+              <p class="task-content-field task-content__modified-date-field">Created by:</p>
+              <p class="task-content__modified-date-value">Danese</p>
+            </div>
+          </div>
+          <div class="task-content">
+            <div class="task-content-element task-content__title">
+              <p class="task-content-field task-content__title-field">Title:</p>
+              <p class="task-content__title-name" style="color: pink">Danese</p>
+              <p class="task-content__urgent">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-solid fa-star urgent-active"></i>
+              </p>
+            </div>
+            <div class="task-content-element task-content__status">
+              <p class="task-content-field task-content__status-field">Status:</p>
+              <p class="task-content__status-value">Danese</p>
+            </div>
+            <div class="task-content-element task-content__date">
+              <p class="task-content-field task-content__created-date-field">Created date:</p>
+              <p class="task-content__created-date-Value">Danese</p>
+              <p class="task-content-field task-content__modified-date-field">Created by:</p>
+              <p class="task-content__modified-date-value">Danese</p>
+            </div>
+          </div>
+          <div class="task-content">
+            <div class="task-content-element task-content__title">
+              <p class="task-content-field task-content__title-field">Title:</p>
+              <p class="task-content__title-name" style="color: pink">Danese</p>
+              <p class="task-content__urgent">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-solid fa-star urgent-active"></i>
+              </p>
+            </div>
+            <div class="task-content-element task-content__status">
+              <p class="task-content-field task-content__status-field">Status:</p>
+              <p class="task-content__status-value">Danese</p>
+            </div>
+            <div class="task-content-element task-content__date">
+              <p class="task-content-field task-content__created-date-field">Created date:</p>
+              <p class="task-content__created-date-Value">Danese</p>
+              <p class="task-content-field task-content__modified-date-field">Created by:</p>
+              <p class="task-content__modified-date-value">Danese</p>
+            </div>
+          </div>
+        </div> -->
       </div>
     <!-- // Thế dân -->
     

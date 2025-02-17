@@ -13,149 +13,167 @@
 
 /* task-container area with responsive columns */
 .task-container {
-    /* Fill remaining height */
-    display: flex ;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* Allow wrapping for smaller screens */
-    gap: $spacing-xs;
-    height: 100vh;
-    width: 100%;
-    grid-row: 2; 
-    margin-bottom: $spacing-sm;
+  /* Fill remaining height */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* Allow wrapping for smaller screens */
+  gap: $spacing-xs;
+  height: 100vh;
+  width: 100%;
+  grid-row: 2;
+  margin-bottom: $spacing-sm;
+  overflow: hidden;
+  /* Columns for customer, task, and details */
+
+  .header-text {
     overflow: hidden;
-    /* Columns for customer, task, and details */
+  }
 
-    .header-text {
-      overflow: hidden;
+  .scroll_y {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+    &::-webkit-scrollbar {
+      width: 10px;
+      /* Độ rộng thanh cuộn */
     }
 
-    .scroll_y {
-        overflow-y: auto;
-        overflow-x: hidden;
-      
-        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
-        &::-webkit-scrollbar {
-          width: 10px; /* Độ rộng thanh cuộn */
-        }
-      
-        &::-webkit-scrollbar-track {
-          background: rgba(16, 21, 47, 0.5); /* Màu nền của track (vùng kéo thanh cuộn) */
-          border-radius: 10px; /* Bo góc */
-        }
-      
-       
-        /* Với Firefox */
-        scrollbar-width: thin; /* Sử dụng thanh cuộn mỏng */
-        scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5); /* Màu thanh cuộn và track */
-      }
-      
-    .list-customer,
-    .list-task,
-    .task-form,
-    .task-detail {
-        background:$background;
-        flex: 8;
-        flex-direction: column;
-        border-radius: $border-container;
-        box-shadow: $box-shadow;
+    &::-webkit-scrollbar-track {
+      background: rgba(16, 21, 47, 0.5);
+      /* Màu nền của track (vùng kéo thanh cuộn) */
+      border-radius: 10px;
+      /* Bo góc */
+    }
+
+
+    /* Với Firefox */
+    scrollbar-width: thin;
+    /* Sử dụng thanh cuộn mỏng */
+    scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+    /* Màu thanh cuộn và track */
+  }
+
+  .list-customer,
+  .list-task,
+  .task-form,
+  .task-detail {
+    background: $background;
+    flex: 8;
+    flex-direction: column;
+    border-radius: $border-container;
+    box-shadow: $box-shadow;
+    padding: $spacing-xs;
+    display: flex;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 70%;
+    color: $text-color;
+    height: 100%;
+    // &:hover {
+    //     transform: translateY(-8px);
+    //     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    // }
+
+    h3 {
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-xs / 2;
+      color: $highlight-color;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid $secondary-background;
+      padding-bottom: $spacing-xs / 4;
+    }
+
+    h4 {
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-xs / 2;
+      color: $text-color;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid $secondary-background;
+      padding-bottom: $spacing-xs / 4;
+    }
+
+    h6 {
+      font-size: $font-size-xl;
+      color: $text-color;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 0px solid $secondary-background;
+      padding-bottom: $spacing-xs / 4;
+      margin-left: 2px;
+    }
+
+    .icon {
+      font-size: $font-size-sm;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: $spacing-xxs / 2;
+      font-size: $font-size-xs;
+      width: 100%;
+
+      li {
+        background: $background;
         padding: $spacing-xs;
+        border-radius: $border-container / 2;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+
         display: flex;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: 70%;
-        color: $text-color;
-        height: 100%;
-        // &:hover {
-        //     transform: translateY(-8px);
-        //     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-        // }
+        flex-direction: column;
 
-        h3 {
-            font-size: $font-size-sm;
-            margin-bottom: $spacing-xs / 2;
-            color: $highlight-color;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid $secondary-background;
-            padding-bottom: $spacing-xs / 4;
-        }
-        h4 {
-            font-size: $font-size-sm;
-            margin-bottom: $spacing-xs / 2;
-            color: $text-color;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 2px solid $secondary-background;
-            padding-bottom: $spacing-xs / 4;
-        }
-        h6 {
-          font-size: $font-size-xl;
+        &:hover {
+          background: $hover-label;
           color: $text-color;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          border-bottom: 0px solid $secondary-background;
-          padding-bottom: $spacing-xs / 4;
-          margin-left: 2px;
+        }
       }
-
-        .icon {
-            font-size: $font-size-sm;
-        }
-
-        ul {
-            list-style: none;
-            margin-top: $spacing-xxs / 2;
-            font-size: $font-size-xs;
-            width: 100%;
-            li {
-                background: $secondary-background;
-                padding: $spacing-xs;
-                border-radius: $border-container / 2;
-                cursor: pointer;
-                transition: background 0.3s, transform 0.2s;
-              
-                display: flex;
-                flex-direction: column;
-                &:hover {
-                    background: $hover-label;
-                    color: $text-color;
-                }
-            }
-        }
-
-        // p {
-        //     margin-top: $spacing-xs / 2;
-        //     font-size: 0.5rem;
-        //     color: $text-color;
-        // }
     }
-    .list-task{
-        flex: 3;
-        flex-direction: column;
 
-    }
-    .list-customer{
-        width: 10%;
-        flex: 1.5;
-        flex-direction: column;
+    // p {
+    //     margin-top: $spacing-xs / 2;
+    //     font-size: 0.5rem;
+    //     color: $text-color;
+    // }
+  }
 
-    }
+  .list-task {
+    flex: 3;
+    flex-direction: column;
+
+  }
+
+  .list-customer {
+    width: 10%;
+    flex: 1.5;
+    flex-direction: column;
+
+  }
 }
+
 .task-form {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* Khoảng cách giữa các nhóm */
-  justify-content: space-between; /* Đảm bảo các nhóm có khoảng cách đều */
-  height: 100%; /* Đảm bảo phần form chiếm hết chiều cao của task-form */
+  gap: 4px;
+  /* Khoảng cách giữa các nhóm */
+  justify-content: space-between;
+  /* Đảm bảo các nhóm có khoảng cách đều */
+  height: 100%;
+  /* Đảm bảo phần form chiếm hết chiều cao của task-form */
   max-height: 100%px;
+
   .form-group {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Chiếm hết chiều rộng */
+    width: 100%;
+    /* Chiếm hết chiều rộng */
     margin-bottom: 15px;
+
     label {
       font-weight: bold;
       margin-bottom: 5px;
@@ -174,8 +192,10 @@
     }
 
     textarea {
-      resize: none; /* Không cho phép kéo giãn */
-      height: 60px; /* Giữ chiều cao cố định */
+      resize: none;
+      /* Không cho phép kéo giãn */
+      height: 60px;
+      /* Giữ chiều cao cố định */
     }
   }
 
@@ -183,9 +203,12 @@
     display: flex;
     flex-direction: row;
     flex: 4;
+
     .form-group {
-      flex: 3; /* Chia đều khoảng trống */
+      flex: 3;
+      /* Chia đều khoảng trống */
     }
+
     status-group {
       flex: 1
     }
@@ -200,7 +223,7 @@
   gap: 2px;
 
   .form-check-input {
-    
+
     margin: 0;
     cursor: pointer;
   }
@@ -214,6 +237,7 @@
   display: flex;
   align-items: center; // Căn giữa theo chiều dọc
   gap: 10px;
+
   .form-group {
     flex: 4; // Chia đều khoảng trống
   }
@@ -222,28 +246,37 @@
   .urgent-checkbox {
     display: flex;
     align-items: center;
-    flex:0.5;
+    flex: 0.5;
     gap: 8px;
     white-space: nowrap; // Giữ nội dung trên một dòng
   }
 }
+
 .action-buttons {
-  display: flex; /* Sử dụng flexbox để sắp xếp các nút */
-  justify-content: flex-end; /* Để các nút không giãn ra mà nằm sát nhau */
-  gap: 5px; /* Khoảng cách nhỏ giữa các nút */
-  padding: 0; /* Không có khoảng cách padding bên ngoài */
-  margin-top: 10px; /* Khoảng cách từ phần tử phía trên nếu cần */
+  display: flex;
+  /* Sử dụng flexbox để sắp xếp các nút */
+  justify-content: flex-end;
+  /* Để các nút không giãn ra mà nằm sát nhau */
+  gap: 5px;
+  /* Khoảng cách nhỏ giữa các nút */
+  padding: 0;
+  /* Không có khoảng cách padding bên ngoài */
+  margin-top: 10px;
+  /* Khoảng cách từ phần tử phía trên nếu cần */
   flex: 0.1;
 }
 
 
 
 .btn:hover {
-  background-color: #0056b3; /* Thay đổi màu nền khi hover */
+  background-color: #0056b3;
+  /* Thay đổi màu nền khi hover */
 }
-.form-fill-task{
+
+.form-fill-task {
   flex: auto;
 }
+
 /* Nút chung */
 .btn {
   color: white;
@@ -261,7 +294,7 @@
 }
 
 .save-btn:hover {
-  background-color:lighten($secondary-background, 55%) ; 
+  background-color: lighten($secondary-background, 55%);
 }
 
 /* Nút Edit */
@@ -275,11 +308,13 @@
 
 /* Nút View */
 .view-btn {
-  background-color: #5a607f; /* Màu xanh dương */
+  background-color: #5a607f;
+  /* Màu xanh dương */
 }
 
 .view-btn:hover {
-  background-color: #7a809f; /* Màu xanh dương đậm khi hover */
+  background-color: #7a809f;
+  /* Màu xanh dương đậm khi hover */
 }
 
 .list-header {
@@ -290,6 +325,7 @@
   padding: 10px;
   font-weight: bold;
   height: 14px;
+  margin-bottom: 8px;
 }
 
 .plus-icon {
@@ -302,43 +338,58 @@
 .plus-icon:hover {
   color: #ff4081;
 }
+
 .plus-icon.disabled {
-  pointer-events: none; /* Vô hiệu hóa sự kiện click */
-  opacity: 0.5; /* Làm mờ phần tử để trông giống như bị vô hiệu hóa */
+  pointer-events: none;
+  /* Vô hiệu hóa sự kiện click */
+  opacity: 0.5;
+  /* Làm mờ phần tử để trông giống như bị vô hiệu hóa */
 }
 
 // Giả sử biến $secondary-background được định nghĩa trước, ví dụ: #10152f
 .active {
-  background:  lighten($secondary-background, 20%) !important; // Làm sáng màu nền của $secondary-background 20%
-  
+  // background: lighten($secondary-background, 20%) !important; // Làm sáng màu nền của $secondary-background 20%
+
   transition: background 0.3s ease;
 }
+
 ::ng-deep .multiselect-dropdown .dropdown-btn {
-  font-size: 12px !important; /* Chữ nhỏ lại */
-  color: $text-color !important; /* Màu chữ */
-  background-color: rgba(255, 255, 255, 0.1) !important; /* Màu nền nhẹ nhàng hơn */
-  padding: $spacing-xxs !important; /* Điều chỉnh padding */
+  font-size: 12px !important;
+  /* Chữ nhỏ lại */
+  color: $text-color !important;
+  /* Màu chữ */
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  /* Màu nền nhẹ nhàng hơn */
+  padding: $spacing-xxs !important;
+  /* Điều chỉnh padding */
   transition: all 0.3s ease;
-  margin-right: 50px !important; /* điều chỉnh giá trị này cho phù hợp */
-  white-space: nowrap;       // Ngăn không cho xuống dòng
+  margin-right: 50px !important;
+  /* điều chỉnh giá trị này cho phù hợp */
+  white-space: nowrap; // Ngăn không cho xuống dòng
 
 }
 
 ::ng-deep .multiselect-dropdown .selected-item {
-  max-width: 160px !important; /* Giới hạn độ rộng của user */
-  white-space: nowrap !important; /* Ngăn chữ xuống dòng */
-  overflow: hidden !important; /* Ẩn phần bị tràn */
-  text-overflow: ellipsis !important; /* Hiển thị dấu "..." nếu quá dài */
+  max-width: 160px !important;
+  /* Giới hạn độ rộng của user */
+  white-space: nowrap !important;
+  /* Ngăn chữ xuống dòng */
+  overflow: hidden !important;
+  /* Ẩn phần bị tràn */
+  text-overflow: ellipsis !important;
+  /* Hiển thị dấu "..." nếu quá dài */
   color: $text-color !important;
-  margin-right: 5px !important; /* điều chỉnh giá trị này cho phù hợp */
+  margin-right: 5px !important;
+  /* điều chỉnh giá trị này cho phù hợp */
 
 }
 
 
-::ng-deep .multiselect-dropdown .dropdown-list *{
+::ng-deep .multiselect-dropdown .dropdown-list * {
   font-size: $font-size-xs !important;
   background-color: darken($background, 0.5%) !important;
-  color: white !important; /* Bắt buộc chữ màu trắng */
+  color: white !important;
+  /* Bắt buộc chữ màu trắng */
 }
 
 
@@ -350,29 +401,30 @@
   flex-direction: column;
   width: 100%;
   border-radius: $border-container;
-  border: 1.5px solid $border-color;
+  // border: 1.5px solid $border-color;
   padding: $spacing-xs;
   font-size: $font-size-xs;
 
   .task-content-element {
     display: flex;
-    
+
     p {
       margin-right: 8px;
     }
+
     .task-content-field {
       font-weight: 800;
     }
   }
-  
-  
-  
+
+
+
   .task-content__title {
-    .task-content__urgent > i{
+    .task-content__urgent>i {
       display: none;
     }
-    
-    .task-content__urgent > .urgent-active {
+
+    .task-content__urgent>.urgent-active {
       display: inline-block;
     }
 
@@ -382,12 +434,37 @@
   }
 
   &:hover {
-    background-color: $secondary-background;
+    background-color: $hover-label;
     cursor: pointer !important;
   }
 }
 
+// CSS new customer 
 
+.list-customer__content>ul {
+  font-size: $font-size-sm;
+  color: $text-color;
+  list-style-type: none;
+}
 
+.list-customer__content>ul>li {
+  padding: $spacing-xs 0;
+  padding-left: 1.8rem;
+  margin-bottom: $spacing-xxs;
+  border-radius: $border-button;
+}
 
+.list-customer__content>ul>li:hover {
+  background-color: $hover-label;
+  cursor: pointer;
+}
 
+.list-customer__content>ul>li.active {
+  background-color: $active-label;
+  cursor: pointer;
+}
+
+.task-content.active {
+  background-color: $active-label;
+  border: none;
+}
