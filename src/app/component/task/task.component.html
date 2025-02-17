@@ -22,22 +22,9 @@
         <span class="plus-icon" (click)="changeTODO('addnew')">+</span>
       </div>
       <div class="scroll_y">
-        <!-- <ul *ngFor="let task of taskList">
-          <li [value]="task.id" (click)="getTaskDetail(task.id)" 
-          [ngClass]="{'active': task.id === selectedTask}">
-            <a>Task: {{task.title}}</a>
-          <a>Status: {{task.status?.name}} | Urgent: {{task.urgent}}</a>
-          <a>👨‍👨‍👧: 
-            <span *ngFor="let user of task.assignedUsers; let last = last">
-              {{ user.name }}{{ last ? '' : ', ' }}
-            </span>
-          </a>
-          
-          </li>
-           
-        </ul> -->
         <div *ngFor="let task of taskList">
-        <div class="task-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
+        <div class="task-content" (click)="getTaskDetail(task.id)" 
+        [ngClass]="{'active': task.id === selectedTask}">
           <div class="task-content-element task-content__title">
             <p class="task-content-field task-content__title-field">Title:</p>
             <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
