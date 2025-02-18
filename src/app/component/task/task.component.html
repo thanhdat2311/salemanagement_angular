@@ -14,12 +14,7 @@
           <li [value]="company.id" (click)="getTaskList(company.id)"
             [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
         </ul>
-        <ul>
-          <li>Customer cacs kieu do</li>
-          <li>Hello</li>
-          <li>Hello</li>
-          <li>Hello</li>
-        </ul>
+        
       </div>
     </div>
     <div class="list-task">
@@ -35,8 +30,8 @@
               <p class="task-content-field task-content__title-field">Title:</p>
               <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
               <p class="task-content__urgent">
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-solid fa-star urgent-active"></i>
+                <!-- <i class="fa-regular fa-star" [ngClass]="{' urgent-active': task.urgent === false}"></i> -->
+                <i class="fa-solid fa-star" style="color: pink" [ngClass]="{' urgent-active': task.urgent === true}"></i>
               </p>
             </div>
             <div class="task-content-element task-content__status">
@@ -47,7 +42,7 @@
               <p class="task-content-field task-content__created-date-field">Created date:</p>
               <p class="task-content__created-date-Value">{{task.createdAt}}</p>
               <p class="task-content-field task-content__modified-date-field">Created by:</p>
-              <p class="task-content__modified-date-value">{{task.createdAt}}</p>
+              <p class="task-content__modified-date-value"></p>
             </div>
           </div>
         </div>

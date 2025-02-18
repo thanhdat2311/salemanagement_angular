@@ -71,13 +71,13 @@ const routes: Routes = [
   bootstrap: [
     //CompanyComponent,
     LoginComponent, 
-    //ChangepasswordComponent,
-    //HomeComponent,
+    ChangepasswordComponent,
+    HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
-    RegisterComponent,
+    //RegisterComponent,
     //DetailProductComponent,
-    //ConfigurationComponent,
+    ConfigurationComponent,
     //PopupComponent,
   ]
 })
