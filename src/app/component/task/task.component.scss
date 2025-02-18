@@ -348,7 +348,7 @@
 
 // Giả sử biến $secondary-background được định nghĩa trước, ví dụ: #10152f
 .active {
-  // background: lighten($secondary-background, 20%) !important; // Làm sáng màu nền của $secondary-background 20%
+   background: $active-label !important; // Làm sáng màu nền của $secondary-background 20%
 
   transition: background 0.3s ease;
 }
@@ -401,7 +401,7 @@
   flex-direction: column;
   width: 100%;
   border-radius: $border-container;
-  // border: 1.5px solid $border-color;
+  border: 1px solid $border-color;
   padding: $spacing-xs;
   font-size: $font-size-xs;
 
@@ -460,7 +460,7 @@
 }
 
 .list-customer__content>ul>li.active {
-  background-color: $active-label !important;
+  background: $active-label;
   cursor: pointer;
 }
 

@@ -68,7 +68,7 @@ export class LoginComponent {
     {
       "email": this.email,
       "password": this.password,
-      "roleId":1
+      "roleId":2
     };
   
     this.userService.login(loginDTO).subscribe({

@@ -27,7 +27,7 @@ import { MatOption, MatOptionModule, MatOptionSelectionChange } from '@angular/m
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
-import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -74,12 +74,13 @@ const routes: Routes = [
     //CompanyComponent,
     //LoginComponent, 
     //ChangepasswordComponent,
-    HomeComponent,
+    ResetpasswordComponent,
+    //HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
     //RegisterComponent,
     //DetailProductComponent,
-    ConfigurationComponent,
+    //ConfigurationComponent,
     //PopupComponent,
   ]
 })
