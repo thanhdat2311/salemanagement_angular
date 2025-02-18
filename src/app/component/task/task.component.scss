@@ -460,7 +460,7 @@
 }
 
 .list-customer__content>ul>li.active {
-  background-color: $active-label;
+  background-color: $active-label !important;
   cursor: pointer;
 }
 
