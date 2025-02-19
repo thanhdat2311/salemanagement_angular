@@ -11,9 +11,12 @@ import { RegisterDTO } from '../../dtos/user/register.dto';
   styleUrls: ['./resetpassword.component.scss']
 })
 export class ResetpasswordComponent {
+  otpTest: string = "123456";
+
   activecard: string = "email";
   email: string = "";
   isEmailValid: boolean = false;
+  isTrueOTP: boolean = true;
   otpvalue: string = "";
   countdown: number = 0;
   timer: any;
@@ -47,14 +50,28 @@ export class ResetpasswordComponent {
   }
 
   sendOTP() {
+
+    this.changeCheckOTP()
     this.activecard = "otp"
 
     this.startCountdown();
     this.otpvalue = "";
   }
 
+  changeCheckOTP() {
+    this.isTrueOTP = true;
+  }
+
   confirmOTP() {
-    this.activecard = "reset";
+    if (this.otpvalue !== this.otpTest) {
+      this.isTrueOTP = false;
+    } else {
+      this.isTrueOTP = true;
+    }
+
+    if (this.isTrueOTP != false) {
+      this.activecard = "reset";
+    }
   }
 
   hello() {
