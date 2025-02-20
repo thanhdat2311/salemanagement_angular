@@ -3,8 +3,8 @@
 
 $primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
 $background:#0a122a; /* Màu container chính */
-$secondary-background: #10152f; /* Màu nền phụ */
-$light-background: white;
+$secondary-background: #181d41; /* Màu nền phụ */
+$light-background: #efead0;
 $input-background: #2c2f47; 
 $highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
 $highlight-color-hover: lighten($highlight-color, 10%); /* Hồng neon cho các điểm nhấn khi hover */
@@ -12,9 +12,11 @@ $border-color: #4c5270; /* Màu viền nhạt */
 $active-label: rgba(76, 82, 112, 0.3607843137);
 $hover-label: #4c527025;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
+
 $placeholder: #ffffff71;
 $title-color: #ff4081;
-$text-color:#ffffff; /* Màu chữ sáng */
+$text-color:#efead0; /* Màu chữ sáng */
+$text-dark-color: #10152f;
 
 $save-background: #ff4081;
 $save-background-hover: #ff4081;
@@ -41,8 +43,17 @@ $font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
 
 
 $border-container: 12px;
-$border-input: 4px;
 $border-button: 8px;
+$border-input: 4px;
+
+$border-xxl: 64px;  // Dùng cho layout lớn
+$border-xl: 48px;   // Khoảng cách section
+$border-lg: 32px;   // Border container lớn
+$border-md: 24px;   // Border container vừa
+$border-sm: 16px;   // Border chỏ
+$border-input: 10px;// Pading cho các thẻ input input
+$border-xs: 8px;    // Khoảng cách giữa các thành phần
+$border-xxs: 4px;  
 
 html,
 body {

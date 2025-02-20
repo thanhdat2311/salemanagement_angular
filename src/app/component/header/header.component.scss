@@ -8,7 +8,7 @@
   z-index: 2;
   background: none; /* Nền trong suốt */
   backdrop-filter: blur(10px); /* Hiệu ứng mờ */
-  margin: $spacing-xxs 0 $spacing-md;
+  margin: $spacing-xxs 0 $spacing-xxs;
   transition: background 0.3s ease; /* Hiệu ứng chuyển nền */
 }
 
@@ -54,8 +54,9 @@
 }
 
 .account {
+  position: relative;
   display: flex;
-  width: 20%;
+  width: 50%;
   font-size: $font-size-md;
   font-weight: bold;
   color: $text-color;
@@ -63,17 +64,119 @@
   justify-content: flex-end;
 }
 
-.account > p {
-  align-items: center;
+.account-avt {
+  position: relative;
+
+  .dropdown-icon {
+    position: absolute;
+    background-color: $background;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: $text-color;
+    align-items: center;
+    z-index: 2;
+    top: 80%;
+    right: 20%;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 5px;
+      height: 5px;
+      top: 40%;
+      right: 20%;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid $light-background; /* Màu của tam giác */
+
+    }
+  }
+
+  &:hover {
+    opacity: .8;
+    cursor: pointer;
+  }
 }
 
-.account-avt {
-  background-color: $highlight-color;
-  border-radius: 50%;
-  text-decoration: none;
-  color: $text-color;
-  font-size: $font-size-xs;
+.acount__dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: $secondary-background;
+  min-width: 40%;
+  color: $text-dark-color;
+  padding: $spacing-xs;
+  top: 110%;
+  border-radius: $border-xs;
+
+  // &::before {
+  //   position: absolute;
+  //   content: "";
+  //   width: 5px;
+  //   height: 5px;
+  //   top: -3%;
+  //   right: 16%;
+  //   border-left: 5px solid transparent;
+  //   border-right: 5px solid transparent;
+  //   border-bottom: 5px solid $light-background; /* Màu của tam giác */
+  // }
+
+  .dropdown-item {
+    padding: $spacing-xxs $spacing-xs;
+    display: flex;
+    align-items: center;
+    font-size: $font-size-sm;
+    border-radius: $border-xxs;
+    margin-bottom: $spacing-xxs;
+
+    &:hover {
+      background-color: $hover-label;
+      cursor: pointer;
+    }
+
+    i {
+      position: relative;
+      width: $font-size-xxl;
+      height: $font-size-xxl;
+      align-items: center;
+      border-radius: 50%;
+      background-color: $background;
+      color: $text-color;
+
+      &::before {
+        position: absolute;
+        top: 30%;
+        right: 30%;
+      }
+    }
+
+    .fa-user {
+      &::before {
+        position: absolute;
+        top: 30%;
+        right: 32%;
+      }
+    }
+
+    .dropdown__content {
+      margin-left: $spacing-sm;
+      font-weight: 600;
+      color: $text-color;
+    }
+  }
+
+  .dropdown__acount {
+    padding: $spacing-sm $spacing-xs;
+    border-bottom: 1.5px solid $text-color;
+    border-right: 1.5px solid transparent;
+    border-left: 1.5px solid transparent;
+  }
 }
+
+.acount__dropdown-menu.active {
+  display: block;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

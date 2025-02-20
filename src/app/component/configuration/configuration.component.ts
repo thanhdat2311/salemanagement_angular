@@ -145,4 +145,5 @@ export class ConfigurationComponent implements OnInit{
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
   }
+
 }

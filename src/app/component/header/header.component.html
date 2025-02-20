@@ -31,14 +31,34 @@
         </div>
       </div>
       <div class="account">
-        <a class="acount-avt" href="#">
+        <a class="account-avt" href="#" (click)="avtDropdown()">
           <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="100" fill="#ff4081" />
             <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" fill="#fff" font-family="Arial, sans-serif">
               LVTD
             </text>
           </svg>
+          <div class="dropdown-icon">
+          </div>
         </a>
+        <div class="acount__dropdown-menu" [ngClass]="{'active':activeAVTDropdown == true}">
+          <div class="dropdown-item dropdown__acount">
+            <i class="fa-solid fa-user"></i>
+            <div class="dropdown__content dropdown__name">LevuThanhDat</div>
+          </div>
+          <div class="dropdown-item">
+            <i class="fa-solid fa-gear"></i>
+            <div class="dropdown__content dropdown__setting">Setting</div>
+          </div>
+          <div class="dropdown-item">
+            <i class="fa-solid fa-sliders"></i>
+            <div class="dropdown__content dropdown__configuration">Configuration</div>
+          </div>
+          <div class="dropdown-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <div class="dropdown__content dropdown__logout">Log out</div>
+          </div>
+        </div>
       </div>
     </nav>
   </div>

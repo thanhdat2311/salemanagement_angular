@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
+  activeAVTDropdown: boolean = false;
+  
+  // new function
+  avtDropdown() {
+    if (this.activeAVTDropdown === false) {
+      this.activeAVTDropdown = true;
+    } else {
+      this.activeAVTDropdown = false;
+    }
+  }
 }
