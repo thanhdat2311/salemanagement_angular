@@ -75,7 +75,7 @@ const routes: Routes = [
     //LoginComponent, 
     //ChangepasswordComponent,
     ResetpasswordComponent,
-    //HomeComponent,
+    HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
     //RegisterComponent,
