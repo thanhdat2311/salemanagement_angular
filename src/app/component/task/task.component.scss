@@ -77,24 +77,24 @@
 
     h3 {
       font-size: $font-size-sm;
-      margin-bottom: $spacing-xs / 2;
+      margin-bottom: cals($spacing-xs / 2);
       color: $highlight-color;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       border-bottom: 2px solid $secondary-background;
-      padding-bottom: $spacing-xs / 4;
+      padding-bottom: calc($spacing-xs / 4);
     }
 
     h4 {
       font-size: $font-size-sm;
-      margin-bottom: $spacing-xs / 2;
+      margin-bottom: calc($spacing-xs / 2);
       color: $text-color;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       border-bottom: 2px solid $secondary-background;
-      padding-bottom: $spacing-xs / 4;
+      padding-bottom: calc($spacing-xs / 4);
     }
 
     h6 {
@@ -104,7 +104,7 @@
       align-items: center;
       gap: 0.5rem;
       border-bottom: 0px solid $secondary-background;
-      padding-bottom: $spacing-xs / 4;
+      padding-bottom: calc($spacing-xs / 4);
       margin-left: 2px;
     }
 
@@ -114,14 +114,14 @@
 
     ul {
       list-style: none;
-      margin-top: $spacing-xxs / 2;
+      margin-top: calc($spacing-xxs / 2);
       font-size: $font-size-xs;
       width: 100%;
 
       li {
         background: $background;
         padding: $spacing-xs;
-        border-radius: $border-container / 2;
+        border-radius: calc($border-container / 2);
         cursor: pointer;
         transition: background 0.3s, transform 0.2s;
 
@@ -136,7 +136,7 @@
     }
 
     // p {
-    //     margin-top: $spacing-xs / 2;
+    //     margin-top: calc($spacing-xs / 2);
     //     font-size: 0.5rem;
     //     color: $text-color;
     // }
