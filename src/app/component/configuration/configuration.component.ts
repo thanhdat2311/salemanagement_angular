@@ -8,11 +8,23 @@ import { Status } from '../models/status';
 import { AssignedPerson } from '../models/user';
 import { PopupComponent } from '../popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.scss']
+  styleUrls: ['./configuration.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(30px) translateX(100%)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0) translateX(0)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-in', style({ opacity: 0, transform: 'translateY(0) translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class ConfigurationComponent implements OnInit{
   companyList: Company[] = [];
@@ -24,11 +36,12 @@ export class ConfigurationComponent implements OnInit{
   statusSelected: number = 0;
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
+  notifications: { id: number; content: string; type: 'info' | 'warning' | 'error' }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
     private comapnyService: CompanyService,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
 
   }
@@ -144,6 +157,34 @@ export class ConfigurationComponent implements OnInit{
     // Hiển thị tab được chọn
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
+  }
+
+  addNotification(content: string, type: 'info' | 'warning' | 'error') {
+    const id = Date.now();
+
+    // Nếu đã có 5 thẻ, xóa thẻ cũ nhất
+    if (this.notifications.length >= 5) {
+      this.notifications.shift();
+    }
+
+    this.notifications.push({ id, content, type });
+
+    setTimeout(() => {
+      this.removeNotification(id);
+    }, 40000);
+  }
+
+  removeNotification(id: number) {
+    this.notifications = this.notifications.filter(n => n.id !== id);
+  }
+
+  getHeaderNotification(type: string): string {
+    switch (type) {
+      case 'info': return 'Thông báo';
+      case 'warning': return 'Cảnh báo';
+      case 'error': return 'Lỗi';
+      default: return '';
+    }
   }
 
 }

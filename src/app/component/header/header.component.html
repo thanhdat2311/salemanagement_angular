@@ -41,22 +41,24 @@
           <div class="dropdown-icon">
           </div>
         </a>
-        <div class="acount__dropdown-menu" [ngClass]="{'active':activeAVTDropdown == true}">
-          <div class="dropdown-item dropdown__acount">
-            <i class="fa-solid fa-user"></i>
-            <div class="dropdown__content dropdown__name">LevuThanhDat</div>
-          </div>
-          <div class="dropdown-item">
-            <i class="fa-solid fa-gear"></i>
-            <div class="dropdown__content dropdown__setting">Setting</div>
-          </div>
-          <div class="dropdown-item">
-            <i class="fa-solid fa-sliders"></i>
-            <div class="dropdown__content dropdown__configuration">Configuration</div>
-          </div>
-          <div class="dropdown-item">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <div class="dropdown__content dropdown__logout">Log out</div>
+        <div class="acount__dropdown-outer"  [ngClass]="{'active':activeAVTDropdown == true}" (click)="avtDropdown()">
+          <div class="acount__dropdown-menu">
+            <div class="dropdown-item dropdown__acount">
+              <i class="fa-solid fa-user"></i>
+              <div class="dropdown__content dropdown__name">LevuThanhDat</div>
+            </div>
+            <div class="dropdown-item">
+              <i class="fa-solid fa-gear"></i>
+              <div class="dropdown__content dropdown__setting">Setting</div>
+            </div>
+            <div class="dropdown-item">
+              <i class="fa-solid fa-sliders"></i>
+              <div class="dropdown__content dropdown__configuration">Configuration</div>
+            </div>
+            <div class="dropdown-item">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <div class="dropdown__content dropdown__logout">Log out</div>
+            </div>
           </div>
         </div>
       </div>

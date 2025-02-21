@@ -1,5 +1,9 @@
 @import "../../../styles.scss";
 
+.container {
+  position: relative;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -54,7 +58,6 @@
 }
 
 .account {
-  position: relative;
   display: flex;
   width: 50%;
   font-size: $font-size-md;
@@ -76,8 +79,8 @@
     color: $text-color;
     align-items: center;
     z-index: 2;
-    top: 80%;
-    right: 20%;
+    top: 76%;
+    right: 10%;
 
     &::after {
       position: absolute;
@@ -85,10 +88,10 @@
       width: 5px;
       height: 5px;
       top: 40%;
-      right: 20%;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 4px solid $light-background; /* Màu của tam giác */
+      right: 22%;
+      border-left: 3.5px solid transparent;
+      border-right: 3.5px solid transparent;
+      border-top: 3.5px solid $light-background; /* Màu của tam giác */
 
     }
   }
@@ -99,14 +102,24 @@
   }
 }
 
-.acount__dropdown-menu {
+.acount__dropdown-outer {
+  padding-right: 12px;
   display: none;
   position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: -8%;
+  right: -12px;
+}
+
+.acount__dropdown-menu {
+  position: absolute;
   background-color: $secondary-background;
-  min-width: 40%;
+  min-width: 20%;
   color: $text-dark-color;
   padding: $spacing-xs;
-  top: 110%;
+  top: 8.3%;
+  right: 12px;
   border-radius: $border-xs;
 
   // &::before {
@@ -173,8 +186,9 @@
   }
 }
 
-.acount__dropdown-menu.active {
+.acount__dropdown-outer.active {
   display: block;
+
 }
 
 

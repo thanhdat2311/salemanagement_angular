@@ -74,13 +74,13 @@ const routes: Routes = [
     //CompanyComponent,
     //LoginComponent, 
     //ChangepasswordComponent,
-    ResetpasswordComponent,
-    HomeComponent,
+    //ResetpasswordComponent,
+    //HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
     //RegisterComponent,
     //DetailProductComponent,
-    //ConfigurationComponent,
+    ConfigurationComponent,
     //PopupComponent,
   ]
 })
