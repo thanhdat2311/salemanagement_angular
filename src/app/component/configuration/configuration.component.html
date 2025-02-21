@@ -1,328 +1,303 @@
 <div class="container">
-    <app-header></app-header>
-    <div class="configuration-container">
-        <div class="configuration-bar">
-            <h2 class="configuration-bar__header-text">
-                Configuration
-            </h2>
-            <ul class="configuration-bar_list">
-                <!-- <li class="configuration-bar_list--active">User</li> -->
-                <li class="" *ngFor="let bar of barList" (click)="onBarSelected(bar.id)"
-                [ngClass]="{'configuration-bar_list--active':bar.id === barSelected}">{{bar.name}}</li>
-            </ul>
-        </div>
-        <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
-            <div class="configuration-content__header">
-                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
-                <div class="configuration-content__refresh-btn">
-                    <i class="fa fa-refresh"></i>
-                </div>
-            </div>
-            <div class="configuration-content__middle" >
-              <ul class="configuration-table__header">
-                  <li>Company Name</li>
-                  <li>Email</li>
-                  <li>Phone</li>
-                  <li>Assigned Person</li>
-                  <li>Create Date</li>
-                  <li>Update Date</li>
-              </ul>
-              <div class="configuration-table__content" *ngFor=" let company of companyList">
-                  <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id, 'customer')"
-                  [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}">
-                      <li>{{company.companyName}}</li>
-                      <li>{{company.email}}</li>
-                      <li>{{company.phone}}</li>
-                      <li>{{company.assignedPerson.email}}</li>
-                      <li>{{company.createdAt}}</li>
-                      <li>{{company.updateAt}}</li>
-                  </ul>
-              </div>
-            </div>
-            <div class="configuration-content__page ">
-                <div class="configuration-page__quality">
-                    <div class="page-quality__content">Per page:</div>
-                    <div class="page-quality__text ">3</div>
-                    <div class="page-quality__text ">5</div>
-                    <div class="page-quality__text page-quality__text--active">7</div>
-                </div>
-                <div class="configuration-page__view">
-                    <div class="page-view__text page-view__text--active">1</div>
-                    <div class="page-view__text ">2</div>
-                    <div class="page-view__text ">3</div>
-                    <div class="page-view__text page-view__text-vv">...</div>
-                    <div class="page-view__text ">50</div>
-                </div>
-                <div class="configuration-page__navigation">
-                    <div class="page-navigation__text ">Previous</div>
-                    <div class="page-navigation__text page-navigation__text--disable">Next</div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="status-configuration configuration-content" [ngClass]="{'content-active':barSelected == 2}">
-            <div class="configuration-content__header">
-                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
-                <div class="configuration-content__refresh-btn">
-                    <i class="fa fa-refresh"></i>
-                </div>
-            </div>
-            <div class="configuration-content__middle">
-                <ul class="configuration-table__header status-configuration__table">
-                    <li>ID</li>
-                    <li>Name</li>
-                </ul>
-                <div class="configuration-table__content" *ngFor="let status of statusList">
-                    <ul class="configuration-table__content-line status-configuration__table" 
-                    (click)="onStatusSelected(status.id, 'status')" 
-                    [ngClass]="{'configuration-table__content-line--active':status.id === statusSelected}"
-                    >
-                        <li>{{status.id}}</li>
-                        <li>{{status.name}}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="configuration-content__page">
-                <div class="configuration-page__quality">
-                    <div class="page-quality__content">Per page:</div>
-                    <div class="page-quality__text ">3</div>
-                    <div class="page-quality__text ">5</div>
-                    <div class="page-quality__text page-quality__text--active">7</div>
-                </div>
-                <div class="configuration-page__view">
-                    <div class="page-view__text page-view__text--active">1</div>
-                    <div class="page-view__text ">2</div>
-                    <div class="page-view__text ">3</div>
-                    <div class="page-view__text page-view__text-vv">...</div>
-                    <div class="page-view__text ">50</div>
-                </div>
-                <div class="configuration-page__navigation">
-                    <div class="page-navigation__text ">Previous</div>
-                    <div class="page-navigation__text page-navigation__text--disable">Next</div>
-                </div>
-            </div>
-        </div>
-        <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
-            <div class="configuration-content__header">
-                <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
-                <div class="configuration-content__refresh-btn">
-                    <i class="fa fa-refresh"></i>
-                </div>
-            </div>
-            <div class="configuration-content__middle">
-                <ul class="configuration-table__header status-configuration__table">
-                    <li>Full name</li>
-                    <li>Email</li>
-                    <li>Phone</li>
-                    <li>Adress</li>
-                    <li>Role</li>
-                    <li>Active</li>
-                </ul>
-                <div class="configuration-table__content" *ngFor="let user of userList">
-                    <ul class="configuration-table__content-line status-configuration__table" 
-                    (click)="onUserSelected(user.email, 'user')" 
-                    [ngClass]="{'configuration-table__content-line--active':user.email === emailUser}"
-                    >
-                        <li>{{user.name}}</li>
-                        <li>{{user.email}}</li>
-                        <li>{{user.phone}}</li>
-                        <li>{{user.address}}</li>
-                        <li>{{user.role.name}}</li>
-                        <li>{{user.is_active}}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="configuration-content__page">
-                <div class="configuration-page__quality">
-                    <div class="page-quality__content">Per page:</div>
-                    <div class="page-quality__text ">3</div>
-                    <div class="page-quality__text ">5</div>
-                    <div class="page-quality__text page-quality__text--active">7</div>
-                </div>
-                <div class="configuration-page__view">
-                    <div class="page-view__text page-view__text--active">1</div>
-                    <div class="page-view__text ">2</div>
-                    <div class="page-view__text ">3</div>
-                    <div class="page-view__text page-view__text-vv">...</div>
-                    <div class="page-view__text ">50</div>
-                </div>
-                <div class="configuration-page__navigation">
-                    <div class="page-navigation__text ">Previous</div>
-                    <div class="page-navigation__text page-navigation__text--disable">Next</div>
-                </div>
-            </div>
-        </div> 
-        <div class="form-container">
-            <div class="form-card " [ngClass]="{'form-active':form == 'customer'}">
-              <h3 class="form-title">Customer</h3>
-              <form class="form-content">
-                <!-- Fullname -->
-                <div class="form-group">
-                  <label for="fullname">Company Name</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Email -->
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Phone -->
-                <div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Assigned Person -->
-                <div class="form-group">
-                  <label for="assignedPerson">Assigned Person</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Create date -->
-                <div class="form-group">
-                  <label for="createdAt">Create Date</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Update date -->
-                <div class="form-group">
-                  <label for="updateAt">Update Date</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Submit Button -->
-                <div class="form-group form-button">
-                  <button type="submit" 
-                  class="btn btn-form btn-form-save"
-                  >Save</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-cancel"
-                  (click)="onCanceled()"
-                  >Cancel</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-delete"
-                  >Delete</button>
-                </div>
-              </form>
-            </div>
-            <div class="form-card" [ngClass]="{'form-active':form == 'status'}">
-              <h3 class="form-title">Status</h3>
-              <form class="form-content">
-                <!-- ID -->
-                <div class="form-group">
-                  <label for="ID">ID</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Name -->
-                <div class="form-group">
-                  <label for="Name">Name</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Submit Button -->
-                <div class="form-group form-button">
-                  <button type="submit" 
-                  class="btn btn-form btn-form-save"
-                  >Save</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-cancel"
-                  (click)="onCanceled()"
-                  >Cancel</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-delete"
-                  >Delete</button>
-                </div>
-              </form>
-            </div>
-            <div class="form-card" [ngClass]="{'form-active':form == 'user'}">
-              <h3 class="form-title">User</h3>
-              <form class="form-content">
-                <!-- Fullname -->
-                <div class="form-group">
-                  <label for="fullname">Full Name</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Email -->
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Phone -->
-                <div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Address -->
-                <div class="form-group">
-                  <label for="address">Address</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Role -->
-                <div class="form-group">
-                  <label for="Role">Role</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Active -->
-                <div class="form-group">
-                  <label for="Active">Active</label>
-                  <input type="text">
-                </div>
-          
-                <!-- Submit Button -->
-                <div class="form-group form-button">
-                  <button type="submit" 
-                  class="btn btn-form btn-form-save"
-                  >Save</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-cancel" 
-                  (click)="onCanceled()"
-                  >Cancel</button>
-                  
-                  <button type="submit" 
-                  class="btn btn-form btn-form-delete"
-                  >Delete</button>
-                </div>
-              </form>
-            </div>
-        </div>
+  <app-loading [isLoading]="loading"></app-loading>
+  <app-header></app-header>
+  <div class="configuration-container">
+    <div class="configuration-bar">
+      <h2 class="configuration-bar__header-text">
+        Configuration
+      </h2>
+      <ul class="configuration-bar_list">
+        <!-- <li class="configuration-bar_list--active">User</li> -->
+        <li class="" *ngFor="let bar of barList" (click)="onBarSelected(bar.id)"
+          [ngClass]="{'configuration-bar_list--active':bar.id === barSelected}">{{bar.name}}</li>
+      </ul>
     </div>
-
-    <div class="notification-container">
-      <div *ngFor="let notification of notifications" 
-           [@slideInOut]
-           class="notification" 
-           [ngClass]="notification.type">
-        
-        <div class="left-line"></div>
-        
-        <div class="notification-content">
-          <div class="notification-header">{{ getHeaderNotification(notification.type) }}</div>
-          <div class="notification-body">{{ notification.content }}</div>
+    <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
+      <div class="configuration-content__header">
+        <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
+        <div class="configuration-content__refresh-btn">
+          <i class="fa fa-refresh"></i>
         </div>
-    
-        <button class="close-btn" (click)="removeNotification(notification.id)"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="configuration-content__middle">
+        <ul class="configuration-table__header">
+          <li>Company Name</li>
+          <li>Email</li>
+          <li>Phone</li>
+          <li>Assigned Person</li>
+          <li>Create Date</li>
+          <li>Update Date</li>
+        </ul>
+        <div class="configuration-table__content" *ngFor=" let company of companyList">
+          <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id, 'customer')"
+            [ngClass]="{'configuration-table__content-line--active':company.id === companySelected}">
+            <li>{{company.companyName}}</li>
+            <li>{{company.email}}</li>
+            <li>{{company.phone}}</li>
+            <li>{{company.assignedPerson.email}}</li>
+            <li>{{company.createdAt}}</li>
+            <li>{{company.updateAt}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="configuration-content__page ">
+        <div class="configuration-page__quality">
+          <div class="page-quality__content">Per page:</div>
+          <div class="page-quality__text ">3</div>
+          <div class="page-quality__text ">5</div>
+          <div class="page-quality__text page-quality__text--active">7</div>
+        </div>
+        <div class="configuration-page__view">
+          <div class="page-view__text page-view__text--active">1</div>
+          <div class="page-view__text ">2</div>
+          <div class="page-view__text ">3</div>
+          <div class="page-view__text page-view__text-vv">...</div>
+          <div class="page-view__text ">50</div>
+        </div>
+        <div class="configuration-page__navigation">
+          <div class="page-navigation__text ">Previous</div>
+          <div class="page-navigation__text page-navigation__text--disable">Next</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="status-configuration configuration-content" [ngClass]="{'content-active':barSelected == 2}">
+      <div class="configuration-content__header">
+        <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
+        <div class="configuration-content__refresh-btn">
+          <i class="fa fa-refresh"></i>
+        </div>
+      </div>
+      <div class="configuration-content__middle">
+        <ul class="configuration-table__header status-configuration__table">
+          <li>ID</li>
+          <li>Name</li>
+        </ul>
+        <div class="configuration-table__content" *ngFor="let status of statusList">
+          <ul class="configuration-table__content-line status-configuration__table"
+            (click)="onStatusSelected(status.id, 'status')"
+            [ngClass]="{'configuration-table__content-line--active':status.id === statusSelected}">
+            <li>{{status.id}}</li>
+            <li>{{status.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="configuration-content__page">
+        <div class="configuration-page__quality">
+          <div class="page-quality__content">Per page:</div>
+          <div class="page-quality__text ">3</div>
+          <div class="page-quality__text ">5</div>
+          <div class="page-quality__text page-quality__text--active">7</div>
+        </div>
+        <div class="configuration-page__view">
+          <div class="page-view__text page-view__text--active">1</div>
+          <div class="page-view__text ">2</div>
+          <div class="page-view__text ">3</div>
+          <div class="page-view__text page-view__text-vv">...</div>
+          <div class="page-view__text ">50</div>
+        </div>
+        <div class="configuration-page__navigation">
+          <div class="page-navigation__text ">Previous</div>
+          <div class="page-navigation__text page-navigation__text--disable">Next</div>
+        </div>
       </div>
     </div>
-    
-    <!-- Các nút bấm để thử -->
-    <div class="buttons">
-      <button (click)="addNotification('Hệ thống đã cập nhật!', 'info')">Thông báo</button>
-      <button (click)="addNotification('Bạn có thể gặp lỗi!', 'warning')">Cảnh báo</button>
-      <button (click)="addNotification('Không thể kết nối server!', 'error')">Lỗi</button>
+    <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
+      <div class="configuration-content__header">
+        <div class="configuration-content__add-btn" (click)="openPopup()">+ Add New</div>
+        <div class="configuration-content__refresh-btn">
+          <i class="fa fa-refresh"></i>
+        </div>
+      </div>
+      <div class="configuration-content__middle">
+        <ul class="configuration-table__header status-configuration__table">
+          <li>Full name</li>
+          <li>Email</li>
+          <li>Phone</li>
+          <li>Adress</li>
+          <li>Role</li>
+          <li>Active</li>
+        </ul>
+        <div class="configuration-table__content" *ngFor="let user of userList">
+          <ul class="configuration-table__content-line status-configuration__table"
+            (click)="onUserSelected(user.email, 'user')"
+            [ngClass]="{'configuration-table__content-line--active':user.email === emailUser}">
+            <li>{{user.name}}</li>
+            <li>{{user.email}}</li>
+            <li>{{user.phone}}</li>
+            <li>{{user.address}}</li>
+            <li>{{user.role.name}}</li>
+            <li>{{user.is_active}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="configuration-content__page">
+        <div class="configuration-page__quality">
+          <div class="page-quality__content">Per page:</div>
+          <div class="page-quality__text ">3</div>
+          <div class="page-quality__text ">5</div>
+          <div class="page-quality__text page-quality__text--active">7</div>
+        </div>
+        <div class="configuration-page__view">
+          <div class="page-view__text page-view__text--active">1</div>
+          <div class="page-view__text ">2</div>
+          <div class="page-view__text ">3</div>
+          <div class="page-view__text page-view__text-vv">...</div>
+          <div class="page-view__text ">50</div>
+        </div>
+        <div class="configuration-page__navigation">
+          <div class="page-navigation__text ">Previous</div>
+          <div class="page-navigation__text page-navigation__text--disable">Next</div>
+        </div>
+      </div>
     </div>
-    
-    
+    <div class="form-container">
+      <div class="form-card " [ngClass]="{'form-active':form == 'customer'}">
+        <h3 class="form-title">Customer</h3>
+        <form class="form-content">
+          <!-- Fullname -->
+          <div class="form-group">
+            <label for="fullname">Company Name</label>
+            <input type="text">
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text">
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text">
+          </div>
+
+          <!-- Assigned Person -->
+          <div class="form-group">
+            <label for="assignedPerson">Assigned Person</label>
+            <input type="text">
+          </div>
+
+          <!-- Create date -->
+          <div class="form-group">
+            <label for="createdAt">Create Date</label>
+            <input type="text">
+          </div>
+
+          <!-- Update date -->
+          <div class="form-group">
+            <label for="updateAt">Update Date</label>
+            <input type="text">
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group form-button">
+            <button type="submit" class="btn btn-form btn-form-save">Save</button>
+
+            <button type="submit" class="btn btn-form btn-form-cancel" (click)="onCanceled()">Cancel</button>
+
+            <button type="submit" class="btn btn-form btn-form-delete">Delete</button>
+          </div>
+        </form>
+      </div>
+      <div class="form-card" [ngClass]="{'form-active':form == 'status'}">
+        <h3 class="form-title">Status</h3>
+        <form class="form-content">
+          <!-- ID -->
+          <div class="form-group">
+            <label for="ID">ID</label>
+            <input type="text">
+          </div>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text">
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group form-button">
+            <button type="submit" class="btn btn-form btn-form-save">Save</button>
+
+            <button type="submit" class="btn btn-form btn-form-cancel" (click)="onCanceled()">Cancel</button>
+
+            <button type="submit" class="btn btn-form btn-form-delete">Delete</button>
+          </div>
+        </form>
+      </div>
+      <div class="form-card" [ngClass]="{'form-active':form == 'user'}">
+        <h3 class="form-title">User</h3>
+        <form class="form-content">
+          <!-- Fullname -->
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text">
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text">
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text">
+          </div>
+
+          <!-- Address -->
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text">
+          </div>
+
+          <!-- Role -->
+          <div class="form-group">
+            <label for="Role">Role</label>
+            <input type="text">
+          </div>
+
+          <!-- Active -->
+          <div class="form-group">
+            <label for="Active">Active</label>
+            <input type="text">
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group form-button">
+            <button type="submit" class="btn btn-form btn-form-save">Save</button>
+
+            <button type="submit" class="btn btn-form btn-form-cancel" (click)="onCanceled()">Cancel</button>
+
+            <button type="submit" class="btn btn-form btn-form-delete">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification-container">
+    <div *ngFor="let notification of notifications" [@slideInOut] class="notification" [ngClass]="notification.type">
+
+      <div class="left-line"></div>
+
+      <div class="notification-content">
+        <div class="notification-header">{{ getHeaderNotification(notification.type) }}</div>
+        <div class="notification-body">{{ notification.content }}</div>
+      </div>
+
+      <button class="close-btn" (click)="removeNotification(notification.id)"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <!-- Các nút bấm để thử -->
+  <div class="buttons">
+    <button (click)="addNotification('Hệ thống đã cập nhật!', 'info')">Thông báo</button>
+    <button (click)="addNotification('Bạn có thể gặp lỗi!', 'warning')">Cảnh báo</button>
+    <button (click)="addNotification('Không thể kết nối server!', 'error')">Lỗi</button>
+  </div>
+
+
 </div>
