@@ -38,19 +38,19 @@
     padding: $spacing-sm;
 }
 
-.configuration-bar_list > li {
+.configuration-bar_list>li {
     padding: $spacing-xs 0;
     padding-left: 1.8rem;
     margin-bottom: $spacing-xxs;
     border-radius: $border-button;
 }
 
-.configuration-bar_list > li:hover {
+.configuration-bar_list>li:hover {
     background-color: $hover-label;
     cursor: pointer;
 }
 
-.configuration-bar_list > li.configuration-bar_list--active {
+.configuration-bar_list>li.configuration-bar_list--active {
     background-color: $active-label;
     cursor: pointer;
 }
@@ -78,7 +78,8 @@
     border-radius: $border-button;
 }
 
-.configuration-content__add-btn:hover, .configuration-content__refresh-btn:hover {
+.configuration-content__add-btn:hover,
+.configuration-content__refresh-btn:hover {
     background-color: $highlight-color-hover;
     cursor: pointer;
 }
@@ -92,7 +93,7 @@
     border-radius: 50%;
 }
 
-.configuration-content__refresh-btn > i {
+.configuration-content__refresh-btn>i {
     font-size: $font-size-lg;
 }
 
@@ -115,7 +116,7 @@
     justify-content: space-between;
 }
 
-.configuration-table__header > li {
+.configuration-table__header>li {
     font-size: $font-size-xs;
     width: 17%;
     font-weight: 700;
@@ -136,7 +137,7 @@
     max-height: 48px;
 }
 
-.configuration-table__content-line > li {
+.configuration-table__content-line>li {
     width: 17%;
     font-size: $font-size-xs;
     font-weight: 400;
@@ -144,7 +145,7 @@
     text-align: start;
 }
 
-.configuration-table__content-line:hover{
+.configuration-table__content-line:hover {
     background-color: $hover-label;
     cursor: pointer;
 }
@@ -295,14 +296,14 @@
             margin-bottom: $spacing-sm;
             text-align: left;
             padding: 2px;
-    
+
             label {
                 font-weight: bold;
                 margin-bottom: $spacing-xxs;
                 display: block;
                 font-size: $font-size-xs;
             }
-    
+
             input,
             textarea,
             select {
@@ -320,7 +321,7 @@
             select::placeholder {
                 color: $placeholder;
             }
-    
+
             input:focus,
             textarea:focus,
             select:focus {
@@ -337,7 +338,7 @@
         color: $text-color;
         cursor: pointer;
         transition: background 0.3s ease;
-  
+
         &:hover {
             background: $highlight-color-hover;
             cursor: pointer;
@@ -395,4 +396,28 @@
 
 .custom-dialog {
     border-radius: 50%;
+}
+
+// Nút bấm tạo thông báo
+.buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+
+    button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s;
+
+        &:hover {
+            background: #0056b3;
+        }
+    }
 }

@@ -280,13 +280,12 @@
 
   
 
-  <app-notification>
-    <div class="buttons">
-      <button (click)="addNotification('Hệ thống đã cập nhật!', 'info')">Thông báo</button>
-      <button (click)="addNotification('Bạn có thể gặp lỗi!', 'warning')">Cảnh báo</button>
-      <button (click)="addNotification('Không thể kết nối server!', 'error')">Lỗi</button>
-    </div>
-  </app-notification>
+  <div class="buttons">
+    <button (click)="addNotification('Hệ thống đã cập nhật!', 'info')">Thông báo</button>
+    <button (click)="addNotification('Bạn có thể gặp lỗi!', 'warning')">Cảnh báo</button>
+    <button (click)="addNotification('Không thể kết nối server!', 'error')">Lỗi</button>
+  </div>
+  <app-notification></app-notification>
   <!-- Các nút bấm để thử -->
 
 
