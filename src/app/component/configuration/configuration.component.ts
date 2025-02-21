@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CompanyService } from 'src/app/services/company.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -8,25 +8,15 @@ import { Status } from '../models/status';
 import { AssignedPerson } from '../models/user';
 import { PopupComponent } from '../popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px) translateX(100%)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0) translateX(0)' }))
-      ]),
-      transition(':leave', [
-        animate('500ms ease-in', style({ opacity: 0, transform: 'translateY(0) translateX(100%)' }))
-      ])
-    ])
-  ]
 })
 export class ConfigurationComponent implements OnInit{
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   loading = true;
   companyList: Company[] = [];
   statusList: Status[] = [];
@@ -37,7 +27,6 @@ export class ConfigurationComponent implements OnInit{
   statusSelected: number = 0;
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
-  notifications: { id: number; content: string; type: 'info' | 'warning' | 'error' }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
     private comapnyService: CompanyService,
@@ -162,40 +151,7 @@ export class ConfigurationComponent implements OnInit{
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
   }
-
   addNotification(content: string, type: 'info' | 'warning' | 'error') {
-    const id = Date.now();
-
-    // Nếu đã có 5 thẻ, xóa thẻ cũ nhất
-    if (this.notifications.length >= 5) {
-      this.notifications.shift();
-    }
-
-    this.notifications.push({ id, content, type });
-
-    setTimeout(() => {
-      this.removeNotification(id);
-    }, 40000);
+    this.notificationComponent.addNotification(content, type);
   }
-
-  removeNotification(id: number) {
-    this.notifications = this.notifications.filter(n => n.id !== id);
-  }
-
-  getHeaderNotification(type: string): string {
-    switch (type) {
-      case 'info': return 'Thông báo';
-      case 'warning': return 'Cảnh báo';
-      case 'error': return 'Lỗi';
-      default: return '';
-    }
-  }
-
-  // showLoading() {
-  //   this.loading = true;
-  // }
-
-  // hideLoading() {
-  //   this.loading = false;
-  // }
 }
