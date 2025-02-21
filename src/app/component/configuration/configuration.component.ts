@@ -175,7 +175,7 @@ export class ConfigurationComponent implements OnInit{
 
     setTimeout(() => {
       this.removeNotification(id);
-    }, 40000);
+    }, 3000);
   }
 
   removeNotification(id: number) {
