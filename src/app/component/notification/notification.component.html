@@ -1,0 +1,13 @@
+<div class="notification-container">
+    <div *ngFor="let notification of notifications" [@slideInOut] class="notification" [ngClass]="notification.type">
+
+      <div class="left-line"></div>
+
+      <div class="notification-content">
+        <div class="notification-header">{{ getHeaderNotification(notification.type) }}</div>
+        <div class="notification-body">{{ notification.content }}</div>
+      </div>
+
+      <button class="close-btn" (click)="removeNotification(notification.id)"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>

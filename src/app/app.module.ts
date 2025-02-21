@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 import { LoadingComponent } from './component/loading/loading.component';
+import { NotificationComponent } from './component/notification/notification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -51,7 +52,8 @@ const routes: Routes = [
     PopupComponent,
     ChangepasswordComponent,
     ResetpasswordComponent,
-    LoadingComponent
+    LoadingComponent,
+    NotificationComponent
   ],
   imports: [
     ReactiveFormsModule,
