@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { LoadingComponent } from './component/loading/loading.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -49,7 +50,8 @@ const routes: Routes = [
     ConfigurationComponent,
     PopupComponent,
     ChangepasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    LoadingComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -27,6 +27,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class ConfigurationComponent implements OnInit{
+  loading = true;
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
@@ -42,8 +43,11 @@ export class ConfigurationComponent implements OnInit{
     private comapnyService: CompanyService,
     private fb: FormBuilder,
     public dialog: MatDialog,
-  ) {
 
+  ) {
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
   }
 
   ngOnInit() {
@@ -187,4 +191,11 @@ export class ConfigurationComponent implements OnInit{
     }
   }
 
+  // showLoading() {
+  //   this.loading = true;
+  // }
+
+  // hideLoading() {
+  //   this.loading = false;
+  // }
 }
