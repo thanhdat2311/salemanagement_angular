@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="profile-container">
+      <div class="profile__short-info">
+        <div class="profile-card profile-card__personal-info">
+          <div class="profile-card__avt">LV</div>
+          <div class="profile-card__name">Le Vu Thanh Dat</div>
+          <div class="profile-card__career">Weekend Developer</div>
+          <div class="profile-card__address">Bon Be La Nha</div>
+          <div class="profile-card__inbox">
+            <button class="follow">Follow</button>
+            <button class="message">Message</button>
+          </div>
+        </div>
+        <div class="profile-card profile-card__social">
+          <div class="profile-social__content profile-social__globe">
+            <a href="#">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+            <div class="profile-social__content-input">
+              <input type="text" id="globe-input" name="globe-input"
+              [(ngModel)]="globe" placeholder="https://example.com/" (click)="clearInput('globe')"/>
+            </div>
+          </div>
+          <div class="profile-social__content profile-social__github">
+            <a href="">
+              <i class="fa-brands fa-square-github"></i>
+            </a>
+            <div class="profile-social__content-input">
+              <input type="text" id="github-input" name="github-input"
+              [(ngModel)]="github" placeholder="https://github.com/example" (click)="clearInput('github')"/>
+            </div>
+          </div>
+          <div class="profile-social__content profile-social__linkedin">
+            <a href="">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <div class="profile-social__content-input">
+              <input type="linkedin" id="linkedin-input" name="linkedin-input"
+              [(ngModel)]="linkedin" required placeholder="https://linkedin.com/example" (click)="clearInput('linkedin')"/>
+            </div>
+          </div>
+          <div class="profile-social__content profile-social__instagram">
+            <a href="">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <div class="profile-social__content-input">
+              <input type="instagram" id="instagram-input" name="instagram-input"
+                   [(ngModel)]="instagram" placeholder="https://www.instagram.com/" (click)="clearInput('instagram')"/>
+            </div>
+          </div>   
+          <div class="profile-social__content profile-social__facebook">
+            <a href="">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <div class="profile-social__content-input">
+              <input type="facebook" id="facebook-input" name="facebook-input"
+                   [(ngModel)]="facebook" placeholder="https://www.facebook.com/" (click)="clearInput('facebook')"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile__long-info">
+        <div class="profile-card profile-card__full-info">
+          <div class="profile-full-info__content profile-full-info__name first-child">
+            <div class="profile-full-info__header">Fullname</div>
+            <div class="profile-full-info__value">Le Vu Thanh Dat</div>
+          </div>
+          
+          <div class="profile-full-info__content profile-full-info__email">
+            <div class="profile-full-info__header">Email</div>
+            <div class="profile-full-info__value">example#gmail.com</div>
+          </div>
+          
+          <div class="profile-full-info__content profile-full-info__phone">
+            <div class="profile-full-info__header">Phone</div>
+            <div class="profile-full-info__value">1800-2345</div>
+          </div>
+          
+          <div class="profile-full-info__content profile-full-info__facebook">
+            <div class="profile-full-info__header">Facebook</div>
+            <div class="profile-full-info__value">DoiAnhTeLamEm</div>
+          </div>
+          
+          <div class="profile-full-info__content profile-full-info__address ">
+            <div class="profile-full-info__header">Address</div>
+            <div class="profile-full-info__value">San Andreas</div>
+          </div>
+        </div>
+        <div class="profile-card profile-card__full-table">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+    </div>
+  </div>
+    
