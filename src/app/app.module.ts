@@ -30,6 +30,7 @@ import { ChangepasswordComponent } from './component/changepassword/changepasswo
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { NotificationComponent } from './component/notification/notification.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -53,7 +54,8 @@ const routes: Routes = [
     ChangepasswordComponent,
     ResetpasswordComponent,
     LoadingComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProfileComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -84,8 +86,9 @@ const routes: Routes = [
     //OrderConfirmComponent
     //RegisterComponent,
     //DetailProductComponent,
-    ConfigurationComponent,
+    //ConfigurationComponent,
     //PopupComponent,
+    //ProfileComponent
   ]
 })
 export class AppModule { }
