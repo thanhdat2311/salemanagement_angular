@@ -75,7 +75,7 @@
         </ul>
         <div class="configuration-table__content" *ngFor="let status of statusList">
           <ul class="configuration-table__content-line status-configuration__table"
-            (click)="onStatusSelected(status.id, 'status')"
+            (click)="onStatusSelected(status.id, 'status'); openPopupStatus('editStatus')"
             [ngClass]="{'configuration-table__content-line--active':status.id === statusSelected}">
             <li>{{status.id}}</li>
             <li>{{status.name}}</li>
@@ -104,7 +104,7 @@
     </div>
     <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
       <div class="configuration-content__header">
-        <div class="configuration-content__add-btn" (click)="openPopupStatus('addNewUser')">+ Add New</div>
+        <div class="configuration-content__add-btn" (click)="openPopupUser('addNewUser')">+ Add New</div>
         <div class="configuration-content__refresh-btn">
           <i class="fa fa-refresh"></i>
         </div>
@@ -120,7 +120,7 @@
         </ul>
         <div class="configuration-table__content" *ngFor="let user of userList">
           <ul class="configuration-table__content-line status-configuration__table"
-            (click)="onUserSelected(user.email, 'user')"
+            (click)="onUserSelected(user.email, 'user'); openPopupUser('editUser')"
             [ngClass]="{'configuration-table__content-line--active':user.email === emailUser}">
             <li>{{user.name}}</li>
             <li>{{user.email}}</li>

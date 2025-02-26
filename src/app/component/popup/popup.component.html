@@ -6,17 +6,17 @@
             <div class="popup-group">
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Company Name</mat-label>
-                    <input matInput placeholder="Enter company name..." [(ngModel)]="companyName" required="true">
+                    <input matInput placeholder="Enter name..." [(ngModel)]="companyName" #nameInput="ngModel" minlength="3">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Email</mat-label>
-                    <input matInput placeholder="Enter email..." [(ngModel)]="email" required="true">
+                    <input matInput placeholder="Enter email..." [(ngModel)]="email">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Assigned Person</mat-label>
                     <mat-select [(ngModel)]="selectedUserEmails"  >
                         <mat-option *ngFor="let data of userList" [value]="data.email">{{data.name}}</mat-option>
-                      </mat-select>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Phone</mat-label>
@@ -39,7 +39,7 @@
             </mat-form-field>
           </div>
         </div>
-        </div>
+    </div>
     <div *ngSwitchCase="3">
         <h3 class="popup-title">User</h3>
         <div class="popup-content">
@@ -64,10 +64,10 @@
                     <mat-label class="custom-label">Role</mat-label>
                     <input matInput placeholder="Enter role...">
                 </mat-form-field>
-                <mat-form-field subscriptSizing="fixed" appearance="outline">
-                    <mat-label class="custom-label">Active</mat-label>
-                    <input matInput placeholder="Enter active...">
-                </mat-form-field>
+                <div class="active-checkbox">
+                    <input type="checkbox" class="form-checkbox" [(ngModel)]="isActive">
+                    <p class="form-active__content">Active</p>
+                </div>
             </div>
         </div>
     </div>
@@ -78,3 +78,5 @@
         <button mat-raised-button color="accent" (click)="onSubmit(data.todo)">Submit</button>
     </div>
 </div>
+
+<app-notification></app-notification>

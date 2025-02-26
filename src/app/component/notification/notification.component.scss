@@ -25,6 +25,7 @@
   gap: 12px;
   overflow: hidden;
   z-index: 200;
+  text-align: left;
 
   // Line bên trái
   .left-line {
@@ -81,6 +82,10 @@
   background: #dc3545;
 }
 
+.success .left-line {
+  background: #19e946;
+}
+
 .info .notification-header {
   color: #007bff;
 }
@@ -93,6 +98,10 @@
   color: #dc3545;
 }
 
+.success .notification-header {
+  color: #19e946;
+}
+
 .info .close-btn {
   color: #007bff !important;
 }
@@ -103,4 +112,8 @@
 
 .error .close-btn {
   color: #dc3545;
+}
+
+.success .close-btn {
+  color: #19e946;
 }
