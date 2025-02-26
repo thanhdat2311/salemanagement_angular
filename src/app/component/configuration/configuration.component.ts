@@ -41,24 +41,11 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loading = true
-    // this.getAllCompany();
-    // this.getAllStatus();
-    // this.getAllUser();
-
-    this.loading = true;
-
-    // Promise.all([
-    //   this.getAllCompany().toPromise(),
-    //   this.getAllStatus().toPromise(),
-    //   this.getAllUser().toPromise()
-    // ]).then(([company, status, user]) => {
-    //   console.log('Dữ liệu API:', { company, status, user });
-    // }).catch(error => {
-    //   console.error('Có lỗi xảy ra:', error);
-    // }).finally(() => {
-    //   this.loading = false; // Đảm bảo loading tắt sau khi tất cả API hoàn thành
-    // });
+    this.loading = true
+    this.getAllCompany();
+    this.getAllStatus();
+    this.getAllUser();
+    
     this.loading = false
 
     this.barList = [
