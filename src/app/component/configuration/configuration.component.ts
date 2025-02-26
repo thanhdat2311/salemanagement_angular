@@ -41,33 +41,32 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true
-    this.getAllCompany();
-    this.getAllStatus();
-    this.getAllUser();
+    // this.loading = true
+    // this.getAllCompany();
+    // this.getAllStatus();
+    // this.getAllUser();
+
+    this.loading = true;
+
+    // Promise.all([
+    //   this.getAllCompany().toPromise(),
+    //   this.getAllStatus().toPromise(),
+    //   this.getAllUser().toPromise()
+    // ]).then(([company, status, user]) => {
+    //   console.log('Dữ liệu API:', { company, status, user });
+    // }).catch(error => {
+    //   console.error('Có lỗi xảy ra:', error);
+    // }).finally(() => {
+    //   this.loading = false; // Đảm bảo loading tắt sau khi tất cả API hoàn thành
+    // });
+    this.loading = false
 
     this.barList = [
       { id: 1, name: "Customer" },
       { id: 2, name: "Status" },
       { id: 3, name: "User" }]
-    this.loading = false
   }
-  openPopupStatus(toDoConfig: string) {
-    let statusPopUp;
-    switch (toDoConfig) {
-      case 'addNewStatus':
-        statusPopUp = {
-          barId: this.barSelected,
-          todo: toDoConfig
-        }
-        const dialogRef = this.dialog.open(PopupComponent, {
-          width: '500px',  // Chiều rộng popup
-          disableClose: false,
-          data: statusPopUp
-        });
-        break;
-    }
-  }
+  
   openPopupCustomer(toDoConfig: string): void {
     let userListPopUp;
     let companySelect;
@@ -109,6 +108,89 @@ export class ConfigurationComponent implements OnInit {
       }
     })
   };
+  openPopupStatus(toDoConfig: string): void {
+    let userListPopUp;
+    let companySelect;
+    switch (toDoConfig) {
+      case 'addNewStatus':
+        userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList
+        }
+        break;
+
+      case 'editStatus':
+        companySelect = this.companyList.find(company => company.id == this.companyId)
+        userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList,
+          companySelect: companySelect
+        }
+        break;
+
+    }
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '500px',  // Chiều rộng popup
+      disableClose: false,
+      data: userListPopUp
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        switch (result.todo) {
+          case 'addNewCustomer':
+            this.createCompany(result.companyDTO);
+            break;
+          case 'editCustomer':
+            this.updateCompany(result.companyDTO, this.companyId);
+            break;
+        }
+      }
+    })
+  };
+  openPopupUser(toDoConfig: string): void {
+    let userListPopUp;
+    let companySelect;
+    switch (toDoConfig) {
+      case 'addNewUser':
+        userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList
+        }
+        break;
+
+      case 'editUser':
+        companySelect = this.companyList.find(company => company.id == this.companyId)
+        userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList,
+          companySelect: companySelect
+        }
+        break;
+
+    }
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '500px',  // Chiều rộng popup
+      disableClose: false,
+      data: userListPopUp
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        switch (result.todo) {
+          case 'addNewCustomer':
+            this.createCompany(result.companyDTO);
+            break;
+          case 'editCustomer':
+            this.updateCompany(result.companyDTO, this.companyId);
+            break;
+        }
+      }
+    })
+  };
+
   onCanceled() {
     this.form = ""
   }
@@ -135,7 +217,6 @@ export class ConfigurationComponent implements OnInit {
       next: (response: any) => {
         debugger
         this.userList = response;
-
       }
       ,
       complete: () => {
@@ -144,7 +225,6 @@ export class ConfigurationComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-
       }
     }
     )
@@ -154,7 +234,6 @@ export class ConfigurationComponent implements OnInit {
       next: (response: any) => {
         debugger
         this.statusList = response;
-
       }
       ,
       complete: () => {
@@ -163,12 +242,10 @@ export class ConfigurationComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-
       }
     }
     )
   }
-
   getAllCompany() {
     this.companyService.getAllCompany().subscribe({
       next: (response: any) => {
@@ -182,7 +259,6 @@ export class ConfigurationComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-
       }
     }
     )
@@ -201,6 +277,7 @@ export class ConfigurationComponent implements OnInit {
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
   }
+
   createCompany(companyDTO: any) {
     this.companyService.createCompany(companyDTO).subscribe({
       next: (response: any) => {
@@ -222,9 +299,7 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  addNotification(content: string, type: 'info' | 'warning' | 'error') {
-    this.notificationComponent.addNotification(content, type);
-  }
+  
   updateCompany(companyDTO: any, companySelected: number) {
     this.companyService.updateCompany(companyDTO, companySelected).subscribe({
       next: (response: any) => {
@@ -241,9 +316,12 @@ export class ConfigurationComponent implements OnInit {
       error: (error: any) => {
         debugger
         this.addNotification(error.error, "error")
-
       }
-    }
+      }
     )
+  }
+
+  addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
+    this.notificationComponent.addNotification(content, type);
   }
 }

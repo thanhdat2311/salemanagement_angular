@@ -12,6 +12,7 @@ import { NotificationComponent } from '../notification/notification.component';
 })
 
 export class PopupComponent implements OnInit {
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   visibleFormId: number = 0;
   selectedUserEmails: string[] = [];
   numberTest: number = 2;
@@ -19,7 +20,8 @@ export class PopupComponent implements OnInit {
   companyName: string  = '';
   email: string = '';
   phone: string = '';
-  assigned_person: string[] = []
+  assigned_person: string[] = [];
+  isActive: boolean = true;
   constructor(
     private companyService: CompanyService,
     public dialogRef: MatDialogRef<PopupComponent>,
@@ -49,29 +51,83 @@ export class PopupComponent implements OnInit {
     switch (toDo) {
       case 'addNewCustomer':
         {
-        debugger
-        const companyDTO = {
-          companyName: this.companyName,
-          email: this.email,
-          phone: this.phone,
-          assigned_person: this.selectedUserEmails
-        };
-       const dataBackConfig ={todo:"addNewCustomer",companyDTO};
-       this.dialogRef.close(dataBackConfig);
-       break;
-      }
+          debugger
+          if (!this.companyName || this.companyName.trim().length < 3 || this.companyName.trim().length > 100) {
+            // alert('Tên công ty phải có từ 3 đến 50 ký tự!');
+            this.notificationComponent.addNotification("The company name must be between 3 and 50 characters!", 'warning');
+            return;
+          }
+          if (!this.validateEmail(this.email)) {            
+            this.notificationComponent.addNotification("Invalid email!", 'warning');
+            return;
+          }
+          this.notificationComponent.addNotification("Succesfully Create New Customer!", 'success');
+          // const companyDTO = {
+          //   companyName: this.companyName,
+          //   email: this.email,
+          //   phone: this.phone,
+          //   assigned_person: this.selectedUserEmails
+          // };
+          // const dataBackConfig ={todo:"addNewCustomer",companyDTO};
+          // this.dialogRef.close(dataBackConfig);
+          break;
+        }
       case 'editCustomer':
-        debugger
-        const companyDTO = {
-          companyName: this.companyName,
-          email: this.email,
-          phone: this.phone,
-          assigned_person: this.selectedUserEmails
-        };
-       const dataBackConfig ={todo:"editCustomer",companyDTO};
-       this.dialogRef.close(dataBackConfig);
-       break;
+        {
+          debugger
+          const companyDTO = {
+            companyName: this.companyName,
+            email: this.email,
+            phone: this.phone,
+            assigned_person: this.selectedUserEmails
+          };
+          const dataBackConfig ={todo:"editCustomer",companyDTO};
+          this.dialogRef.close(dataBackConfig);
+          break;
+        }
+
+      case 'addNewCustomer':
+        {
+          debugger
+          if (!this.companyName || this.companyName.trim().length < 3 || this.companyName.trim().length > 100) {
+            // alert('Tên công ty phải có từ 3 đến 50 ký tự!');
+            this.notificationComponent.addNotification("The company name must be between 3 and 50 characters!", 'warning');
+            return;
+          }
+          if (!this.validateEmail(this.email)) {            
+            this.notificationComponent.addNotification("Invalid email!", 'warning');
+            return;
+          }
+          this.notificationComponent.addNotification("Succesfully Create New Customer!", 'success');
+          // const companyDTO = {
+          //   companyName: this.companyName,
+          //   email: this.email,
+          //   phone: this.phone,
+          //   assigned_person: this.selectedUserEmails
+          // };
+          // const dataBackConfig ={todo:"addNewCustomer",companyDTO};
+          // this.dialogRef.close(dataBackConfig);
+          break;
+        }
+      case 'editCustomer':
+        {
+          debugger
+          const companyDTO = {
+            companyName: this.companyName,
+            email: this.email,
+            phone: this.phone,
+            assigned_person: this.selectedUserEmails
+          };
+          const dataBackConfig ={todo:"editCustomer",companyDTO};
+          this.dialogRef.close(dataBackConfig);
+          break;
+        }
     }  
+  }
+
+  validateEmail(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
   }
 }
  

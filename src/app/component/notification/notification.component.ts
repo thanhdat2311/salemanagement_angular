@@ -18,9 +18,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class NotificationComponent {
-  notifications: { id: number; content: string; type: 'info' | 'warning' | 'error' }[] = [];
+  notifications: { id: number; content: string; type: 'info' | 'warning' | 'error' | 'success'}[] = [];
 
-  addNotification(content: string, type: 'info' | 'warning' | 'error') {
+  addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
     const id = Date.now();
 
     // Nếu đã có 5 thẻ, xóa thẻ cũ nhất
@@ -41,9 +41,10 @@ export class NotificationComponent {
 
   getHeaderNotification(type: string): string {
     switch (type) {
-      case 'info': return 'Thông báo';
-      case 'warning': return 'Cảnh báo';
-      case 'error': return 'Lỗi';
+      case 'info': return 'Infomation';
+      case 'warning': return 'Warning';
+      case 'error': return 'Error';
+      case 'success': return 'Success';
       default: return '';
     }
   }
