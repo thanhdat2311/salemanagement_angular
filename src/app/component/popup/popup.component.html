@@ -10,7 +10,7 @@
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Email</mat-label>
-                    <input matInput placeholder="Enter email..." [(ngModel)]="email">
+                    <input matInput placeholder="Enter email..." [(ngModel)]="customerEmail">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Assigned Person</mat-label>
@@ -20,7 +20,7 @@
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Phone</mat-label>
-                    <input matInput placeholder="Enter phone number...." [(ngModel)]="phone"> 
+                    <input matInput placeholder="Enter phone number...." [(ngModel)]="customerPhone"> 
                 </mat-form-field>
             </div>
         </div>
@@ -30,12 +30,8 @@
         <div class="popup-content">
           <div class="popup-group">
             <mat-form-field subscriptSizing="fixed" appearance="outline">
-                <mat-label class="custom-label" >ID</mat-label>
-                <input matInput placeholder="Nhập dữ liệu...">
-            </mat-form-field>
-            <mat-form-field subscriptSizing="fixed" appearance="outline">
                 <mat-label class="custom-label" >Status Name</mat-label>
-                <input matInput placeholder="Enter status name...">
+                <input matInput placeholder="Enter status name..." [(ngModel)]="statusName">
             </mat-form-field>
           </div>
         </div>
@@ -46,23 +42,23 @@
             <div class="popup-group">
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Full Name</mat-label>
-                    <input matInput placeholder="Enter full name...">
+                    <input matInput placeholder="Enter full name..." [(ngModel)]="userFullName">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Email</mat-label>
-                    <input matInput placeholder="Enter email...">
+                    <input matInput placeholder="Enter email..." [(ngModel)]="userEmail">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Phone</mat-label>
-                    <input matInput placeholder="Enter phone...">
+                    <input matInput placeholder="Enter phone..." [(ngModel)]="userPhone">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Address</mat-label>
-                    <input matInput placeholder="Enter address...">
+                    <input matInput placeholder="Enter address..." [(ngModel)]="userAddress">
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Role</mat-label>
-                    <input matInput placeholder="Enter role...">
+                    <input matInput placeholder="Enter role..." [(ngModel)]="userRole">
                 </mat-form-field>
                 <div class="active-checkbox">
                     <input type="checkbox" class="form-checkbox" [(ngModel)]="isActive">
