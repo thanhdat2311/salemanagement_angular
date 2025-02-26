@@ -71,6 +71,21 @@ export class PopupComponent implements OnInit {
        const dataBackConfig ={todo:"editCustomer",companyDTO};
        this.dialogRef.close(dataBackConfig);
        break;
+      case 'addNewStatus':
+
+      break;
+
+      case 'editStatus':
+
+      break;
+
+      case 'addNewUser':
+
+      break;
+
+      case 'editUser':
+
+      break;
     }  
   }
 }

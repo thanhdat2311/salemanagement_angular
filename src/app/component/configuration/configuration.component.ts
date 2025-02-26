@@ -49,7 +49,8 @@ export class ConfigurationComponent implements OnInit {
     this.barList = [
       { id: 1, name: "Customer" },
       { id: 2, name: "Status" },
-      { id: 3, name: "User" }]
+      { id: 3, name: "User" }
+    ]
     this.loading = false
   }
   openPopupStatus(toDoConfig: string) {
