@@ -12,6 +12,20 @@
         display: flex;
         flex-direction: column;
         // align-items: start;
+
+        .active-checkbox {
+            display: flex;
+            margin-bottom: $spacing-xs;
+
+            .form-checkbox {
+                accent-color: $highlight-color;
+                margin-right: $spacing-xs;
+            }
+
+            .form-active__content {
+                color: $text-color;
+            }
+        }
     }
 
     mat-form-field {

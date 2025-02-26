@@ -85,8 +85,17 @@ export class PopupComponent implements OnInit {
           this.dialogRef.close(dataBackConfig);
           break;
         }
-
-      case 'addNewCustomer':
+        debugger
+        const companyDTO = {
+          companyName: this.companyName,
+          email: this.email,
+          phone: this.phone,
+          assigned_person: this.selectedUserEmails
+        };
+       const dataBackConfig ={todo:"editCustomer",companyDTO};
+       this.dialogRef.close(dataBackConfig);
+       break;
+      case 'addNewStatus':
         {
           debugger
           if (!this.companyName || this.companyName.trim().length < 3 || this.companyName.trim().length > 100) {
@@ -99,29 +108,20 @@ export class PopupComponent implements OnInit {
             return;
           }
           this.notificationComponent.addNotification("Succesfully Create New Customer!", 'success');
-          // const companyDTO = {
-          //   companyName: this.companyName,
-          //   email: this.email,
-          //   phone: this.phone,
-          //   assigned_person: this.selectedUserEmails
-          // };
-          // const dataBackConfig ={todo:"addNewCustomer",companyDTO};
-          // this.dialogRef.close(dataBackConfig);
-          break;
         }
-      case 'editCustomer':
-        {
-          debugger
-          const companyDTO = {
-            companyName: this.companyName,
-            email: this.email,
-            phone: this.phone,
-            assigned_person: this.selectedUserEmails
-          };
-          const dataBackConfig ={todo:"editCustomer",companyDTO};
-          this.dialogRef.close(dataBackConfig);
-          break;
-        }
+      break;
+
+      case 'editStatus':
+
+      break;
+
+      case 'addNewUser':
+
+      break;
+
+      case 'editUser':
+
+      break;
     }  
   }
 

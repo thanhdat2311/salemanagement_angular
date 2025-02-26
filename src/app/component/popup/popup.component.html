@@ -64,7 +64,10 @@
                     <mat-label class="custom-label">Role</mat-label>
                     <input matInput placeholder="Enter role...">
                 </mat-form-field>
-                <input type="checkbox">Active
+                <div class="active-checkbox">
+                    <input type="checkbox" class="form-checkbox" [(ngModel)]="isActive">
+                    <p class="form-active__content">Active</p>
+                </div>
             </div>
         </div>
     </div>
