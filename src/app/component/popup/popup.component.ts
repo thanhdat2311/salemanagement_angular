@@ -19,6 +19,7 @@ export class PopupComponent implements OnInit {
   companyName: string  = '';
   email: string = '';
   phone: string = '';
+  statusName: string = '';
   assigned_person: string[] = []
   constructor(
     private companyService: CompanyService,
@@ -46,6 +47,7 @@ export class PopupComponent implements OnInit {
 
 
   onSubmit(toDo: String): void {
+    let dataBackConfig;
     switch (toDo) {
       case 'addNewCustomer':
         {
@@ -56,7 +58,7 @@ export class PopupComponent implements OnInit {
           phone: this.phone,
           assigned_person: this.selectedUserEmails
         };
-       const dataBackConfig ={todo:"addNewCustomer",companyDTO};
+        dataBackConfig ={todo:"addNewCustomer",companyDTO};
        this.dialogRef.close(dataBackConfig);
        break;
       }
@@ -68,11 +70,16 @@ export class PopupComponent implements OnInit {
           phone: this.phone,
           assigned_person: this.selectedUserEmails
         };
-       const dataBackConfig ={todo:"editCustomer",companyDTO};
+        dataBackConfig ={todo:"editCustomer",companyDTO};
        this.dialogRef.close(dataBackConfig);
        break;
       case 'addNewStatus':
-
+        debugger
+        const statusDTO = {
+          name: this.statusName
+        }
+         dataBackConfig ={todo:"addNewStatus",statusDTO};
+         this.dialogRef.close(dataBackConfig);
       break;
 
       case 'editStatus':
