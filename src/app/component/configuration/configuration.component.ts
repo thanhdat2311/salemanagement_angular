@@ -16,14 +16,14 @@ import { delay } from 'rxjs';
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss'],
 })
-export class ConfigurationComponent implements OnInit{
+export class ConfigurationComponent implements OnInit {
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   loading = true;
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
   companyId: number = 0;
-  form : string = "";
+  form: string = "";
   barSelected: number = 1;
   statusSelected: number = 0;
   emailUser: string = '';
@@ -35,29 +35,31 @@ export class ConfigurationComponent implements OnInit{
     public dialog: MatDialog,
 
   ) {
-    setTimeout(() => {
-      this.loading = false;
-    }, 3000);
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 3000);
   }
 
   ngOnInit() {
-  this.getAllCompany();
-  this.getAllStatus();
-  this.getAllUser();
+    this.loading = true
+    this.getAllCompany();
+    this.getAllStatus();
+    this.getAllUser();
 
-  this.barList = [
-    {id:1, name: "Customer"},
-    {id:2, name: "Status"},
-    {id:3, name: "User"}]
+    this.barList = [
+      { id: 1, name: "Customer" },
+      { id: 2, name: "Status" },
+      { id: 3, name: "User" }]
+    this.loading = false
   }
-  openPopupStatus(toDoConfig:string){
+  openPopupStatus(toDoConfig: string) {
     let statusPopUp;
-    switch(toDoConfig){
+    switch (toDoConfig) {
       case 'addNewStatus':
         statusPopUp = {
           barId: this.barSelected,
           todo: toDoConfig
-                }
+        }
         const dialogRef = this.dialog.open(PopupComponent, {
           width: '500px',  // Chiều rộng popup
           disableClose: false,
@@ -66,69 +68,69 @@ export class ConfigurationComponent implements OnInit{
         break;
     }
   }
-  openPopupCustomer(toDoConfig:string): void {
+  openPopupCustomer(toDoConfig: string): void {
     let userListPopUp;
     let companySelect;
-    switch(toDoConfig) {
+    switch (toDoConfig) {
       case 'addNewCustomer':
-         userListPopUp = {
+        userListPopUp = {
           barId: this.barSelected,
           todo: toDoConfig,
           userList: this.userList
         }
         break;
-      
+
       case 'editCustomer':
-         companySelect = this.companyList.find(company => company.id == this.companyId)
-         userListPopUp = {
+        companySelect = this.companyList.find(company => company.id == this.companyId)
+        userListPopUp = {
           barId: this.barSelected,
           todo: toDoConfig,
-          userList: this.userList, 
+          userList: this.userList,
           companySelect: companySelect
         }
         break;
-      
+
     }
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '500px',  // Chiều rộng popup
       disableClose: false,
       data: userListPopUp
     });
-    dialogRef.afterClosed().subscribe((result)=>{
-      if(result){
-        switch(result.todo){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        switch (result.todo) {
           case 'addNewCustomer':
             this.createCompany(result.companyDTO);
             break;
-            case 'editCustomer':
-            this.updateCompany(result.companyDTO,this.companyId);
+          case 'editCustomer':
+            this.updateCompany(result.companyDTO, this.companyId);
             break;
         }
-    }
+      }
     })
   };
-  onCanceled(){
-    this.form =""
+  onCanceled() {
+    this.form = ""
   }
-  onBarSelected(barID : number){
+  onBarSelected(barID: number) {
     this.barSelected = barID;
-    this.form =""
+    this.form = ""
   }
-  onCompanySelected(companyId : number, formName: string){
+  onCompanySelected(companyId: number, formName: string) {
     this.companyId = companyId;
     this.form = formName;
   }
-  onUserSelected(email: string, formUSer: string){
+  onUserSelected(email: string, formUSer: string) {
     debugger
     this.emailUser = email;
     this.form = formUSer;
   }
-  onStatusSelected(statusId : number, formStatus: string){
+  onStatusSelected(statusId: number, formStatus: string) {
     this.statusSelected = statusId;
     this.form = formStatus;
   }
 
-  getAllUser(){
+  getAllUser() {
     this.userService.getAllUser().subscribe({
       next: (response: any) => {
         debugger
@@ -147,7 +149,7 @@ export class ConfigurationComponent implements OnInit{
     }
     )
   }
-  getAllStatus(){
+  getAllStatus() {
     this.taskService.getStatus().subscribe({
       next: (response: any) => {
         debugger
@@ -167,24 +169,24 @@ export class ConfigurationComponent implements OnInit{
     )
   }
 
-  getAllCompany(){
-      this.companyService.getAllCompany().subscribe({
-        next: (response: any) => {
-          debugger
-          this.companyList = response;
-        }
-        ,
-        complete: () => {
-          debugger;
-        }
-        ,
-        error: (error: any) => {
-          debugger
-  
-        }
+  getAllCompany() {
+    this.companyService.getAllCompany().subscribe({
+      next: (response: any) => {
+        debugger
+        this.companyList = response;
       }
-      )
-    
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+
+      }
+    }
+    )
+
   }
 
   openTab(tabName: string, event: Event) {
@@ -199,11 +201,11 @@ export class ConfigurationComponent implements OnInit{
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
   }
-  createCompany(companyDTO: any){
+  createCompany(companyDTO: any) {
     this.companyService.createCompany(companyDTO).subscribe({
       next: (response: any) => {
         debugger
-        this.addNotification("add new successfully!","info")
+        this.addNotification("add new successfully!", "info")
         this.getAllCompany();
       }
       ,
@@ -214,6 +216,7 @@ export class ConfigurationComponent implements OnInit{
       ,
       error: (error: any) => {
         debugger
+        this.addNotification(error.error, "error")
 
       }
     }
@@ -222,11 +225,11 @@ export class ConfigurationComponent implements OnInit{
   addNotification(content: string, type: 'info' | 'warning' | 'error') {
     this.notificationComponent.addNotification(content, type);
   }
-  updateCompany(companyDTO:any, companySelected:number){
-    this.companyService.updateCompany(companyDTO,companySelected).subscribe({
+  updateCompany(companyDTO: any, companySelected: number) {
+    this.companyService.updateCompany(companyDTO, companySelected).subscribe({
       next: (response: any) => {
         debugger
-        this.addNotification("Update successfully!","info")
+        this.addNotification("Update successfully!", "info")
         this.getAllCompany();
       }
       ,
@@ -237,7 +240,7 @@ export class ConfigurationComponent implements OnInit{
       ,
       error: (error: any) => {
         debugger
-        this.addNotification(error.error,"error")
+        this.addNotification(error.error, "error")
 
       }
     }
