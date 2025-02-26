@@ -10,6 +10,7 @@ import { Company } from "../component/models/company";
   export class CompanyService {
     private apiCreateCompany = `${enviroment.apiBaseUrl}/company`;
     private apiGetAllCompany = `${enviroment.apiBaseUrl}/company/admin`;
+    private apiUpdateCompany = `${enviroment.apiBaseUrl}/company`;
   
     constructor(private http: HttpClient) { }
     private createHeaders(): HttpHeaders {
@@ -18,10 +19,13 @@ import { Company } from "../component/models/company";
         'Accept-Language': 'en'
       });
     }
-    createCompany(company: Company) {
-      return this.http.get<Company[]>(this.apiCreateCompany)
+    createCompany(companyDTO: any) {
+      return this.http.post<any>(this.apiCreateCompany, companyDTO)
     }
     getAllCompany(){
       return this.http.get<Company[]>(this.apiGetAllCompany)
+    }
+    updateCompany(companyDTO: any, companyId:number){
+      return this.http.put<any>(`${this.apiUpdateCompany}/${companyId}`,companyDTO)
     }
   }

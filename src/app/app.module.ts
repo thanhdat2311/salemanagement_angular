@@ -81,12 +81,12 @@ const routes: Routes = [
     //LoginComponent, 
     //ChangepasswordComponent,
     //ResetpasswordComponent,
-    HomeComponent,
+    //HomeComponent,
     //OrderComponent
     //OrderConfirmComponent
-    //RegisterComponent,
+     //RegisterComponent,
     //DetailProductComponent,
-    //ConfigurationComponent,
+    ConfigurationComponent,
     //PopupComponent,
     //ProfileComponent
   ]

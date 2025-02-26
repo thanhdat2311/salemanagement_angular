@@ -9,6 +9,7 @@ import { AssignedPerson } from '../models/user';
 import { PopupComponent } from '../popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationComponent } from '../notification/notification.component';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-configuration',
@@ -21,7 +22,7 @@ export class ConfigurationComponent implements OnInit{
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
-  companySelected: number = 0;
+  companyId: number = 0;
   form : string = "";
   barSelected: number = 1;
   statusSelected: number = 0;
@@ -29,7 +30,7 @@ export class ConfigurationComponent implements OnInit{
   barList: { id: number; name: string }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
-    private comapnyService: CompanyService,
+    private companyService: CompanyService,
     private fb: FormBuilder,
     public dialog: MatDialog,
 
@@ -49,13 +50,61 @@ export class ConfigurationComponent implements OnInit{
     {id:2, name: "Status"},
     {id:3, name: "User"}]
   }
-  openPopup(): void {
-    const userListPopUp = {barId:this.barSelected,userList: this.userList}
-    console.info(userListPopUp)
-    this.dialog.open(PopupComponent, {
+  openPopupStatus(toDoConfig:string){
+    let statusPopUp;
+    switch(toDoConfig){
+      case 'addNewStatus':
+        statusPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig
+                }
+        const dialogRef = this.dialog.open(PopupComponent, {
+          width: '500px',  // Chiều rộng popup
+          disableClose: false,
+          data: statusPopUp
+        });
+        break;
+    }
+  }
+  openPopupCustomer(toDoConfig:string): void {
+    let userListPopUp;
+    let companySelect;
+    switch(toDoConfig) {
+      case 'addNewCustomer':
+         userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList
+        }
+        break;
+      
+      case 'editCustomer':
+         companySelect = this.companyList.find(company => company.id == this.companyId)
+         userListPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList, 
+          companySelect: companySelect
+        }
+        break;
+      
+    }
+    const dialogRef = this.dialog.open(PopupComponent, {
       width: '500px',  // Chiều rộng popup
       disableClose: false,
       data: userListPopUp
+    });
+    dialogRef.afterClosed().subscribe((result)=>{
+      if(result){
+        switch(result.todo){
+          case 'addNewCustomer':
+            this.createCompany(result.companyDTO);
+            break;
+            case 'editCustomer':
+            this.updateCompany(result.companyDTO,this.companyId);
+            break;
+        }
+    }
     })
   };
   onCanceled(){
@@ -66,7 +115,7 @@ export class ConfigurationComponent implements OnInit{
     this.form =""
   }
   onCompanySelected(companyId : number, formName: string){
-    this.companySelected = companyId;
+    this.companyId = companyId;
     this.form = formName;
   }
   onUserSelected(email: string, formUSer: string){
@@ -119,11 +168,10 @@ export class ConfigurationComponent implements OnInit{
   }
 
   getAllCompany(){
-      this.comapnyService.getAllCompany().subscribe({
+      this.companyService.getAllCompany().subscribe({
         next: (response: any) => {
           debugger
           this.companyList = response;
-  
         }
         ,
         complete: () => {
@@ -151,7 +199,48 @@ export class ConfigurationComponent implements OnInit{
     document.getElementById(tabName)?.classList.add('active');
     (event.target as HTMLElement).classList.add('active');
   }
+  createCompany(companyDTO: any){
+    this.companyService.createCompany(companyDTO).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("add new successfully!","info")
+        this.getAllCompany();
+      }
+      ,
+      complete: () => {
+        debugger;
+
+      }
+      ,
+      error: (error: any) => {
+        debugger
+
+      }
+    }
+    )
+  }
   addNotification(content: string, type: 'info' | 'warning' | 'error') {
     this.notificationComponent.addNotification(content, type);
+  }
+  updateCompany(companyDTO:any, companySelected:number){
+    this.companyService.updateCompany(companyDTO,companySelected).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("Update successfully!","info")
+        this.getAllCompany();
+      }
+      ,
+      complete: () => {
+        debugger;
+
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error,"error")
+
+      }
+    }
+    )
   }
 }
