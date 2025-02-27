@@ -1,13 +1,14 @@
 @import "../../../styles.scss";
 
 .configuration-container {
+    position: relative;
     height: 100vh;
     display: flex;
     padding-bottom: $spacing-sm;
     justify-content: space-between;
     overflow: hidden;
     gap: $spacing-xs;
-    
+
     .configuration-bar {
         background-color: $background;
         width: 20%;
@@ -93,6 +94,176 @@
             flex-direction: column;
             margin-top: $spacing-xs;
             overflow: hidden;
+
+            .configuration-table__header {
+                list-style-type: none;
+                display: flex;
+                color: $highlight-color;
+                padding: $spacing-input 0px;
+                width: 100%;
+                background-color: $active-label;
+                border-radius: $border-button;
+                justify-content: space-between;
+
+                li {
+                    font-size: $font-size-xs;
+                    width: 17%;
+                    font-weight: 700;
+                    padding: 0 $spacing-sm;
+                    text-align: start;
+                }
+            }
+
+            .configuration-table__content {
+
+                .configuration-table__content-line {
+                    list-style-type: none;
+                    display: flex;
+                    color: $text-color;
+                    margin: 0;
+                    margin-top: $spacing-xxs;
+                    padding: $spacing-input 0px;
+                    width: 100%;
+                    border-radius: $border-button;
+                    justify-content: space-between;
+                    max-height: 48px;
+
+                    li {
+                        width: 17%;
+                        font-size: $font-size-xs;
+                        font-weight: 400;
+                        padding: 0 $spacing-sm;
+                        text-align: start;
+                    }
+
+                    &:hover {
+                        background-color: $hover-label;
+                        cursor: pointer;
+                    }
+                }
+
+                .configuration-table__content-line--active {
+                    background-color: $active-label;
+                }
+            }
+
+            // For status bar
+            .status-configuration__table {
+                justify-content: space-around;
+            }
+        }
+
+        .configuration-content__page {
+            max-height: 46px;
+            justify-self: end;
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            padding: $spacing-input 0px;
+            width: 100%;
+            background-color: $active-label;
+            border-radius: $border-button;
+
+            .configuration-page__quality {
+                display: flex;
+
+                .page-quality__content {
+                    font-size: $font-size-sm;
+                    font-weight: 700;
+                    padding: 0 $spacing-xs 0 $spacing-sm;
+                    text-align: start;
+                    color: $highlight-color;
+                }
+
+                .page-quality__text {
+                    font-size: $font-size-sm;
+                    font-weight: 400;
+                    width: 22px;
+                    height: 22px;
+                    padding: 0 2px $spacing-xxs 6px;
+                    margin-left: 6px;
+                    text-align: start;
+                    color: $text-color;
+                    line-height: 1.4rem;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.9;
+                    }
+                }
+
+                .page-quality__text--active {
+                    font-weight: 800;
+                    border-radius: $spacing-xxs;
+                    border: 1px solid $highlight-color;
+
+                    &:hover {
+                        cursor: default;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .configuration-page__view {
+                display: flex;
+
+                .page-view__text {
+                    font-size: $font-size-sm;
+                    font-weight: 400;
+                    width: 22px;
+                    height: 22px;
+                    padding: 0 2px $spacing-xxs 6px;
+                    margin-left: 6px;
+                    text-align: start;
+                    color: $text-color;
+                    line-height: 1.4rem;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.9;
+                    }
+
+                }
+
+                .page-view__text--active {
+                    font-weight: 800;
+                }
+
+                .page-view__text-vv {
+
+                    &:hover {
+                        cursor: default;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .configuration-page__navigation {
+                display: flex;
+
+                .page-navigation__text {
+                    font-size: $font-size-sm;
+                    font-weight: 700;
+                    padding: 0 16px 0 8px;
+                    text-align: start;
+                    color: $highlight-color;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.9;
+                    }
+                }
+
+
+                .page-navigation__text--disable {
+                    color: #cacaca;
+
+                    &:hover {
+                        cursor: default;
+                        opacity: 0.9;
+                    }
+                }
+            }
         }
     }
 
@@ -106,298 +277,25 @@
 
 
 
-.configuration-table__header {
-    list-style-type: none;
-    display: flex;
-    color: $highlight-color;
-    padding: $spacing-input 0px;
-    width: 100%;
-    background-color: $active-label;
-    border-radius: $border-button;
-    justify-content: space-between;
-}
 
-.configuration-table__header>li {
-    font-size: $font-size-xs;
-    width: 17%;
-    font-weight: 700;
-    padding: 0 $spacing-sm;
-    text-align: start;
-}
 
-.configuration-table__content-line {
-    list-style-type: none;
-    display: flex;
-    color: $text-color;
-    margin: 0;
-    margin-top: $spacing-xxs;
-    padding: $spacing-input 0px;
-    width: 100%;
-    border-radius: $border-button;
-    justify-content: space-between;
-    max-height: 48px;
-}
 
-.configuration-table__content-line>li {
-    width: 17%;
-    font-size: $font-size-xs;
-    font-weight: 400;
-    padding: 0 $spacing-sm;
-    text-align: start;
-}
 
-.configuration-table__content-line:hover {
-    background-color: $hover-label;
-    cursor: pointer;
-}
 
-.configuration-table__content-line--active {
-    background-color: $active-label;
-}
 
-.configuration-content__page {
-    max-height: 46px;
-    justify-self: end;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: $spacing-input 0px;
-    width: 100%;
-    background-color: $active-label;
-    border-radius: $border-button;
-}
 
-.configuration-page__quality {
-    display: flex;
 
-}
 
-.page-quality__content {
-    font-size: $font-size-sm;
-    font-weight: 700;
-    padding: 0 $spacing-xs 0 $spacing-sm;
-    text-align: start;
-    color: $highlight-color;
-}
 
-.page-quality__text {
-    font-size: $font-size-sm;
-    font-weight: 400;
-    width: 22px;
-    height: 22px;
-    padding: 0 2px $spacing-xxs 6px;
-    margin-left: 6px;
-    text-align: start;
-    color: $text-color;
-    line-height: 1.4rem;
-}
 
-.page-quality__text--active {
-    font-weight: 800;
-    border-radius: $spacing-xxs;
-    border: 1px solid $highlight-color;
-}
 
-.page-quality__text:hover {
-    cursor: pointer;
-    opacity: 0.9;
-}
 
-.page-quality__text--active:hover {
-    cursor: default;
-    opacity: 1;
-}
 
-.configuration-page__view {
-    display: flex;
-}
 
-.page-view__text {
-    font-size: $font-size-sm;
-    font-weight: 400;
-    width: 22px;
-    height: 22px;
-    padding: 0 2px $spacing-xxs 6px;
-    margin-left: 6px;
-    text-align: start;
-    color: $text-color;
-    line-height: 1.4rem;
-}
 
-.page-view__text--active {
-    font-weight: 800;
-}
 
-.page-view__text:hover {
-    cursor: pointer;
-    opacity: 0.9;
-}
 
-.page-view__text-vv:hover {
-    cursor: default;
-    opacity: 1;
-}
 
-.configuration-page__navigation {
-    display: flex;
-}
-
-.page-navigation__text {
-    font-size: $font-size-sm;
-    font-weight: 700;
-    padding: 0 16px 0 8px;
-    text-align: start;
-    color: $highlight-color;
-}
-
-.page-navigation__text:hover {
-    cursor: pointer;
-    opacity: 0.9;
-}
-
-.page-navigation__text--disable {
-    color: #cacaca;
-}
-
-.page-navigation__text--disable:hover {
-    cursor: default;
-    opacity: 0.9;
-}
-
-.status-configuration__table {
-    justify-content: space-around;
-}
-
-.form-container {
-    height: 100%;
-    width: 30%;
-    display: flex;
-    padding-bottom: $spacing-sm;
-}
-
-.form-card {
-    display: none;
-    flex-direction: column;
-    background: $secondary-background;
-    padding: $spacing-sm;
-    border-radius: $border-container;
-    box-shadow: $box-shadow;
-    width: 100%;
-    color: $text-color;
-    text-align: center;
-
-    .form-title {
-        font-size: $font-size-xl;
-        color: $title-color;
-        margin-bottom: 20px;
-    }
-
-    form {
-        .form-group {
-            margin-bottom: $spacing-sm;
-            text-align: left;
-            padding: 2px;
-
-            label {
-                font-weight: bold;
-                margin-bottom: $spacing-xxs;
-                display: block;
-                font-size: $font-size-xs;
-            }
-
-            input,
-            textarea,
-            select {
-                width: 100%;
-                padding: $spacing-xxs;
-                border-radius: $border-input;
-                border: none;
-                background: $input-background;
-                color: $text-color;
-                font-size: $font-size-xs;
-            }
-
-            input::placeholder,
-            textarea::placeholder,
-            select::placeholder {
-                color: $placeholder;
-            }
-
-            input:focus,
-            textarea:focus,
-            select:focus {
-                outline: none;
-                box-shadow: 0 0 5px $highlight-color;
-            }
-        }
-    }
-
-    .btn-form {
-        padding: $spacing-xs;
-        border-radius: $border-button;
-        font-size: $font-size-xs;
-        color: $text-color;
-        cursor: pointer;
-        transition: background 0.3s ease;
-
-        &:hover {
-            background: $highlight-color-hover;
-            cursor: pointer;
-        }
-    }
-}
-
-.configuration-container {
-    position: relative;
-}
-
-.form-container {
-    position: absolute;
-    top: 0;
-    left: calc(70%)
-}
-
-.form-active {
-    display: flex;
-}
-
-.form-content {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-content: flex-start;
-    overflow: hidden;
-}
-
-.form-button {
-    margin-top: auto;
-    display: flex;
-    align-self: end;
-}
-
-.btn-form {
-    margin-left: $spacing-xxs;
-}
-
-.btn-form:hover {
-    cursor: pointer;
-}
-
-.btn-form-cancel {
-    background-color: $save-background;
-}
-
-.btn-form-delete {
-    background-color: $delete-background;
-}
-
-.btn-form-save {
-    background-color: $cancel-background;
-}
-
-.custom-dialog {
-    border-radius: 50%;
-}
 
 // Nút bấm tạo thông báo
 .buttons {
