@@ -30,7 +30,6 @@ export class ConfigurationComponent implements OnInit {
   form: string = "";
   barSelected: number = 1;
   statusIdSelected: number = 0;
-
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
   constructor(private taskService: TaskService,
@@ -180,7 +179,8 @@ export class ConfigurationComponent implements OnInit {
             this.createCompany(result.companyDTO);
             break;
           case 'editUser':
-            this.updateCompany(result.companyDTO, this.companyId);
+            
+            this.updateUser(result.userDTO, this.emailUser);
             break;
         }
       }
@@ -356,6 +356,7 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
+
   updateStatus(statusDTO: any, statusId:number){
     debugger
     this.statusService.updateStatus(statusDTO, statusId).subscribe({
@@ -363,6 +364,28 @@ export class ConfigurationComponent implements OnInit {
         debugger
         this.addNotification("Update successfully!", "info")
         this.getAllStatus();
+      }
+      ,
+      complete: () => {
+        debugger;
+
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error")
+      }
+    }
+    )
+  }
+
+  updateUser(userDTO:any,emailUser:string){
+    debugger
+    this.userService.updateUser(userDTO, emailUser).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("Update successfully!", "info")
+        this.getAllUser();
       }
       ,
       complete: () => {
