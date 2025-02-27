@@ -105,7 +105,7 @@
     <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 3}">
       <div class="configuration-content__header">
         <div class="configuration-content__add-btn" (click)="openPopupUser('addNewUser')">+ Add New</div>
-        <div class="configuration-content__refresh-btn">
+        <div class="configuration-content__refresh-btn" (click)="getRoles()">
           <i class="fa fa-refresh"></i>
         </div>
       </div>

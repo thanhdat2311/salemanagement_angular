@@ -32,7 +32,7 @@ export class NotificationComponent {
 
     setTimeout(() => {
       this.removeNotification(id);
-    }, 3000);
+    }, 5000);
   }
 
   removeNotification(id: number) {

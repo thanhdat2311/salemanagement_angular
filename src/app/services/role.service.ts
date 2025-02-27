@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 }
 )
 export class RoleService{
-    private apiGetRoles = `http://localhost:8088/api/v1/roles`
+    private apiGetRoles = `http://localhost:8088/salemanagement/v1/role`
     constructor(private http: HttpClient){}
     private createHeaders(): HttpHeaders {
         return new HttpHeaders({
@@ -17,7 +17,7 @@ export class RoleService{
         });
       }
         getRoles(){
-            return this.http.get<any[]>(this.apiGetRoles, { headers: this.createHeaders() })
+            return this.http.get(this.apiGetRoles, { headers: this.createHeaders() })
         }
     
 }

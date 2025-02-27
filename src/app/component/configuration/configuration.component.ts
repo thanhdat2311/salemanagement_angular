@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotificationComponent } from '../notification/notification.component';
 import { delay } from 'rxjs';
 import { StatusService } from 'src/app/services/status.service';
+import { Role } from '../models/role';
+import { RoleService } from 'src/app/services/role.service';
 
 @Component({
   selector: 'app-configuration',
@@ -23,16 +25,19 @@ export class ConfigurationComponent implements OnInit {
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
+  roles: Role[] = [];
   companyId: number = 0;
   form: string = "";
   barSelected: number = 1;
   statusIdSelected: number = 0;
+
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
     private companyService: CompanyService,
     private statusService: StatusService,
+    private roleService: RoleService,
     private fb: FormBuilder,
     public dialog: MatDialog,
 
@@ -47,7 +52,7 @@ export class ConfigurationComponent implements OnInit {
     this.getAllCompany();
     this.getAllStatus();
     this.getAllUser();
-
+    this.getRoles()
     this.loading = false
 
     this.barList = [
@@ -55,6 +60,7 @@ export class ConfigurationComponent implements OnInit {
       { id: 2, name: "Status" },
       { id: 3, name: "User" }]
   }
+
 
   openPopupStatus(toDoConfig: string): void {
     let statusPopUp;
@@ -87,12 +93,6 @@ export class ConfigurationComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         switch (result.todo) {
-          case 'addNewStatus':
-            this.createStatus(result.statusDTO);
-            break;
-          case 'editCustomer':
-            this.updateCompany(result.companyDTO, this.companyId);
-            break;
           case 'addNewStatus':
             this.createStatus(result.statusDTO);
             break;
@@ -146,24 +146,24 @@ export class ConfigurationComponent implements OnInit {
   };
 
   openPopupUser(toDoConfig: string): void {
-    let userListPopUp;
+    let userPopUp;
     let companySelect;
     switch (toDoConfig) {
       case 'addNewUser':
-        userListPopUp = {
+        userPopUp = {
           barId: this.barSelected,
           todo: toDoConfig,
-          userList: this.userList
+          roleList: this.roles
         }
         break;
 
       case 'editUser':
-        companySelect = this.companyList.find(company => company.id == this.companyId)
-        userListPopUp = {
+        const userSelected = this.userList.find(user => user.email == this.emailUser)
+        userPopUp = {
           barId: this.barSelected,
           todo: toDoConfig,
-          userList: this.userList,
-          companySelect: companySelect
+          userSelected: userSelected,
+          roleList: this.roles
         }
         break;
 
@@ -171,15 +171,15 @@ export class ConfigurationComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '500px',  // Chiều rộng popup
       disableClose: false,
-      data: userListPopUp
+      data: userPopUp
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         switch (result.todo) {
-          case 'addNewCustomer':
+          case 'addNewUser':
             this.createCompany(result.companyDTO);
             break;
-          case 'editCustomer':
+          case 'editUser':
             this.updateCompany(result.companyDTO, this.companyId);
             break;
         }
@@ -259,6 +259,24 @@ export class ConfigurationComponent implements OnInit {
     }
     )
 
+  }
+
+  getRoles(){
+    this.roleService.getRoles().subscribe({
+      next: (response: any) => {
+        debugger
+        this.roles = response;
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+      }
+    }
+    )
   }
 
   openTab(tabName: string, event: Event) {
