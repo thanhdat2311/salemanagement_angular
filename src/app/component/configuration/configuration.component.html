@@ -76,7 +76,7 @@
         <div class="configuration-table__content" *ngFor="let status of statusList">
           <ul class="configuration-table__content-line status-configuration__table"
             (click)="onStatusSelected(status.id, 'status'); openPopupStatus('editStatus')"
-            [ngClass]="{'configuration-table__content-line--active':status.id === statusSelected}">
+            [ngClass]="{'configuration-table__content-line--active':status.id === statusIdSelected}">
             <li>{{status.id}}</li>
             <li>{{status.name}}</li>
           </ul>

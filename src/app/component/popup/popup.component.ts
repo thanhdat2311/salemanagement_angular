@@ -50,6 +50,9 @@ export class PopupComponent implements OnInit {
         this.customerPhone = this.data.companySelect.phone;
         this.selectedUserEmails = this.data.companySelect.assignedPerson.email;
         break;
+        case 'editStatus':
+          this.statusName = this.data.statusSelected.name
+          break;
     }
   }
   onClose(): void {
@@ -75,14 +78,13 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("Invalid email!", 'warning');
             return;
           }
-          this.notificationComponent.addNotification("Succesfully Create New Customer!", 'success');
           const companyDTO = {
             companyName: this.companyName,
             email: this.customerEmail,
             phone: this.customerPhone,
             assigned_person: this.selectedUserEmails
           };
-          const dataBackConfig ={todo:"addNewCustomer",companyDTO};
+          dataBackConfig ={todo: toDo,companyDTO};
           this.dialogRef.close(dataBackConfig);
           break;
         }
@@ -105,7 +107,7 @@ export class PopupComponent implements OnInit {
             phone: this.customerPhone,
             assigned_person: this.selectedUserEmails
           };
-          const dataBackConfig ={todo:"editCustomer",companyDTO};
+          const dataBackConfig ={todo:toDo,companyDTO};
           this.dialogRef.close(dataBackConfig);
           break;
         }
@@ -117,6 +119,9 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("The Status must be between 3 and 50 characters!", 'warning');
             return;
           }
+          const statusDTO = {name: this.statusName}
+          dataBackConfig = {todo: toDo, statusDTO}
+          this.dialogRef.close(dataBackConfig);
           break;
         }
       case 'editStatus':
@@ -127,6 +132,9 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("The Status must be between 3 and 50 characters!", 'warning');
             return;
           }
+          const statusDTO = {name: this.statusName}
+          dataBackConfig = {todo: toDo, statusDTO}
+          this.dialogRef.close(dataBackConfig);
           break;
         }
       case 'addNewUser':

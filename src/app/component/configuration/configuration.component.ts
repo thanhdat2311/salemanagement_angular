@@ -10,6 +10,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationComponent } from '../notification/notification.component';
 import { delay } from 'rxjs';
+import { StatusService } from 'src/app/services/status.service';
 
 @Component({
   selector: 'app-configuration',
@@ -25,12 +26,13 @@ export class ConfigurationComponent implements OnInit {
   companyId: number = 0;
   form: string = "";
   barSelected: number = 1;
-  statusSelected: number = 0;
+  statusIdSelected: number = 0;
   emailUser: string = '';
   barList: { id: number; name: string }[] = [];
   constructor(private taskService: TaskService,
     private userService: UserService,
     private companyService: CompanyService,
+    private statusService: StatusService,
     private fb: FormBuilder,
     public dialog: MatDialog,
 
@@ -45,7 +47,7 @@ export class ConfigurationComponent implements OnInit {
     this.getAllCompany();
     this.getAllStatus();
     this.getAllUser();
-    
+
     this.loading = false
 
     this.barList = [
@@ -53,7 +55,54 @@ export class ConfigurationComponent implements OnInit {
       { id: 2, name: "Status" },
       { id: 3, name: "User" }]
   }
-  
+
+  openPopupStatus(toDoConfig: string): void {
+    let statusPopUp;
+    let companySelect;
+    let statusSelected;
+    switch (toDoConfig) {
+      case 'addNewStatus':
+        statusPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig
+        }
+        break;
+
+      case 'editStatus':
+        statusSelected = this.statusList.find(status => status.id == this.statusIdSelected)
+        statusPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          userList: this.userList,
+          statusSelected: statusSelected
+        }
+        break;
+
+    }
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '500px',  // Chiều rộng popup
+      disableClose: false,
+      data: statusPopUp
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        switch (result.todo) {
+          case 'addNewStatus':
+            this.createStatus(result.statusDTO);
+            break;
+          case 'editCustomer':
+            this.updateCompany(result.companyDTO, this.companyId);
+            break;
+          case 'addNewStatus':
+            this.createStatus(result.statusDTO);
+            break;
+          case 'editStatus':
+            this.updateStatus(result.statusDTO,this.statusIdSelected);
+            break;
+        }
+      }
+    })
+  };
   openPopupCustomer(toDoConfig: string): void {
     let userListPopUp;
     let companySelect;
@@ -95,47 +144,7 @@ export class ConfigurationComponent implements OnInit {
       }
     })
   };
-  openPopupStatus(toDoConfig: string): void {
-    let userListPopUp;
-    let companySelect;
-    switch (toDoConfig) {
-      case 'addNewStatus':
-        userListPopUp = {
-          barId: this.barSelected,
-          todo: toDoConfig,
-          userList: this.userList
-        }
-        break;
 
-      case 'editStatus':
-        companySelect = this.companyList.find(company => company.id == this.companyId)
-        userListPopUp = {
-          barId: this.barSelected,
-          todo: toDoConfig,
-          userList: this.userList,
-          companySelect: companySelect
-        }
-        break;
-
-    }
-    const dialogRef = this.dialog.open(PopupComponent, {
-      width: '500px',  // Chiều rộng popup
-      disableClose: false,
-      data: userListPopUp
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        switch (result.todo) {
-          case 'addNewCustomer':
-            this.createCompany(result.companyDTO);
-            break;
-          case 'editCustomer':
-            this.updateCompany(result.companyDTO, this.companyId);
-            break;
-        }
-      }
-    })
-  };
   openPopupUser(toDoConfig: string): void {
     let userListPopUp;
     let companySelect;
@@ -195,7 +204,7 @@ export class ConfigurationComponent implements OnInit {
     this.form = formUSer;
   }
   onStatusSelected(statusId: number, formStatus: string) {
-    this.statusSelected = statusId;
+    this.statusIdSelected = statusId;
     this.form = formStatus;
   }
 
@@ -286,7 +295,29 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  
+
+  createStatus(statusDTO: any) {
+    this.statusService.createStatus(statusDTO).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("add new successfully!", "info")
+        this.getAllStatus();
+      }
+      ,
+      complete: () => {
+        debugger;
+
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error")
+
+      }
+    }
+    )
+  }
+
   updateCompany(companyDTO: any, companySelected: number) {
     this.companyService.updateCompany(companyDTO, companySelected).subscribe({
       next: (response: any) => {
@@ -304,10 +335,30 @@ export class ConfigurationComponent implements OnInit {
         debugger
         this.addNotification(error.error, "error")
       }
-      }
+    }
     )
   }
+  updateStatus(statusDTO: any, statusId:number){
+    debugger
+    this.statusService.updateStatus(statusDTO, statusId).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("Update successfully!", "info")
+        this.getAllStatus();
+      }
+      ,
+      complete: () => {
+        debugger;
 
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error")
+      }
+    }
+    )
+  }
   addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
     this.notificationComponent.addNotification(content, type);
   }
