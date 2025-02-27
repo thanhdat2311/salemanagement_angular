@@ -1,18 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
 import { CompanyService } from 'src/app/services/company.service';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import { RoleService } from 'src/app/services/role.service';
+import { StatusService } from 'src/app/services/status.service';
+
 import { Company } from '../models/company';
 import { Status } from '../models/status';
 import { AssignedPerson } from '../models/user';
-import { PopupComponent } from '../popup/popup.component';
-import { MatDialog } from '@angular/material/dialog';
-import { NotificationComponent } from '../notification/notification.component';
-import { delay } from 'rxjs';
-import { StatusService } from 'src/app/services/status.service';
 import { Role } from '../models/role';
-import { RoleService } from 'src/app/services/role.service';
+
+import { PopupComponent } from '../popup/popup.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-configuration',
@@ -20,19 +22,29 @@ import { RoleService } from 'src/app/services/role.service';
   styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent implements OnInit {
+  // Child Components
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+
+  // Loading variables
   loading = true;
+
+  // Variables for save data
   companyList: Company[] = [];
   statusList: Status[] = [];
   userList: AssignedPerson[] = [];
   roles: Role[] = [];
-  companyId: number = 0;
-  form: string = "";
-  barSelected: number = 1;
-  statusIdSelected: number = 0;
 
+  // Variables for visible bar
+  barSelected: number = 1;
+  
+  // Variables for open popup
+  companyId: number = 0;
+  statusId: number = 0;
   emailUser: string = '';
+
+  
   barList: { id: number; name: string }[] = [];
+
   constructor(private taskService: TaskService,
     private userService: UserService,
     private companyService: CompanyService,
@@ -61,7 +73,7 @@ export class ConfigurationComponent implements OnInit {
       { id: 3, name: "User" }]
   }
 
-
+  // Methods to open the dialog
   openPopupStatus(toDoConfig: string): void {
     let statusPopUp;
     let companySelect;
@@ -75,7 +87,7 @@ export class ConfigurationComponent implements OnInit {
         break;
 
       case 'editStatus':
-        statusSelected = this.statusList.find(status => status.id == this.statusIdSelected)
+        statusSelected = this.statusList.find(status => status.id == this.statusId)
         statusPopUp = {
           barId: this.barSelected,
           todo: toDoConfig,
@@ -97,7 +109,7 @@ export class ConfigurationComponent implements OnInit {
             this.createStatus(result.statusDTO);
             break;
           case 'editStatus':
-            this.updateStatus(result.statusDTO,this.statusIdSelected);
+            this.updateStatus(result.statusDTO,this.statusId);
             break;
         }
       }
@@ -144,7 +156,6 @@ export class ConfigurationComponent implements OnInit {
       }
     })
   };
-
   openPopupUser(toDoConfig: string): void {
     let userPopUp;
     let companySelect;
@@ -187,27 +198,23 @@ export class ConfigurationComponent implements OnInit {
     })
   };
 
-  onCanceled() {
-    this.form = ""
-  }
   onBarSelected(barID: number) {
     this.barSelected = barID;
-    this.form = ""
   }
+
+  // Methods to open bar
   onCompanySelected(companyId: number, formName: string) {
     this.companyId = companyId;
-    this.form = formName;
   }
   onUserSelected(email: string, formUSer: string) {
     debugger
     this.emailUser = email;
-    this.form = formUSer;
   }
   onStatusSelected(statusId: number, formStatus: string) {
-    this.statusIdSelected = statusId;
-    this.form = formStatus;
+    this.statusId = statusId;
   }
 
+  // Methods to call API
   getAllUser() {
     this.userService.getAllUser().subscribe({
       next: (response: any) => {
@@ -260,7 +267,6 @@ export class ConfigurationComponent implements OnInit {
     )
 
   }
-
   getRoles(){
     this.roleService.getRoles().subscribe({
       next: (response: any) => {
@@ -279,19 +285,7 @@ export class ConfigurationComponent implements OnInit {
     )
   }
 
-  openTab(tabName: string, event: Event) {
-    // Xóa class active khỏi tất cả tab
-    const tabs = document.querySelectorAll('.tab-content');
-    const buttons = document.querySelectorAll('.tab-button');
-
-    tabs.forEach(tab => tab.classList.remove('active'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // Hiển thị tab được chọn
-    document.getElementById(tabName)?.classList.add('active');
-    (event.target as HTMLElement).classList.add('active');
-  }
-
+  // Methods to create or update data
   createCompany(companyDTO: any) {
     this.companyService.createCompany(companyDTO).subscribe({
       next: (response: any) => {
@@ -313,7 +307,6 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-
   createStatus(statusDTO: any) {
     this.statusService.createStatus(statusDTO).subscribe({
       next: (response: any) => {
@@ -335,7 +328,6 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-
   updateCompany(companyDTO: any, companySelected: number) {
     this.companyService.updateCompany(companyDTO, companySelected).subscribe({
       next: (response: any) => {
@@ -377,6 +369,8 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
+
+  // Methods to get notifications
   addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
     this.notificationComponent.addNotification(content, type);
   }

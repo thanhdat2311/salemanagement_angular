@@ -7,95 +7,103 @@
     justify-content: space-between;
     overflow: hidden;
     gap: $spacing-xs;
+    
+    .configuration-bar {
+        background-color: $background;
+        width: 20%;
+        border-radius: $spacing-input;
+        box-shadow: $box-shadow !important;
+
+        .configuration-bar__header-text {
+            color: $text-color;
+            padding: $spacing-input;
+            font-size: $font-size-lg;
+            text-transform: uppercase;
+        }
+
+        .configuration-bar_list {
+            font-size: $font-size-sm;
+            color: $text-color;
+            list-style-type: none;
+            padding: $spacing-sm;
+
+            li {
+                padding: $spacing-xs 0;
+                padding-left: 1.8rem;
+                margin-bottom: $spacing-xxs;
+                border-radius: $border-button;
+
+                &:hover {
+                    background-color: $hover-label;
+                    cursor: pointer;
+                }
+            }
+
+            li.configuration-bar_list--active {
+                background-color: $active-label;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .configuration-content {
+        display: none;
+        flex-direction: column;
+        padding: $spacing-sm;
+        background-color: $background;
+        width: 80%;
+        border-radius: $border-container;
+        box-shadow: $box-shadow;
+
+        .configuration-content__header {
+            display: flex;
+            flex-direction: row;
+
+            .configuration-content__add-btn {
+                background-color: $highlight-color;
+                font-size: $font-size-sm;
+                color: $text-color;
+                padding: $spacing-xs $spacing-sm;
+                border-radius: $border-button;
+            }
+
+            .configuration-content__refresh-btn {
+                background-color: $highlight-color;
+                font-size: $font-size-lg;
+                color: $text-color;
+                padding: $spacing-xxs $spacing-input;
+                margin-left: $spacing-input;
+                border-radius: 50%;
+
+                i {
+                    font-size: $font-size-lg;
+                }
+            }
+
+            .configuration-content__add-btn:hover,
+            .configuration-content__refresh-btn:hover {
+                background-color: $highlight-color-hover;
+                cursor: pointer;
+            }
+        }
+
+        .configuration-content__middle {
+            flex-grow: 2;
+            display: flex;
+            flex-direction: column;
+            margin-top: $spacing-xs;
+            overflow: hidden;
+        }
+    }
+
+    .content-active {
+        display: flex;
+    }
 }
 
-.configuration-bar {
-    background-color: $background;
-    width: 20%;
-    border-radius: $spacing-input;
-    box-shadow: $box-shadow !important;
-}
 
-.configuration-content {
-    display: none;
-    background-color: $background;
-    width: 80%;
-    border-radius: $border-container;
-    box-shadow: $box-shadow;
-}
 
-.configuration-bar__header-text {
-    color: $text-color;
-    padding: $spacing-input;
-    font-size: $font-size-lg;
-    text-transform: uppercase;
-}
 
-.configuration-bar_list {
-    font-size: $font-size-sm;
-    color: $text-color;
-    list-style-type: none;
-    padding: $spacing-sm;
-}
-
-.configuration-bar_list>li {
-    padding: $spacing-xs 0;
-    padding-left: 1.8rem;
-    margin-bottom: $spacing-xxs;
-    border-radius: $border-button;
-}
-
-.configuration-bar_list>li:hover {
-    background-color: $hover-label;
-    cursor: pointer;
-}
-
-.configuration-bar_list>li.configuration-bar_list--active {
-    background-color: $active-label;
-    cursor: pointer;
-}
-
-.configuration-content {
-    display: none;
-    padding: $spacing-sm;
-    flex-direction: column;
-}
-
-.content-active {
-    display: flex;
-}
-
-.configuration-content__header {
-    display: flex;
-    flex-direction: row;
-}
-
-.configuration-content__add-btn {
-    background-color: $highlight-color;
-    font-size: $font-size-sm;
-    color: $text-color;
-    padding: $spacing-xs $spacing-sm;
-    border-radius: $border-button;
-}
-
-.configuration-content__add-btn:hover,
-.configuration-content__refresh-btn:hover {
-    background-color: $highlight-color-hover;
-    cursor: pointer;
-}
-
-.configuration-content__refresh-btn {
-    background-color: $highlight-color;
-    font-size: $font-size-lg;
-    color: $text-color;
-    padding: $spacing-xxs $spacing-input;
-    margin-left: $spacing-input;
-    border-radius: 50%;
-}
-
-.configuration-content__refresh-btn>i {
-    font-size: $font-size-lg;
-}
 
 .configuration-content__middle {
     flex-grow: 2;
