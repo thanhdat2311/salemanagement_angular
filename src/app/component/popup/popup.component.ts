@@ -34,7 +34,7 @@ export class PopupComponent implements OnInit {
   userEmail: string = '';
   userPhone: string = '';
   userAddress: string = '';
-  userRole: string = '';
+  userRole: number = 0;
   isActive: boolean = true;
 
   assigned_person: string[] = [];
@@ -64,7 +64,7 @@ export class PopupComponent implements OnInit {
         this.userEmail = this.data.userSelected.email;
         this.userAddress = this.data.userSelected.address;
         this.userPhone = this.data.userSelected.phone;
-        this.userRole = this.data.userSelected.role;
+        this.userRole = this.data.userSelected.role.id;
         this.isActive = this.data.userSelected.is_active;
         break;
 
@@ -212,7 +212,7 @@ export class PopupComponent implements OnInit {
             address : this.userAddress,
             phone:this.userPhone,
             roleId: this.userRole,
-            is_active: this.isActive
+            is_active: Number(this.isActive)
           }
           const dataBackConfig = { todo: toDo, userDTO };
           this.dialogRef.close(dataBackConfig);
@@ -234,7 +234,7 @@ export class PopupComponent implements OnInit {
     return phoneRegex.test(phone);
   }
   validateAddress(address: string): boolean {
-    const addressRegex = /^[a-zA-Z0-9\s,.-]{5,100}$/;
+    const addressRegex = /^[A-Za-zÀ-Ỹà-ỹ\s,.-]{5,100}$/;
     return addressRegex.test(address);
   }
 }

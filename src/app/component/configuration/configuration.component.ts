@@ -42,7 +42,7 @@ export class ConfigurationComponent implements OnInit {
   statusId: number = 0;
   emailUser: string = '';
 
-  
+  // Variables for open bar
   barList: { id: number; name: string }[] = [];
 
   constructor(private taskService: TaskService,
@@ -191,7 +191,8 @@ export class ConfigurationComponent implements OnInit {
             this.createCompany(result.companyDTO);
             break;
           case 'editUser':
-            this.updateCompany(result.companyDTO, this.companyId);
+            
+            this.updateUser(result.userDTO, this.emailUser);
             break;
         }
       }
@@ -307,6 +308,26 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
+  updateCompany(companyDTO: any, companySelected: number) {
+    this.companyService.updateCompany(companyDTO, companySelected).subscribe({
+      next: (response: any) => {
+        debugger
+        this.addNotification("Update successfully!", "info")
+        this.getAllCompany();
+      }
+      ,
+      complete: () => {
+        debugger;
+
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error")
+      }
+    }
+    )
+  }
   createStatus(statusDTO: any) {
     this.statusService.createStatus(statusDTO).subscribe({
       next: (response: any) => {
@@ -328,12 +349,13 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  updateCompany(companyDTO: any, companySelected: number) {
-    this.companyService.updateCompany(companyDTO, companySelected).subscribe({
+  updateStatus(statusDTO: any, statusId:number){
+    debugger
+    this.statusService.updateStatus(statusDTO, statusId).subscribe({
       next: (response: any) => {
         debugger
         this.addNotification("Update successfully!", "info")
-        this.getAllCompany();
+        this.getAllStatus();
       }
       ,
       complete: () => {
@@ -348,13 +370,13 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  updateStatus(statusDTO: any, statusId:number){
+  updateUser(userDTO:any,emailUser:string){
     debugger
-    this.statusService.updateStatus(statusDTO, statusId).subscribe({
+    this.userService.updateUser(userDTO, emailUser).subscribe({
       next: (response: any) => {
         debugger
         this.addNotification("Update successfully!", "info")
-        this.getAllStatus();
+        this.getAllUser();
       }
       ,
       complete: () => {

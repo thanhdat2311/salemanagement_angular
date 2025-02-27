@@ -17,12 +17,17 @@ export class UserService {
   private apiGetAllUser = `${enviroment.apiBaseUrl}/user/all`;
   private apiUserDetails = `${enviroment.apiBaseUrl}/user/details`;
   private apiUserChangePassword = `${enviroment.apiBaseUrl}/user/changePassword`;
+  private apiUserUpdate = `${enviroment.apiBaseUrl}/user`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept-Language': 'en'
     });
+  }
+
+  updateUser(userDTO:any, emailUser:string){
+    return this.http.put(`${this.apiUserUpdate}/${emailUser}`,userDTO)
   }
   register(registerDTO: RegisterDTO): Observable<any> {
 
