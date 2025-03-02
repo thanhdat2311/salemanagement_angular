@@ -28,6 +28,7 @@ export class PopupComponent implements OnInit {
 
   // For Status
   statusName: string = '';
+  statusColor: string = '#ffffff'; // Default color 
 
   // For User
   userFullName: string = '';

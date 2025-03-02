@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -7,21 +7,10 @@ import { TokenService } from 'src/app/services/token.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   // Variables for drop down menu
   activeAVTDropdown: boolean = false;
-
-  // Variables for active navigation
-  activeNav: string = 'home';
-  
-  ngOnInit(): void {
-    const storedIndex = localStorage.getItem('activeNav');
-    if (storedIndex) {
-      this.activeNav = storedIndex;
-    }
-
-  }
 
   constructor(private tokenService:TokenService,
               private router:Router
@@ -33,11 +22,6 @@ export class HeaderComponent implements OnInit {
     } else {
       this.activeAVTDropdown = false;
     }
-  }
-
-  setActive(index: string) {
-    this.activeNav = index;
-    localStorage.setItem('activeNav', index);
   }
 
   logOut(){

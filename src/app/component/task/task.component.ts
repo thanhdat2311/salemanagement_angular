@@ -209,7 +209,7 @@ export class HomeComponent implements OnInit {
               title: `Successfully!`,
               text: 'Create Task Successfully',
               width: '600px',
-              padding: '1em',
+              // padding: '1em',
               timer: 3000,                  // Thời gian tự động đóng (ms)
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'
@@ -222,7 +222,7 @@ export class HomeComponent implements OnInit {
               title: `Error: Add new unsuccessfully!`,
               text: 'An error occurred. Please try again later!',
               width: '600px',
-              padding: '1em',
+              // padding: '1em',
               timer: 8000,                  // Thời gian tự động đóng (ms)
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'

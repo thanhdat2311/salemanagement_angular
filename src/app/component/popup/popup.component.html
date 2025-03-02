@@ -28,11 +28,17 @@
     <div *ngSwitchCase="2">
         <h3 class="popup-title">Status</h3>
         <div class="popup-content">
-          <div class="popup-group">
+          <div class="popup-group" style="position: relative;">
             <mat-form-field subscriptSizing="fixed" appearance="outline">
                 <mat-label class="custom-label" >Status Name</mat-label>
                 <input matInput placeholder="Enter status name..." [(ngModel)]="statusName">
             </mat-form-field>
+
+            <mat-form-field subscriptSizing="fixed" appearance="outline">
+                <mat-label class="custom-label">Color</mat-label>
+                <input matInput type="color" class="color-input" [(ngModel)]="statusColor" [ngStyle]="{'color': statusColor}">
+            </mat-form-field>
+            <input placeholder="{{statusColor}}" [(ngModel)]="statusColor" class="color-input__content">
           </div>
         </div>
     </div>

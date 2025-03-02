@@ -3,9 +3,9 @@
       <div class="profile__short-info">
         <div class="profile-card profile-card__personal-info">
           <div class="profile-card__avt">LV</div>
-          <div class="profile-card__name">Le Vu Thanh Dat</div>
-          <div class="profile-card__career">Packend Developer</div>
-          <div class="profile-card__address">Bon Be La Nha</div>
+          <div class="profile-card__name">{{userResponse?.name}}</div>
+          <div class="profile-card__career">{{userResponse?.email}}</div>
+          <div class="profile-card__address">{{userResponse?.address}}</div>
           <div class="profile-card__inbox">
             <button class="follow">Follow</button>
             <button class="message">Message</button>
@@ -64,27 +64,23 @@
         <div class="profile-card profile-card__full-info">
           <div class="profile-full-info__content profile-full-info__name first-child">
             <div class="profile-full-info__header">Fullname:</div>
-            <div class="profile-full-info__value">Le Vu Thanh Dat</div>
+            <div class="profile-full-info__value">{{userResponse?.name}}</div>
           </div>
           
           <div class="profile-full-info__content profile-full-info__email">
             <div class="profile-full-info__header">Email:</div>
-            <div class="profile-full-info__value">example#gmail.com</div>
+            <div class="profile-full-info__value">{{userResponse?.email}}</div>
           </div>
           
           <div class="profile-full-info__content profile-full-info__phone">
             <div class="profile-full-info__header">Phone:</div>
-            <div class="profile-full-info__value">1800-2345</div>
+            <div class="profile-full-info__value">{{userResponse?.phone}}</div>
           </div>
-          
-          <div class="profile-full-info__content profile-full-info__facebook">
-            <div class="profile-full-info__header">Facebook:</div>
-            <div class="profile-full-info__value">DoiAnhTeLamEm</div>
-          </div>
+      
           
           <div class="profile-full-info__content profile-full-info__address ">
             <div class="profile-full-info__header">Address:</div>
-            <div class="profile-full-info__value">San Andreas</div>
+            <div class="profile-full-info__value">{{userResponse?.address}}/div>
           </div>
         </div>
         <div class="profile-card profile-card__full-table">

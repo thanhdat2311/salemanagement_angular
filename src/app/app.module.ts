@@ -82,15 +82,7 @@ const routes: Routes = [
   }],
   bootstrap: [
     AppComponent
-    //CompanyComponent,
-    //LoginComponent, 
-    //ChangepasswordComponent,
-    //ResetpasswordComponent,
-    //HomeComponent,
-     //RegisterComponent,
-    //ConfigurationComponent,
-    //PopupComponent,
-    //ProfileComponent
+
   ]
 })
 export class AppModule { }

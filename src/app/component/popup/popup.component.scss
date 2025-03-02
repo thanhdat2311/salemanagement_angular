@@ -40,6 +40,33 @@
                 color: #ccc;
             }
         }
+
+        .color-input {
+            width: 14px;
+            height: 14px;
+            border: none !important;
+        }
+
+    }
+    .color-input__content {
+        position: absolute;
+        right: 51%;
+        top: 60%;
+        background: none;
+        border: none;
+        color: $text-color;
+
+        &:hover {
+            cursor: text;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $placeholder;
+        }
     }
 }
 
