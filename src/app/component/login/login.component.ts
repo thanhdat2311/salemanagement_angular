@@ -88,7 +88,7 @@ export class LoginComponent {
           timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
           confirmButtonText: 'OK'   // Nút xác nhận
         });
-        this.router.navigate(['/'])
+        this.router.navigate(['/home'])
       },
       complete: () => {
         this.getUserDetails();
