@@ -6,16 +6,18 @@ import { ConfigurationComponent } from "./component/configuration/configuration.
 import { NgModule } from "@angular/core";
 import { ResetpasswordComponent } from "./component/resetpassword/resetpassword.component";
 import { ChangepasswordComponent } from "./component/changepassword/changepassword.component";
+import { ProfileComponent } from "./component/profile/profile.component";
 
 const routes: Routes = [
-    {path:'', component: HomeComponent},
+    {path:'home', component: HomeComponent},
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
    // {path:'products/:id', component: DetailProductComponent},
     {path:'configuration', component:ConfigurationComponent},
     {path:'register', component:RegisterComponent},
     {path:'resetPassword', component:ResetpasswordComponent},
-    {path:'changePassword', component:ChangepasswordComponent   }
+    {path:'changePassword', component:ChangepasswordComponent},
+    {path:'myProfile', component:ProfileComponent}
 
 
 
