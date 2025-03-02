@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Task } from '../models/task';
 import { TaskService } from 'src/app/services/task.service';
 import { enviroment } from 'src/app/enviroment/enviroment';
@@ -9,6 +9,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { UserService } from 'src/app/services/user.service';
 import { TaskDTO } from 'src/app/dtos/task.dto';
 import { Status } from '../models/status';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-task',
@@ -16,6 +17,7 @@ import { Status } from '../models/status';
   styleUrls: ['./task.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   dropdownSettings = {};
   dropdownStatusSetting = {};
   status : Status[] = [];
@@ -165,17 +167,8 @@ export class HomeComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-        Swal.fire({
-          position: 'center',
-          icon: 'error',          // Biểu tượng error
-          title: `Error: ${error.error}`,
-          text: 'An error occurred. Please try again later!',
-          width: '600px',
-          padding: '1em',
-          timer: 8000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'
-        });
+        this.addNotification(error.error,"error")
+
       }
     }
     )
@@ -203,30 +196,10 @@ export class HomeComponent implements OnInit {
             this.taskList = response;
             if(this.taskList != null && this.taskList != undefined){ 
               //this.getTaskList(this.taskDTO.companyId)
-            Swal.fire({
-              position: 'center',
-              icon: 'success',          // Biểu tượng error
-              title: `Successfully!`,
-              text: 'Create Task Successfully',
-              width: '600px',
-              padding: '1em',
-              timer: 3000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+              this.addNotification("Create Task Successfully!","success")
             this.clearForm()
           } else{
-            Swal.fire({
-              position: 'center',
-              icon: 'error',          // Biểu tượng error
-              title: `Error: Add new unsuccessfully!`,
-              text: 'An error occurred. Please try again later!',
-              width: '600px',
-              padding: '1em',
-              timer: 8000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+            this.addNotification("Add new unsuccessfully ","warning")
           }
           }
           ,
@@ -236,17 +209,7 @@ export class HomeComponent implements OnInit {
           ,
           error: (error: any) => {
             debugger
-            Swal.fire({
-              position: 'center',
-              icon: 'error',          // Biểu tượng error
-              title: `Error: ${error.error}`,
-              text: 'An error occurred. Please try again later!',
-              width: '600px',
-              padding: '1em',
-              timer: 5000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+            this.addNotification(error.error,"error")
           }
         }
         )
@@ -284,6 +247,8 @@ export class HomeComponent implements OnInit {
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'
             });
+            const companyId = this.selectedCompany ? Number(this.selectedCompany) : 0;
+            this.getTaskList(companyId);
             this.clearForm()
           } else{
             Swal.fire({
@@ -485,5 +450,8 @@ export class HomeComponent implements OnInit {
       startPage = Math.max(endPage - maxVisiblePages + 1, 0);
     }
     return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index)
+  }
+  addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
+    this.notificationComponent.addNotification(content, type);
   }
 }

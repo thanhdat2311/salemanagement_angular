@@ -43,9 +43,9 @@
         </a>
         <div class="acount__dropdown-outer"  [ngClass]="{'active':activeAVTDropdown == true}" (click)="avtDropdown()">
           <div class="acount__dropdown-menu">
-            <div class="dropdown-item dropdown__acount">
+            <div class="dropdown-item dropdown__acount" routerLink="/myProfile">
               <i class="fa-solid fa-user"></i>
-              <div class="dropdown__content dropdown__name" routerLink="/myProfile">thanhdat</div>
+              <div class="dropdown__content dropdown__name">thanhdat</div>
             </div>
             <div  routerLink="/changePassword" class="dropdown-item">
               <i class="fa-solid fa-gear"></i>
