@@ -20,16 +20,16 @@ export class LoginComponent {
   email: string;
   password: string;
   roles: Role[] = [];
-  selectedRole: Role  | undefined;
-  role:number;
-  constructor(private router: Router, 
+  selectedRole: Role | undefined;
+  role: number;
+  constructor(private router: Router,
     private userService: UserService,
     private tokenService: TokenService,
     private roleService: RoleService
   ) {
     this.email = '',
-    this.password = '',
-    this.role = 0
+      this.password = '',
+      this.role = 0
   }
   onPhoneChange() {
     console.log(`Phone type: ${this.email}`);
@@ -37,27 +37,27 @@ export class LoginComponent {
   onRoleChange(event: any) {
     console.log('Role selected:', this.selectedRole);
   }
-  
-  ngOnInit(){
+
+  ngOnInit() {
     debugger
-    
+
   }
-  getUserDetails(){
+  getUserDetails() {
     debugger
     this.userService.getUserDetails().subscribe({
-      
+
       next: (response: any) => {
-      debugger
+        debugger
         this.userService.saveUserToLocalStorage(response)
-        
-         
+
+
       },
       complete: () => {
-        
+
       },
       error: (error: any) => {
         debugger
-        
+
       }
     })
   }
@@ -68,26 +68,27 @@ export class LoginComponent {
     {
       "email": this.email,
       "password": this.password,
-      "roleId":2
+      "roleId": 1
     };
-  
+
     this.userService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
-      debugger
+        debugger
         const message = `${response?.message}`
-        const  token = `${response.token}`;
+        const token = `${response.token}`;
         this.tokenService.setToken(token);
-          Swal.fire({
-            position: 'center',
-            icon: 'success',          // Biểu tượng thành công
-            title: 'Successfully!',
-            text: message,
-            width: '600px',
-            padding: '1em',
-            timer: 5000,                  // Thời gian tự động đóng (ms)
-            timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-            confirmButtonText: 'OK'   // Nút xác nhận
-          })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',          // Biểu tượng thành công
+          title: 'Successfully!',
+          text: message,
+          width: '600px',
+          padding: '1em',
+          timer: 5000,                  // Thời gian tự động đóng (ms)
+          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
+          confirmButtonText: 'OK'   // Nút xác nhận
+        });
+        this.router.navigate(['/'])
       },
       complete: () => {
         this.getUserDetails();

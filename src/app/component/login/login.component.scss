@@ -43,7 +43,7 @@
         color: $text-color;
         font-size: $font-size-md;
       }
-      
+
       input::placeholder {
         color: $placeholder;
       }
@@ -60,7 +60,7 @@
       margin-bottom: 20px;
 
       input {
-        flex:0;
+        flex: 0;
         margin-right: 5px;
 
         &:hover {
@@ -69,7 +69,7 @@
       }
 
       label {
-        flex:9;
+        flex: 9;
         font-size: $font-size-xs;
         margin-top: auto;
         margin-bottom: 0;
@@ -101,6 +101,7 @@
         text-decoration: none;
         font-size: 0.9rem;
         transition: color 0.3s ease;
+        cursor: pointer;
 
         &:hover {
           color: $highlight-color;

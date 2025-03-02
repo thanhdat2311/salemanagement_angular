@@ -360,8 +360,8 @@ export class HomeComponent implements OnInit {
       company: undefined,
       status: undefined,
       completedDate: '',
-      createdAt: '',
-      updatedAt: ''
+      created_at: '',
+      updated_at: ''
     };
   }
   getCompany(email: String) {

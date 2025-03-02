@@ -17,7 +17,7 @@ export class PopupComponent implements OnInit {
   visibleFormId: number = 0;
   numberTest: number = 2;
   // for Role
-  roleSelected:number=2;
+  roleSelected?: Role;
   roleList: Role[] = []
   // For Customer
   companyName: string = '';

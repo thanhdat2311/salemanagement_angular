@@ -58,7 +58,7 @@
                 </mat-form-field>
                 <mat-form-field subscriptSizing="fixed" appearance="outline">
                     <mat-label class="custom-label">Role</mat-label>
-                    <mat-select [(ngModel)]="roleSelected"  >
+                    <mat-select [(ngModel)]="userRole"  >
                         <mat-option *ngFor="let data of roleList" [value]="data.id">{{data.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>

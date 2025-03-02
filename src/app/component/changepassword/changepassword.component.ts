@@ -40,17 +40,8 @@ export class ChangepasswordComponent {
     this.userService.changePassword(changepasswordDTO).subscribe({
       next: (response: any) => {
         debugger
-        Swal.fire({
-          position: 'center',
-          icon: 'success',          // Biểu tượng thành công
-          title: 'Successfully!',
-          text: 'success',
-          width: '600px',
-          padding: '1em',
-          timer: 5000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'   // Nút xác nhận
-        })
+      
+        this.router.navigate(['/'])
       }
       ,
       complete: () => {
@@ -59,7 +50,17 @@ export class ChangepasswordComponent {
       ,
       error: (error: any) => {
         debugger
-
+        Swal.fire({
+          position: 'center',
+          icon: 'error',          // Biểu tượng thành công
+          title: 'Successfully!',
+          text: error.error,
+          width: '600px',
+          padding: '1em',
+          timer: 5000,                  // Thời gian tự động đóng (ms)
+          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
+          confirmButtonText: 'OK'   // Nút xác nhận
+        });
       }
     }
     )

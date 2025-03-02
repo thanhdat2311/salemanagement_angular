@@ -1,3 +1,4 @@
+import { Expose, Transform } from "class-transformer";
 import { Company } from "./company";
 import { Status } from "./status";
 import { AssignedPerson } from "./user";
@@ -13,6 +14,6 @@ export interface Task {
         company: Company|undefined;
         status: Status|undefined;
         completedDate: string;
-        createdAt: string;
-        updatedAt: string;
+        created_at: string;
+        updated_at: string;
       }

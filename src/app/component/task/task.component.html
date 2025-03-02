@@ -39,10 +39,12 @@
               <p class="task-content__status-value">{{task.status?.name}}</p>
             </div>
             <div class="task-content-element task-content__date">
-              <p class="task-content-field task-content__created-date-field">Created date:</p>
-              <p class="task-content__created-date-Value">{{task.createdAt}}</p>
-              <p class="task-content-field task-content__modified-date-field">Created by:</p>
-              <p class="task-content__modified-date-value"></p>
+              <p class="task-content-field task-content__created-date-field">Created:</p>
+              <p class="task-content__created-date-Value">{{task.created_at}}</p>
+            </div>
+            <div class="task-content-element task-content__date">
+            <p class="task-content-field task-content__modified-date-field">Modified:</p>
+            <p class="task-content__modified-date-value">{{task.updated_at}}</p>
             </div>
           </div>
         </div>

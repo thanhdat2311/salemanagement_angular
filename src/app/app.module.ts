@@ -31,6 +31,8 @@ import { ResetpasswordComponent } from './component/resetpassword/resetpassword.
 import { LoadingComponent } from './component/loading/loading.component';
 import { NotificationComponent } from './component/notification/notification.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { AppComponent } from './app/app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -55,7 +57,8 @@ const routes: Routes = [
     ResetpasswordComponent,
     LoadingComponent,
     NotificationComponent,
-    ProfileComponent
+    ProfileComponent,
+    AppComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -69,7 +72,8 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -77,16 +81,14 @@ const routes: Routes = [
     multi:true
   }],
   bootstrap: [
+    AppComponent
     //CompanyComponent,
     //LoginComponent, 
     //ChangepasswordComponent,
     //ResetpasswordComponent,
-    HomeComponent,
-    //OrderComponent
-    //OrderConfirmComponent
+    //HomeComponent,
      //RegisterComponent,
-    //DetailProductComponent,
-    ConfigurationComponent,
+    //ConfigurationComponent,
     //PopupComponent,
     //ProfileComponent
   ]

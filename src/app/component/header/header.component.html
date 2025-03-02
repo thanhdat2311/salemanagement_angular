@@ -19,13 +19,13 @@
         <div class="navbar-collapse" id="navbarContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Notification</a>
+              <a class="nav-link active" href="/configuration">Configuration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sign In</a>
+              <a class="nav-link" href="/login">Sign In</a>
             </li>
           </ul>
         </div>
@@ -45,17 +45,17 @@
           <div class="acount__dropdown-menu">
             <div class="dropdown-item dropdown__acount">
               <i class="fa-solid fa-user"></i>
-              <div class="dropdown__content dropdown__name">LevuThanhDat</div>
+              <div class="dropdown__content dropdown__name">thanhdat</div>
             </div>
-            <div class="dropdown-item">
+            <div  routerLink="/changePassword" class="dropdown-item">
               <i class="fa-solid fa-gear"></i>
-              <div class="dropdown__content dropdown__setting">Setting</div>
+              <div class="dropdown__content dropdown__setting">Change Password</div>
             </div>
             <div class="dropdown-item">
               <i class="fa-solid fa-sliders"></i>
               <div class="dropdown__content dropdown__configuration">Configuration</div>
             </div>
-            <div class="dropdown-item">
+            <div class="dropdown-item" (click)="logOut()">
               <i class="fa-solid fa-right-from-bracket"></i>
               <div class="dropdown__content dropdown__logout">Log out</div>
             </div>
