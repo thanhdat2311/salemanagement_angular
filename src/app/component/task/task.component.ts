@@ -186,7 +186,6 @@ export class HomeComponent implements OnInit {
         this.taskForm.controls['companyId'].setValue(this.selectedCompany);
         this.taskForm.controls['assignedUsers'].setValue(emailListNew);
         this.taskForm.controls['status'].setValue(statusId[0]);
-
         this.taskDTO = {
           ...this.taskForm.value
         };
@@ -196,17 +195,7 @@ export class HomeComponent implements OnInit {
             this.taskList = response;
             if(this.taskList != null && this.taskList != undefined){ 
               //this.getTaskList(this.taskDTO.companyId)
-            Swal.fire({
-              position: 'center',
-              icon: 'success',          // Biểu tượng error
-              title: `Successfully!`,
-              text: 'Create Task Successfully',
-              width: '600px',
-              // padding: '1em',
-              timer: 3000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+           this.addNotification("Add new Successfully", "success")
             this.clearForm()
           } else{
             Swal.fire({
@@ -256,32 +245,13 @@ export class HomeComponent implements OnInit {
             debugger
             this.taskDetail = response;
             if(this.taskDetail != null && this.taskDetail != undefined){ 
-            Swal.fire({
-              position: 'center',
-              icon: 'success',          // Biểu tượng error
-              title: `Successfully!`,
-              text: 'Edit Task Successfully',
-              width: '600px',
-              padding: '1em',
-              timer: 3000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+            this.addNotification("add new successfully!","success");
             const companyId = this.selectedCompany ? Number(this.selectedCompany) : 0;
             this.getTaskList(companyId);
             this.clearForm()
           } else{
-            Swal.fire({
-              position: 'center',
-              icon: 'error',          // Biểu tượng error
-              title: `Error: Edit unsuccessfully!`,
-              text: 'An error occurred. Please try again later!',
-              width: '600px',
-              padding: '1em',
-              timer: 8000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+            this.addNotification("add new unsuccessfully","error");
+
           }
           }
           ,
@@ -291,22 +261,12 @@ export class HomeComponent implements OnInit {
           ,
           error: (error: any) => {
             debugger
-            Swal.fire({
-              position: 'center',
-              icon: 'error',          // Biểu tượng error
-              title: `Error: ${error.error}`,
-              text: 'An error occurred. Please try again later!',
-              width: '600px',
-              padding: '1em',
-              timer: 5000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
+            this.addNotification(error.error,"error");
           }
         }
         )
         } else{
-          alert("Pls Select a Task")
+          this.addNotification("Select a task","warning");
         }
 
         console.log("is to do:" + this.isToDo);
@@ -329,7 +289,7 @@ export class HomeComponent implements OnInit {
           break;
       }
     } else {
-      alert("Please select a company!")
+      this.addNotification("Please select a company!","warning")
     }
   }
   clearForm() {
