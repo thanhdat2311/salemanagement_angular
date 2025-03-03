@@ -36,7 +36,8 @@
             </div>
             <div class="task-content-element task-content__status">
               <p class="task-content-field task-content__status-field">Status:</p>
-              <p class="task-content__status-value">{{task.status?.name}}</p>
+              <p class="task-content__status-value" [style.color]="task.status?.color"  style="font-weight: bold">
+                {{task.status?.name}}</p>
             </div>
             <div class="task-content-element task-content__date">
               <p class="task-content-field task-content__created-date-field">Created:</p>
