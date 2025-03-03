@@ -16,455 +16,391 @@
   /* Fill remaining height */
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   /* Allow wrapping for smaller screens */
   gap: $spacing-xs;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   grid-row: 2;
   margin-bottom: $spacing-sm;
-  overflow: hidden;
+  // overflow: hidden;
   /* Columns for customer, task, and details */
 
-  .header-text {
-    overflow: hidden;
-  }
-
-  .scroll_y {
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
-    &::-webkit-scrollbar {
-      width: 10px;
-      /* Độ rộng thanh cuộn */
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba(16, 21, 47, 0.5);
-      /* Màu nền của track (vùng kéo thanh cuộn) */
-      border-radius: 10px;
-      /* Bo góc */
-    }
-
-
-    /* Với Firefox */
-    scrollbar-width: thin;
-    /* Sử dụng thanh cuộn mỏng */
-    scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
-    /* Màu thanh cuộn và track */
-  }
-
-  .list-customer,
-  .list-task,
-  .task-form,
-  .task-detail {
-    background: $background;
-    flex: 8;
-    flex-direction: column;
-    border-radius: $border-container;
-    box-shadow: $box-shadow;
-    padding: $spacing-xs;
+  .task-content {
     display: flex;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 70%;
+    flex-direction: column;
     color: $text-color;
-    height: 100%;
-    // &:hover {
-    //     transform: translateY(-8px);
-    //     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-    // }
+    width: 30%;
+    // height: 100%;
+    font-size: $font-size-sm;
 
-    h3 {
-      font-size: $font-size-sm;
-      margin-bottom: cals($spacing-xs / 2);
-      color: $highlight-color;
+    .task-header {
+      position: relative;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
-      border-bottom: 2px solid $secondary-background;
-      padding-bottom: calc($spacing-xs / 4);
+      margin-bottom: $spacing-xxs;
+
+      .header-text {
+        margin-left: $spacing-sm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
     }
 
-    h4 {
-      font-size: $font-size-sm;
-      margin-bottom: calc($spacing-xs / 2);
-      color: $text-color;
+    .task-body {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 2px solid $secondary-background;
-      padding-bottom: calc($spacing-xs / 4);
-    }
+      flex-direction: column;
+      background: $background;
+      border-radius: $border-container;
+      padding: $spacing-xs;
+      height: 100%;
+      z-index: 2;
 
-    h6 {
-      font-size: $font-size-xl;
-      color: $text-color;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 0px solid $secondary-background;
-      padding-bottom: calc($spacing-xs / 4);
-      margin-left: 2px;
-    }
+      .task-body__content {
+        list-style-type: none;
 
-    .icon {
-      font-size: $font-size-sm;
-    }
+        .task-body__value {
+          margin-bottom: $spacing-xs;
+          font-size: $font-size-sm;
+          padding: $spacing-xs;
+          border-radius: $border-xxs;
 
-    ul {
-      list-style: none;
-      margin-top: calc($spacing-xxs / 2);
-      font-size: $font-size-xs;
-      width: 100%;
+          &:hover {
+            background: $hover-label;
+            color: $text-color;
+          }
+        }
 
-      li {
-        background: $background;
-        padding: $spacing-xs;
-        border-radius: calc($border-container / 2);
-        cursor: pointer;
-        transition: background 0.3s, transform 0.2s;
-
-        display: flex;
-        flex-direction: column;
-
-        &:hover {
-          background: $hover-label;
-          color: $text-color;
+        .task-body__value.active {
+          background: $active-label;
+          cursor: pointer;
         }
       }
     }
 
-    // p {
-    //     margin-top: calc($spacing-xs / 2);
-    //     font-size: 0.5rem;
-    //     color: $text-color;
-    // }
+    .scroll_y {
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      // /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+      // &::-webkit-scrollbar {
+      //   width: 10px;
+      //   /* Độ rộng thanh cuộn */
+      // }
+
+      // &::-webkit-scrollbar-track {
+      //   background: rgba(16, 21, 47, 0.5);
+      //   /* Màu nền của track (vùng kéo thanh cuộn) */
+      //   border-radius: 10px;
+      //   /* Bo góc */
+      // }
+
+
+      /* Với Firefox */
+      scrollbar-width: thin;
+      /* Sử dụng thanh cuộn mỏng */
+      scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+      /* Màu thanh cuộn và track */
+    }
   }
 
-  .list-task {
-    flex: 3;
-    flex-direction: column;
-
-  }
-
-  .list-customer {
+  .task-content.task-customer {
     width: 10%;
-    flex: 1.5;
-    flex-direction: column;
-
-  }
-}
-
-.task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  /* Khoảng cách giữa các nhóm */
-  justify-content: space-between;
-  /* Đảm bảo các nhóm có khoảng cách đều */
-  height: 100%;
-  /* Đảm bảo phần form chiếm hết chiều cao của task-form */
-  max-height: 100%px;
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* Chiếm hết chiều rộng */
-    margin-bottom: 15px;
-
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      font-size: $font-size-xs;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      background: #2c2f47;
-      color: $text-color;
-      font-size: $font-size-xs;
-    }
-
-    textarea {
-      resize: none;
-      /* Không cho phép kéo giãn */
-      height: 60px;
-      /* Giữ chiều cao cố định */
-    }
   }
 
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex: 4;
+  .task-content.task-list {
+    width: 20%;
 
+    .task-body__navigator-bar {
+      display: flex;
+      justify-content: space-between;
+
+      .todo-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: none;
+        background: $highlight-color;
+        width: 37px;
+        height: 37px;
+        border-radius: $border-xxs;
+        border: none;
+        color: $text-color;
+        font-size: $font-size-lg;
+
+        i {
+          display: none;
+        }
+
+        i.active {
+          display: inline-block;
+        }
+
+        &:hover {
+          background: $highlight-color-hover;
+          cursor: pointer;
+        }
+      }
+
+      .todo-btn.task-filter-btn {
+        margin-right: $spacing-xs;
+      }
+
+      .search-bar {
+        display: flex;
+        width: 70%;
+
+        .search-btn {
+          font-size: $font-size-sm;
+        }
+
+        .task-search-input {
+          // width: 100%;
+          border: none;
+          margin-left: $spacing-xxs;
+          border-radius: $spacing-xxs;
+          color: $text-color;
+          background: $active-label;
+          padding-left: $spacing-xs;
+          padding-right: $spacing-xs;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .todo-btn.task-addnew-btn {
+        // justify-self: end;
+        margin-left: auto;
+      }
+    }
+
+    .task-content {
+      .task-content__title {
+        .task-content__urgent>i {
+          display: none;
+        }
+    
+        .task-content__urgent>.urgent-active {
+          display: inline-block;
+        }
+    
+        .task-content__title-name {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .task-content.task-form {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .task-body__detail {
+
+    }
+    
     .form-group {
-      flex: 3;
-      /* Chia đều khoảng trống */
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      /* Chiếm hết chiều rộng */
+      margin-bottom: 15px;
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: $font-size-xs;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background: #2c2f47;
+        color: $text-color;
+        font-size: $font-size-xs;
+      }
+
+      textarea {
+        resize: none;
+        /* Không cho phép kéo giãn */
+        height: 60px;
+        /* Giữ chiều cao cố định */
+      }
     }
 
-    status-group {
-      flex: 1
+    .row {
+      display: flex;
+      flex-direction: row;
+      flex: 4;
+
+      .form-group {
+        flex: 3;
+        /* Chia đều khoảng trống */
+      }
+
+      status-group {
+        flex: 1
+      }
     }
+
   }
 
-}
 
-
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-
-  .form-check-input {
-
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .form-check-label {
-    font-size: 1rem;
-  }
-}
-
-.action-urgent-group {
-  display: flex;
-  align-items: center; // Căn giữa theo chiều dọc
-  gap: 10px;
-
-  .form-group {
-    flex: 4; // Chia đều khoảng trống
-  }
-
-  /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
-  .urgent-checkbox {
+  .checkbox-group {
     display: flex;
     align-items: center;
-    flex: 0.5;
-    gap: 8px;
-    white-space: nowrap; // Giữ nội dung trên một dòng
+    gap: 2px;
+
+    .form-check-input {
+
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      font-size: 1rem;
+    }
   }
-}
 
-.action-buttons {
-  display: flex;
-  /* Sử dụng flexbox để sắp xếp các nút */
-  justify-content: flex-end;
-  /* Để các nút không giãn ra mà nằm sát nhau */
-  gap: 5px;
-  /* Khoảng cách nhỏ giữa các nút */
-  padding: 0;
-  /* Không có khoảng cách padding bên ngoài */
-  margin-top: 10px;
-  /* Khoảng cách từ phần tử phía trên nếu cần */
-  flex: 0.1;
-}
-
-
-
-.btn:hover {
-  background-color: #0056b3;
-  /* Thay đổi màu nền khi hover */
-}
-
-.form-fill-task {
-  flex: auto;
-}
-
-/* Nút chung */
-.btn {
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: $font-size-xs;
-  transition: background-color 0.3s ease;
-}
-
-/* Nút Save */
-.save-btn {
-  background-color: lighten($secondary-background, 40%);
-}
-
-.save-btn:hover {
-  background-color: lighten($secondary-background, 55%);
-}
-
-/* Nút Edit */
-.delete-btn {
-  background-color: #d63377;
-}
-
-.delete-btn:hover {
-  background-color: #e06b98;
-}
-
-/* Nút View */
-.view-btn {
-  background-color: #5a607f;
-  /* Màu xanh dương */
-}
-
-.view-btn:hover {
-  background-color: #7a809f;
-  /* Màu xanh dương đậm khi hover */
-}
-
-.list-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-  height: 14px;
-  margin-bottom: 8px;
-}
-
-.plus-icon {
-  cursor: pointer;
-  font-size: $font-size-xl;
-  font-weight: bold;
-  color: white;
-}
-
-.plus-icon:hover {
-  color: #ff4081;
-}
-
-.plus-icon.disabled {
-  pointer-events: none;
-  /* Vô hiệu hóa sự kiện click */
-  opacity: 0.5;
-  /* Làm mờ phần tử để trông giống như bị vô hiệu hóa */
-}
-
-// Giả sử biến $secondary-background được định nghĩa trước, ví dụ: #10152f
-.active {
-   background: $active-label !important; // Làm sáng màu nền của $secondary-background 20%
-
-  transition: background 0.3s ease;
-}
-
-::ng-deep .multiselect-dropdown .dropdown-btn {
-  font-size: 12px !important;
-  /* Chữ nhỏ lại */
-  color: $text-color !important;
-  /* Màu chữ */
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  /* Màu nền nhẹ nhàng hơn */
-  padding: $spacing-xxs !important;
-  /* Điều chỉnh padding */
-  transition: all 0.3s ease;
-  margin-right: 50px !important;
-  /* điều chỉnh giá trị này cho phù hợp */
-  white-space: nowrap; // Ngăn không cho xuống dòng
-
-}
-
-::ng-deep .multiselect-dropdown .selected-item {
-  max-width: 160px !important;
-  /* Giới hạn độ rộng của user */
-  white-space: nowrap !important;
-  /* Ngăn chữ xuống dòng */
-  overflow: hidden !important;
-  /* Ẩn phần bị tràn */
-  text-overflow: ellipsis !important;
-  /* Hiển thị dấu "..." nếu quá dài */
-  color: $text-color !important;
-  margin-right: 5px !important;
-  /* điều chỉnh giá trị này cho phù hợp */
-
-}
-
-
-::ng-deep .multiselect-dropdown .dropdown-list * {
-  font-size: $font-size-xs !important;
-  background-color: darken($background, 0.5%) !important;
-  color: white !important;
-  /* Bắt buộc chữ màu trắng */
-}
-
-
-// CSS for new task
-
-.task-content {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: $border-container;
-  border: 1px solid $border-color;
-  padding: $spacing-xs;
-  font-size: $font-size-xs;
-
-  .task-content-element {
+  .action-urgent-group {
     display: flex;
+    align-items: center; // Căn giữa theo chiều dọc
+    gap: 10px;
 
-    p {
-      margin-right: 8px;
+    .form-group {
+      flex: 4; // Chia đều khoảng trống
     }
 
-    .task-content-field {
-      font-weight: 800;
+    /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
+    .urgent-checkbox {
+      display: flex;
+      align-items: center;
+      flex: 0.5;
+      gap: 8px;
+      white-space: nowrap; // Giữ nội dung trên một dòng
     }
+  }
+
+  .action-buttons {
+    display: flex;
+    /* Sử dụng flexbox để sắp xếp các nút */
+    justify-content: flex-end;
+    /* Để các nút không giãn ra mà nằm sát nhau */
+    gap: 5px;
+    /* Khoảng cách nhỏ giữa các nút */
+    padding: 0;
+    /* Không có khoảng cách padding bên ngoài */
+    margin-top: 10px;
+    /* Khoảng cách từ phần tử phía trên nếu cần */
+    flex: 0.1;
   }
 
 
 
-  .task-content__title {
-    .task-content__urgent>i {
-      display: none;
-    }
-
-    .task-content__urgent>.urgent-active {
-      display: inline-block;
-    }
-
-    .task-content__title-name {
-      width: 100%;
-    }
+  .btn:hover {
+    background-color: #0056b3;
+    /* Thay đổi màu nền khi hover */
   }
 
-  &:hover {
-    background-color: $hover-label;
-    cursor: pointer !important;
+  .form-fill-task {
+    flex: auto;
   }
-}
 
-// CSS new customer 
+  /* Nút chung */
+  .btn {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: $font-size-xs;
+    transition: background-color 0.3s ease;
+  }
 
-.list-customer__content>ul {
-  font-size: $font-size-sm;
-  color: $text-color;
-  list-style-type: none;
-}
+  /* Nút Save */
+  .save-btn {
+    background-color: lighten($secondary-background, 40%);
+  }
 
-.list-customer__content>ul>li {
-  padding: $spacing-xs 0;
-  padding-left: 1.8rem;
-  margin-bottom: $spacing-xxs;
-  border-radius: $border-button;
-}
+  .save-btn:hover {
+    background-color: lighten($secondary-background, 55%);
+  }
 
-.list-customer__content>ul>li:hover {
-  background-color: $hover-label;
-  cursor: pointer;
-}
+  /* Nút Edit */
+  .delete-btn {
+    background-color: #d63377;
+  }
 
-.list-customer__content>ul>li.active {
-  background: $active-label;
-  cursor: pointer;
-}
+  .delete-btn:hover {
+    background-color: #e06b98;
+  }
 
-.task-content.active {
-  background-color: $active-label;
-  border: none;
+  /* Nút View */
+  .view-btn {
+    background-color: #5a607f;
+    /* Màu xanh dương */
+  }
+
+  .view-btn:hover {
+    background-color: #7a809f;
+    /* Màu xanh dương đậm khi hover */
+  }
+
+  ::ng-deep .multiselect-dropdown .dropdown-btn {
+    font-size: 12px !important;
+    /* Chữ nhỏ lại */
+    color: $text-color !important;
+    /* Màu chữ */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* Màu nền nhẹ nhàng hơn */
+    padding: $spacing-xxs !important;
+    /* Điều chỉnh padding */
+    transition: all 0.3s ease;
+    margin-right: 50px !important;
+    /* điều chỉnh giá trị này cho phù hợp */
+    white-space: nowrap; // Ngăn không cho xuống dòng
+
+  }
+
+  ::ng-deep .multiselect-dropdown .selected-item {
+    max-width: 160px !important;
+    /* Giới hạn độ rộng của user */
+    white-space: nowrap !important;
+    /* Ngăn chữ xuống dòng */
+    overflow: hidden !important;
+    /* Ẩn phần bị tràn */
+    text-overflow: ellipsis !important;
+    /* Hiển thị dấu "..." nếu quá dài */
+    color: $text-color !important;
+    margin-right: 5px !important;
+    /* điều chỉnh giá trị này cho phù hợp */
+
+  }
+
+
+  ::ng-deep .multiselect-dropdown .dropdown-list * {
+    font-size: $font-size-xs !important;
+    background-color: darken($background, 0.5%) !important;
+    color: white !important;
+    /* Bắt buộc chữ màu trắng */
+  }
+
+
+  // CSS for new task  
+
+
+  
+
+  // &:hover {
+  //   background-color: $hover-label;
+  //   cursor: pointer !important;
+  // }
 }
