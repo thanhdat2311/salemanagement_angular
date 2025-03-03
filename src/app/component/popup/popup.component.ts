@@ -68,7 +68,9 @@ export class PopupComponent implements OnInit {
         this.userRole = this.data.userSelected.role.id;
         this.isActive = this.data.userSelected.is_active;
         break;
-
+        case 'editStatus':
+         this.statusColor = this.data.statusSelected.color
+          break;
     }
   }
   onClose(): void {
@@ -135,7 +137,7 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("The Status must be between 3 and 50 characters!", 'warning');
             return;
           }
-          const statusDTO = { name: this.statusName }
+          const statusDTO = { name: this.statusName, color: this.statusColor}
           dataBackConfig = { todo: toDo, statusDTO }
           this.dialogRef.close(dataBackConfig);
           break;
@@ -148,7 +150,7 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("The Status must be between 3 and 50 characters!", 'warning');
             return;
           }
-          const statusDTO = { name: this.statusName }
+          const statusDTO = { name: this.statusName, color: this.statusColor }
           dataBackConfig = { todo: toDo, statusDTO }
           this.dialogRef.close(dataBackConfig);
           break;

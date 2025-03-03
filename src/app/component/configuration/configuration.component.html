@@ -71,13 +71,15 @@
         <ul class="configuration-table__header status-configuration__table">
           <li>ID</li>
           <li>Name</li>
+          <li>Color</li>
         </ul>
         <div class="configuration-table__content" *ngFor="let status of statusList">
           <ul class="configuration-table__content-line status-configuration__table"
             (click)="onStatusSelected(status.id, 'status'); openPopupStatus('editStatus')"
             [ngClass]="{'configuration-table__content-line--active':status.id === statusId}">
             <li>{{status.id}}</li>
-            <li>{{status.name}}</li>
+            <li [style.color]="status.color" style="font-weight: bold">{{status.name}}</li>
+            <li >{{status.color}}</li>
           </ul>
         </div>
       </div>
