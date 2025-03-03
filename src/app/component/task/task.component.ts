@@ -245,12 +245,12 @@ export class HomeComponent implements OnInit {
             debugger
             this.taskDetail = response;
             if(this.taskDetail != null && this.taskDetail != undefined){ 
-            this.addNotification("add new successfully!","success");
+            this.addNotification("Edit Task","success");
             const companyId = this.selectedCompany ? Number(this.selectedCompany) : 0;
             this.getTaskList(companyId);
             this.clearForm()
           } else{
-            this.addNotification("add new unsuccessfully","error");
+            this.addNotification("unsuccessfully","error");
 
           }
           }

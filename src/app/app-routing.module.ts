@@ -13,7 +13,6 @@ const routes: Routes = [
     {path:'home', component: HomeComponent, canActivate:[AuthGuardFn]},
     {path:'login', component: LoginComponent},
     {path:'register', component: RegisterComponent},
-   // {path:'products/:id', component: DetailProductComponent},
     {path:'configuration', component:ConfigurationComponent,canActivate:[AuthGuardFn]},
     {path:'resetPassword', component:ResetpasswordComponent},
     {path:'changePassword', component:ChangepasswordComponent,canActivate:[AuthGuardFn]},
