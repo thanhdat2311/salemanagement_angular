@@ -192,28 +192,28 @@
         border: 1px solid $border-color;
         padding: $spacing-xs;
         font-size: $font-size-xs;
-      
+
         .todo-content-element {
           display: flex;
-      
+
           p {
             margin-right: 8px;
           }
-      
+
           .todo-content-field {
             font-weight: 800;
           }
-        }   
+        }
 
         .todo-content-element.todo-content__title {
           .todo-content__urgent>i {
             display: none;
           }
-      
+
           .todo-content__urgent>.urgent-active {
             display: inline-block;
           }
-      
+
           .todo-content__title-name {
             width: 100%;
           }
@@ -227,7 +227,7 @@
             width: 50%;
           }
         }
-      
+
         &:hover {
           background-color: $hover-label;
           cursor: pointer !important;
@@ -243,200 +243,178 @@
 
     .task-body__detail {
 
-    }
-    
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      /* Chiếm hết chiều rộng */
-      margin-bottom: 15px;
+      .form-fill-task {
+        flex: auto;
 
-      label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        font-size: $font-size-xs;
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          /* Chiếm hết chiều rộng */
+          margin-bottom: 15px;
+
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: $font-size-xs;
+          }
+
+          input,
+          textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: #2c2f47;
+            color: $text-color;
+            font-size: $font-size-xs;
+          }
+
+          textarea {
+            resize: none;
+            /* Không cho phép kéo giãn */
+            height: 60px;
+            /* Giữ chiều cao cố định */
+          }
+        }
+
+        .row {
+          display: flex;
+          flex-direction: row;
+          flex: 4;
+
+          .form-group {
+            flex: 3;
+            /* Chia đều khoảng trống */
+          }
+
+          status-group {
+            flex: 1
+          }
+        }
+
+        .action-urgent-group {
+          display: flex;
+          align-items: center; // Căn giữa theo chiều dọc
+          gap: 10px;
+
+          .form-group {
+            flex: 4; // Chia đều khoảng trống
+          }
+
+          /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
+          .urgent-checkbox {
+            display: flex;
+            align-items: center;
+            flex: 0.5;
+            gap: 8px;
+            white-space: nowrap; // Giữ nội dung trên một dòng
+          }
+        }
       }
 
-      input,
-      textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background: #2c2f47;
-        color: $text-color;
-        font-size: $font-size-xs;
+      .action-buttons {
+        display: flex;
+        /* Sử dụng flexbox để sắp xếp các nút */
+        justify-content: flex-end;
+        /* Để các nút không giãn ra mà nằm sát nhau */
+        gap: 5px;
+        /* Khoảng cách nhỏ giữa các nút */
+        padding: 0;
+        /* Không có khoảng cách padding bên ngoài */
+        margin-top: 10px;
+        /* Khoảng cách từ phần tử phía trên nếu cần */
+        flex: 0.1;
+
+        /* Nút chung */
+        .btn {
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 8px 12px;
+          cursor: pointer;
+          font-size: $font-size-xs;
+          transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+          background-color: #0056b3;
+          /* Thay đổi màu nền khi hover */
+        }
+
+        /* Nút Save */
+        .save-btn {
+          background-color: lighten($secondary-background, 40%);
+        }
+
+        .save-btn:hover {
+          background-color: lighten($secondary-background, 55%);
+        }
+
+        /* Nút Edit */
+        .delete-btn {
+          background-color: #d63377;
+        }
+
+        .delete-btn:hover {
+          background-color: #e06b98;
+        }
+
+        /* Nút View */
+        .view-btn {
+          background-color: #5a607f;
+          /* Màu xanh dương */
+        }
+
+        .view-btn:hover {
+          background-color: #7a809f;
+          /* Màu xanh dương đậm khi hover */
+        }
       }
-
-      textarea {
-        resize: none;
-        /* Không cho phép kéo giãn */
-        height: 60px;
-        /* Giữ chiều cao cố định */
-      }
     }
 
-    .row {
-      display: flex;
-      flex-direction: row;
-      flex: 4;
 
-      .form-group {
-        flex: 3;
-        /* Chia đều khoảng trống */
-      }
 
-      status-group {
-        flex: 1
-      }
-    }
+
 
   }
 
 
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 2px;
+  // ::ng-deep .multiselect-dropdown .dropdown-btn {
+  //   font-size: 12px !important;
+  //   /* Chữ nhỏ lại */
+  //   color: $text-color !important;
+  //   /* Màu chữ */
+  //   background-color: rgba(255, 255, 255, 0.1) !important;
+  //   /* Màu nền nhẹ nhàng hơn */
+  //   padding: $spacing-xxs !important;
+  //   /* Điều chỉnh padding */
+  //   transition: all 0.3s ease;
+  //   margin-right: 50px !important;
+  //   /* điều chỉnh giá trị này cho phù hợp */
+  //   white-space: nowrap; // Ngăn không cho xuống dòng
 
-    .form-check-input {
+  // }
 
-      margin: 0;
-      cursor: pointer;
-    }
+  // ::ng-deep .multiselect-dropdown .selected-item {
+  //   max-width: 160px !important;
+  //   /* Giới hạn độ rộng của user */
+  //   white-space: nowrap !important;
+  //   /* Ngăn chữ xuống dòng */
+  //   overflow: hidden !important;
+  //   /* Ẩn phần bị tràn */
+  //   text-overflow: ellipsis !important;
+  //   /* Hiển thị dấu "..." nếu quá dài */
+  //   color: $text-color !important;
+  //   margin-right: 5px !important;
+  //   /* điều chỉnh giá trị này cho phù hợp */
 
-    .form-check-label {
-      font-size: 1rem;
-    }
-  }
+  // }
 
-  .action-urgent-group {
-    display: flex;
-    align-items: center; // Căn giữa theo chiều dọc
-    gap: 10px;
-
-    .form-group {
-      flex: 4; // Chia đều khoảng trống
-    }
-
-    /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
-    .urgent-checkbox {
-      display: flex;
-      align-items: center;
-      flex: 0.5;
-      gap: 8px;
-      white-space: nowrap; // Giữ nội dung trên một dòng
-    }
-  }
-
-  .action-buttons {
-    display: flex;
-    /* Sử dụng flexbox để sắp xếp các nút */
-    justify-content: flex-end;
-    /* Để các nút không giãn ra mà nằm sát nhau */
-    gap: 5px;
-    /* Khoảng cách nhỏ giữa các nút */
-    padding: 0;
-    /* Không có khoảng cách padding bên ngoài */
-    margin-top: 10px;
-    /* Khoảng cách từ phần tử phía trên nếu cần */
-    flex: 0.1;
-  }
-
-  .btn:hover {
-    background-color: #0056b3;
-    /* Thay đổi màu nền khi hover */
-  }
-
-  .form-fill-task {
-    flex: auto;
-  }
-
-  /* Nút chung */
-  .btn {
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: $font-size-xs;
-    transition: background-color 0.3s ease;
-  }
-
-  /* Nút Save */
-  .save-btn {
-    background-color: lighten($secondary-background, 40%);
-  }
-
-  .save-btn:hover {
-    background-color: lighten($secondary-background, 55%);
-  }
-
-  /* Nút Edit */
-  .delete-btn {
-    background-color: #d63377;
-  }
-
-  .delete-btn:hover {
-    background-color: #e06b98;
-  }
-
-  /* Nút View */
-  .view-btn {
-    background-color: #5a607f;
-    /* Màu xanh dương */
-  }
-
-  .view-btn:hover {
-    background-color: #7a809f;
-    /* Màu xanh dương đậm khi hover */
-  }
-
-  ::ng-deep .multiselect-dropdown .dropdown-btn {
-    font-size: 12px !important;
-    /* Chữ nhỏ lại */
-    color: $text-color !important;
-    /* Màu chữ */
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    /* Màu nền nhẹ nhàng hơn */
-    padding: $spacing-xxs !important;
-    /* Điều chỉnh padding */
-    transition: all 0.3s ease;
-    margin-right: 50px !important;
-    /* điều chỉnh giá trị này cho phù hợp */
-    white-space: nowrap; // Ngăn không cho xuống dòng
-
-  }
-
-  ::ng-deep .multiselect-dropdown .selected-item {
-    max-width: 160px !important;
-    /* Giới hạn độ rộng của user */
-    white-space: nowrap !important;
-    /* Ngăn chữ xuống dòng */
-    overflow: hidden !important;
-    /* Ẩn phần bị tràn */
-    text-overflow: ellipsis !important;
-    /* Hiển thị dấu "..." nếu quá dài */
-    color: $text-color !important;
-    margin-right: 5px !important;
-    /* điều chỉnh giá trị này cho phù hợp */
-
-  }
-
-
-  ::ng-deep .multiselect-dropdown .dropdown-list * {
-    font-size: $font-size-xs !important;
-    background-color: darken($background, 0.5%) !important;
-    color: white !important;
-    /* Bắt buộc chữ màu trắng */
-  }
-
-
-  // CSS for new task  
-
-  // &:hover {
-  //   background-color: $hover-label;
-  //   cursor: pointer !important;
+  // ::ng-deep .mulisetlect-dropdown .dropdown-list * {
+  //   font-size: $font-size-xs !important;
+  //   background-color: darken($background, 0.5%) !important;
+  //   color: white !important;
+  //   /* Bắt buộc chữ màu trắng */
   // }
 }

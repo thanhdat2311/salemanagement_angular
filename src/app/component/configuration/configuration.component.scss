@@ -13,7 +13,7 @@
         background-color: $background;
         width: 20%;
         border-radius: $spacing-input;
-        box-shadow: $box-shadow !important;
+        // box-shadow: $box-shadow !important;
 
         .configuration-bar__header-text {
             color: $text-color;
@@ -54,7 +54,7 @@
         background-color: $background;
         width: 80%;
         border-radius: $border-container;
-        box-shadow: $box-shadow;
+        // box-shadow: $box-shadow;
 
         .configuration-content__header {
             display: flex;
