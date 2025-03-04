@@ -4,34 +4,52 @@
     <h3>Task Management</h3>
   </header> -->
   <div class="task-container">
-    <div class="list-customer">
-      <div class="list-header">
-        <span class="header-text">CUSTOMER</span>
-        <span class="plus-icon">+</span>
+    <div class="task-content task-customer">
+      <div class="task-header">
+        <span class="header-text">Customer</span>
       </div>
-      <div class="scroll_y list-customer__content">
-        <ul *ngFor="let company of companyList">
-          <li [value]="company.id" (click)="getTaskList(company.id)"
+      <div class="task-body scroll">
+        <ul *ngFor="let company of companyList" class="task-body__content">
+          <li [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
             [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
         </ul>
-        
+        <!-- <ul class="task-body__content">
+          <li class="task-body__value active"> disabled </li>
+          <li class="task-body__value"> disabled </li>
+          <li class="task-body__value"> disabled </li>
+        </ul> -->
       </div>
     </div>
-    <div class="list-task">
-      <div class="list-header">
-        <span class="header-text">TASK</span>
-        <span class="plus-icon" (click)="changeTODO('addnew')">+</span>
+    <div class="task-content task-list">
+      <div class="task-header">
+        <span class="header-text">To do</span>
       </div>
-      <div class="scroll_y">
+      <div class="task-body scroll">
+        <div class="task-body__navigator-bar">
+          <div class="todo-btn task-filter-btn">
+            <i class="fa-solid fa-filter"></i>
+            <i class="fa-solid fa-filter-circle-xmark active"></i>
+          </div>
+          <div class="search-bar">
+            <div (click)="toggleSearch()" class="todo-btn search-btn">
+              <i class="fa-solid fa-magnifying-glass active"></i>
+            </div>
+            <input *ngIf="isOpenSearch" [(ngModel)]="searchText"
+            class="task-search-input" placeholder="Search..." [@expandAnimation]>
+          </div>
+          <div class="todo-btn task-addnew-btn" (click)="changeTODO('addnew')">
+            <i class="fa-solid fa-circle-plus active"></i>
+          </div>
+        </div>
         <div *ngFor="let task of taskList">
-          <div class="task-content" (click)="getTaskDetail(task.id)" 
-          [ngClass]="{'active': task.id === selectedTask}">
+          <div class="task-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
             <div class="task-content-element task-content__title">
               <p class="task-content-field task-content__title-field">Title:</p>
               <p class="task-content__title-name" style="color: pink">{{task.title}}</p>
               <p class="task-content__urgent">
                 <!-- <i class="fa-regular fa-star" [ngClass]="{' urgent-active': task.urgent === false}"></i> -->
-                <i class="fa-solid fa-star" style="color: pink" [ngClass]="{' urgent-active': task.urgent === true}"></i>
+                <i class="fa-solid fa-star" style="color: pink"
+                  [ngClass]="{' urgent-active': task.urgent === true}"></i>
               </p>
             </div>
             <div class="task-content-element task-content__status">
@@ -44,86 +62,87 @@
               <p class="task-content__created-date-Value">{{task.created_at}}</p>
             </div>
             <div class="task-content-element task-content__date">
-            <p class="task-content-field task-content__modified-date-field">Modified:</p>
-            <p class="task-content__modified-date-value">{{task.updated_at}}</p>
+              <p class="task-content-field task-content__modified-date-field">Modified:</p>
+              <p class="task-content__modified-date-value">{{task.updated_at}}</p>
             </div>
           </div>
         </div>
       </div>
-    <!-- // Thế dân -->
-    
+      <!-- // Thế dân -->
+
     </div>
     <!-- <div class="task-detail">  -->
-    <div class="task-form">
-      <form class="form-fill-task" [formGroup]="taskForm" *ngIf="selectedTask || isToDo === 'addnew'">
-        <!-- Title (Dòng 1) -->
-        <div class="form-group">
-          <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
-          <label for="title">Title</label>
-          <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title"
-            formControlName="title" />
-        </div>
-
-        <!-- Description (Dòng 2) -->
-        <div class="form-group">
-          <label for="user">Users</label>
-          <ng-multiselect-dropdown placeholder="Select Users" [settings]="dropdownSettings" 
-          [data]="dropdownList"
-            formControlName="assignedUsers" >
-          </ng-multiselect-dropdown>
-        </div>
-
-        <!-- Combobox để chọn người dùng -->
-        <div class="row">
+    <div class="task-content task-form">
+      <div class="task-header">
+        <span class="header-text">Detail</span>
+      </div>
+      <div class="task-body task-body__detail">
+        <form class="form-fill-task" [formGroup]="taskForm" *ngIf="selectedTask || isToDo === 'addnew'">
+          <!-- Title (Dòng 1) -->
           <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
-              formControlName="description" rows="8"></textarea>
+            <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
+            <label for="title">Title</label>
+            <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title"
+              formControlName="title" />
           </div>
-          <div class="form-group status-group">
-            <label for="status">Status</label>  
-            <ng-multiselect-dropdown placeholder="Select Status" 
-                                      [settings]="dropdownStatusSetting" 
-                                      [data]="status" 
-                                      formControlName="status"
-                                      >
+
+          <!-- Description (Dòng 2) -->
+          <div class="form-group">
+            <label for="user">Users</label>
+            <ng-multiselect-dropdown placeholder="Select Users" [settings]="dropdownSettings" [data]="dropdownList"
+              formControlName="assignedUsers">
             </ng-multiselect-dropdown>
           </div>
-          
+
+          <!-- Combobox để chọn người dùng -->
+          <div class="row">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
+                formControlName="description" rows="8"></textarea>
+            </div>
+            <div class="form-group status-group">
+              <label for="status">Status</label>
+              <ng-multiselect-dropdown placeholder="Select Status" [settings]="dropdownStatusSetting" [data]="status"
+                formControlName="status">
+              </ng-multiselect-dropdown>
+            </div>
+
+          </div>
+          <!-- Action + Urgent (Dòng 3) -->
+          <div class="action-urgent-group">
+            <div class="form-group">
+              <label for="action">Action</label>
+              <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
+                formControlName="action"></textarea>
+            </div>
+            <div class="urgent-checkbox">
+              <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent"
+                formControlName="urgent">
+              <label class="form-check-label" for="urgent">Urgent</label>
+            </div>
+          </div>
+          <!-- Start Date + Completed Date (Dòng 4) -->
+          <div class="row">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate"
+                formControlName="startDate" />
+            </div>
+            <div class="form-group">
+              <label for="completedDate">Completed Date</label>
+              <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
+                name="completedDate" formControlName="completedDate" />
+            </div>
+          </div>
+        </form>
+        <div class="action-buttons">
+          <!-- <button class="btn view-btn" >View</button> -->
+          <button class="btn delete-btn"
+            [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined"
+            (click)="deleteTask(selectedTask)" *ngIf="selectedTask || isToDo === 'addnew'">Delete</button>
+          <button class="btn save-btn" (click)="saveTask()" *ngIf="selectedTask || isToDo === 'addnew'">Save</button>
         </div>
-        <!-- Action + Urgent (Dòng 3) -->
-        <div class="action-urgent-group">
-          <div class="form-group">
-            <label for="action">Action</label>
-            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
-              formControlName="action"></textarea>
-          </div>
-          <div class="urgent-checkbox">
-            <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent"
-              formControlName="urgent">
-            <label class="form-check-label" for="urgent">Urgent</label>
-          </div>
-        </div>
-        <!-- Start Date + Completed Date (Dòng 4) -->
-        <div class="row">
-          <div class="form-group">
-            <label for="startDate">Start Date</label>
-            <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate"
-              formControlName="startDate" />
-          </div>
-          <div class="form-group">
-            <label for="completedDate">Completed Date</label>
-            <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
-              name="completedDate" formControlName="completedDate" />
-          </div>
-        </div>
-      </form>
-      <div class="action-buttons">
-        <!-- <button class="btn view-btn" >View</button> -->
-        <button class="btn delete-btn"
-          [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined"
-          (click)="deleteTask(selectedTask)" *ngIf="selectedTask || isToDo === 'addnew'">Delete</button>
-        <button class="btn save-btn" (click)="saveTask()" *ngIf="selectedTask || isToDo === 'addnew'">Save</button>
       </div>
     </div>
 
@@ -133,5 +152,5 @@
   </div>
   <!-- </div> -->
   <!-- <app-footer></app-footer> -->
-   <app-notification></app-notification>
+  <app-notification></app-notification>
 </div>

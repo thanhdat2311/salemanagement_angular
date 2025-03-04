@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Task } from '../models/task';
 import { TaskService } from 'src/app/services/task.service';
 import { enviroment } from 'src/app/enviroment/enviroment';
@@ -14,7 +15,14 @@ import { NotificationComponent } from '../notification/notification.component';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  styleUrls: ['./task.component.scss'],
+  animations: [
+    trigger('expandAnimation', [
+      state('void', style({ width: '0px', opacity: 0 })),
+      state('*', style({ width: '80%', opacity: 1 })),
+      transition('void <=> *', animate('0.3s ease-in-out'))
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
@@ -48,6 +56,9 @@ export class HomeComponent implements OnInit {
   pages: number[] = [];
   totalPages: number = 0;
   visiblePages: number[] = [];
+  isOpenSearch = false;
+  searchText = '';
+
   constructor(private taskService: TaskService,
     private userService: UserService,
     private fb: FormBuilder) {
@@ -433,5 +444,13 @@ export class HomeComponent implements OnInit {
   }
   addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
     this.notificationComponent.addNotification(content, type);
+  }
+
+  toggleSearch() {
+    if(!this.searchText) {
+      this.isOpenSearch = !this.isOpenSearch;
+    } else {
+      // Call function to search
+    }
   }
 }
