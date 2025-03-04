@@ -15,9 +15,9 @@ const routes: Routes = [
     {path:'register', component: RegisterComponent},
     {path:'configuration', component:ConfigurationComponent,canActivate:[AuthGuardFn]},
     {path:'resetPassword', component:ResetpasswordComponent},
-    {path:'changePassword', component:ChangepasswordComponent,canActivate:[AuthGuardFn]},
-    {path:'myProfile', component:ProfileComponent,canActivate:[AuthGuardFn]},
-    {path:'resetPassword', component:ResetpasswordComponent,canActivate:[AuthGuardFn]}
+    {path:'changePassword', component:ChangepasswordComponent, canActivate:[AuthGuardFn]},
+    {path:'myProfile', component:ProfileComponent, canActivate:[AuthGuardFn]},
+    {path:'resetPassword', component:ResetpasswordComponent, canActivate:[AuthGuardFn]}
 ]; 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

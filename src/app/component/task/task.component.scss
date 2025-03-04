@@ -15,11 +15,8 @@
 .task-container {
   /* Fill remaining height */
   display: flex;
-  flex-direction: row;
-  // flex-wrap: wrap;
-  /* Allow wrapping for smaller screens */
   gap: $spacing-xs;
-  height: 100vh;
+  height: 92vh;
   width: 100%;
   grid-row: 2;
   margin-bottom: $spacing-sm;
@@ -54,8 +51,7 @@
       background: $background;
       border-radius: $border-container;
       padding: $spacing-xs;
-      height: 100%;
-      z-index: 2;
+      height: 97%;
 
       .task-body__content {
         list-style-type: none;
@@ -79,13 +75,13 @@
       }
     }
 
-    .scroll{
-      overflow: scroll;
+    .scroll {
+      overflow-y: auto;
       overflow-x: hidden;
 
       /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
       &::-webkit-scrollbar {
-        width: 10px;
+        display: none;
         /* Độ rộng thanh cuộn */
       }
 
@@ -98,10 +94,10 @@
 
 
       /* Với Firefox */
-      scrollbar-width: thin;
-      /* Sử dụng thanh cuộn mỏng */
-      scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
-      /* Màu thanh cuộn và track */
+      // scrollbar-width: thin;
+      // /* Sử dụng thanh cuộn mỏng */
+      // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+      // /* Màu thanh cuộn và track */
     }
   }
 
@@ -110,11 +106,17 @@
   }
 
   .task-content.task-list {
+    position: relative;
     width: 20%;
 
     .task-body__navigator-bar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding-bottom: 12px;
       display: flex;
       justify-content: space-between;
+      background: $background;
 
       .todo-btn {
         display: flex;
@@ -177,18 +179,58 @@
       }
     }
 
-    .task-content {
-      .task-content__title {
-        .task-content__urgent>i {
-          display: none;
+    .task-body__todo {
+      display: flex;
+      flex-direction: column;
+
+      .todo-content {
+        margin-bottom: 8px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-radius: $border-container;
+        border: 1px solid $border-color;
+        padding: $spacing-xs;
+        font-size: $font-size-xs;
+      
+        .todo-content-element {
+          display: flex;
+      
+          p {
+            margin-right: 8px;
+          }
+      
+          .todo-content-field {
+            font-weight: 800;
+          }
+        }   
+
+        .todo-content-element.todo-content__title {
+          .todo-content__urgent>i {
+            display: none;
+          }
+      
+          .todo-content__urgent>.urgent-active {
+            display: inline-block;
+          }
+      
+          .todo-content__title-name {
+            width: 100%;
+          }
         }
-    
-        .task-content__urgent>.urgent-active {
-          display: inline-block;
+
+        .todo-content-element.todo-content__date {
+          display: flex;
+
+          .date {
+            display: flex;
+            width: 50%;
+          }
         }
-    
-        .task-content__title-name {
-          width: 100%;
+      
+        &:hover {
+          background-color: $hover-label;
+          cursor: pointer !important;
         }
       }
     }
@@ -198,11 +240,10 @@
     width: 70%;
     display: flex;
     flex-direction: column;
-    height: 100%;
 
-    .task-body__detail {
+    // .task-body__detail {
 
-    }
+    // }
     
     .form-group {
       display: flex;
@@ -303,8 +344,6 @@
     flex: 0.1;
   }
 
-
-
   .btn:hover {
     background-color: #0056b3;
     /* Thay đổi màu nền khi hover */
@@ -395,9 +434,6 @@
 
 
   // CSS for new task  
-
-
-  
 
   // &:hover {
   //   background-color: $hover-label;
