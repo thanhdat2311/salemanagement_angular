@@ -10,15 +10,15 @@ import { ProfileComponent } from "./component/profile/profile.component";
 import { AuthGuardFn } from "./component/guards/auth.guard";
 
 const routes: Routes = [
-    {path:'home', component: HomeComponent/*, canActivate:[AuthGuardFn]*/},
+    {path:'home', component: HomeComponent, /* canActivate:[AuthGuardFn] */},
     {path:'login', component: LoginComponent},
+    {path:'', component: LoginComponent},
     {path:'register', component: RegisterComponent},
-   // {path:'products/:id', component: DetailProductComponent},
-    {path:'configuration', component:ConfigurationComponent/*, canActivate:[AuthGuardFn]*/},
+    {path:'configuration', component:ConfigurationComponent,/* canActivate:[AuthGuardFn] */},
     {path:'resetPassword', component:ResetpasswordComponent},
-    {path:'changePassword', component:ChangepasswordComponent/*, canActivate:[AuthGuardFn]*/},
-    {path:'myProfile', component:ProfileComponent/*, canActivate:[AuthGuardFn]*/},
-    {path:'resetPassword', component:ResetpasswordComponent/*, canActivate:[AuthGuardFn]*/}
+    {path:'changePassword', component:ChangepasswordComponent, /* canActivate:[AuthGuardFn] */},
+    {path:'myProfile', component:ProfileComponent, /* canActivate:[AuthGuardFn] */},
+    {path:'resetPassword', component:ResetpasswordComponent, /* canActivate:[AuthGuardFn] */}
 ]; 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

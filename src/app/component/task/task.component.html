@@ -9,44 +9,15 @@
         <span class="header-text">Customer</span>
       </div>
       <div class="task-body">
-        <ul *ngFor="let company of companyList" class="task-body__content scroll">
-          <li [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
-            [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
+        <ul  class="task-body__content scroll">
+          <li *ngFor="let company of companyList"
+          [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
+          [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
+            
         </ul>
+        
         <ul class="task-body__content scroll">
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
-          <li class="task-body__value active"> disabled  asduhaskjdhaskj</li>
+          <li class="task-body__value active"> disabled </li>
           <li class="task-body__value"> disabled </li>
           <li class="task-body__value"> disabled </li>
           <li class="task-body__value"> disabled </li>
@@ -83,7 +54,7 @@
       <div class="task-header">
         <span class="header-text">To do</span>
       </div>
-      <div class="task-body ">
+      <div class="task-body">
         <div class="task-body__navigator-bar">
           <div class="todo-btn task-filter-btn">
             <i class="fa-solid fa-filter"></i>
@@ -100,8 +71,10 @@
             <i class="fa-solid fa-circle-plus active"></i>
           </div>
         </div>
-        <div *ngFor="let task of taskList" class="task-body__todo scroll">
-          <div class="todo-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
+        <div class="task-body__todo scroll">
+          <div 
+          *ngFor="let task of taskList"
+          class="todo-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
             <div class="todo-content-element todo-content__title">
               <p class="todo-content-field todo-content__title-field">Title:</p>
               <p class="todo-content__title-name" style="color: pink">{{task.title}}</p>
@@ -515,71 +488,70 @@
               formControlName="title" />
           </div>
 
-          <!-- Description (Dòng 2) -->
+        <!-- Description (Dòng 2) -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
+              formControlName="description" rows="8"></textarea>
+          </div>
+        <!-- Combobox để chọn người dùng -->
+        <div class="row">
           <div class="form-group">
             <label for="user">Users</label>
             <ng-multiselect-dropdown placeholder="Select Users" [settings]="dropdownSettings" [data]="dropdownList"
               formControlName="assignedUsers">
             </ng-multiselect-dropdown>
           </div>
+          <div class="form-group status-group">
+            <label for="status">Status</label>
+            <ng-multiselect-dropdown placeholder="Select Status" [settings]="dropdownStatusSetting" [data]="status"
+              formControlName="status">
+            </ng-multiselect-dropdown>
+          </div>
 
-          <!-- Combobox để chọn người dùng -->
-          <div class="row">
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
-                formControlName="description" rows="8"></textarea>
-            </div>
-            <div class="form-group status-group">
-              <label for="status">Status</label>
-              <ng-multiselect-dropdown placeholder="Select Status" [settings]="dropdownStatusSetting" [data]="status"
-                formControlName="status">
-              </ng-multiselect-dropdown>
-            </div>
-
-          </div>
-          <!-- Action + Urgent (Dòng 3) -->
-          <div class="action-urgent-group">
-            <div class="form-group">
-              <label for="action">Action</label>
-              <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
-                formControlName="action"></textarea>
-            </div>
-            <div class="urgent-checkbox">
-              <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent"
-                formControlName="urgent">
-              <label class="form-check-label" for="urgent">Urgent</label>
-            </div>
-          </div>
-          <!-- Start Date + Completed Date (Dòng 4) -->
-          <div class="row">
-            <div class="form-group">
-              <label for="startDate">Start Date</label>
-              <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate"
-                formControlName="startDate" />
-            </div>
-            <div class="form-group">
-              <label for="completedDate">Completed Date</label>
-              <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
-                name="completedDate" formControlName="completedDate" />
-            </div>
-          </div>
-        </form>
-        <div class="action-buttons">
-          <!-- <button class="btn view-btn" >View</button> -->
-          <button class="btn delete-btn"
-            [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined"
-            (click)="deleteTask(selectedTask)" *ngIf="selectedTask || isToDo === 'addnew'">Delete</button>
-          <button class="btn save-btn" (click)="saveTask()" *ngIf="selectedTask || isToDo === 'addnew'">Save</button>
         </div>
+        <!-- Action + Urgent (Dòng 3) -->
+        <div class="action-urgent-group">
+          <div class="form-group">
+            <label for="action">Action</label>
+            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
+              formControlName="action"></textarea>
+          </div>
+          <div class="urgent-checkbox">
+            <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent"
+              formControlName="urgent">
+            <label class="form-check-label" for="urgent">Urgent</label>
+          </div>
+        </div>
+        <!-- Start Date + Completed Date (Dòng 4) -->
+        <div class="row">
+          <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control" [value]="taskDetail?.startDate" name="startDate"
+              formControlName="startDate" />
+          </div>
+          <div class="form-group">
+            <label for="completedDate">Completed Date</label>
+            <input type="date" id="completedDate" class="form-control" [value]="taskDetail?.completedDate"
+              name="completedDate" formControlName="completedDate" />
+          </div>
+        </div>
+      </form>
+      <div class="action-buttons">
+        <!-- <button class="btn view-btn" >View</button> -->
+        <button class="btn delete-btn"
+          [disabled]="isToDo=='addnew' || selectedTask == null || selectedTask == undefined"
+          (click)="deleteTask(selectedTask)" *ngIf="selectedTask || isToDo === 'addnew'">Delete</button>
+        <button class="btn save-btn" (click)="saveTask()" *ngIf="selectedTask || isToDo === 'addnew'">Save</button>
       </div>
     </div>
-
-    <ng-template #noTaskSelected>
-      <p>No task selected. Please select a task from the list to view details.</p>
-    </ng-template>
   </div>
-  <!-- </div> -->
-  <!-- <app-footer></app-footer> -->
-  <app-notification></app-notification>
+
+  <ng-template #noTaskSelected>
+    <p>No task selected. Please select a task from the list to view details.</p>
+  </ng-template>
+<!-- </div> -->
+<!-- </div> -->
+<!-- <app-footer></app-footer> -->
+<app-notification></app-notification>
 </div>
