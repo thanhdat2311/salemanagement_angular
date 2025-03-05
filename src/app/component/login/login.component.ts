@@ -9,6 +9,7 @@ import { LoginResponse } from 'src/app/response/user/login.response';
 import { RoleService } from 'src/app/services/role.service';
 import { Role } from '../models/role';
 import { UserResponse } from 'src/app/response/user/user.response';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { UserResponse } from 'src/app/response/user/user.response';
 })
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   email: string;
   password: string;
   roles: Role[] = [];
@@ -77,17 +79,7 @@ export class LoginComponent {
         const message = `${response?.message}`
         const token = `${response.token}`;
         this.tokenService.setToken(token);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',          // Biểu tượng thành công
-          title: 'Successfully!',
-          text: message,
-          width: '600px',
-          padding: '1em',
-          timer: 5000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'   // Nút xác nhận
-        });
+        this.notificationComponent.addNotification("Login Successfully!", "success");
         this.router.navigate(['/home'])
       },
       complete: () => {
@@ -96,17 +88,7 @@ export class LoginComponent {
       },
       error: (error: any) => {
         debugger
-        Swal.fire({
-          position: 'center',
-          icon: 'error',          // Biểu tượng error
-          title: `${error.error.message}`,
-          text: 'An error occurred. Please try again later!',
-          width: '600px',
-          padding: '1em',
-          timer: 8000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'
-        });
+        this.notificationComponent.addNotification("Login fail!", "error");
       }
     })
   }

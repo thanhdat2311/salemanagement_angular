@@ -12,6 +12,7 @@ import { AuthGuardFn } from "./component/guards/auth.guard";
 const routes: Routes = [
     {path:'home', component: HomeComponent, canActivate:[AuthGuardFn]},
     {path:'login', component: LoginComponent},
+    {path:'', component: LoginComponent},
     {path:'register', component: RegisterComponent},
     {path:'configuration', component:ConfigurationComponent,canActivate:[AuthGuardFn]},
     {path:'resetPassword', component:ResetpasswordComponent},

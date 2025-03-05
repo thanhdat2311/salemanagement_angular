@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   dropdownSettings = {};
   dropdownStatusSetting = {};
-  status : Status[] = [];
+  status: Status[] = [];
   taskDTO: TaskDTO = {
     "title": "",
     "description": "",
@@ -92,12 +92,12 @@ export class HomeComponent implements OnInit {
     console.log(this.dropdownSettings)
     this.dropdownStatusSetting = {
       singleSelection: true,  // Nếu bạn chỉ cho phép chọn một giá trị
-  idField: 'id',  // Trường duy nhất để tham chiếu (ID của status)
-  textField: 'name',  // Trường hiển thị trong dropdown (Tên của status)
-  selectAllText: 'Select All',
-  unSelectAllText: 'Unselect All',
-  searchPlaceholderText: 'Search...',
-  noDataLabel: 'No Data Found'
+      idField: 'id',  // Trường duy nhất để tham chiếu (ID của status)
+      textField: 'name',  // Trường hiển thị trong dropdown (Tên của status)
+      selectAllText: 'Select All',
+      unSelectAllText: 'Unselect All',
+      searchPlaceholderText: 'Search...',
+      noDataLabel: 'No Data Found'
     };
   }
 
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
     console.log(this.taskForm.controls['assignedUsers'].getRawValue())
   }
 
-  deleteTask(taskId:number|undefined){
+  deleteTask(taskId: number | undefined) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -126,15 +126,15 @@ export class HomeComponent implements OnInit {
       cancelButtonColor: '#A9A9A9', // Màu cho nút hủy
       confirmButtonText: 'Delete',
       cancelButtonText: 'Cancel',
-      reverseButtons: true 
-    }).then((result)=>{
-      if(result.isConfirmed){
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.taskService.deleteTask(this.selectedTask).subscribe({
           next: (response: any) => {
             debugger
             this.taskDetail = undefined;
-            if(this.selectedCompany!=undefined){
-            this.getTaskList(this.selectedCompany);
+            if (this.selectedCompany != undefined) {
+              this.getTaskList(this.selectedCompany);
             };
             console.log(`delete:` + response)
           }
@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
               timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
               confirmButtonText: 'OK'
             });
-    
+
           }
         }
         )
@@ -178,7 +178,7 @@ export class HomeComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-        this.addNotification(error.error,"error")
+        this.addNotification(error.error, "error")
 
       }
     }
@@ -191,9 +191,9 @@ export class HomeComponent implements OnInit {
         debugger
         // Logic cho trường hợp 'addnew'
         const assginedListNew = (this.taskForm.get('assignedUsers') as FormArray).getRawValue();
-        const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);    
+        const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);
         const statusAddNew = (this.taskForm.get('status') as FormArray).getRawValue();
-        const statusId = statusAddNew.map((status: { id: any; }) => status.id);                                                                   
+        const statusId = statusAddNew.map((status: { id: any; }) => status.id);
         this.taskForm.controls['companyId'].setValue(this.selectedCompany);
         this.taskForm.controls['assignedUsers'].setValue(emailListNew);
         this.taskForm.controls['status'].setValue(statusId[0]);
@@ -204,23 +204,23 @@ export class HomeComponent implements OnInit {
           next: (response: any) => {
             debugger
             this.taskList = response;
-            if(this.taskList != null && this.taskList != undefined){ 
+            if (this.taskList != null && this.taskList != undefined) {
               //this.getTaskList(this.taskDTO.companyId)
-           this.addNotification("Add new Successfully", "success")
-            this.clearForm()
-          } else{
-            Swal.fire({
-              position: 'center',
-              icon: 'error',          // Biểu tượng error
-              title: `Error: Add new unsuccessfully!`,
-              text: 'An error occurred. Please try again later!',
-              width: '600px',
-              // padding: '1em',
-              timer: 8000,                  // Thời gian tự động đóng (ms)
-              timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-              confirmButtonText: 'OK'
-            });
-          }
+              this.addNotification("Add new Successfully", "success")
+              this.clearForm()
+            } else {
+              Swal.fire({
+                position: 'center',
+                icon: 'error',          // Biểu tượng error
+                title: `Error: Add new unsuccessfully!`,
+                text: 'An error occurred. Please try again later!',
+                width: '600px',
+                // padding: '1em',
+                timer: 8000,                  // Thời gian tự động đóng (ms)
+                timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
+                confirmButtonText: 'OK'
+              });
+            }
           }
           ,
           complete: () => {
@@ -229,7 +229,7 @@ export class HomeComponent implements OnInit {
           ,
           error: (error: any) => {
             debugger
-            this.addNotification(error.error,"error")
+            this.addNotification(error.error, "error")
           }
         }
         )
@@ -243,41 +243,41 @@ export class HomeComponent implements OnInit {
         this.taskForm.controls['assignedUsers'].setValue(emailListEdit);
         this.taskForm.controls['companyId'].setValue(this.selectedCompany); // companyId chỉ là number
         const statusEdit = (this.taskForm.get('status') as FormArray).getRawValue();
-        const statusIdEdit = statusEdit.map((status: { id: any; }) => status.id);  
+        const statusIdEdit = statusEdit.map((status: { id: any; }) => status.id);
         this.taskForm.controls['status'].setValue(statusIdEdit[0]);
 
         this.taskDTO = {
           ...this.taskDetail,
           ...this.taskForm.value
         };
-        if(this.selectedTask!=undefined){
-        this.taskService.updateTask(this.selectedTask,this.taskDTO).subscribe({
-          next: (response: any) => {
-            debugger
-            this.taskDetail = response;
-            if(this.taskDetail != null && this.taskDetail != undefined){ 
-            this.addNotification("Edit Task","success");
-            const companyId = this.selectedCompany ? Number(this.selectedCompany) : 0;
-            this.getTaskList(companyId);
-            this.clearForm()
-          } else{
-            this.addNotification("unsuccessfully","error");
+        if (this.selectedTask != undefined) {
+          this.taskService.updateTask(this.selectedTask, this.taskDTO).subscribe({
+            next: (response: any) => {
+              debugger
+              this.taskDetail = response;
+              if (this.taskDetail != null && this.taskDetail != undefined) {
+                this.addNotification("Edit Task", "success");
+                const companyId = this.selectedCompany ? Number(this.selectedCompany) : 0;
+                this.getTaskList(companyId);
+                this.clearForm()
+              } else {
+                this.addNotification("unsuccessfully", "error");
 
+              }
+            }
+            ,
+            complete: () => {
+              debugger;
+            }
+            ,
+            error: (error: any) => {
+              debugger
+              this.addNotification(error.error, "error");
+            }
           }
-          }
-          ,
-          complete: () => {
-            debugger;
-          }
-          ,
-          error: (error: any) => {
-            debugger
-            this.addNotification(error.error,"error");
-          }
-        }
-        )
-        } else{
-          this.addNotification("Select a task","warning");
+          )
+        } else {
+          this.addNotification("Select a task", "warning");
         }
 
         console.log("is to do:" + this.isToDo);
@@ -300,7 +300,7 @@ export class HomeComponent implements OnInit {
           break;
       }
     } else {
-      this.addNotification("Please select a company!","warning")
+      this.addNotification("Please select a company!", "warning")
     }
   }
   clearForm() {
@@ -395,7 +395,7 @@ export class HomeComponent implements OnInit {
         // this.taskForm.controls['assignedUsers'].setValue(emailListNew);
 
         // Gán giá trị cho dropdown status
-        this.taskForm.controls['status'].setValue([this.taskDetail.status]); 
+        this.taskForm.controls['status'].setValue([this.taskDetail.status]);
 
       }
       ,
@@ -447,7 +447,7 @@ export class HomeComponent implements OnInit {
   }
 
   toggleSearch() {
-    if(!this.searchText) {
+    if (!this.searchText) {
       this.isOpenSearch = !this.isOpenSearch;
     } else {
       // Call function to search
