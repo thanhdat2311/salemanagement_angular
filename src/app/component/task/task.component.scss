@@ -30,6 +30,7 @@
     width: 30%;
     height: 100%;
     font-size: $font-size-sm;
+    overflow: hidden;
 
     .task-header {
       position: relative;
@@ -73,32 +74,34 @@
           cursor: pointer;
         }
       }
-    }
 
-    .scroll {
-      overflow-y: auto;
-      overflow-x: hidden;
-
-      /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
-      &::-webkit-scrollbar {
-        display: none;
-        /* Độ rộng thanh cuộn */
+      .scroll {
+        overflow-y: scroll;
+        overflow-x: hidden;
+  
+        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+        &::-webkit-scrollbar {
+          display: none;
+          /* Độ rộng thanh cuộn */
+        }
+  
+        // &::-webkit-scrollbar-track {
+        //   background: rgba(16, 21, 47, 0.5);
+        //   /* Màu nền của track (vùng kéo thanh cuộn) */
+        //   border-radius: 10px;
+        //   /* Bo góc */
+        // }
+  
+  
+        /* Với Firefox */
+        // scrollbar-width: thin;
+        // /* Sử dụng thanh cuộn mỏng */
+        // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+        // /* Màu thanh cuộn và track */
       }
-
-      // &::-webkit-scrollbar-track {
-      //   background: rgba(16, 21, 47, 0.5);
-      //   /* Màu nền của track (vùng kéo thanh cuộn) */
-      //   border-radius: 10px;
-      //   /* Bo góc */
-      // }
-
-
-      /* Với Firefox */
-      // scrollbar-width: thin;
-      // /* Sử dụng thanh cuộn mỏng */
-      // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
-      // /* Màu thanh cuộn và track */
     }
+
+    
   }
 
   .task-content.task-customer {
