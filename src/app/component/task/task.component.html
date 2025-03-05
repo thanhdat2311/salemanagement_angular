@@ -9,10 +9,14 @@
         <span class="header-text">Customer</span>
       </div>
       <div class="task-body">
-        <ul *ngFor="let company of companyList" class="task-body__content scroll">
-          <li [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
-            [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
+        <ul  class="task-body__content scroll">
+          <li
+          *ngFor="let company of companyList"
+          [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
+          [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
+            
         </ul>
+        
         <!-- <ul class="task-body__content scroll">
           <li class="task-body__value active"> disabled </li>
           <li class="task-body__value"> disabled </li>
@@ -68,8 +72,10 @@
             <i class="fa-solid fa-circle-plus active"></i>
           </div>
         </div>
-        <div *ngFor="let task of taskList" class="task-body__todo">
-          <div class="todo-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
+        <div class="task-body__todo scroll">
+          <div 
+          *ngFor="let task of taskList"
+          class="todo-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
             <div class="todo-content-element todo-content__title">
               <p class="todo-content-field todo-content__title-field">Title:</p>
               <p class="todo-content__title-name" style="color: pink">{{task.title}}</p>
@@ -81,7 +87,7 @@
             </div>
             <div class="todo-content-element todo-content__status">
               <p class="todo-content-field todo-content__status-field">Status:</p>
-              <p class="todo-content__status-value" [style.color]="task.status?.color"  style="font-weight: bold">
+              <p class="todo-content__status-value" [style.color]="task.status?.color" style="font-weight: bold">
                 {{task.status?.name}}</p>
             </div>
             <div class="todo-content-element todo-content__date">
@@ -326,27 +332,162 @@
                 <p class="todo-content__modified-date-value">ads</p>
               </div>
             </div>
-          </div> -->
-
-        <!-- </div>  -->
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+          <div class="todo-content">
+            <div class="todo-content-element todo-content__title">
+              <p class="todo-content-field todo-content__title-field">Title:</p>
+              <p class="todo-content__title-name" style="color: pink">alo alo</p>
+              <p class="todo-content__urgent">
+                <i class="fa-solid fa-star" [ngClass]="{' urgent-active': true}" style="color: pink"></i>
+              </p>
+            </div>
+            <div class="todo-content-element todo-content__status">
+              <p class="todo-content-field todo-content__status-field">Status:</p>
+              <p class="todo-content__status-value"  style="font-weight: bold">sdfsdf</p>
+            </div>
+            <div class="todo-content-element todo-content__date">
+              <div class="date">
+                <p class="todo-content-field todo-content__created-date-field">Created:</p>
+                <p class="todo-content__created-date-Value">sdasda</p>
+              </div>
+              <div class="date">
+                <p class="todo-content-field todo-content__modified-date-field">Modified:</p>
+                <p class="todo-content__modified-date-value">ads</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
-      <!-- // Thế dân -->
-
-  </div>
-  <!-- <div class="task-detail">  -->
-  <div class="task-content task-form">
-    <div class="task-header">
-      <span class="header-text">Detail</span>
     </div>
-    <div class="task-body task-body__detail">
-      <form class="form-fill-task" [formGroup]="taskForm" *ngIf="selectedTask || isToDo === 'addnew'">
-        <!-- Title (Dòng 1) -->
-        <div class="form-group">
-          <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
-          <label for="title">Title</label>
-          <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title"
-            formControlName="title" />
-        </div>
+    <!-- <div class="task-detail">  -->
+    <div class="task-content task-form">
+      <div class="task-header">
+        <span class="header-text">Detail</span>
+      </div>
+      <div class="task-body task-body__detail">
+        <form class="form-fill-task" [formGroup]="taskForm" *ngIf="selectedTask || isToDo === 'addnew'">
+          <!-- Title (Dòng 1) -->
+          <div class="form-group">
+            <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
+            <label for="title">Title</label>
+            <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title"
+              formControlName="title" />
+          </div>
 
         <!-- Description (Dòng 2) -->
           <div class="form-group">

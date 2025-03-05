@@ -16,11 +16,10 @@
   /* Fill remaining height */
   display: flex;
   gap: $spacing-xs;
-  height: 92vh;
+  height: 90%;
   width: 100%;
   grid-row: 2;
   margin-bottom: $spacing-sm;
-  // overflow: hidden;
   /* Columns for customer, task, and details */
 
   .task-content {
@@ -52,7 +51,30 @@
       border-radius: $border-container;
       padding: $spacing-xs;
       height: 97%;
-
+      .scroll {
+        overflow-y: scroll;
+        overflow-x: hidden;
+  
+        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+        &::-webkit-scrollbar {
+          display: none;
+          /* Độ rộng thanh cuộn */
+        }
+  
+        &::-webkit-scrollbar-track {
+          background: rgba(16, 21, 47, 0.5);
+          /* Màu nền của track (vùng kéo thanh cuộn) */
+          border-radius: 10px;
+          /* Bo góc */
+        }
+  
+  
+        /* Với Firefox */
+        // scrollbar-width: thin;
+        // /* Sử dụng thanh cuộn mỏng */
+        // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+        // /* Màu thanh cuộn và track */
+      }
       .task-body__content {
         list-style-type: none;
 
@@ -75,34 +97,11 @@
       }
     }
 
-    .scroll {
-      overflow-y: auto;
-      overflow-x: hidden;
-
-      /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
-      &::-webkit-scrollbar {
-        display: none;
-        /* Độ rộng thanh cuộn */
-      }
-
-      &::-webkit-scrollbar-track {
-        background: rgba(16, 21, 47, 0.5);
-        /* Màu nền của track (vùng kéo thanh cuộn) */
-        border-radius: 10px;
-        /* Bo góc */
-      }
-
-
-      /* Với Firefox */
-      // scrollbar-width: thin;
-      // /* Sử dụng thanh cuộn mỏng */
-      // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
-      // /* Màu thanh cuộn và track */
-    }
+    
   }
 
   .task-content.task-customer {
-    width: 10%;
+    width: 15%;
   }
 
   .task-content.task-list {
@@ -237,7 +236,7 @@
   }
 
   .task-content.task-form {
-    width: 65%;
+    width: 60%;
     display: flex;
     flex-direction: column;
 
