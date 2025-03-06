@@ -33,6 +33,7 @@ import { NotificationComponent } from './component/notification/notification.com
 import { ProfileComponent } from './component/profile/profile.component';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FilterPipe } from './filter.pipe';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -58,7 +59,8 @@ const routes: Routes = [
     LoadingComponent,
     NotificationComponent,
     ProfileComponent,
-    AppComponent
+    AppComponent,
+    FilterPipe
   ],
   imports: [
     ReactiveFormsModule,

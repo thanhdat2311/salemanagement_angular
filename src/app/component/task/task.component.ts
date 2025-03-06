@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   selectedUsers: any[] = [];
   taskForm: FormGroup;
   isToDo: string | undefined = "";
-  email: String = 'datmkt23112@gmail.com';
+  email: String = '';
   companyId: number = 0;
   selectedCompany: number | undefined = undefined;
   selectedTask: number | undefined;
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
   totalPages: number = 0;
   visiblePages: number[] = [];
   isOpenSearch = false;
-  searchText = '';
+  inputSearch:any;
+  searchText:any;
 
   constructor(private taskService: TaskService,
     private userService: UserService,
@@ -76,6 +77,8 @@ export class HomeComponent implements OnInit {
 
   }
   ngOnInit() {
+    const userDetail = this.userService.getUserFromLocalStorage();
+    this.email = userDetail.email;
     this.getCompany(this.email);
     debugger
     this.dropdownSettings = {
@@ -209,17 +212,8 @@ export class HomeComponent implements OnInit {
               this.addNotification("Add new Successfully", "success")
               this.clearForm()
             } else {
-              Swal.fire({
-                position: 'center',
-                icon: 'error',          // Biểu tượng error
-                title: `Error: Add new unsuccessfully!`,
-                text: 'An error occurred. Please try again later!',
-                width: '600px',
-                // padding: '1em',
-                timer: 8000,                  // Thời gian tự động đóng (ms)
-                timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-                confirmButtonText: 'OK'
-              });
+              this.addNotification("Add new Unsuccessfully", "error")
+
             }
           }
           ,
@@ -334,17 +328,7 @@ export class HomeComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-        Swal.fire({
-          position: 'center',
-          icon: 'error',          // Biểu tượng error
-          title: `Error: ${error.error.error}`,
-          text: 'An error occurred. Please try again later!',
-          width: '600px',
-          padding: '1em',
-          timer: 8000,                  // Thời gian tự động đóng (ms)
-          timerProgressBar: true,       // Hiển thị thanh tiến trình thời gian
-          confirmButtonText: 'OK'
-        });
+        this.addNotification(error.error,"error")
 
       }
     }
@@ -425,7 +409,7 @@ export class HomeComponent implements OnInit {
       ,
       error: (error: any) => {
         debugger
-
+        this.addNotification(error.error,"error")
       }
     }
     )
@@ -452,5 +436,8 @@ export class HomeComponent implements OnInit {
     } else {
       // Call function to search
     }
+  }
+  enterInputSearch(inputSearch:string){
+    this.searchText = inputSearch.trim()
   }
 }

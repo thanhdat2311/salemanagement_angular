@@ -93,10 +93,7 @@
             display: flex;
             flex-direction: column;
             margin-top: $spacing-xs;
-            overflow: scroll;
-
-            &::-webkit-scrollbar
-
+            overflow: auto;
             .configuration-table__header {
                 list-style-type: none;
                 display: flex;
