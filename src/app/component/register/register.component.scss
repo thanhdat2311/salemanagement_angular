@@ -59,6 +59,10 @@
                 box-shadow: 0 0 5px $highlight-color;
             }
         }
+        .group__phone-role{
+            display: flex;
+            gap :5px;
+        }
     }
 
     .btn-register {

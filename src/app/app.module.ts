@@ -17,7 +17,6 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { Routes } from '@angular/router';
 import { CompanyComponent } from './component/company/company.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -28,12 +27,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
-import { LoadingComponent } from './component/loading/loading.component';
 import { NotificationComponent } from './component/notification/notification.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FilterPipe } from './filter.pipe';
+import { ConfigurationComponent } from './component/configuration/configuration.component';
+import { LoadingComponent } from './component/loading/loading.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -52,14 +52,14 @@ const routes: Routes = [
     RegisterComponent,
     DetailProductComponent,
     CompanyComponent,
-    ConfigurationComponent,
     PopupComponent,
     ChangepasswordComponent,
     ResetpasswordComponent,
-    LoadingComponent,
     NotificationComponent,
     ProfileComponent,
     AppComponent,
+    ConfigurationComponent,
+    LoadingComponent,
     FilterPipe
   ],
   imports: [

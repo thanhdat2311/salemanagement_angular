@@ -19,14 +19,16 @@
         </div>
       </div>
       <div class="configuration-content__middle">
-        <ul class="configuration-table__header">
-          <li>Company Name</li>
-          <li>Email</li>
-          <li>Phone</li>
-          <li>Assigned Person</li>
-          <li>Create Date</li>
-          <li>Update Date</li>
-        </ul>
+        <div class="configuration-table__header-overlay">
+          <ul class="configuration-table__header">
+            <li>Company Name</li>
+            <li>Email</li>
+            <li>Phone</li>
+            <li>Assigned Person</li>
+            <li>Create Date</li>
+            <li>Update Date</li>
+          </ul>
+        </div>
         <div class="configuration-table__content" *ngFor=" let company of companyList">
           <ul class="configuration-table__content-line" (click)="onCompanySelected(company.id, 'customer'); 
           openPopupCustomer('editCustomer')" 
@@ -68,11 +70,13 @@
         </div>
       </div>
       <div class="configuration-content__middle">
-        <ul class="configuration-table__header status-configuration__table">
-          <li>ID</li>
-          <li>Name</li>
-          <li>Color</li>
-        </ul>
+        <div class="configuration-table__header-overlay">
+          <ul class="configuration-table__header status-configuration__table">
+            <li>ID</li>
+            <li>Name</li>
+            <li>Color</li>
+          </ul>
+        </div>
         <div class="configuration-table__content" *ngFor="let status of statusList">
           <ul class="configuration-table__content-line status-configuration__table"
             (click)="onStatusSelected(status.id, 'status'); openPopupStatus('editStatus')"
@@ -111,14 +115,16 @@
         </div>
       </div>
       <div class="configuration-content__middle">
-        <ul class="configuration-table__header status-configuration__table">
-          <li>Full name</li>
-          <li>Email</li>
-          <li>Phone</li>
-          <li>Address</li>
-          <li>Role</li>
-          <li>Active</li>
-        </ul>
+        <div class="configuration-table__header-overlay">
+          <ul class="configuration-table__header status-configuration__table">
+            <li>Full name</li>
+            <li>Email</li>
+            <li>Phone</li>
+            <li>Address</li>
+            <li>Role</li>
+            <li>Active</li>
+          </ul>
+        </div>
         <div class="configuration-table__content" *ngFor="let user of userList">
           <ul class="configuration-table__content-line status-configuration__table"
             (click)="onUserSelected(user.email, 'user'); openPopupUser('editUser')"
@@ -154,12 +160,4 @@
     </div>
   </div>
   <app-notification></app-notification>
-
-
-
-  <!-- <div class="buttons">
-    <button (click)="addNotification('Hệ thống đã cập nhật!', 'info')">Thông báo</button>
-    <button (click)="addNotification('Bạn có thể gặp lỗi!', 'warning')">Cảnh báo</button>
-    <button (click)="addNotification('Không thể kết nối server!', 'error')">Lỗi</button>
-  </div> -->
 </div>

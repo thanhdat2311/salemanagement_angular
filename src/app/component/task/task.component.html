@@ -10,8 +10,7 @@
       </div>
       <div class="task-body">
         <ul  class="task-body__content scroll">
-          <li
-          *ngFor="let company of companyList"
+          <li *ngFor="let company of companyList"
           [value]="company.id" (click)="getTaskList(company.id)" class="task-body__value"
           [ngClass]="{'active': company.id === selectedCompany}">{{company.companyName}}</li>
             

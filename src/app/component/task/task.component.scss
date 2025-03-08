@@ -19,7 +19,7 @@
   height: 90%;
   width: 100%;
   grid-row: 2;
-  margin-bottom: $spacing-sm;
+  // margin-bottom: $spacing-sm;
   /* Columns for customer, task, and details */
 
   .task-content {
@@ -29,6 +29,7 @@
     width: 30%;
     height: 100%;
     font-size: $font-size-sm;
+    // overflow: hidden;
 
     .task-header {
       position: relative;
@@ -51,30 +52,7 @@
       border-radius: $border-container;
       padding: $spacing-xs;
       height: 95%;
-      .scroll {
-        overflow-y: scroll;
-        overflow-x: hidden;
-  
-        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
-        &::-webkit-scrollbar {
-          display: none;
-          /* Độ rộng thanh cuộn */
-        }
-  
-        &::-webkit-scrollbar-track {
-          background: rgba(16, 21, 47, 0.5);
-          /* Màu nền của track (vùng kéo thanh cuộn) */
-          border-radius: 10px;
-          /* Bo góc */
-        }
-  
-  
-        /* Với Firefox */
-        // scrollbar-width: thin;
-        // /* Sử dụng thanh cuộn mỏng */
-        // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
-        // /* Màu thanh cuộn và track */
-      }
+
       .task-body__content {
         list-style-type: none;
 
@@ -95,9 +73,34 @@
           cursor: pointer;
         }
       }
+
+      .scroll {
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        /* Tùy chỉnh scrollbar (hỗ trợ trên Webkit-based browsers: Chrome, Edge, Safari) */
+        &::-webkit-scrollbar {
+          display: none;
+          /* Độ rộng thanh cuộn */
+        }
+
+        &::-webkit-scrollbar-track {
+          background: rgba(16, 21, 47, 0.5);
+          /* Màu nền của track (vùng kéo thanh cuộn) */
+          border-radius: 10px;
+          /* Bo góc */
+        }
+
+
+        /* Với Firefox */
+        // scrollbar-width: thin;
+        // /* Sử dụng thanh cuộn mỏng */
+        // scrollbar-color: #9f56ee31 rgba(16, 21, 47, 0.5);
+        // /* Màu thanh cuộn và track */
+      }
+
     }
 
-    
   }
 
   .task-content.task-customer {
@@ -242,142 +245,135 @@
 
     // .task-body__detail {
 
-      .form-fill-task {
-        flex: auto;
+    .form-fill-task {
+      flex: auto;
 
-        .form-group {
-          display: flex;
-          flex-direction: column;
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        /* Chiếm hết chiều rộng */
+        margin-bottom: 15px;
+
+        label {
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: $font-size-xs;
+        }
+
+        input,
+        textarea {
           width: 100%;
-          /* Chiếm hết chiều rộng */
-          margin-bottom: 15px;
-
-          label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: $font-size-xs;
-          }
-
-          input,
-          textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            background: #2c2f47;
-            color: $text-color;
-            font-size: $font-size-xs;
-          }
-
-          textarea {
-            resize: none;
-            /* Không cho phép kéo giãn */
-            height: 60px;
-            /* Giữ chiều cao cố định */
-          }
+          padding: 10px;
+          border-radius: 5px;
+          border: none;
+          background: #2c2f47;
+          color: $text-color;
+          font-size: $font-size-xs;
         }
 
-        .row {
-          display: flex;
-          flex-direction: row;
-          flex: 4;
-
-          .form-group {
-            flex: 3;
-            /* Chia đều khoảng trống */
-          }
-
-          status-group {
-            flex: 1
-          }
-        }
-
-        .action-urgent-group {
-          display: flex;
-          align-items: center; // Căn giữa theo chiều dọc
-          gap: 10px;
-
-          .form-group {
-            flex: 4; // Chia đều khoảng trống
-          }
-
-          /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
-          .urgent-checkbox {
-            display: flex;
-            align-items: center;
-            flex: 0.5;
-            gap: 8px;
-            white-space: nowrap; // Giữ nội dung trên một dòng
-          }
+        textarea {
+          resize: none;
+          /* Không cho phép kéo giãn */
+          height: 60px;
+          /* Giữ chiều cao cố định */
         }
       }
 
-      .action-buttons {
+      .row {
         display: flex;
-        /* Sử dụng flexbox để sắp xếp các nút */
-        justify-content: flex-end;
-        /* Để các nút không giãn ra mà nằm sát nhau */
-        gap: 5px;
-        /* Khoảng cách nhỏ giữa các nút */
-        padding: 0;
-        /* Không có khoảng cách padding bên ngoài */
-        margin-top: 10px;
-        /* Khoảng cách từ phần tử phía trên nếu cần */
-        flex: 0.1;
+        flex-direction: row;
+        flex: 4;
 
-        /* Nút chung */
-        .btn {
-          color: white;
-          border: none;
-          border-radius: 5px;
-          padding: 8px 12px;
-          cursor: pointer;
-          font-size: $font-size-xs;
-          transition: background-color 0.3s ease;
+        .form-group {
+          flex: 3;
+          /* Chia đều khoảng trống */
         }
 
-        .btn:hover {
-          background-color: #0056b3;
-          /* Thay đổi màu nền khi hover */
+        status-group {
+          flex: 1
+        }
+      }
+
+      .action-urgent-group {
+        display: flex;
+        align-items: center; // Căn giữa theo chiều dọc
+        gap: 10px;
+
+        .form-group {
+          flex: 4; // Chia đều khoảng trống
         }
 
-        /* Nút Save */
-        .save-btn {
-          background-color: lighten($secondary-background, 40%);
-        }
-
-        .save-btn:hover {
-          background-color: lighten($secondary-background, 55%);
-        }
-
-        /* Nút Edit */
-        .delete-btn {
-          background-color: #d63377;
-        }
-
-        .delete-btn:hover {
-          background-color: #e06b98;
-        }
-
-        /* Nút View */
-        .view-btn {
-          background-color: #5a607f;
-          /* Màu xanh dương */
-        }
-
-        .view-btn:hover {
-          background-color: #7a809f;
-          /* Màu xanh dương đậm khi hover */
+        /* Điều chỉnh để checkbox urgent nằm trên cùng một hàng */
+        .urgent-checkbox {
+          display: flex;
+          align-items: center;
+          flex: 0.5;
+          gap: 8px;
+          white-space: nowrap; // Giữ nội dung trên một dòng
         }
       }
     }
 
+    .action-buttons {
+      display: flex;
+      /* Sử dụng flexbox để sắp xếp các nút */
+      justify-content: flex-end;
+      /* Để các nút không giãn ra mà nằm sát nhau */
+      gap: 5px;
+      /* Khoảng cách nhỏ giữa các nút */
+      padding: 0;
+      /* Không có khoảng cách padding bên ngoài */
+      margin-top: 10px;
+      /* Khoảng cách từ phần tử phía trên nếu cần */
+      flex: 0.1;
 
+      /* Nút chung */
+      .btn {
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: $font-size-xs;
+        transition: background-color 0.3s ease;
+      }
 
+      .btn:hover {
+        background-color: #0056b3;
+        /* Thay đổi màu nền khi hover */
+      }
 
+      /* Nút Save */
+      .save-btn {
+        background-color: lighten($secondary-background, 40%);
+      }
 
+      .save-btn:hover {
+        background-color: lighten($secondary-background, 55%);
+      }
+
+      /* Nút Edit */
+      .delete-btn {
+        background-color: #d63377;
+      }
+
+      .delete-btn:hover {
+        background-color: #e06b98;
+      }
+
+      /* Nút View */
+      .view-btn {
+        background-color: #5a607f;
+        /* Màu xanh dương */
+      }
+
+      .view-btn:hover {
+        background-color: #7a809f;
+        /* Màu xanh dương đậm khi hover */
+      }
+    }
   }
-
 
   ::ng-deep .multiselect-dropdown .dropdown-btn {
     font-size: 12px !important;
@@ -415,3 +411,5 @@
     color: white !important;
     /* Bắt buộc chữ màu trắng */
   }
+
+}

@@ -89,11 +89,24 @@
         }
 
         .configuration-content__middle {
+            position: relative;
             flex-grow: 2;
             display: flex;
             flex-direction: column;
             margin-top: $spacing-xs;
-            overflow: auto;
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .configuration-table__header-overlay {
+                background-color: $background;
+                position: sticky;
+                top: 0;
+                margin-bottom: $spacing-xs;
+            }
+
             .configuration-table__header {
                 list-style-type: none;
                 display: flex;
