@@ -1,0 +1,70 @@
+// Biến màu sắc và kiểu dáng
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+$primary-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+$background:#0a122a; /* Màu container chính */
+$secondary-background: #181d41; /* Màu nền phụ */
+$light-background: #efead0;
+$input-background: #2c2f47; 
+$highlight-color: #ff4081; /* Hồng neon cho các điểm nhấn */
+$highlight-color-hover: lighten($highlight-color, 10%); /* Hồng neon cho các điểm nhấn khi hover */
+$border-color: #4c5270; /* Màu viền nhạt */
+$active-label: rgba(76, 82, 112, 0.3607843137);
+$hover-label: #4c527025;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2); /* Đổ bóng mềm */
+
+$placeholder: #ffffff71;
+$title-color: #ff4081;
+$text-color:#fffdf3; /* Màu chữ sáng */
+$text-dark-color: #10152f;
+
+$save-background: #ff4081;
+$save-background-hover: #ff4081;
+$delete-background: #87009b;
+$delete-background-hover: #87009b;
+$cancel-background: #e7ff60;
+$cancel-background-hover: #e7ff60;
+
+$spacing-xxl: 64px;  // Dùng cho layout lớn
+$spacing-xl: 48px;   // Khoảng cách section
+$spacing-lg: 32px;   // Padding container lớn
+$spacing-md: 24px;   // Padding container vừa
+$spacing-sm: 16px;   // Padding nhỏ
+$spacing-input: 10px;// Pading cho các thẻ input input
+$spacing-xs: 8px;    // Khoảng cách giữa các thành phần
+$spacing-xxs: 4px;   // Khoảng cách rất nhỏ (icon, text)
+
+$font-size-xxl: 2rem;   // Tiêu đề chính (H1) - Giảm từ 2.5rem → 2rem
+$font-size-xl: 1.75rem; // Tiêu đề phụ (H2) - Giảm từ 2rem → 1.75rem
+$font-size-lg: 1.25rem; // Tiêu đề nhỏ (H3, H4) - Giảm từ 1.5rem → 1.25rem
+$font-size-md: 1rem;    // Nội dung chính (p, span) - Giảm từ 1.25rem → 1rem
+$font-size-sm: 0.875rem;// Nội dung phụ, nhãn label - Giảm từ 1rem → 0.875rem
+$font-size-xs: 0.75rem; // Nhỏ nhất - Giảm từ 0.9rem → 0.75rem
+
+
+$border-container: 12px;
+$border-button: 8px;
+$border-input: 4px;
+
+$border-xxl: 64px;  // Dùng cho layout lớn
+$border-xl: 48px;   // Khoảng cách section
+$border-lg: 32px;   // Border container lớn
+$border-md: 24px;   // Border container vừa
+$border-sm: 16px;   // Border chỏ
+$border-input: 10px;// Pading cho các thẻ input input
+$border-xs: 8px;    // Khoảng cách giữa các thành phần
+$border-xxs: 4px;  
+
+html,
+body {
+  height: 100vh;
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.container {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: $primary-gradient;
+}
