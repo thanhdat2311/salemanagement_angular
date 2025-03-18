@@ -14,6 +14,6 @@ export interface Task {
         company: Company|undefined;
         status: Status|undefined;
         completedDate: string;
-        created_at: string;
-        updated_at: string;
+        createdAt: string;
+        updatedAt: string;
       }

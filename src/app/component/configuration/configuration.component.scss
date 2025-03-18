@@ -1,5 +1,14 @@
 @import "../../../styles.scss";
-
+.task-checkbox-urgent {
+    width: 14px;
+    height: 14px;
+    cursor: not-allowed;
+    accent-color: $highlight-color;
+  }
+  .task-checkbox-urgent:checked {
+    background-color: $highlight-color; 
+    border-color:  $highlight-color;
+  }
 .configuration-container {
     position: relative;
     height: 100vh;

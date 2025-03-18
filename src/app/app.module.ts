@@ -4,11 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './component/task/task.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
-import { OrderComponent } from './component/order/order.component';
-import { OrderConfirmComponent } from './component/order-confirm/order-confirm.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-import { DetailProductComponent } from './component/detail-product/detail-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, 
           HTTP_INTERCEPTORS 
@@ -47,10 +44,7 @@ const routes: Routes = [
     HomeComponent,//task
     HeaderComponent,
     FooterComponent,
-    OrderComponent,
-    OrderConfirmComponent,
     RegisterComponent,
-    DetailProductComponent,
     CompanyComponent,
     PopupComponent,
     ChangepasswordComponent,

@@ -18,13 +18,23 @@ export class TaskService {
   private apiEditTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiDeleteTask= `${enviroment.apiBaseUrl}/tasks`;
   private apiGetStatus= `${enviroment.apiBaseUrl}/status`;
-
+  private apiGetTaskAdmin= `${enviroment.apiBaseUrl}/tasks/admin/list-task`;
   constructor(private http: HttpClient) { }
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept-Language': 'en'
     });
+  }
+  getTaskByAdmin(pageNo:number, pageSize:number, sortBy:string){
+    const params = new HttpParams({ fromObject: { 
+      pageNo: pageNo, 
+      pageSize: pageSize, 
+      sortBy: sortBy 
+    }
+    })
+    return this.http.get(this.apiGetTaskAdmin, { params })
+
   }
   getCompany(email: String): Observable<Company[]> {
     const params = new HttpParams().set('email', email.toString());

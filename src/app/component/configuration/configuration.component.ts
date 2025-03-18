@@ -15,6 +15,7 @@ import { Role } from '../models/role';
 
 import { PopupComponent } from '../popup/popup.component';
 import { NotificationComponent } from '../notification/notification.component';
+import { Task } from '../models/task';
 
 @Component({
   selector: 'app-configuration',
@@ -22,8 +23,17 @@ import { NotificationComponent } from '../notification/notification.component';
   styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent implements OnInit {
+  // Page var
+  totalPages: number =0;
+  pageSize: number = 8;
+  pageNo: number = 0;
+  sortBy: string = "updatedAt:asc";
   // Child Components
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+
+  // Tasks var
+  taskId: number =0;
+  taskList: Task[]=[];
 
   // Loading variables
   loading = true;
@@ -45,7 +55,8 @@ export class ConfigurationComponent implements OnInit {
   // Variables for open bar
   barList: { id: number; name: string }[] = [];
 
-  constructor(private taskService: TaskService,
+  constructor(
+    private taskService: TaskService,
     private userService: UserService,
     private companyService: CompanyService,
     private statusService: StatusService,
@@ -61,16 +72,20 @@ export class ConfigurationComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true
+    this.getAllTask();
     this.getAllCompany();
     this.getAllStatus();
     this.getAllUser();
     this.getRoles()
+
     this.loading = false
 
     this.barList = [
       { id: 1, name: "Customer" },
       { id: 2, name: "Status" },
-      { id: 3, name: "User" }]
+      { id: 3, name: "User" },
+      { id: 4, name: "Task" }
+    ]
   }
 
   // Methods to open the dialog
@@ -202,7 +217,9 @@ export class ConfigurationComponent implements OnInit {
   onBarSelected(barID: number) {
     this.barSelected = barID;
   }
-
+  getAssignedEmails(users: AssignedPerson[] | undefined): string {
+    return users?.map(user => user.email).join(', ') || 'No assigned users';
+  }  
   // Methods to open bar
   onCompanySelected(companyId: number, formName: string) {
     this.companyId = companyId;
@@ -214,8 +231,28 @@ export class ConfigurationComponent implements OnInit {
   onStatusSelected(statusId: number, formStatus: string) {
     this.statusId = statusId;
   }
-
+  onTaskSelected(taskId: number, formStatus: string) {
+    this.taskId = taskId;
+  }
   // Methods to call API
+  getAllTask(){
+    this.taskService.getTaskByAdmin(this.pageNo,this.pageSize,this.sortBy).subscribe({
+      next: (response: any) => {
+        debugger
+        this.taskList = response.items;
+        console.log(this.taskList)
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+      }
+    }
+    )
+  }
   getAllUser() {
     this.userService.getAllUser().subscribe({
       next: (response: any) => {

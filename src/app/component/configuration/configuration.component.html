@@ -158,6 +158,66 @@
         </div>
       </div>
     </div>
+
+     <!-- Task List -->
+    <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 4}">
+      <div class="configuration-content__header">
+        <div class="configuration-content__add-btn" (click)="openPopupUser('addNewUser')">+ Add New</div>
+        <div class="configuration-content__refresh-btn" (click)="getAllUser()">
+          <i class="fa fa-refresh"></i>
+        </div>
+      </div>
+      <div class="configuration-content__middle">
+        <div class="configuration-table__header-overlay">
+          <ul class="configuration-table__header status-configuration__table">
+            <li>Title</li>
+            <li>Urgent</li>
+            <li>Assigned</li>
+            <li>Start Date</li>
+            <li>Completed Date</li>
+            <li>Created at</li>
+            <li>Updated at</li>
+          </ul>
+        </div>
+        <div class="configuration-table__content" *ngFor="let task of taskList">
+          <ul class="configuration-table__content-line status-configuration__table"
+            (click)="onTaskSelected(task.id , 'task'); openPopupUser('editUser')"
+            [ngClass]="{'configuration-table__content-line--active':task.id === taskId}">
+            <li>{{task.title}}</li>
+            <li><input class="task-checkbox-urgent" type="checkbox" [checked]="task.urgent" (click)="$event.preventDefault()"></li>
+            <li *ngIf="task.assignedUsers && task.assignedUsers.length > 0">
+              <div *ngFor="let user of task.assignedUsers">{{ user.email }}</div>
+            </li>
+            <li *ngIf="!task.assignedUsers || task.assignedUsers.length === 0">
+              No assigned users
+            </li>
+            <li>{{task.startDate}}</li>
+            <li>{{task.completedDate}}</li>
+            <li>{{task.createdAt}}</li>
+            <li>{{task.updatedAt}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="configuration-content__page">
+        <div class="configuration-page__quality">
+          <div class="page-quality__content">Per page:</div>
+          <div class="page-quality__text ">3</div>
+          <div class="page-quality__text ">5</div>
+          <div class="page-quality__text page-quality__text--active">7</div>
+        </div>
+        <div class="configuration-page__view">
+          <div class="page-view__text page-view__text--active">1</div>
+          <div class="page-view__text ">2</div>
+          <div class="page-view__text ">3</div>
+          <div class="page-view__text page-view__text-vv">...</div>
+          <div class="page-view__text ">50</div>
+        </div>
+        <div class="configuration-page__navigation">
+          <div class="page-navigation__text ">Previous</div>
+          <div class="page-navigation__text page-navigation__text--disable">Next</div>
+        </div>
+      </div>
+    </div>
   </div>
   <app-notification></app-notification>
 </div>
