@@ -293,8 +293,49 @@
     }
 }
 
+.pagination {
+    justify-content: center; /* Căn giữa thanh phân trang */
+    margin-top: 20px;
+  }
 
+  .page-item {
+    margin: 0 5px; /* Tạo khoảng cách giữa các nút */
+    border-radius: 5px; /* Bo góc */
+    overflow: hidden; /* Đảm bảo bo góc không bị lỗi */
+  }
 
+  .page-link {
+    background-color: $active-label; /* Màu nền chính */
+    color: $highlight-color; /* Màu chữ */
+    border: none; /* Xóa viền mặc định */
+    padding: 8px 15px; /* Tăng kích thước nút */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+  }
+
+  .page-link:hover {
+    background-color: $hover-label; /* Màu nền khi hover */
+    color: $highlight-color; /* Màu chữ khi hover */
+    text-decoration: none; /* Xóa gạch chân */
+  }
+
+  .page-item.active .page-link {
+    background-color: $highlight-color-hover; /* Màu nền khi nút được chọn */
+    color: $highlight-color; /* Màu chữ khi nút được chọn */
+    font-weight: bold; /* Làm đậm chữ */
+  }
+  #itemLimit {
+    background-color: $active-label;
+    color: $text-color;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: $hover-label;
+    }
+  }
+  .itemLimit-option{
+    background-color:  $background;
+  }
 
 
 

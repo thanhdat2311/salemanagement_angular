@@ -7,5 +7,5 @@ export interface Company {
   phone: string;
   assignedPerson: AssignedPerson;
   createdAt: Date;
-  updateAt: Date;
+  updatedAt: Date;
 }

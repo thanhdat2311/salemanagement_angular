@@ -11,7 +11,6 @@ import { Company } from "../component/models/company";
     private apiCreateCompany = `${enviroment.apiBaseUrl}/company`;
     private apiGetAllCompany = `${enviroment.apiBaseUrl}/company/admin`;
     private apiUpdateCompany = `${enviroment.apiBaseUrl}/company`;
-  
     constructor(private http: HttpClient) { }
     private createHeaders(): HttpHeaders {
       return new HttpHeaders({
@@ -22,8 +21,14 @@ import { Company } from "../component/models/company";
     createCompany(companyDTO: any) {
       return this.http.post<any>(this.apiCreateCompany, companyDTO)
     }
-    getAllCompany(){
-      return this.http.get<Company[]>(this.apiGetAllCompany)
+    getAllCompany(pageNo:number,pageSize:number,sortBy:string){
+      const params = new HttpParams({ fromObject: { 
+        pageNo: pageNo, 
+        pageSize: pageSize, 
+        sortBy: sortBy 
+      }
+      })
+      return this.http.get<Company[]>(this.apiGetAllCompany,{params})
     }
     updateCompany(companyDTO: any, companyId:number){
       return this.http.put<any>(`${this.apiUpdateCompany}/${companyId}`,companyDTO)

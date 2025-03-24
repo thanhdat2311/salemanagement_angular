@@ -23,17 +23,25 @@ import { Task } from '../models/task';
   styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent implements OnInit {
-  // Page var
-  totalPages: number =0;
-  pageSize: number = 8;
-  pageNo: number = 0;
-  sortBy: string = "updatedAt:asc";
+
   // Child Components
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
+  // Page var
+  totalPages: number = 0;
+  pageSize: number = 5;
+  pageNo: number = 0;
+  sortBy: string = "id:asc";
+  keyword: string = '';
+  currentPage: number = 0;
+  pages: number[] = [];
+  listSize: { size: number }[] = [
+    { size: 2 }, { size: 5 }, { size: 10 }, { size: 15 }, { size: 20 }
+  ]
+  visiblePages: number[] = [];
 
   // Tasks var
-  taskId: number =0;
-  taskList: Task[]=[];
+  taskId: number = 0;
+  taskList: Task[] = [];
 
   // Loading variables
   loading = true;
@@ -46,7 +54,7 @@ export class ConfigurationComponent implements OnInit {
 
   // Variables for visible bar
   barSelected: number = 1;
-  
+
   // Variables for open popup
   companyId: number = 0;
   statusId: number = 0;
@@ -72,12 +80,12 @@ export class ConfigurationComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true
-    this.getAllTask();
-    this.getAllCompany();
+    this.getAllTask(this.pageNo, this.pageSize, this.sortBy);
+    this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
     this.getAllStatus();
     this.getAllUser();
-    this.getRoles()
-
+    this.getRoles();
+    this.getUserDetails();
     this.loading = false
 
     this.barList = [
@@ -87,6 +95,58 @@ export class ConfigurationComponent implements OnInit {
       { id: 4, name: "Task" }
     ]
   }
+
+
+  // Paging
+  generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
+    const maxVisiblePages = 5;
+    const halfVisiblePages = Math.floor(maxVisiblePages / 2);
+
+    let startPage = Math.max(currentPage - halfVisiblePages, 0);
+    let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages-1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(endPage - maxVisiblePages + 1, 0);
+    }
+    return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index)
+  }
+  onPageChange(page: number) {
+    if (page < 0) {
+      return;
+    }
+    if (page >= this.totalPages) {
+      return;
+    }
+    debugger
+    this.pageNo = page
+    this.currentPage = page;
+    switch (this.barSelected) {
+      case 1:
+        this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
+        break;
+      case 4:
+        this.getAllTask(this.pageNo, this.pageSize, this.sortBy)
+        break;  }
+    }
+
+  onChangeLimit(numberLimit: number) {
+    this.currentPage = 0;
+    this.pageNo = 0;
+    this.pageSize = numberLimit;
+    console.info(this.pageSize)
+    switch (this.barSelected) {
+      case 1:
+        this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
+        break;
+      case 4:
+        this.getAllTask(this.pageNo, this.pageSize, this.sortBy)
+        break;
+
+
+    }
+  }
+
+
 
   // Methods to open the dialog
   openPopupStatus(toDoConfig: string): void {
@@ -124,7 +184,7 @@ export class ConfigurationComponent implements OnInit {
             this.createStatus(result.statusDTO);
             break;
           case 'editStatus':
-            this.updateStatus(result.statusDTO,this.statusId);
+            this.updateStatus(result.statusDTO, this.statusId);
             break;
         }
       }
@@ -206,7 +266,7 @@ export class ConfigurationComponent implements OnInit {
             this.createCompany(result.companyDTO);
             break;
           case 'editUser':
-            
+
             this.updateUser(result.userDTO, this.emailUser);
             break;
         }
@@ -219,7 +279,7 @@ export class ConfigurationComponent implements OnInit {
   }
   getAssignedEmails(users: AssignedPerson[] | undefined): string {
     return users?.map(user => user.email).join(', ') || 'No assigned users';
-  }  
+  }
   // Methods to open bar
   onCompanySelected(companyId: number, formName: string) {
     this.companyId = companyId;
@@ -235,11 +295,35 @@ export class ConfigurationComponent implements OnInit {
     this.taskId = taskId;
   }
   // Methods to call API
-  getAllTask(){
-    this.taskService.getTaskByAdmin(this.pageNo,this.pageSize,this.sortBy).subscribe({
+  getUserDetails() {
+    debugger
+    this.userService.getUserDetails().subscribe({
+
+      next: (response: any) => {
+        debugger
+        this.userService.saveUserToLocalStorage(response)
+
+
+      },
+      complete: () => {
+
+      },
+      error: (error: any) => {
+        debugger
+
+      }
+    })
+  }
+
+  getAllTask(pageNo: number, pageSize: number, sortBy: string) {
+    this.taskService.getTaskByAdmin(pageNo, pageSize, sortBy).subscribe({
       next: (response: any) => {
         debugger
         this.taskList = response.items;
+        this.pageSize = response.pageSize
+        this.totalPages = response.totalPage;
+        this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages)
+
         console.log(this.taskList)
       }
       ,
@@ -287,11 +371,14 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  getAllCompany() {
-    this.companyService.getAllCompany().subscribe({
+  getAllCompany(pageNo: number, pageSize: number, sortBy: string) {
+    this.companyService.getAllCompany(pageNo, pageSize, sortBy).subscribe({
       next: (response: any) => {
         debugger
-        this.companyList = response;
+        this.companyList = response.items;
+        this.pageSize = response.pageSize
+        this.totalPages = response.totalPage;
+        this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages)
       }
       ,
       complete: () => {
@@ -305,7 +392,7 @@ export class ConfigurationComponent implements OnInit {
     )
 
   }
-  getRoles(){
+  getRoles() {
     this.roleService.getRoles().subscribe({
       next: (response: any) => {
         debugger
@@ -329,7 +416,7 @@ export class ConfigurationComponent implements OnInit {
       next: (response: any) => {
         debugger
         this.addNotification("add new successfully!", "info")
-        this.getAllCompany();
+        this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
       }
       ,
       complete: () => {
@@ -350,7 +437,7 @@ export class ConfigurationComponent implements OnInit {
       next: (response: any) => {
         debugger
         this.addNotification("Update successfully!", "info")
-        this.getAllCompany();
+        this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
       }
       ,
       complete: () => {
@@ -386,7 +473,7 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  updateStatus(statusDTO: any, statusId:number){
+  updateStatus(statusDTO: any, statusId: number) {
     debugger
     this.statusService.updateStatus(statusDTO, statusId).subscribe({
       next: (response: any) => {
@@ -407,7 +494,7 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
-  updateUser(userDTO:any,emailUser:string){
+  updateUser(userDTO: any, emailUser: string) {
     debugger
     this.userService.updateUser(userDTO, emailUser).subscribe({
       next: (response: any) => {

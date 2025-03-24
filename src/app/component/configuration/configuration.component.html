@@ -14,7 +14,7 @@
     <div class="customer-configuration configuration-content" [ngClass]="{'content-active':barSelected == 1}">
       <div class="configuration-content__header">
         <div class="configuration-content__add-btn" (click)="openPopupCustomer('addNewCustomer')">+ Add New</div>
-        <div class="configuration-content__refresh-btn" (click)="getAllCompany()">
+        <div class="configuration-content__refresh-btn" (click)="getAllCompany(pageNo,pageSize,sortBy)">
           <i class="fa fa-refresh"></i>
         </div>
       </div>
@@ -38,9 +38,39 @@
             <li>{{company.phone}}</li>
             <li>{{company.assignedPerson.name}}</li>
             <li>{{company.createdAt}}</li>
-            <li>{{company.updateAt}}</li>
+            <li>{{company.updatedAt}}</li>
           </ul>
         </div>
+        </div>
+        <div>
+          <nav aria-label="Page navigation" class="d-flex justify-content-center">
+            <ul class="pagination">
+              <li class="page-item"  *ngIf="currentPage > 2">
+                <a class="page-link"  (click)="onPageChange(0)">First</a>
+              </li>
+              
+              <li class="page-item" *ngIf="currentPage > 0">
+                <a class="page-link"  (click)="onPageChange(currentPage - 1)">Previous</a>
+              </li>
+          
+              <ng-container *ngFor="let page of visiblePages">
+                <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
+                  <a class="page-link"  (click)="onPageChange(page)">{{ page }}</a>
+                </li>
+              </ng-container>
+          
+              <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                <a class="page-link"  (click)="onPageChange(currentPage + 1)">Next</a>
+              </li>
+          
+              <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                <a class="page-link"  (click)="onPageChange(totalPages-1)">Last</a>
+              </li>
+              <select name="itemLimit" id="itemLimit" [(ngModel)]="pageSize" (click)="onChangeLimit(pageSize)">
+                <option class="itemLimit-option"  *ngFor="let item of listSize" [value]="item.size" >{{item.size}}</option>
+            </select>
+            </ul>
+          </nav>
       </div>
       <div class="configuration-content__page ">
         <div class="configuration-page__quality">
@@ -197,27 +227,38 @@
             <li>{{task.updatedAt}}</li>
           </ul>
         </div>
+      
       </div>
-      <div class="configuration-content__page">
-        <div class="configuration-page__quality">
-          <div class="page-quality__content">Per page:</div>
-          <div class="page-quality__text ">3</div>
-          <div class="page-quality__text ">5</div>
-          <div class="page-quality__text page-quality__text--active">7</div>
-        </div>
-        <div class="configuration-page__view">
-          <div class="page-view__text page-view__text--active">1</div>
-          <div class="page-view__text ">2</div>
-          <div class="page-view__text ">3</div>
-          <div class="page-view__text page-view__text-vv">...</div>
-          <div class="page-view__text ">50</div>
-        </div>
-        <div class="configuration-page__navigation">
-          <div class="page-navigation__text ">Previous</div>
-          <div class="page-navigation__text page-navigation__text--disable">Next</div>
-        </div>
+      <div>
+        <nav aria-label="Page navigation" class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item" *ngIf="currentPage > 2">
+              <a class="page-link"  (click)="onPageChange(0)">First</a>
+            </li>
+            
+            <li class="page-item" *ngIf="currentPage > 0">
+              <a class="page-link"  (click)="onPageChange(currentPage - 1)">Previous</a>
+            </li>
+        
+            <ng-container *ngFor="let page of visiblePages">
+              <li class="page-item" [ngClass]="{ 'active': page === currentPage }">
+                <a class="page-link"  (click)="onPageChange(page)">{{ page }}</a>
+              </li>
+            </ng-container>
+        
+            <li class="page-item" *ngIf="currentPage < totalPages - 1">
+              <a class="page-link"  (click)="onPageChange(currentPage + 1)">Next</a>
+            </li>
+        
+            <li class="page-item" *ngIf="currentPage < totalPages - 1">
+              <a class="page-link"  (click)="onPageChange(totalPages - 1)">Last</a>
+            </li>
+            <select name="itemLimit" id="itemLimit" [(ngModel)]="pageSize" (click)="onChangeLimit(pageSize)">
+              <option class="itemLimit-option"  *ngFor="let item of listSize" [value]="item.size">{{item.size}}</option>
+          </select>
+          </ul>
+          
+        </nav>
       </div>
-    </div>
-  </div>
   <app-notification></app-notification>
 </div>
