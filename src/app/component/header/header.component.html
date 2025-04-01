@@ -1,66 +1,68 @@
-
-  <div class="header-container">
-    <nav class="header">
-      <div class="navigator">
-        <!-- Logo -->
-        <a class="navbar-brand" href="/home">
-          <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="80" fill="#ff4081" />
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" fill="#fff" font-family="Arial, sans-serif">
-              LVTD
-            </text>
-          </svg>
-        </a>
-        <!-- Toggler for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Navigation Links -->
-        <div class="navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/home" routerLinkActive="active">Task</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/configuration"  routerLinkActive="active">Configuration</a>
-            </li>
-            <!-- <li class="nav-item">
+<div class="header-container">
+  <nav class="header">
+    <div class="navigator">
+      <!-- Logo -->
+      <a class="navbar-brand" href="/home">
+        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="#ff4081" />
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" fill="#fff"
+            font-family="Arial, sans-serif">
+            LVTD
+          </text>
+        </svg>
+      </a>
+      <!-- Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navigation Links -->
+      <div class="navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Task</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/configuration" routerLinkActive="active">Configuration</a>
+          </li>
+          <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/login">Sign In</a>
             </li> -->
-          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="account">
+      <a class="account-avt" (click)="avtDropdown()">
+        <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="100" fill="#ff4081" />
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" fill="#fff"
+            font-family="Arial, sans-serif">
+            LVTD
+          </text>
+        </svg>
+        <div class="dropdown-icon">
+        </div>
+      </a>
+      <div class="acount__dropdown-outer" [ngClass]="{'active':activeAVTDropdown == true}" (click)="avtDropdown()">
+        <div class="acount__dropdown-menu">
+          <div class="dropdown-item dropdown__acount" routerLink="/myProfile">
+            <i class="fa-solid fa-user"></i>
+            <div class="dropdown__content dropdown__name">{{userResponse!.name}}</div>
+          </div>
+          <div routerLink="/changePassword" class="dropdown-item">
+            <i class="fa-solid fa-lock"></i>
+            <div class="dropdown__content dropdown__setting">Change Password</div>
+          </div>
+          <!-- <div class="dropdown-item">
+            <i class="fa-solid fa-sliders"></i>
+            <div class="dropdown__content dropdown__configuration">Admin</div>
+          </div> -->
+          <div class="dropdown-item" (click)="logOut()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <div class="dropdown__content dropdown__logout">Log out</div>
+          </div>
         </div>
       </div>
-      <div class="account">
-        <a class="account-avt" (click)="avtDropdown()">
-          <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="100" fill="#ff4081" />
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" fill="#fff" font-family="Arial, sans-serif">
-              LVTD
-            </text>
-          </svg>
-          <div class="dropdown-icon">
-          </div>
-        </a>
-        <div class="acount__dropdown-outer"  [ngClass]="{'active':activeAVTDropdown == true}" (click)="avtDropdown()">
-          <div class="acount__dropdown-menu">
-            <div class="dropdown-item dropdown__acount" routerLink="/myProfile">
-              <i class="fa-solid fa-user"></i>
-              <div class="dropdown__content dropdown__name">thanhdat</div>
-            </div>
-            <div  routerLink="/changePassword" class="dropdown-item">
-              <i class="fa-solid fa-gear"></i>
-              <div class="dropdown__content dropdown__setting">Change Password</div>
-            </div>
-            <div class="dropdown-item">
-              <i class="fa-solid fa-sliders"></i>
-              <div class="dropdown__content dropdown__configuration">Admin</div>
-            </div>
-            <div class="dropdown-item" (click)="logOut()">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <div class="dropdown__content dropdown__logout">Log out</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>
