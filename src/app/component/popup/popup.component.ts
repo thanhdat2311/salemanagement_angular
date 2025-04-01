@@ -58,6 +58,9 @@ export class PopupComponent implements OnInit {
       case 'editStatus':
         this.statusName = this.data.statusSelected.name
         break;
+      case 'addNewUser':
+        this.roleList = this.data.roleList;
+        break;
       case 'editUser':
         this.roleList = this.data.roleList;
         this.roleSelected = this.data.userSelected.role.id
@@ -183,8 +186,15 @@ export class PopupComponent implements OnInit {
           }
 
           const userDTO = {
-
+            fullName : this.userFullName,
+            email : this.userEmail,
+            address : this.userAddress,
+            phone:this.userPhone,
+            roleId: this.userRole,
+            is_active: Number(this.isActive)
           }
+          const dataBackConfig = { todo: toDo, userDTO };
+          this.dialogRef.close(dataBackConfig);
           break;
         }
       case 'editUser':
