@@ -5,6 +5,11 @@ import { CompanyService } from 'src/app/services/company.service';
 import { Company } from '../models/company';
 import { NotificationComponent } from '../notification/notification.component';
 import { Role } from '../models/role';
+import { TaskDTO } from 'src/app/dtos/task.dto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validator } from 'class-validator';
+import { Task } from '../models/task';
+import { Status } from '../models/status';
 
 @Component({
   selector: 'app-popup',
@@ -16,10 +21,28 @@ export class PopupComponent implements OnInit {
   @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   visibleFormId: number = 0;
   numberTest: number = 2;
+
+  // for task
+  taskForm: FormGroup;
+  taskDetail: Task | undefined;
+  taskDTO: TaskDTO = {
+    "title": "",
+    "description": "",
+    "action": "",
+    "urgent": 0,
+    "status": 1,
+    "assignedUsers": [],
+    "startDate": "",
+    "completedDate": "",
+    "companyId": 0
+  };
+
+
   // for Role
   roleSelected?: Role;
   roleList: Role[] = []
   // For Customer
+  companyList: Company[] = [];
   companyName: string = '';
   customerEmail: string = '';
   userList: AssignedPerson[] = [];
@@ -29,7 +52,7 @@ export class PopupComponent implements OnInit {
   // For Status
   statusName: string = '';
   statusColor: string = '#ffffff'; // Default color 
-
+  statusList: Status[] = [];
   // For User
   userFullName: string = '';
   userEmail: string = '';
@@ -37,13 +60,26 @@ export class PopupComponent implements OnInit {
   userAddress: string = '';
   userRole: number = 0;
   isActive: boolean = true;
-
   assigned_person: string[] = [];
+
   constructor(
     private companyService: CompanyService,
     public dialogRef: MatDialogRef<PopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fb: FormBuilder
+  ) {
+    this.taskForm = this.fb.group({
+      title: ['', Validators.required], // Bắt buộc nhập title
+      description: ['', Validators.required], // Bắt buộc nhập description
+      action: ['', Validators.required], // Bắt buộc nhập actionz 
+      urgent: [0, Validators.required], // Bắt buộc nhập urgent (boolean)
+      status: [1, Validators.required], // Bắt buộc nhập status (number)
+      assignedUsers: [[], Validators.required], // Bắt buộc có assignedUser (mảng email)
+      startDate: ['', Validators.required], // Bắt buộc nhập startDate
+      completedDate: ['', Validators.required], // Bắt buộc nhập completedDate
+      companyId: [null, Validators.required] // Bắt buộc nhập companyId (number)
+    });
+  }
   ngOnInit(): void {
     debugger
     this.setVisibleForm(this.data.barId);
@@ -71,9 +107,34 @@ export class PopupComponent implements OnInit {
         this.userRole = this.data.userSelected.role.id;
         this.isActive = this.data.userSelected.is_active;
         break;
-        case 'editStatus':
-         this.statusColor = this.data.statusSelected.color
-          break;
+      case 'editStatus':
+        this.statusColor = this.data.statusSelected.color
+        break;
+      case 'addNewTask':
+        this.roleList = this.data.roleList;
+        this.userList = this.data.userList;
+        this.companyList = this.data.companyList;
+        this.statusList = this.data.statusList
+        break;
+      case 'editTask':
+        this.roleList = this.data.roleList;
+        this.userList = this.data.userList;
+        this.companyList = this.data.companyList;
+        this.statusList = this.data.statusList
+        this.taskDetail = this.data.taskSelected
+        this.taskForm.patchValue({
+          title: this.taskDetail!.title,
+          description: this.taskDetail!.description,
+          action: this.taskDetail!.action,
+          urgent: this.taskDetail!.urgent,
+          assignedUsers: this.taskDetail!.assignedUsers?.map(user => user.email), // trả về mảng email
+          startDate: this.taskDetail!.startDate,
+          completedDate: this.taskDetail!.completedDate,
+          companyId: this.taskDetail!.company?.id, // vì form dùng companyId
+          status: this.taskDetail!.status?.id      // vì form dùng status (id)
+        });
+
+        break;
     }
   }
   onClose(): void {
@@ -140,7 +201,7 @@ export class PopupComponent implements OnInit {
             this.notificationComponent.addNotification("The Status must be between 3 and 50 characters!", 'warning');
             return;
           }
-          const statusDTO = { name: this.statusName, color: this.statusColor}
+          const statusDTO = { name: this.statusName, color: this.statusColor }
           dataBackConfig = { todo: toDo, statusDTO }
           this.dialogRef.close(dataBackConfig);
           break;
@@ -186,10 +247,10 @@ export class PopupComponent implements OnInit {
           }
 
           const userDTO = {
-            fullName : this.userFullName,
-            email : this.userEmail,
-            address : this.userAddress,
-            phone:this.userPhone,
+            fullName: this.userFullName,
+            email: this.userEmail,
+            address: this.userAddress,
+            phone: this.userPhone,
             roleId: this.userRole,
             is_active: Number(this.isActive)
           }
@@ -220,10 +281,10 @@ export class PopupComponent implements OnInit {
             return;
           }
           const userDTO = {
-            fullName : this.userFullName,
-            email : this.userEmail,
-            address : this.userAddress,
-            phone:this.userPhone,
+            fullName: this.userFullName,
+            email: this.userEmail,
+            address: this.userAddress,
+            phone: this.userPhone,
             roleId: this.userRole,
             is_active: Number(this.isActive)
           }
@@ -231,7 +292,47 @@ export class PopupComponent implements OnInit {
           this.dialogRef.close(dataBackConfig);
           break;
         }
+      case 'addNewTask':
+        {
+          debugger
+          const taskDTO = this.createTaskDTO();
+          const dataBackConfig = { todo: toDo, taskDTO };
+          this.dialogRef.close(dataBackConfig);
+          break;
+        }
+      case 'editTask':
+        {
+          debugger
+          const taskDTO = this.createTaskDTO();
+          const dataBackConfig = { todo: toDo, taskDTO };
+          this.dialogRef.close(dataBackConfig);
+          break;
+        }
     }
+  }
+
+  createTaskDTO(): TaskDTO {
+    const formValue = this.taskForm.value;
+    console.info(formValue.startDate)
+    // Chuyển đổi Date thành string (định dạng YYYY-MM-DD)
+    const formatDate = (date: Date | null): string => {
+      if (!date) return '';
+      return date.toISOString().split('T')[0]; // Ví dụ: "2003-12-13"
+    };
+
+    const taskDTO: TaskDTO = {
+      title: formValue.title || '',
+      description: formValue.description || '',
+      action: formValue.action || '',
+      urgent: formValue.urgent ? 1 : 0, 
+      status: formValue.status || 0, 
+      assignedUsers: formValue.assignedUsers || [], 
+      startDate: formValue.startDate,//formatDate(formValue.startDate), 
+      completedDate: formValue.completedDate,//formatDate(formValue.completedDate), 
+      companyId: formValue.companyId || 0
+    };
+
+    return taskDTO;
   }
 
   validateEmail(email: string): boolean {

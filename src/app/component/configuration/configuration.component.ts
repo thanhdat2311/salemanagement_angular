@@ -40,8 +40,10 @@ export class ConfigurationComponent implements OnInit {
   visiblePages: number[] = [];
 
   // Tasks var
+  taskSelected:number = 0;
   taskId: number = 0;
   taskList: Task[] = [];
+  taskDetail: Task | undefined;
 
   // Loading variables
   loading = true;
@@ -273,7 +275,51 @@ export class ConfigurationComponent implements OnInit {
       }
     })
   };
+  openPopupTask(toDoConfig: string): void {
+    let taskPopUp;
+    switch (toDoConfig) {
+      case 'addNewTask':
+        taskPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          roleList: this.roles,
+          userList: this.userList,
+          companyList: this.companyList,
+          statusList: this.statusList
+        }
+        break;
 
+      case 'editTask':
+        const taskSelected = this.taskList.find(task => task.id == this.taskId)
+        taskPopUp = {
+          barId: this.barSelected,
+          todo: toDoConfig,
+          taskSelected: taskSelected,
+          roleList: this.roles,
+          userList: this.userList,
+          companyList: this.companyList,
+          statusList: this.statusList        }
+        break;
+
+    }
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '800px',  // Chiều rộng popup
+      disableClose: false,
+      data: taskPopUp
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        switch (result.todo) {
+          case 'addNewTask':
+            this.createTask(result.taskDTO);
+            break;
+          case 'editTask':
+            this.updateTask(this.taskId, result.taskDTO);
+            break;
+        }
+      }
+    })
+  };
   onBarSelected(barID: number) {
     this.barSelected = barID;
   }
@@ -515,7 +561,55 @@ export class ConfigurationComponent implements OnInit {
     }
     )
   }
+  createTask(taskDTO: any){
+    this.taskService.createTask(taskDTO).subscribe({
+      next: (response: any) => {
+        debugger
+        this.taskList = response;
+        if (this.taskList != null && this.taskList != undefined) {
+          //this.getTaskList(this.taskDTO.companyId)
+          this.addNotification("Add new Successfully", "success")
+        } else {
+          this.addNotification("Add new Unsuccessfully", "error")
 
+        }
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error")
+      }
+    }
+    )
+  }
+  updateTask(selectedTask:number, taskDTO:any){
+    this.taskService.updateTask(selectedTask, taskDTO).subscribe({
+      next: (response: any) => {
+        debugger
+        this.taskDetail = response;
+        if (this.taskDetail != null && this.taskDetail != undefined) {
+          this.addNotification("Edit Task", "success");
+        } else {
+          this.addNotification("unsuccessfully", "error");
+
+        }
+      }
+      ,
+      complete: () => {
+        debugger;
+      }
+      ,
+      error: (error: any) => {
+        debugger
+        this.addNotification(error.error, "error");
+      }
+    }
+    )
+  }
   // Methods to get notifications
   addNotification(content: string, type: 'info' | 'warning' | 'error' | 'success') {
     this.notificationComponent.addNotification(content, type);

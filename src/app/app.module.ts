@@ -20,7 +20,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PopupComponent } from './component/popup/popup.component';
 import { MatOption, MatOptionModule, MatOptionSelectionChange } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core'; 
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangepasswordComponent } from './component/changepassword/changepassword.component';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
@@ -31,6 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterPipe } from './filter.pipe';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { LoadingComponent } from './component/loading/loading.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -68,6 +71,9 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTooltipModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     BrowserAnimationsModule,
     AppRoutingModule
   ],

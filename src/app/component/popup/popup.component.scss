@@ -81,3 +81,11 @@
         margin-left: $spacing-xxs;;
     }
 }
+.date-row {
+    display: flex;
+    gap: 16px; /* Khoảng cách giữa hai trường */
+}
+
+.date-row mat-form-field {
+    flex: 1; /* Mỗi mat-form-field chiếm đều không gian */
+}

@@ -1,1 +1,13 @@
 @import "./styles/main.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-tooltip {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: white !important;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+  }
+  
+  

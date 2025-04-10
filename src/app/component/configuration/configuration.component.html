@@ -192,8 +192,8 @@
      <!-- Task List -->
     <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 4}">
       <div class="configuration-content__header">
-        <div class="configuration-content__add-btn" (click)="openPopupUser('addNewUser')">+ Add New</div>
-        <div class="configuration-content__refresh-btn" (click)="getAllUser()">
+        <div class="configuration-content__add-btn" (click)="openPopupTask('addNewTask')">+ Add New</div>
+        <div class="configuration-content__refresh-btn" (click)="getAllTask(0,5,sortBy)">
           <i class="fa fa-refresh"></i>
         </div>
       </div>
@@ -211,7 +211,7 @@
         </div>
         <div class="configuration-table__content" *ngFor="let task of taskList">
           <ul class="configuration-table__content-line status-configuration__table"
-            (click)="onTaskSelected(task.id , 'task'); openPopupUser('editUser')"
+            (click)="onTaskSelected(task.id , 'task'); openPopupTask('editTask')"
             [ngClass]="{'configuration-table__content-line--active':task.id === taskId}">
             <li>{{task.title}}</li>
             <li><input class="task-checkbox-urgent" type="checkbox" [checked]="task.urgent" (click)="$event.preventDefault()"></li>
