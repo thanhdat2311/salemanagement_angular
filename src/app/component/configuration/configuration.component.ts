@@ -576,6 +576,7 @@ export class ConfigurationComponent implements OnInit {
     this.taskService.createTask(taskDTO).subscribe({
       next: (response: any) => {
         debugger
+
         this.taskList = response;
         if (this.taskList != null && this.taskList != undefined) {
           //this.getTaskList(this.taskDTO.companyId)

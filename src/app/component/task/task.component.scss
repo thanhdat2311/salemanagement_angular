@@ -281,7 +281,6 @@
 
         .form-group {
           flex: 3;
-          /* Chia đều khoảng trống */
         }
 
         status-group {
@@ -293,7 +292,6 @@
         display: flex;
         align-items: center; // Căn giữa theo chiều dọc
         gap: 10px;
-
         .form-group {
           flex: 4; // Chia đều khoảng trống
         }
@@ -410,4 +408,21 @@
 }
 .active{
   background-color: $hover-label;
+}
+.subtask-box {
+  max-height: 100px; 
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: transparent
+}
+.subtask-box .list-group-item {
+  background-color: transparent; /* Nền trong suốt */
+  border: none; /* Xóa border mặc định của list item */
+  padding: 10px; /* Tùy chỉnh padding nếu cần */
+  color: $text-color;
+}
+
+.subtask-box .list-group-item:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Hiệu ứng hover nhẹ */
 }

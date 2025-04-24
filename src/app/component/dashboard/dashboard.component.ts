@@ -34,7 +34,7 @@ export class DashboardComponent {
   }
   // Open pop up
 
-  openPopupStatus(toDoConfig: string): void {
+  openPopupDashBoard(toDoConfig: string): void {
     let postPopup;
 
     switch (toDoConfig) {

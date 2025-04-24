@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit {
       urgent: [false, Validators.required], // Bắt buộc nhập urgent (boolean)
       status: [[], Validators.required], // Bắt buộc nhập status (number)
       assignedUsers: [[], Validators.required], // Bắt buộc có assignedUser (mảng email)
+      subTasks: [[], Validators.required], // Bắt buộc có assignedUser (mảng email)
       startDate: ['', Validators.required], // Bắt buộc nhập startDate
       completedDate: ['', Validators.required], // Bắt buộc nhập completedDate
       companyId: [null, Validators.required] // Bắt buộc nhập companyId (number)
@@ -310,6 +311,7 @@ export class HomeComponent implements OnInit {
       company: undefined,
       status: undefined,
       completedDate: '',
+      subtasks: [],
       createdAt: '',
       updatedAt: ''
     };
@@ -373,7 +375,8 @@ export class HomeComponent implements OnInit {
           assignedUsers: this.taskDetail.assignedUsers,
           startDate: this.taskDetail.startDate,
           completedDate: this.taskDetail.completedDate,
-          companyId: this.taskDetail.company?.id
+          companyId: this.taskDetail.company?.id,
+          subTasks: this.taskDetail?.subtasks
         });
         // const assginedListNew = (this.taskForm.get('assignedUsers') as FormArray).getRawValue();
         // const emailListNew = assginedListNew.map((user: { email: any; }) => user.email);

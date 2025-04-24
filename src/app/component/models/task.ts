@@ -14,6 +14,7 @@ export interface Task {
         company: Company|undefined;
         status: Status|undefined;
         completedDate: string;
+        subtasks: Task[];
         createdAt: string;
         updatedAt: string;
       }

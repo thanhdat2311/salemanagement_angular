@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="dashboard-container">
   <div class="input-group">
-    <button (click)="openPopupStatus('addNewPost')" class="post-btn">+ Add New</button>
+    <button (click)="openPopupDashBoard('addNewPost')" class="post-btn">+ Add New</button>
   </div>
     <div class="post-list" *ngIf="posts.length > 0">
       <div class="post-item" *ngFor="let post of posts">

@@ -20,6 +20,7 @@
       </div>
     </div>
     <div class="task-content task-list">
+     
       <div class="task-header">
         <span class="header-text">To do</span>
       </div>
@@ -35,6 +36,7 @@
                 <i class="fa-solid fa-magnifying-glass active"></i>
               </span>              
             </div>
+            
             <input *ngIf="isOpenSearch" [(ngModel)]="inputSearch"  
             (keydown.enter)="enterInputSearch(inputSearch)"
             class="task-search-input" 
@@ -46,6 +48,9 @@
           </div>
         </div>
         <div class="task-body__todo scroll">
+          <div *ngIf="taskList.length === 0 && selectedCompany" class="alert alert-secondary text-center">
+            No tasks available.
+          </div>
           <div 
           *ngFor="let task of taskList | filter:inputSearch : ['title', 'status.name']"
           class="todo-content" (click)="getTaskDetail(task.id)" [ngClass]="{'active': task.id === selectedTask}">
@@ -87,18 +92,25 @@
         <form class="form-fill-task" [formGroup]="taskForm" *ngIf="selectedTask || isToDo === 'addnew'">
           <!-- Title (Dòng 1) -->
           <div class="form-group">
-            <label for="title">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING' }}</label>
+            <label for="title" class="fw-bold text-light">{{ isToDo === 'addnew' ? 'ADD NEW' : 'EDITING'+ '/ '+taskDetail?.title  }}</label>
             <label for="title">Title</label>
             <input type="text" id="title" [value]="taskDetail?.title" class="form-control" name="title"
               formControlName="title" />
           </div>
 
         <!-- Description (Dòng 2) -->
+         <div class="row">
           <div class="form-group">
             <label for="description">Description</label>
             <textarea id="description" class="form-control" [value]="taskDetail?.description" name="description"
               formControlName="description" rows="8"></textarea>
           </div>
+          <div class="form-group">
+            <label for="action">Action</label>
+            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
+              formControlName="action"></textarea>
+          </div>
+        </div>
         <!-- Combobox để chọn người dùng -->
         <div class="row">
           <div class="form-group">
@@ -117,11 +129,17 @@
         </div>
         <!-- Action + Urgent (Dòng 3) -->
         <div class="action-urgent-group">
-          <div class="form-group">
-            <label for="action">Action</label>
-            <textarea type="text" id="action" class="form-control" [value]="taskDetail?.action " name="action"
-              formControlName="action"></textarea>
+        <div *ngIf="taskDetail?.subtasks?.length" class="subtask-section mt-4 form-group">
+          <h5 class="title">Subtasks</h5>
+          <div class="subtask-box">
+            <ul class="list-group">
+              <li *ngFor="let sub of taskDetail?.subtasks"
+                  class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ sub.title}}</span>
+              </li>
+            </ul>
           </div>
+        </div>
           <div class="urgent-checkbox">
             <input type="checkbox" class="form-check-input" id="urgent" [checked]="taskDetail?.urgent"
               formControlName="urgent">
@@ -141,6 +159,7 @@
               name="completedDate" formControlName="completedDate" />
           </div>
         </div>
+        
       </form>
       <div class="action-buttons">
         <!-- <button class="btn view-btn" >View</button> -->
