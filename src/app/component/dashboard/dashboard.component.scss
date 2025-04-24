@@ -1,0 +1,164 @@
+@import "../../../styles.scss";
+.dashboard-container {
+  background: $primary-gradient ;
+  color: $text-color;
+  box-shadow: $box-shadow;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dashboard-body {
+  flex: 1;               
+  overflow-y: auto;      
+  padding: $spacing-lg;  
+  background: $background;
+  margin: $spacing-xs $spacing-xs $spacing-sm $spacing-xs;
+  border-radius: 16px;
+}
+
+.title {
+  font-size: $font-size-xxl;
+  color: $text-color;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  .status-input,
+  .reason-input {
+    background: $input-background;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: $border-input;
+    padding: $spacing-input;
+    font-size: $font-size-md;
+
+    &::placeholder {
+      color: $placeholder;
+    }
+  }
+
+  .post-btn {
+    align-self: flex-end;
+    background: $save-background;
+    color: $text-color;
+    border: none;
+    border-radius: $border-button;
+    padding: $spacing-xs;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    margin-right: $spacing-sm;
+    margin-top: 5px;
+    &:hover {
+      background: $save-background-hover;
+    }
+  }
+}
+
+.post-list {
+  margin-top: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  .post-item {
+    background: $secondary-background;
+    padding: $spacing-sm;
+    border-radius: $border-sm;
+    box-shadow: $box-shadow;
+
+    .post-status {
+      font-size: $font-size-lg;
+      color: $highlight-color;
+    }
+
+    .post-reason {
+      font-size: $font-size-md;
+      color: $text-color;
+    }
+
+    .post-time {
+      font-size: $font-size-xs;
+      color: $placeholder;
+      display: block;
+      margin-top: $spacing-xxs;
+      text-align: right;
+    }
+  }
+}
+.section-title {
+    margin-top: $spacing-xl;
+    font-size: $font-size-xl;
+    font-weight: 500;
+    color: $text-color;
+    border-left: 4px solid $highlight-color;
+    padding-left: $spacing-sm;
+    margin-bottom: $spacing-sm;
+  }
+
+.post-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+  
+  .post-line {
+    display: flex;
+    width: 100%;
+  
+    &.left {
+      justify-content: flex-start;
+    }
+  
+    &.right {
+      justify-content: flex-end;
+    }
+  
+    .post-bubble {
+      max-width: 50%;
+      background: $background;
+      padding: $spacing-md;
+      border-radius: $border-md;
+      box-shadow: $box-shadow;
+  
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $spacing-xs;
+  
+        .post-user {
+          font-size: $font-size-sm;
+          font-weight: 500;
+          color: whitesmoke;
+        }
+  
+        .post-time {
+          font-size: $font-size-xs;
+          color: $placeholder;
+        }
+      }
+  
+      .post-status {
+        font-size: $font-size-lg;
+        color: $highlight-color;
+        margin-bottom: $spacing-xxs;
+      }
+  
+      .post-reason {
+        font-size: $font-size-md;
+        color: $text-color;
+      }
+  
+      &.self {
+        background: linear-gradient(135deg, #87009b33, #ff408133);
+        color: $text-color;
+      }
+    }
+  }
+  

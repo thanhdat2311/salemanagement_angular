@@ -139,9 +139,25 @@
                     <div class="active-checkbox">
                         <input type="checkbox" class="form-checkbox" [value]="taskDetail?.urgent" 
                         formControlName="urgent">
-                        <p class="form-active__content">Is Urgent</p>
+                        <p class="form-active__content">Urgent</p>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="10">
+        <h3 class="popup-title">New Post</h3>
+        <div class="popup-content">
+            <div class="popup-group" style="position: relative;">
+                <mat-form-field subscriptSizing="fixed" appearance="outline">
+                    <mat-label class="custom-label">Post</mat-label>
+                    <input matInput placeholder="Enter status name..." [(ngModel)]="newPost">
+                </mat-form-field>
+
+                <mat-form-field subscriptSizing="fixed" appearance="outline">
+                    <mat-label class="custom-label">Description</mat-label>
+                    <input matInput placeholder="Enter status name..." [(ngModel)]="description">
+                </mat-form-field>
             </div>
         </div>
     </div>

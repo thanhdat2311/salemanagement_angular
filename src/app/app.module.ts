@@ -34,6 +34,7 @@ import { FilterPipe } from './filter.pipe';
 import { ConfigurationComponent } from './component/configuration/configuration.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Trang chủ
@@ -57,7 +58,8 @@ const routes: Routes = [
     AppComponent,
     ConfigurationComponent,
     LoadingComponent,
-    FilterPipe
+    FilterPipe,
+    DashboardComponent
   ],
   imports: [
     ReactiveFormsModule,

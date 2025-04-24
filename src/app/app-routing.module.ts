@@ -9,6 +9,7 @@ import { ProfileComponent } from "./component/profile/profile.component";
 import { AuthGuardFn } from "./component/guards/auth.guard";
 import { ConfigurationComponent } from "./component/configuration/configuration.component";
 import { AdminGuard } from "./component/guards/admin.guard";
+import { DashboardComponent } from "./component/dashboard/dashboard.component";
 
 const routes: Routes = [
     {path:'home', component: HomeComponent, canActivate:[AuthGuardFn]},
@@ -18,7 +19,8 @@ const routes: Routes = [
     {path:'configuration', component:ConfigurationComponent,canActivate:[AdminGuard] },
     {path:'changePassword', component:ChangepasswordComponent,  canActivate:[AuthGuardFn]},
     {path:'myProfile', component:ProfileComponent, canActivate:[AuthGuardFn] },
-    {path:'resetPassword', component:ResetpasswordComponent }
+    {path:'resetPassword', component:ResetpasswordComponent },
+    {path:'dashboard', component:DashboardComponent }
 ]; 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

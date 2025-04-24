@@ -1,31 +1,37 @@
 @import "../../../styles.scss";
 
+
+
 .container {
   position: relative;
+
 }
+
 
 .header {
   display: flex;
   justify-content: space-between;
-  position: sticky; /* Giữ header ở vị trí trên cùng */
   width: 100%;
-  z-index: 2;
-  background: none; /* Nền trong suốt */
-  backdrop-filter: blur(10px); /* Hiệu ứng mờ */
-  margin: $spacing-xxs 0 $spacing-xxs;
-  transition: background 0.3s ease; /* Hiệu ứng chuyển nền */
+  z-index: 1000;
+  background: none;
+  /* Nền trong suốt */
+  position: fixed;
+  transition: background 0.3s ease;
+  /* Hiệu ứng chuyển nền */
 }
 
 .navigator {
   margin-left: 12%;
   display: flex;
 }
-  /* Logo */
+
+/* Logo */
 .navbar-brand {
   font-size: $font-size-xs;
   font-weight: bold;
   color: $text-color;
   text-decoration: none;
+
   svg {
     width: 40px;
     height: 40px;
@@ -45,6 +51,7 @@
   margin: 0 10px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+
 .nav-link:hover {
   color: $highlight-color-hover;
   cursor: pointer;
@@ -54,7 +61,8 @@
 .nav-link.active {
   font-weight: bold;
   color: $highlight-color;
-  border-bottom: 2px solid $highlight-color; /* Đánh dấu link đang chọn */
+  border-bottom: 2px solid $highlight-color;
+  /* Đánh dấu link đang chọn */
 }
 
 .account {
@@ -69,7 +77,7 @@
 
 .account-avt {
   position: relative;
-
+  margin-right: $spacing-md;
   .dropdown-icon {
     position: absolute;
     background-color: $background;
@@ -91,7 +99,8 @@
       right: 22%;
       border-left: 3.5px solid transparent;
       border-right: 3.5px solid transparent;
-      border-top: 3.5px solid $light-background; /* Màu của tam giác */
+      border-top: 3.5px solid $light-background;
+      /* Màu của tam giác */
 
     }
   }
@@ -122,17 +131,7 @@
   right: 12px;
   border-radius: $border-xs;
 
-  // &::before {
-  //   position: absolute;
-  //   content: "";
-  //   width: 5px;
-  //   height: 5px;
-  //   top: -3%;
-  //   right: 16%;
-  //   border-left: 5px solid transparent;
-  //   border-right: 5px solid transparent;
-  //   border-bottom: 5px solid $light-background; /* Màu của tam giác */
-  // }
+ 
 
   .dropdown-item {
     padding: $spacing-xxs $spacing-xs;
@@ -198,9 +197,11 @@
     text-align: center;
     margin: 10px 0;
   }
+
   .nav-item {
     margin: 5px 0;
   }
+
   .search-form {
     justify-content: center;
     flex-wrap: wrap;

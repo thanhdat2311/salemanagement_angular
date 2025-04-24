@@ -37,6 +37,9 @@ export class PopupComponent implements OnInit {
     "companyId": 0
   };
 
+  // for dashboard
+  title: string = '';
+  descriptionPost: string = '';
 
   // for Role
   roleSelected?: Role;
@@ -62,6 +65,9 @@ export class PopupComponent implements OnInit {
   isActive: boolean = true;
   assigned_person: string[] = [];
 
+  // For Post 
+  newPost: string = '';
+  description: string = '';
   constructor(
     private companyService: CompanyService,
     public dialogRef: MatDialogRef<PopupComponent>,
@@ -138,7 +144,6 @@ export class PopupComponent implements OnInit {
     }
   }
   onClose(): void {
-
     this.dialogRef.close();
   }
   setVisibleForm(visibleFormId: number) {
@@ -315,18 +320,18 @@ export class PopupComponent implements OnInit {
     const formValue = this.taskForm.value;
     console.info(formValue.startDate)
     // Chuyển đổi Date thành string (định dạng YYYY-MM-DD)
-    const formatDate = (date: Date | null): string => {
-      if (!date) return '';
-      return date.toISOString().split('T')[0]; // Ví dụ: "2003-12-13"
-    };
+    // const formatDate = (date: Date | null): string => {
+    //   if (!date) return '';
+    //   return date.toISOString().split('T')[0]; // Ví dụ: "2003-12-13"
+    // };
 
     const taskDTO: TaskDTO = {
       title: formValue.title || '',
       description: formValue.description || '',
       action: formValue.action || '',
-      urgent: formValue.urgent ? 1 : 0, 
-      status: formValue.status || 0, 
-      assignedUsers: formValue.assignedUsers || [], 
+      urgent: formValue.urgent ? 1 : 0,
+      status: formValue.status || 0,
+      assignedUsers: formValue.assignedUsers || [],
       startDate: formValue.startDate,//formatDate(formValue.startDate), 
       completedDate: formValue.completedDate,//formatDate(formValue.completedDate), 
       companyId: formValue.companyId || 0

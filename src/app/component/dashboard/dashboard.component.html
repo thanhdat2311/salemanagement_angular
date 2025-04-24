@@ -1,0 +1,119 @@
+<app-header></app-header>
+<div class="dashboard-container">
+  <div class="input-group">
+    <button (click)="openPopupStatus('addNewPost')" class="post-btn">+ Add New</button>
+  </div>
+    <div class="post-list" *ngIf="posts.length > 0">
+      <div class="post-item" *ngFor="let post of posts">
+        <p class="post-status">{{ post.status }}</p>
+        <p class="post-reason">{{ post.reason }}</p>
+        <span class="post-time">{{ post.createdAt }}</span>
+      </div>
+    </div>
+    <div class="dashboard-body">
+    <div class="section-title">Post Company (Today)</div>
+    <div class="post-timeline">
+
+      <!-- Post người khác - bên trái -->
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Anh Tuấn</span>
+            <span class="post-time">08:15 AM</span>
+          </div>
+          <p class="post-status">Hơi mệt...</p>
+          <p class="post-reason">Làm việc muộn hôm qua, sáng nay hơi đuối</p>
+        </div>
+      </div>
+
+      <!-- Post bản thân - bên phải -->
+      <div class="post-line right">
+        <div class="post-bubble self">
+          <div class="post-header">
+            <span class="post-time">09:30 AM</span>
+            <span class="post-user">Tôi</span>
+          </div>
+          <p class="post-status">Hôm nay mình khá vui!</p>
+          <p class="post-reason">Đã hoàn thành xong deadline đúng hạn sdafasdfasdf
+            fasdfasdfasdf
+            sadfas
+            dfas
+            df
+            asdf
+            asd
+            fasd
+            fas
+            df
+            asdf
+
+          </p>
+        </div>
+      </div>
+
+      <!-- Thêm tiếp các dòng khác -->
+      <div class="post-line left">
+        <div class="post-bubble">
+          <div class="post-header">
+            <span class="post-user">Linh Nguyễn</span>
+            <span class="post-time">10:45 AM</span>
+          </div>
+          <p class="post-status">Ổn áp</p>
+          <p class="post-reason">Sáng nay uống cà phê ngon tuyệt</p>
+        </div>
+      </div>
+
+    </div>
+  <app-notification></app-notification>
+</div>
+
+</div>

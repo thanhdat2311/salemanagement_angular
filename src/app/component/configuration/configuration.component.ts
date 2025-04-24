@@ -81,14 +81,12 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true
     this.getAllTask(this.pageNo, this.pageSize, this.sortBy);
     this.getAllCompany(this.pageNo, this.pageSize, this.sortBy);
     this.getAllStatus();
     this.getAllUser();
     this.getRoles();
     this.getUserDetails();
-    this.loading = false
 
     this.barList = [
       { id: 1, name: "Customer" },
@@ -96,6 +94,7 @@ export class ConfigurationComponent implements OnInit {
       { id: 3, name: "User" },
       { id: 4, name: "Task" }
     ]
+
   }
 
 
@@ -362,6 +361,7 @@ export class ConfigurationComponent implements OnInit {
   }
 
   getAllTask(pageNo: number, pageSize: number, sortBy: string) {
+    this.loading = true;
     this.taskService.getTaskByAdmin(pageNo, pageSize, sortBy).subscribe({
       next: (response: any) => {
         debugger
@@ -375,6 +375,8 @@ export class ConfigurationComponent implements OnInit {
       ,
       complete: () => {
         debugger;
+        this.loading = false;
+
       }
       ,
       error: (error: any) => {
@@ -384,6 +386,7 @@ export class ConfigurationComponent implements OnInit {
     )
   }
   getAllUser() {
+    this.loading = true;
     this.userService.getAllUser().subscribe({
       next: (response: any) => {
         debugger
@@ -392,15 +395,17 @@ export class ConfigurationComponent implements OnInit {
       ,
       complete: () => {
         debugger;
+        this.loading = false;
       }
       ,
       error: (error: any) => {
         debugger
       }
     }
-    )
+    );
   }
   getAllStatus() {
+    this.loading = true;
     this.taskService.getStatus().subscribe({
       next: (response: any) => {
         debugger
@@ -409,6 +414,8 @@ export class ConfigurationComponent implements OnInit {
       ,
       complete: () => {
         debugger;
+        this.loading = false;
+
       }
       ,
       error: (error: any) => {
@@ -418,6 +425,7 @@ export class ConfigurationComponent implements OnInit {
     )
   }
   getAllCompany(pageNo: number, pageSize: number, sortBy: string) {
+    this.loading = true;
     this.companyService.getAllCompany(pageNo, pageSize, sortBy).subscribe({
       next: (response: any) => {
         debugger
@@ -436,9 +444,11 @@ export class ConfigurationComponent implements OnInit {
       }
     }
     )
+    this.loading = false;
 
   }
   getRoles() {
+    this.loading = true
     this.roleService.getRoles().subscribe({
       next: (response: any) => {
         debugger
@@ -447,6 +457,7 @@ export class ConfigurationComponent implements OnInit {
       ,
       complete: () => {
         debugger;
+        this.loading = false;
       }
       ,
       error: (error: any) => {

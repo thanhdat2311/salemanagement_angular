@@ -61,10 +61,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
-.container {
+.container,.dashboard-container {
   max-width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   background: $primary-gradient;
+  padding-top: 50px; // bằng đúng chiều cao header
+
 }

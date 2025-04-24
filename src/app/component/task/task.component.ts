@@ -358,6 +358,7 @@ export class HomeComponent implements OnInit {
     )
   }
   getTaskDetail(idTask: number) {
+   debugger
     this.isToDo = "edit";
     this.selectedTask = idTask;
     this.taskService.getTaskDetail(idTask).subscribe({

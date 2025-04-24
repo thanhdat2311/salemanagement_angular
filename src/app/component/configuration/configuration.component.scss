@@ -78,10 +78,10 @@
             }
 
             .configuration-content__refresh-btn {
-                background-color: $highlight-color;
+                background-color: $background;
                 font-size: $font-size-lg;
                 color: $text-color;
-                padding: $spacing-xxs $spacing-input;
+                padding: $spacing-input $spacing-xxs;
                 margin-left: $spacing-input;
                 border-radius: 50%;
 
@@ -92,7 +92,7 @@
 
             .configuration-content__add-btn:hover,
             .configuration-content__refresh-btn:hover {
-                background-color: $highlight-color-hover;
+                background-color: $hover-label;
                 cursor: pointer;
             }
         }

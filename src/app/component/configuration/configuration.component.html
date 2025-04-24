@@ -1,6 +1,7 @@
+<app-header></app-header>
+
 <div class="container">
   <app-loading [isLoading]="loading"></app-loading>
-  <app-header></app-header>
   <div class="configuration-container">
     <div class="configuration-bar">
       <h2 class="configuration-bar__header-text">
@@ -164,8 +165,7 @@
             <li>{{user.phone}}</li>
             <li>{{user.address}}</li>
             <li>{{user.role.name}}</li>
-            <li>{{user.is_active}}</li>
-          </ul>
+            <li>{{ user.is_active === 1 ? 'true' : user.is_active === 2 ? 'false' : user.is_active }}</li>          </ul>
         </div>
       </div>
       <div class="configuration-content__page">
@@ -188,8 +188,6 @@
         </div>
       </div>
     </div>
-
-     <!-- Task List -->
     <div class="user-configuration configuration-content" [ngClass]="{'content-active':barSelected == 4}">
       <div class="configuration-content__header">
         <div class="configuration-content__add-btn" (click)="openPopupTask('addNewTask')">+ Add New</div>
